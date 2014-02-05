@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.label.text = [NSString stringWithFormat:@"Screen #%d", self.index];
+    self.label.text = [NSString stringWithFormat:@"Screen #%ld", (long)self.index];
 }
 
 - (void)didReceiveMemoryWarning

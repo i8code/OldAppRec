@@ -22,10 +22,12 @@
 		C7371F6418A1DFEE007FB490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7371F6218A1DFEE007FB490 /* InfoPlist.strings */; };
 		C7371F6618A1DFEE007FB490 /* YapZapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7371F6518A1DFEE007FB490 /* YapZapTests.m */; };
 		C7371F7318A1E316007FB490 /* MainBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7371F7218A1E316007FB490 /* MainBackgroundView.m */; };
+		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
 		C7CF286C18A1E4790053DB9C /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286B18A1E4790053DB9C /* Button.m */; };
 		C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */; };
 		C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */; };
 		C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF287418A1E73A0053DB9C /* HomePageViewController.m */; };
+		C7CF287C18A1F3400053DB9C /* PageExample.png in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287B18A1F3400053DB9C /* PageExample.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,7 @@
 		C7371F6518A1DFEE007FB490 /* YapZapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YapZapTests.m; sourceTree = "<group>"; };
 		C7371F7118A1E316007FB490 /* MainBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainBackgroundView.h; path = UserInterface/MainBackgroundView.h; sourceTree = "<group>"; };
 		C7371F7218A1E316007FB490 /* MainBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainBackgroundView.m; path = UserInterface/MainBackgroundView.m; sourceTree = "<group>"; };
+		C75D50CA18A1F3FB00E3D878 /* Mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mock.png; sourceTree = "<group>"; };
 		C7CF286A18A1E4790053DB9C /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = UserInterface/Button.h; sourceTree = "<group>"; };
 		C7CF286B18A1E4790053DB9C /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Button.m; path = UserInterface/Button.m; sourceTree = "<group>"; };
 		C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EpisodeViewController.h; path = UserInterface/EpisodeViewController.h; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EpisodeViewController.xib; path = UserInterface/EpisodeViewController.xib; sourceTree = "<group>"; };
 		C7CF287318A1E73A0053DB9C /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageViewController.h; path = UserInterface/HomePageViewController.h; sourceTree = "<group>"; };
 		C7CF287418A1E73A0053DB9C /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageViewController.m; path = UserInterface/HomePageViewController.m; sourceTree = "<group>"; };
+		C7CF287B18A1F3400053DB9C /* PageExample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PageExample.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 		C7371F4018A1DFEE007FB490 /* YapZap */ = {
 			isa = PBXGroup;
 			children = (
+				C7CF287618A1F0F90053DB9C /* Images */,
 				C7CF286D18A1E4910053DB9C /* Communication */,
 				C7371F7018A1E2B2007FB490 /* CoreData */,
 				C7371F6F18A1E29B007FB490 /* UserInterface */,
@@ -199,6 +204,15 @@
 			name = Communication;
 			sourceTree = "<group>";
 		};
+		C7CF287618A1F0F90053DB9C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C75D50CA18A1F3FB00E3D878 /* Mock.png */,
+				C7CF287B18A1F3400053DB9C /* PageExample.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -246,6 +260,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = YapZap;
 				TargetAttributes = {
+					C7371F3618A1DFEE007FB490 = {
+						DevelopmentTeam = 2Q9G639EK3;
+					};
 					C7371F5718A1DFEE007FB490 = {
 						TestTargetID = C7371F3618A1DFEE007FB490;
 					};
@@ -277,6 +294,8 @@
 			files = (
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
 				C7371F4518A1DFEE007FB490 /* InfoPlist.strings in Resources */,
+				C7CF287C18A1F3400053DB9C /* PageExample.png in Resources */,
+				C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */,
 				C7371F4E18A1DFEE007FB490 /* Main.storyboard in Resources */,
 				C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */,
 			);
@@ -430,11 +449,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YapZap/YapZap-Prefix.pch";
 				INFOPLIST_FILE = "YapZap/YapZap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -444,11 +466,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YapZap/YapZap-Prefix.pch";
 				INFOPLIST_FILE = "YapZap/YapZap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -458,6 +483,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YapZap.app/YapZap";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
