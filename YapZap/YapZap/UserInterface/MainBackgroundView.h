@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainBackgroundView.h
 //  YapZap
 //
 //  Created by Jason R Boggess on 2/4/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainBackgroundView : UIView
 
 @end

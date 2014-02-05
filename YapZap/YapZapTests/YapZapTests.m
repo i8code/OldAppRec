@@ -3,7 +3,7 @@
 //  YapZapTests
 //
 //  Created by Jason R Boggess on 2/4/14.
-//  Copyright (c) 2014 i8code. All rights reserved.
+//  Copyright (c) 2014 YapZap. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
