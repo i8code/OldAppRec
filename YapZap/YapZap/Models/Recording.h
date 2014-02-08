@@ -13,9 +13,13 @@
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* waveformUrl;
 @property (nonatomic, strong) NSString* audioUrl;
+@property CGFloat mood;
+@property CGFloat intensity;
 
 @property NSInteger likes;
 @property NSInteger dislikes;
 
+
++(Recording*)fromJSON:(NSDictionary*)dictionary;
 
 @end

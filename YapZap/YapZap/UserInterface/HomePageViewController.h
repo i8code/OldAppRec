@@ -16,5 +16,6 @@
 @property (strong, nonatomic) UIPageViewController *pageController;
 @property (weak, nonatomic) IBOutlet UIView *pageControlViewArea;
 @property (weak, nonatomic) IBOutlet FilteredImageView *backgroundImage;
+@property (strong, nonatomic) NSMutableArray* data;
 
 @end

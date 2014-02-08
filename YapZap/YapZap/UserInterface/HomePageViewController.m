@@ -11,12 +11,19 @@
 #import "LoadingViewController.h"
 #import "IndexedViewController.h"
 #import "FilteredImageView.h"
+#import "SampleData.h"
+#import "TagPage.h"
+#import "PageSet.h"
+#import "DataSource.h"
 
 @interface HomePageViewController ()
-
+@property (nonatomic, strong) NSArray* pages;
 @end
 
 @implementation HomePageViewController
+
+@synthesize data = _data;
+@synthesize pages = _pages;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,37 +33,109 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
     
-    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
-    self.pageController.dataSource = self;
-    self.pageController.delegate = self;
-    
-    
-    CGRect frame = CGRectMake(0, 0, self.pageControlViewArea.frame.size.width, self.pageControlViewArea.frame.size.height);
-    [[self.pageController view] setFrame:frame];
-    
-    EpisodeViewController *initialViewController = (EpisodeViewController *)[self viewControllerAtIndex:0];
-    
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
-    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    [self addChildViewController:self.pageController];
-    
-    [[self pageControlViewArea] addSubview:[self.pageController view]];
-    [self.pageController didMoveToParentViewController:self];
+    self.backgroundImage.filterColor = [UIColor whiteColor];
+    [self loadPageSet:NO];
     
 //    for (UIView *v in self.pageController.view.subviews) {
 //        if ([v isKindOfClass:[UIScrollView class]]) {
 //            ((UIScrollView *)v).delegate = self;
 //        }
 //    }
+}
+
+int setIndex=0;
+
+bool hasForwardPage=false;
+bool hasBackwardPage=false;
+int numRealPages = 0;
+bool here=false;
+-(void)loadPageSet:(BOOL)goToEnd{
+    UIView* loadingView = self.pageController.view;
+    loadingView.userInteractionEnabled = NO;
+    [self.pageController removeFromParentViewController];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableArray* pages = [[NSMutableArray alloc] init];
+        PageSet* currentSet = [DataSource getSet:setIndex];
+        [NSThread sleepForTimeInterval:1.0];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+            
+            self.pageController.dataSource = self;
+            self.pageController.delegate = self;
+            CGRect frame = CGRectMake(0, 0, self.pageControlViewArea.frame.size.width, self.pageControlViewArea.frame.size.height);
+            [[self.pageController view] setFrame:frame];
+            
+            [loadingView removeFromSuperview];
+            
+            //Generate the pages
+            numRealPages=0;
+            if (currentSet.setNumber!=1){
+                //Add the back page
+                LoadingViewController* backPage =[[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil];
+                backPage.index = pages.count;
+                backPage.view.frame = self.pageController.view.frame;
+                [pages addObject:backPage];
+                hasBackwardPage=true;
+            }
+            else {
+                hasBackwardPage = false;
+            }
+            
+            for (TagPage* tagPage in currentSet.tagPages){
+                EpisodeViewController *pageView = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
+                pageView.index = pages.count;
+                pageView.view.frame = self.pageController.view.frame;
+                [pageView setTagPage:tagPage];
+                [pages addObject:pageView];
+                numRealPages++;
+            }
+            
+            if (currentSet.setNumber<currentSet.totalSets){
+                LoadingViewController* forward =[[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil];
+                forward.index = pages.count;
+                forward.view.frame = self.pageController.view.frame;
+                [pages addObject:forward];
+                hasForwardPage = true;
+            }
+            else{
+                hasForwardPage=false;
+            }
+            
+            self.pages = pages;
+            
+            //Set up dots
+            self.pageIndicator.numberOfPages = numRealPages;
+            self.pageIndicator.currentPage = goToEnd?numRealPages-1:0;
+            
+            int firstIndex = hasBackwardPage?1:0;
+            int lastIndex = hasForwardPage?pages.count-2:pages.count-1;
+            
+            int startIndex = goToEnd? lastIndex:firstIndex;
+            
+            [self.pageController setViewControllers:[NSArray arrayWithObject:[self.pages objectAtIndex:startIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            
+            
+            [self addChildViewController:self.pageController];
+            
+            [[self pageControlViewArea] addSubview:[self.pageController view]];
+            [self.pageController didMoveToParentViewController:self];
+            
+            
+            self.backgroundImage.filterColor = [((EpisodeViewController*)[self.pages objectAtIndex:startIndex]) getBackgroundColor];
+
+        });
+    });
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,18 +146,11 @@
 
 - (IndexedViewController *)viewControllerAtIndex:(NSUInteger)index {
     
-    IndexedViewController *childViewController;
-    
-    if (index==5){
-        childViewController = [[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil];
-    } else{
-        childViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
+    if (index>=self.pages.count){
+        return nil;
     }
-    childViewController.view.frame = self.pageController.view.frame;
-    childViewController.index=index;
     
-    return childViewController;
-    
+    return self.pages[index];
 }
 /*
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
@@ -112,7 +184,7 @@
     
     index++;
     
-    if (index == 6) {
+    if (index==self.pages.count) {
         return nil;
     }
     
@@ -127,11 +199,21 @@
     // Find index of current page
     IndexedViewController *currentViewController = (IndexedViewController *)[self.pageController.viewControllers lastObject];
     NSUInteger indexOfCurrentPage = currentViewController.index;
-    self.pageIndicator.currentPage = indexOfCurrentPage;
+    int diff = hasBackwardPage?1:0;
+    self.pageIndicator.currentPage = indexOfCurrentPage-diff;
     
     self.backgroundImage.filterColor =[currentViewController getBackgroundColor];
+    
+    if (indexOfCurrentPage==self.pages.count-1 && hasForwardPage){
+        setIndex++;
+        [self loadPageSet:NO];
+    }
+    else if (indexOfCurrentPage==0 && hasBackwardPage){
+        setIndex--;
+        [self loadPageSet:YES];
+    }
 }
-
+/*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSInteger index = self.pageIndicator.currentPage;
     UIColor* myColor = [[self viewControllerAtIndex:index] getBackgroundColor];
@@ -143,7 +225,7 @@
     //UIColor leftColor =
     //NSLog(@"%f", scrollView.contentOffset.x);
 }
-
+*/
 UIColor* blend( UIColor* c1, UIColor* c2, float alpha )
 {
     alpha = MIN( 1.f, MAX( 0.f, alpha ) );

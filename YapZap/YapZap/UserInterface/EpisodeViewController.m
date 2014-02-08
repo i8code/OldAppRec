@@ -9,6 +9,7 @@
 #import "EpisodeViewController.h"
 #import "TagTableViewController.h"
 #import "MarqueeLabel.h"
+#import "TagPage.h"
 
 @interface EpisodeViewController ()
 
@@ -38,6 +39,7 @@
     marqueeLabel.font = [UIFont systemFontOfSize:30];
     marqueeLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:marqueeLabel];
+    self.subTitleLabel = marqueeLabel;
     
     [[self tableViewArea] addSubview:[self.tableView view]];
     [self.tableView didMoveToParentViewController:self];
@@ -50,11 +52,17 @@
 }
 
 -(UIColor*)getBackgroundColor{
-    NSArray* colors =[[NSArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor],[UIColor cyanColor], nil];
-    
+    NSArray* colors =[[NSArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor],[UIColor cyanColor],[UIColor orangeColor], nil];
     
     return [colors objectAtIndex:self.index];
     
+}
+
+-(void)setTagPage:(TagPage*)page{
+    self.titleLabel.text = page.title;
+    self.subTitleLabel.text = page.subTitle;
+    
+    //TODO propagate down
 }
 
 @end

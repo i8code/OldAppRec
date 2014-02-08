@@ -17,4 +17,6 @@
 
 @property (nonatomic, strong) NSArray* recordings;
 
++(TagPage*)fromJSON:(NSDictionary*)dictionary;
+
 @end
