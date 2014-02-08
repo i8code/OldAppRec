@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IndexedViewController.h"
 
 @class TagTableViewController;
 
-@interface EpisodeViewController : UIViewController
+@interface EpisodeViewController : IndexedViewController
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *tableViewArea;
 @property (strong, nonatomic) TagTableViewController* tableView;
-@property (assign, nonatomic) NSInteger index;
 @end

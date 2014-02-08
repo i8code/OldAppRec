@@ -8,6 +8,8 @@
 
 #import "HomePageViewController.h"
 #import "EpisodeViewController.h"
+#import "LoadingViewController.h"
+#import "IndexedViewController.h"
 
 @interface HomePageViewController ()
 
@@ -38,7 +40,7 @@
     CGRect frame = CGRectMake(0, 0, self.pageControlViewArea.frame.size.width, self.pageControlViewArea.frame.size.height);
     [[self.pageController view] setFrame:frame];
     
-    EpisodeViewController *initialViewController = [self viewControllerAtIndex:0];
+    EpisodeViewController *initialViewController = (EpisodeViewController *)[self viewControllerAtIndex:0];
     
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
@@ -56,10 +58,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (EpisodeViewController *)viewControllerAtIndex:(NSUInteger)index {
+- (IndexedViewController *)viewControllerAtIndex:(NSUInteger)index {
     
-    EpisodeViewController *childViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
-    childViewController.index = index;
+    IndexedViewController *childViewController;
+    
+    if (index==5){
+        childViewController = [[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil];
+    } else{
+        childViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
+    }
+    childViewController.view.frame = self.pageController.view.frame;
+    childViewController.index=index;
     
     return childViewController;
     
@@ -77,7 +86,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    NSUInteger index = [(EpisodeViewController *)viewController index];
+    NSUInteger index = [(IndexedViewController *)viewController index];
     
     if (index == 0) {
         return nil;
@@ -91,12 +100,12 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
-    NSUInteger index = [(EpisodeViewController*)viewController index];
+    NSUInteger index = [(IndexedViewController*)viewController index];
     
     
     index++;
     
-    if (index == 5) {
+    if (index == 6) {
         return nil;
     }
     
@@ -109,7 +118,7 @@
     if (!completed){return;}
     
     // Find index of current page
-    EpisodeViewController *currentViewController = (EpisodeViewController *)[self.pageController.viewControllers lastObject];
+    IndexedViewController *currentViewController = (IndexedViewController *)[self.pageController.viewControllers lastObject];
     NSUInteger indexOfCurrentPage = currentViewController.index;
     self.pageIndicator.currentPage = indexOfCurrentPage;
 }
