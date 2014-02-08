@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomePageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@class FilteredImageView;
+
+@interface HomePageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageIndicator;
 @property (strong, nonatomic) UIPageViewController *pageController;
 @property (weak, nonatomic) IBOutlet UIView *pageControlViewArea;
+@property (weak, nonatomic) IBOutlet FilteredImageView *backgroundImage;
 
 @end

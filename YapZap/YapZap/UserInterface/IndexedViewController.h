@@ -11,4 +11,6 @@
 @interface IndexedViewController : UIViewController
 @property (assign, nonatomic) NSInteger index;
 
+-(UIColor*)getBackgroundColor;
+
 @end

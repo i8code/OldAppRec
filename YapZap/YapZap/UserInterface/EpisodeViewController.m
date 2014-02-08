@@ -49,4 +49,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UIColor*)getBackgroundColor{
+    NSArray* colors =[[NSArray alloc] initWithObjects:[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor],[UIColor cyanColor], nil];
+    
+    
+    return [colors objectAtIndex:self.index];
+    
+}
+
 @end

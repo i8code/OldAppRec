@@ -39,4 +39,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(UIColor*)getBackgroundColor{
+    return nil;
+    
+}
+
 @end

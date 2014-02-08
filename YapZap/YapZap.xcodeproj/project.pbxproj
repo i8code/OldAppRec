@@ -26,6 +26,8 @@
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
+		C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204118A6A6CA00D1BEAB /* TagPage.m */; };
+		C796204518A6A74000D1BEAB /* Recording.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204418A6A74000D1BEAB /* Recording.m */; };
 		C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6D918A6591100AA1BDE /* TagTableViewController.m */; };
 		C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */; };
 		C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DD18A65DE300AA1BDE /* pup.jpg */; };
@@ -88,6 +90,10 @@
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
 		C796203C18A6857500D1BEAB /* IndexedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexedViewController.h; path = UserInterface/IndexedViewController.h; sourceTree = "<group>"; };
 		C796203D18A6857500D1BEAB /* IndexedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexedViewController.m; path = UserInterface/IndexedViewController.m; sourceTree = "<group>"; };
+		C796204018A6A6CA00D1BEAB /* TagPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagPage.h; path = Models/TagPage.h; sourceTree = "<group>"; };
+		C796204118A6A6CA00D1BEAB /* TagPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagPage.m; path = Models/TagPage.m; sourceTree = "<group>"; };
+		C796204318A6A74000D1BEAB /* Recording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recording.h; path = Models/Recording.h; sourceTree = "<group>"; };
+		C796204418A6A74000D1BEAB /* Recording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recording.m; path = Models/Recording.m; sourceTree = "<group>"; };
 		C79EF6D818A6591100AA1BDE /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewController.h; path = UserInterface/TagTableViewController.h; sourceTree = "<group>"; };
 		C79EF6D918A6591100AA1BDE /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewController.m; path = UserInterface/TagTableViewController.m; sourceTree = "<group>"; };
 		C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewController.xib; path = UserInterface/TagTableViewController.xib; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 		C7371F4018A1DFEE007FB490 /* YapZap */ = {
 			isa = PBXGroup;
 			children = (
+				C796203F18A6A6A800D1BEAB /* Models */,
 				C7CF287618A1F0F90053DB9C /* Images */,
 				C7CF286D18A1E4910053DB9C /* Communication */,
 				C7371F7018A1E2B2007FB490 /* CoreData */,
@@ -257,6 +264,17 @@
 			children = (
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		C796203F18A6A6A800D1BEAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C796204018A6A6CA00D1BEAB /* TagPage.h */,
+				C796204118A6A6CA00D1BEAB /* TagPage.m */,
+				C796204318A6A74000D1BEAB /* Recording.h */,
+				C796204418A6A74000D1BEAB /* Recording.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C79EF6F818A66DA600AA1BDE /* lib */ = {
@@ -415,8 +433,10 @@
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C7CF286C18A1E4790053DB9C /* Button.m in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
+				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
 				C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */,
 				C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */,
+				C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */,
 				C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */,
 				C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,

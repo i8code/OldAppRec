@@ -17,6 +17,8 @@
 
 @implementation FilteredImageView
 
+@synthesize filterColor = _filterColor;
+
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -46,6 +48,10 @@
     self.originalImage = image;
 }
 
+-(void)setFilterColor:(UIColor *)filterColor{
+    _filterColor = filterColor;
+    [self setNeedsDisplay];
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -58,16 +64,23 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
+    CGContextClearRect(context, rect);
     
     // Draw picture first
     //
-    CGContextDrawImage(context, self.frame, self.originalImage.CGImage);
     
     // Blend mode could be any of CGBlendMode values. Now draw filled rectangle
     // over top of image.
     //
-    CGContextSetBlendMode (context, kCGBlendModeMultiply);
-    CGContextSetFillColor(context, CGColorGetComponents(self.filterColor.CGColor));
+    if (self.filterColor==nil){
+        CGContextSetBlendMode (context, kCGBlendModeNormal);
+        CGContextSetFillColor(context, CGColorGetComponents([UIColor blackColor].CGColor));
+    }
+    else{
+        CGContextDrawImage(context, self.frame, self.originalImage.CGImage);
+        CGContextSetBlendMode (context, kCGBlendModeMultiply);
+        CGContextSetFillColor(context, CGColorGetComponents(self.filterColor.CGColor));
+    }
     CGContextFillRect (context, self.bounds);
     CGContextRestoreGState(context);
 }
