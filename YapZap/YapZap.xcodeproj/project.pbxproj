@@ -23,6 +23,20 @@
 		C7371F6618A1DFEE007FB490 /* YapZapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7371F6518A1DFEE007FB490 /* YapZapTests.m */; };
 		C7371F7318A1E316007FB490 /* MainBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7371F7218A1E316007FB490 /* MainBackgroundView.m */; };
 		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
+		C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6D918A6591100AA1BDE /* TagTableViewController.m */; };
+		C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */; };
+		C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DD18A65DE300AA1BDE /* pup.jpg */; };
+		C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */; };
+		C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */; };
+		C79EF6ED18A6648B00AA1BDE /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6E418A6648B00AA1BDE /* back_icon.png */; };
+		C79EF6EE18A6648B00AA1BDE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6E518A6648B00AA1BDE /* background.png */; };
+		C79EF6EF18A6648B00AA1BDE /* circle_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6E618A6648B00AA1BDE /* circle_icon.png */; };
+		C79EF6F018A6648B00AA1BDE /* help_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6E718A6648B00AA1BDE /* help_icon.png */; };
+		C79EF6F118A6648B00AA1BDE /* play_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6E818A6648B00AA1BDE /* play_icon.png */; };
+		C79EF6F218A6648B00AA1BDE /* sample_waveform.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6E918A6648B00AA1BDE /* sample_waveform.png */; };
+		C79EF6F318A6648B00AA1BDE /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6EA18A6648B00AA1BDE /* search_icon.png */; };
+		C79EF6F418A6648B00AA1BDE /* sharing_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6EB18A6648B00AA1BDE /* sharing_icon.png */; };
+		C79EF6F518A6648B00AA1BDE /* smile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6EC18A6648B00AA1BDE /* smile_icon.png */; };
 		C7CF286C18A1E4790053DB9C /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286B18A1E4790053DB9C /* Button.m */; };
 		C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */; };
 		C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */; };
@@ -63,6 +77,22 @@
 		C7371F7118A1E316007FB490 /* MainBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainBackgroundView.h; path = UserInterface/MainBackgroundView.h; sourceTree = "<group>"; };
 		C7371F7218A1E316007FB490 /* MainBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainBackgroundView.m; path = UserInterface/MainBackgroundView.m; sourceTree = "<group>"; };
 		C75D50CA18A1F3FB00E3D878 /* Mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mock.png; sourceTree = "<group>"; };
+		C79EF6D818A6591100AA1BDE /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewController.h; path = UserInterface/TagTableViewController.h; sourceTree = "<group>"; };
+		C79EF6D918A6591100AA1BDE /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewController.m; path = UserInterface/TagTableViewController.m; sourceTree = "<group>"; };
+		C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewController.xib; path = UserInterface/TagTableViewController.xib; sourceTree = "<group>"; };
+		C79EF6DD18A65DE300AA1BDE /* pup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pup.jpg; sourceTree = "<group>"; };
+		C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewCell.xib; path = UserInterface/TagTableViewCell.xib; sourceTree = "<group>"; };
+		C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewCell.h; path = UserInterface/TagTableViewCell.h; sourceTree = "<group>"; };
+		C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewCell.m; path = UserInterface/TagTableViewCell.m; sourceTree = "<group>"; };
+		C79EF6E418A6648B00AA1BDE /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
+		C79EF6E518A6648B00AA1BDE /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		C79EF6E618A6648B00AA1BDE /* circle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_icon.png; sourceTree = "<group>"; };
+		C79EF6E718A6648B00AA1BDE /* help_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_icon.png; sourceTree = "<group>"; };
+		C79EF6E818A6648B00AA1BDE /* play_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_icon.png; sourceTree = "<group>"; };
+		C79EF6E918A6648B00AA1BDE /* sample_waveform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_waveform.png; sourceTree = "<group>"; };
+		C79EF6EA18A6648B00AA1BDE /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
+		C79EF6EB18A6648B00AA1BDE /* sharing_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharing_icon.png; sourceTree = "<group>"; };
+		C79EF6EC18A6648B00AA1BDE /* smile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile_icon.png; sourceTree = "<group>"; };
 		C7CF286A18A1E4790053DB9C /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = UserInterface/Button.h; sourceTree = "<group>"; };
 		C7CF286B18A1E4790053DB9C /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Button.m; path = UserInterface/Button.m; sourceTree = "<group>"; };
 		C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EpisodeViewController.h; path = UserInterface/EpisodeViewController.h; sourceTree = "<group>"; };
@@ -186,6 +216,12 @@
 				C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */,
 				C7CF287318A1E73A0053DB9C /* HomePageViewController.h */,
 				C7CF287418A1E73A0053DB9C /* HomePageViewController.m */,
+				C79EF6D818A6591100AA1BDE /* TagTableViewController.h */,
+				C79EF6D918A6591100AA1BDE /* TagTableViewController.m */,
+				C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */,
+				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
+				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
+				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -207,6 +243,16 @@
 		C7CF287618A1F0F90053DB9C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C79EF6E418A6648B00AA1BDE /* back_icon.png */,
+				C79EF6E518A6648B00AA1BDE /* background.png */,
+				C79EF6E618A6648B00AA1BDE /* circle_icon.png */,
+				C79EF6E718A6648B00AA1BDE /* help_icon.png */,
+				C79EF6E818A6648B00AA1BDE /* play_icon.png */,
+				C79EF6E918A6648B00AA1BDE /* sample_waveform.png */,
+				C79EF6EA18A6648B00AA1BDE /* search_icon.png */,
+				C79EF6EB18A6648B00AA1BDE /* sharing_icon.png */,
+				C79EF6EC18A6648B00AA1BDE /* smile_icon.png */,
+				C79EF6DD18A65DE300AA1BDE /* pup.jpg */,
 				C75D50CA18A1F3FB00E3D878 /* Mock.png */,
 				C7CF287B18A1F3400053DB9C /* PageExample.png */,
 			);
@@ -292,12 +338,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79EF6F418A6648B00AA1BDE /* sharing_icon.png in Resources */,
+				C79EF6F318A6648B00AA1BDE /* search_icon.png in Resources */,
+				C79EF6EF18A6648B00AA1BDE /* circle_icon.png in Resources */,
+				C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */,
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
 				C7371F4518A1DFEE007FB490 /* InfoPlist.strings in Resources */,
 				C7CF287C18A1F3400053DB9C /* PageExample.png in Resources */,
+				C79EF6F518A6648B00AA1BDE /* smile_icon.png in Resources */,
+				C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */,
+				C79EF6F218A6648B00AA1BDE /* sample_waveform.png in Resources */,
 				C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */,
+				C79EF6F018A6648B00AA1BDE /* help_icon.png in Resources */,
+				C79EF6F118A6648B00AA1BDE /* play_icon.png in Resources */,
 				C7371F4E18A1DFEE007FB490 /* Main.storyboard in Resources */,
+				C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */,
 				C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */,
+				C79EF6EE18A6648B00AA1BDE /* background.png in Resources */,
+				C79EF6ED18A6648B00AA1BDE /* back_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +379,9 @@
 				C7CF286C18A1E4790053DB9C /* Button.m in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
 				C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */,
+				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
 				C7371F7318A1E316007FB490 /* MainBackgroundView.m in Sources */,
+				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
