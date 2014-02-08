@@ -8,6 +8,7 @@
 
 #import "EpisodeViewController.h"
 #import "TagTableViewController.h"
+#import "MarqueeLabel.h"
 
 @interface EpisodeViewController ()
 
@@ -32,6 +33,11 @@
     self.tableView.view.frame = CGRectMake(0, 0, self.tableViewArea.frame.size.width, self.tableViewArea.frame.size.height);
     [self addChildViewController:self.tableView];
     
+    MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(0,50,290,30) duration:4.0 andFadeLength:15.0f];
+    marqueeLabel.text = @"Season 1 Episode 500";
+    marqueeLabel.font = [UIFont systemFontOfSize:30];
+    marqueeLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:marqueeLabel];
     
     [[self tableViewArea] addSubview:[self.tableView view]];
     [self.tableView didMoveToParentViewController:self];

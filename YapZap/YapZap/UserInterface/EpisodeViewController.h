@@ -12,7 +12,6 @@
 
 @interface EpisodeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *episodeLabel;
 @property (weak, nonatomic) IBOutlet UIView *tableViewArea;
 @property (strong, nonatomic) TagTableViewController* tableView;
 @property (assign, nonatomic) NSInteger index;
