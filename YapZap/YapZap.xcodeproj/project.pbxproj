@@ -39,6 +39,7 @@
 		C79EF6F518A6648B00AA1BDE /* smile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6EC18A6648B00AA1BDE /* smile_icon.png */; };
 		C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79EF6F618A66D8B00AA1BDE /* QuartzCore.framework */; };
 		C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */; };
+		C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */; };
 		C7CF286C18A1E4790053DB9C /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286B18A1E4790053DB9C /* Button.m */; };
 		C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */; };
 		C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */; };
@@ -98,6 +99,8 @@
 		C79EF6F618A66D8B00AA1BDE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C79EF6F918A66DCF00AA1BDE /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarqueeLabel.h; path = UserInterface/lib/MarqueeLabel.h; sourceTree = "<group>"; };
 		C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarqueeLabel.m; path = UserInterface/lib/MarqueeLabel.m; sourceTree = "<group>"; };
+		C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredImageView.h; path = UserInterface/FilteredImageView.h; sourceTree = "<group>"; };
+		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
 		C7CF286A18A1E4790053DB9C /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = UserInterface/Button.h; sourceTree = "<group>"; };
 		C7CF286B18A1E4790053DB9C /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Button.m; path = UserInterface/Button.m; sourceTree = "<group>"; };
 		C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EpisodeViewController.h; path = UserInterface/EpisodeViewController.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
 				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
 				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
+				C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */,
+				C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C7371F5118A1DFEE007FB490 /* ViewController.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C7CF286C18A1E4790053DB9C /* Button.m in Sources */,
