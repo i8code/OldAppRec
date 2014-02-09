@@ -54,6 +54,9 @@
                                 <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Sjr-EE-WWs" kind="modal" id="lZv-Sp-g0S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -70,8 +73,101 @@
             </objects>
             <point key="canvasLocation" x="69" y="174"/>
         </scene>
+        <!--Record Controller View Controller-->
+        <scene sceneID="1Ku-f4-cP5">
+            <objects>
+                <viewController id="AXK-p8-3zA" customClass="RecordControllerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dVJ-5Z-3uA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordSample.png" id="DBQ-x3-juk">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y7g-4N-89q">
+                                <rect key="frame" x="211" y="178" width="84" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cFk-jh-3gY" kind="push" id="QBS-Fg-HdH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="t4b-Hc-NPW">
+                                <rect key="frame" x="137" y="30" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homePressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="Q3S-Mo-bGe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MYp-gV-tnd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="btn-hb-H9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110" y="165"/>
+        </scene>
+        <!--Set Tag View Controller-->
+        <scene sceneID="OnD-0a-p5V">
+            <objects>
+                <viewController id="cFk-jh-3gY" customClass="SetTagViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yQa-fH-sI2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ShareSample.png" id="FrD-R0-vqX">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qaa-FA-7wf">
+                                <rect key="frame" x="134" y="30" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homePressed:" destination="cFk-jh-3gY" eventType="touchUpInside" id="FrJ-u1-b76"/>
+                                    <action selector="homePressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="zMn-7A-fBV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kgb-A1-IWj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AYH-X1-Ut3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1564" y="174"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NIl-Eo-aa8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sjr-EE-WWs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-qx-Ryj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AXK-p8-3zA" kind="relationship" relationship="rootViewController" id="hMe-GR-7p3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77h-6f-xii" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="584" y="165"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="RecordSample.png" width="311" height="555"/>
+        <image name="ShareSample.png" width="313" height="555"/>
         <image name="background.png" width="640" height="1136"/>
         <image name="circle_icon.png" width="34" height="34"/>
         <image name="search_icon.png" width="34" height="34"/>
