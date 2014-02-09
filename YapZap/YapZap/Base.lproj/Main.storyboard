@@ -103,6 +103,9 @@
                                         <state key="normal" image="search_icon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="searchPressed:" destination="lwI-H4-bnb" eventType="touchUpInside" id="We9-G9-LaT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="7VN-tG-lhl">
                                         <rect key="frame" x="10" y="6" width="22" height="22"/>

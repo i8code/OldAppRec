@@ -39,6 +39,9 @@
 		C747FC3F18A7F4440083A533 /* color_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC3E18A7F4440083A533 /* color_wheel.png */; };
 		C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4118A7F4E80083A533 /* MoodSelectView.m */; };
 		C747FC4618A7FCC60083A533 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4518A7FCC60083A533 /* SettingsViewController.m */; };
+		C747FC4A18A816660083A533 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4818A816660083A533 /* SearchViewController.m */; };
+		C747FC4B18A816660083A533 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747FC4918A816660083A533 /* SearchViewController.xib */; };
+		C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */; };
 		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
@@ -420,6 +423,11 @@
 		C747FC4318A7F5540083A533 /* MoodProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoodProtocol.h; path = UserInterface/MoodProtocol.h; sourceTree = "<group>"; };
 		C747FC4418A7FCC60083A533 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = UserInterface/SettingsViewController.h; sourceTree = "<group>"; };
 		C747FC4518A7FCC60083A533 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = UserInterface/SettingsViewController.m; sourceTree = "<group>"; };
+		C747FC4718A816660083A533 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = UserInterface/SearchViewController.h; sourceTree = "<group>"; };
+		C747FC4818A816660083A533 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = UserInterface/SearchViewController.m; sourceTree = "<group>"; };
+		C747FC4918A816660083A533 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = UserInterface/SearchViewController.xib; sourceTree = "<group>"; };
+		C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPopoverController+iPhone.h"; path = "UserInterface/UIPopoverController+iPhone.h"; sourceTree = "<group>"; };
+		C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIPopoverController+iPhone.m"; path = "UserInterface/UIPopoverController+iPhone.m"; sourceTree = "<group>"; };
 		C75D50CA18A1F3FB00E3D878 /* Mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mock.png; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
@@ -627,6 +635,11 @@
 				C747FC4318A7F5540083A533 /* MoodProtocol.h */,
 				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
 				C747FC4518A7FCC60083A533 /* SettingsViewController.m */,
+				C747FC4718A816660083A533 /* SearchViewController.h */,
+				C747FC4818A816660083A533 /* SearchViewController.m */,
+				C747FC4918A816660083A533 /* SearchViewController.xib */,
+				C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */,
+				C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1389,6 +1402,7 @@
 				C747FC3818A7CC1C0083A533 /* stop_button_small.png in Resources */,
 				C7CF287C18A1F3400053DB9C /* PageExample.png in Resources */,
 				C79EF6F518A6648B00AA1BDE /* smile_icon.png in Resources */,
+				C747FC4B18A816660083A533 /* SearchViewController.xib in Resources */,
 				C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */,
 				C747FC3318A7CC1C0083A533 /* pause_button_small.png in Resources */,
 				C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */,
@@ -1448,8 +1462,10 @@
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
 				C7371F7318A1E316007FB490 /* MainBackgroundView.m in Sources */,
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,
+				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,
 				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
+				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
