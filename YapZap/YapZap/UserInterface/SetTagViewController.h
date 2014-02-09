@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MoodProtocol.h"
+#import "FilteredImageView.h"
 
-@interface SetTagViewController : UIViewController <UITextFieldDelegate>
+@class MoodSelectView;
+
+@interface SetTagViewController : UIViewController <UITextFieldDelegate, MoodProtocol>
 - (IBAction)homePressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *tagTextField;
+@property (weak, nonatomic) IBOutlet FilteredImageView *waveformImage;
+@property (weak, nonatomic) IBOutlet MoodSelectView *moodSelector;
 
 @end

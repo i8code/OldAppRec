@@ -37,6 +37,7 @@
 		C747FC3C18A7D6E30083A533 /* heart_empty_white.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC3A18A7D6E30083A533 /* heart_empty_white.png */; };
 		C747FC3D18A7D6E30083A533 /* heart_icon_lite.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC3B18A7D6E30083A533 /* heart_icon_lite.png */; };
 		C747FC3F18A7F4440083A533 /* color_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC3E18A7F4440083A533 /* color_wheel.png */; };
+		C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4118A7F4E80083A533 /* MoodSelectView.m */; };
 		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
@@ -413,6 +414,9 @@
 		C747FC3A18A7D6E30083A533 /* heart_empty_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_empty_white.png; sourceTree = "<group>"; };
 		C747FC3B18A7D6E30083A533 /* heart_icon_lite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_icon_lite.png; sourceTree = "<group>"; };
 		C747FC3E18A7F4440083A533 /* color_wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_wheel.png; sourceTree = "<group>"; };
+		C747FC4018A7F4E80083A533 /* MoodSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodSelectView.h; path = UserInterface/MoodSelectView.h; sourceTree = "<group>"; };
+		C747FC4118A7F4E80083A533 /* MoodSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodSelectView.m; path = UserInterface/MoodSelectView.m; sourceTree = "<group>"; };
+		C747FC4318A7F5540083A533 /* MoodProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoodProtocol.h; path = UserInterface/MoodProtocol.h; sourceTree = "<group>"; };
 		C75D50CA18A1F3FB00E3D878 /* Mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mock.png; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
@@ -615,6 +619,9 @@
 				C796205918A703F600D1BEAB /* SetTagViewController.m */,
 				C747FC1F18A738EC0083A533 /* LoginViewController.h */,
 				C747FC2018A738EC0083A533 /* LoginViewController.m */,
+				C747FC4018A7F4E80083A533 /* MoodSelectView.h */,
+				C747FC4118A7F4E80083A533 /* MoodSelectView.m */,
+				C747FC4318A7F5540083A533 /* MoodProtocol.h */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1423,6 +1430,7 @@
 				C7CF286C18A1E4790053DB9C /* Button.m in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
+				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,
 				C796204B18A6B30300D1BEAB /* SampleData.m in Sources */,
 				C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */,
 				C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */,

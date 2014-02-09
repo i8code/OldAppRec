@@ -7,6 +7,7 @@
 //
 
 #import "SetTagViewController.h"
+#import "MoodSelectView.h"
 
 @interface SetTagViewController ()
 
@@ -29,6 +30,9 @@
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.tagTextField.delegate = self;
+    self.waveformImage.filterColor = [UIColor whiteColor];
+    [self.waveformImage setImage:[UIImage imageNamed:@"sample_waveform.png"]];
+    [self.moodSelector setColorDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +45,9 @@
     
     [textField resignFirstResponder];
     return YES;
+}
+-(void)setMoodColor:(UIColor *)color{
+    self.waveformImage.filterColor = color;
 }
 
 - (IBAction)homePressed:(id)sender {
