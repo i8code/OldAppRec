@@ -23,4 +23,6 @@
 -(void)setEnabled:(BOOL)enabled;
 - (IBAction)playClicked:(id)sender;
 
+-(void)updateImage;
+
 @end

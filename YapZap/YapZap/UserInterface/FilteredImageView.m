@@ -73,7 +73,7 @@
     
     if (_partialFill){
         float left = self.bounds.size.width*self.percent;
-        bounds = CGRectMake(left, 0, width, height);
+        bounds = CGRectMake(0, 0, left, height);
     }
     CGContextFillRect (context, bounds);
     

@@ -12,9 +12,16 @@
 #import "Util.h"
 #import "TagTableViewController.h"
 
+@interface TagTableViewCell()
+@property  (nonatomic, strong) NSTimer* timer;
+@property  NSInteger timerCount;
+
+@end
+
 @implementation TagTableViewCell
 
 @synthesize recording = _recording;
+@synthesize timer = _timer;
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
@@ -24,8 +31,8 @@
     
     [self.waveFormImage setImage:[UIImage imageNamed:@"sample_waveform.png"]];
     self.waveFormImage.filterColor = [Util colorFromMood:recording.mood andIntesity:recording.intensity];
-//    [self.waveFormImage setPercent:0.5];
-//    [self.waveFormImage setPartialFill:YES];
+    [self.waveFormImage setPercent:1];
+    [self.waveFormImage setPartialFill:YES];
     [self.waveFormImage setNeedsDisplay];
     
 }
@@ -52,6 +59,12 @@
     if (enabled){
         self.waveFormImage.filterColor = [Util colorFromMood:self.recording.mood andIntesity:self.recording.intensity];
         [self.waveFormImage setAlpha:1];
+        
+        [self.timer invalidate];
+        self.timer=nil;
+        [self.waveFormImage setPercent:1];
+        [self.waveFormImage setNeedsDisplay];
+        self.playButton.hidden = NO;
     }
     else{
         self.waveFormImage.filterColor = [UIColor blackColor];
@@ -59,8 +72,30 @@
     }
 }
 
+
 - (IBAction)playClicked:(id)sender {
     [self.delegate setCell:self playing:YES];
+    self.playButton.hidden = YES;
+    self.timerCount = 0;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
+}
+
+-(void)updateImage{
+    
+    self.timerCount++;
+    
+    [self.waveFormImage setPercent:(((float)self.timerCount)/50.0f)];
+    [self.waveFormImage setNeedsDisplay];
+    
+    if (self.timerCount>=50){
+        [self.timer invalidate];
+        self.timer=nil;
+        [self.delegate setCell:self playing:NO];
+        [self.waveFormImage setPercent:1];
+        [self.waveFormImage setNeedsDisplay];
+        self.playButton.hidden = NO;
+    }
+    
 }
 
 @end
