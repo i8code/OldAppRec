@@ -21,28 +21,33 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_waveform.png" id="ZIn-Rb-zhe">
-                        <rect key="frame" x="163" y="12" width="148" height="35"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="0k6-NC-b9j">
                         <rect key="frame" x="122" y="12" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="play_icon.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="playClicked:" destination="Qqv-Ml-BeS" eventType="touchUpInside" id="ouE-4b-ZZ6"/>
+                        </connections>
                     </button>
+                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" id="2bz-DS-2ya" customClass="FilteredImageView">
+                        <rect key="frame" x="147" y="5" width="167" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="label" destination="yhb-mw-L1v" id="Sg0-8i-907"/>
+                <outlet property="playButton" destination="0k6-NC-b9j" id="Qof-on-1QU"/>
+                <outlet property="waveFormImage" destination="2bz-DS-2ya" id="2JC-rD-zOd"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="background.png" width="640" height="1136"/>
         <image name="play_icon.png" width="256" height="256"/>
-        <image name="sample_waveform.png" width="355" height="100"/>
     </resources>
 </document>

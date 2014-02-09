@@ -11,10 +11,11 @@
 
 @class TagTableViewController;
 @class TagPage;
+@class MarqueeLabel;
 
 @interface EpisodeViewController : IndexedViewController
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *subTitleLabel;
+@property (strong, nonatomic) MarqueeLabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UIView *tableViewArea;
 @property (strong, nonatomic) TagTableViewController* tableView;
 

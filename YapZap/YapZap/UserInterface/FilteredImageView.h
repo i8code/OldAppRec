@@ -11,6 +11,8 @@
 @interface FilteredImageView : UIView
 @property (strong, nonatomic) UIColor *filterColor;
 
--(id)initWithFrame:(CGRect)frame;
 - (void)drawRect:(CGRect)rect;
+-(void)setImage:(UIImage *)image;
+@property bool partialFill;
+@property CGFloat percent;
 @end

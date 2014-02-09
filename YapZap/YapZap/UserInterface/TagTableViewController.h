@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class TagTableViewCell;
+
 @interface TagTableViewController : UITableViewController
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+
+@property (nonatomic, strong) NSArray *records;
+
+-(void)setCell:(TagTableViewCell*)cell playing:(bool)playing;
+
 @end

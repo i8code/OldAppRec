@@ -3,6 +3,8 @@ var names = ["Jacob", "Mason", "Ethan", "Noah", "William", "Liam", "Jayden", "Mi
 
 var shows = ["Game of Thrones", "Breaking Bad", "The Golden Girls"];
 
+
+var episode_names0 = ["Season 1", "Season 2", "Season 3", "Season 4"];
 var episode_names1 = ["Episode 1", "Episode 2", "Episode 3", "Episode 4"];
 var episode_names2 = ["Live Free or Die", "Madrigal", "Hazard Pay", "Fifty-One", "Dead Freight", "Buyout", "Say My Name", "Gliding Over All", "Blood Money", "Buried", "Confessions", "Rabid Dog"];
 
@@ -19,10 +21,11 @@ for (i=0;i<shows.length;i++){
 	for (j=0;j<episode_names1.length;j++){
 
 		var episodeRandom = Math.floor((Math.random()*episode_names2.length));
+		var seasonRandom = Math.floor((Math.random()*episode_names0.length));
 
-		var episodeName = episode_names1[j] + " " + episode_names2[episodeRandom];
+		var episodeName = episode_names0[seasonRandom]+" "+episode_names1[j] + " " + episode_names2[episodeRandom];
 
-		var numRecordings = Math.floor((Math.random()*30)+1);
+		var numRecordings = Math.floor((Math.random()*6)+4);
 
 		var recordings = [];
 
@@ -32,8 +35,8 @@ for (i=0;i<shows.length;i++){
 
 			recordings.push({
 				firstName : firstName,
-				likes : Math.floor(Math.random()*10000),
-				dislikes : Math.floor(Math.random()*10000),
+				likes : Math.floor(Math.random()*1000),
+				dislikes : Math.floor(Math.random()*1000),
 				mood : (Math.random()*360),
 				intensity : Math.random(),
 				waveformUrl : "waveformUrl",

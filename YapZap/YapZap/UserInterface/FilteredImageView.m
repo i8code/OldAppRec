@@ -18,34 +18,14 @@
 @implementation FilteredImageView
 
 @synthesize filterColor = _filterColor;
-
--(id)initWithCoder:(NSCoder *)aDecoder{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code
-        [self setup];
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        [self setup];
-    }
-    return self;
-}
+@synthesize partialFill = _partialFill;
+@synthesize percent = _percentt;
 
 
--(void)setup{
-    self.filterColor = [UIColor redColor];
-    self.originalImage = [UIImage imageNamed:@"background.png"];
-}
 
 -(void)setImage:(UIImage *)image{
     self.originalImage = image;
+    [self setNeedsDisplay];
 }
 
 -(void)setFilterColor:(UIColor *)filterColor{
@@ -57,6 +37,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
     if (self.originalImage==nil){
         return;
     }
@@ -64,7 +45,14 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
-    CGContextClearRect(context, rect);
+    
+    float width = self.bounds.size.width;
+    float height = self.bounds.size.height;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    
+//    [[UIColor blackColor] setFill];
+//    CGContextFillRect(context, bounds);
+    CGContextClearRect(context, bounds);
     
     // Draw picture first
     //
@@ -77,13 +65,26 @@
         CGContextSetFillColor(context, CGColorGetComponents([UIColor blackColor].CGColor));
     }
     else{
-        CGContextDrawImage(context, self.frame, self.originalImage.CGImage);
+        CGContextDrawImage(context, bounds, self.originalImage.CGImage);
         CGContextSetBlendMode (context, kCGBlendModeMultiply);
         CGContextSetFillColor(context, CGColorGetComponents(self.filterColor.CGColor));
     }
-    CGContextFillRect (context, self.bounds);
+    
+    
+    if (_partialFill){
+        float left = self.bounds.size.width*self.percent;
+        bounds = CGRectMake(left, 0, width, height);
+    }
+    CGContextFillRect (context, bounds);
+    
+    
+    bounds = CGRectMake(0, 0, width, height);
+    
+    CGContextSetBlendMode(context, kCGBlendModeDestinationIn);
+    CGContextDrawImage(context, bounds, self.originalImage.CGImage);
+    
+    
     CGContextRestoreGState(context);
 }
-
 
 @end

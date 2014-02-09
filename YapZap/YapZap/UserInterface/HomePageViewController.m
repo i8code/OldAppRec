@@ -39,7 +39,7 @@
     
 	// Do any additional setup after loading the view.
     
-    
+    [self.backgroundImage setImage:[UIImage imageNamed:@"background.png"]];
     self.backgroundImage.filterColor = [UIColor whiteColor];
     [self loadPageSet:NO];
     
@@ -65,7 +65,7 @@ bool here=false;
         
         NSMutableArray* pages = [[NSMutableArray alloc] init];
         PageSet* currentSet = [DataSource getSet:setIndex];
-        [NSThread sleepForTimeInterval:1.0];
+        [NSThread sleepForTimeInterval:1.5];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];

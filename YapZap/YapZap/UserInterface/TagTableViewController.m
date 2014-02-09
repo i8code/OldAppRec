@@ -8,16 +8,20 @@
 
 #import "TagTableViewController.h"
 #import "TagTableViewCell.h"
+#import "Recording.h"
 
 @interface TagTableViewController ()
 
 @end
 
 @implementation TagTableViewController
-{
-    NSArray *tableData;
-}
+@synthesize records = _records;
 
+
+-(void)setRecords:(NSArray *)records{
+    _records = records;
+    [self.tableView reloadData];
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -48,9 +52,11 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.tintColor = [UIColor whiteColor];
-    
-    tableData = [NSArray arrayWithObjects:@"Jacob", @"Mason", @"Ethan", @"Noah", @"William", @"Liam", @"Jayden", @"Michael", @"Alexander", @"Aiden", nil];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self setCell:nil playing:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +76,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [tableData count];
+    return [self.records count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +90,9 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.label.text = [tableData objectAtIndex:indexPath.row];
+    Recording* recording = [self.records objectAtIndex:indexPath.row];
+    cell.delegate = self;
+    [cell setRecording:recording];
     return cell;
 }
 
@@ -100,10 +108,24 @@
 }
 - (void)updateTable
 {
-    
     [self.tableView reloadData];
-    
     [self.refreshControl endRefreshing];
+}
+
+
+-(void)setCell:(TagTableViewCell*)playingCell playing:(bool)playing{
+    NSArray* cells = [self.tableView visibleCells];
+    
+    self.tableView.scrollEnabled = !playing;
+    
+    for (TagTableViewCell* cell in cells){
+        if (playing && ![cell isEqual:playingCell]){
+            [cell setEnabled:NO];
+        }
+        else {
+            [cell setEnabled:YES];
+        }
+    }
 }
 
 

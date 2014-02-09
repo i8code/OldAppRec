@@ -30,6 +30,7 @@
 		C796204B18A6B30300D1BEAB /* SampleData.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204A18A6B30300D1BEAB /* SampleData.m */; };
 		C796204E18A6B71400D1BEAB /* PageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204D18A6B71400D1BEAB /* PageSet.m */; };
 		C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205018A6BBAD00D1BEAB /* DataSource.m */; };
+		C796205418A6E2AF00D1BEAB /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205318A6E2AF00D1BEAB /* Util.m */; };
 		C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6D918A6591100AA1BDE /* TagTableViewController.m */; };
 		C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */; };
 		C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DD18A65DE300AA1BDE /* pup.jpg */; };
@@ -100,6 +101,8 @@
 		C796204D18A6B71400D1BEAB /* PageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageSet.m; path = Models/PageSet.m; sourceTree = "<group>"; };
 		C796204F18A6BBAD00D1BEAB /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		C796205018A6BBAD00D1BEAB /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		C796205218A6E2AF00D1BEAB /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = UserInterface/Util.h; sourceTree = "<group>"; };
+		C796205318A6E2AF00D1BEAB /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = UserInterface/Util.m; sourceTree = "<group>"; };
 		C79EF6D818A6591100AA1BDE /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewController.h; path = UserInterface/TagTableViewController.h; sourceTree = "<group>"; };
 		C79EF6D918A6591100AA1BDE /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewController.m; path = UserInterface/TagTableViewController.m; sourceTree = "<group>"; };
 		C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewController.xib; path = UserInterface/TagTableViewController.xib; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
 				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
 				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
+				C796205218A6E2AF00D1BEAB /* Util.h */,
+				C796205318A6E2AF00D1BEAB /* Util.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,
 				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
+				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

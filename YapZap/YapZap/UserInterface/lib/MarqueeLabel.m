@@ -486,7 +486,7 @@ typedef void (^animationCompletionBlock)(void);
 #endif
     }
     
-    expectedLabelSize.width = ceilf(expectedLabelSize.width);
+    expectedLabelSize.width = ceilf(expectedLabelSize.width*1.1);
     expectedLabelSize.height = self.bounds.size.height;
     
     return expectedLabelSize;
