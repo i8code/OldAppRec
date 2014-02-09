@@ -16,6 +16,7 @@
 - (IBAction)homePressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *tagTextField;
 @property (weak, nonatomic) IBOutlet FilteredImageView *waveformImage;
+@property (weak, nonatomic) IBOutlet FilteredImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet MoodSelectView *moodSelector;
 
 @end

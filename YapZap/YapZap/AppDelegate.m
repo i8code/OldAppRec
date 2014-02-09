@@ -14,6 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     [FBLoginView class];
     
     //Check to see if the user is logged in
@@ -33,8 +34,7 @@
 -(void)setActiveView:(UIViewController*)viewController{
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        self.window.rootViewController = viewController;
+        [self.window setRootViewController:viewController];
         [self.window makeKeyAndVisible];
         
     });

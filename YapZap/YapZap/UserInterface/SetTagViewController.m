@@ -31,7 +31,9 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.tagTextField.delegate = self;
     self.waveformImage.filterColor = [UIColor whiteColor];
+    self.backgroundImage.filterColor = [UIColor whiteColor];
     [self.waveformImage setImage:[UIImage imageNamed:@"sample_waveform.png"]];
+    [self.backgroundImage setImage:[UIImage imageNamed:@"background.png"]];
     [self.moodSelector setColorDelegate:self];
 }
 
@@ -48,6 +50,7 @@
 }
 -(void)setMoodColor:(UIColor *)color{
     self.waveformImage.filterColor = color;
+    //self.backgroundImage.filterColor = color;
 }
 
 - (IBAction)homePressed:(id)sender {
