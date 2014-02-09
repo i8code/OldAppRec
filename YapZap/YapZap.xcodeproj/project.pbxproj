@@ -42,6 +42,8 @@
 		C747FC4A18A816660083A533 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4818A816660083A533 /* SearchViewController.m */; };
 		C747FC4B18A816660083A533 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747FC4918A816660083A533 /* SearchViewController.xib */; };
 		C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */; };
+		C747FC5218A81D9C0083A533 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC5018A81D9C0083A533 /* LikeViewController.m */; };
+		C747FC5318A81D9C0083A533 /* LikeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747FC5118A81D9C0083A533 /* LikeViewController.xib */; };
 		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
@@ -428,6 +430,9 @@
 		C747FC4918A816660083A533 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = UserInterface/SearchViewController.xib; sourceTree = "<group>"; };
 		C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPopoverController+iPhone.h"; path = "UserInterface/UIPopoverController+iPhone.h"; sourceTree = "<group>"; };
 		C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIPopoverController+iPhone.m"; path = "UserInterface/UIPopoverController+iPhone.m"; sourceTree = "<group>"; };
+		C747FC4F18A81D9C0083A533 /* LikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LikeViewController.h; path = UserInterface/LikeViewController.h; sourceTree = "<group>"; };
+		C747FC5018A81D9C0083A533 /* LikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LikeViewController.m; path = UserInterface/LikeViewController.m; sourceTree = "<group>"; };
+		C747FC5118A81D9C0083A533 /* LikeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LikeViewController.xib; path = UserInterface/LikeViewController.xib; sourceTree = "<group>"; };
 		C75D50CA18A1F3FB00E3D878 /* Mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mock.png; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
@@ -640,6 +645,9 @@
 				C747FC4918A816660083A533 /* SearchViewController.xib */,
 				C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */,
 				C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */,
+				C747FC4F18A81D9C0083A533 /* LikeViewController.h */,
+				C747FC5018A81D9C0083A533 /* LikeViewController.m */,
+				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1406,6 +1414,7 @@
 				C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */,
 				C747FC3318A7CC1C0083A533 /* pause_button_small.png in Resources */,
 				C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */,
+				C747FC5318A81D9C0083A533 /* LikeViewController.xib in Resources */,
 				C747FC3418A7CC1C0083A533 /* play_small_button.png in Resources */,
 				C79EF6F218A6648B00AA1BDE /* sample_waveform.png in Resources */,
 				C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */,
@@ -1443,6 +1452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C796205A18A703F600D1BEAB /* SetTagViewController.m in Sources */,
+				C747FC5218A81D9C0083A533 /* LikeViewController.m in Sources */,
 				C796205718A7035400D1BEAB /* RecordControllerViewController.m in Sources */,
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,

@@ -9,8 +9,12 @@
 #import "TagTableViewController.h"
 #import "TagTableViewCell.h"
 #import "Recording.h"
+#import "UIPopoverController+iPhone.h"
+#import "LikeViewController.h"
 
 @interface TagTableViewController ()
+
+@property (nonatomic, strong) UIPopoverController* likePopover;
 
 @end
 
@@ -124,8 +128,20 @@
         }
         else {
             [cell setEnabled:YES];
+            if (playing){
+                //show popup
+                [self.likePopover dismissPopoverAnimated:NO];
+                UIView* me = playingCell.playButton;
+                UIViewController *likeViewController = [[LikeViewController alloc] initWithNibName:@"LikeViewController" bundle:nil];
+                self.likePopover = [[UIPopoverController alloc] initWithContentViewController:likeViewController];
+                CGRect bounds = CGRectMake(me.frame.origin.x, me.frame.origin.y, me.frame.size.width, me.frame.size.height);
+                [self.likePopover presentPopoverFromRect:bounds inView:playingCell permittedArrowDirections:(UIPopoverArrowDirectionUp) animated:YES];
+                self.likePopover.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
+            }
         }
     }
+    
+    
 }
 
 

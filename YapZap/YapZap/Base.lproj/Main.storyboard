@@ -107,7 +107,7 @@
                                             <action selector="searchPressed:" destination="lwI-H4-bnb" eventType="touchUpInside" id="We9-G9-LaT"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="7VN-tG-lhl">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="7VN-tG-lhl">
                                         <rect key="frame" x="10" y="6" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="plus_icon.png">
@@ -194,7 +194,7 @@
                                             <segue destination="6UL-tv-reZ" kind="modal" modalTransitionStyle="coverVertical" id="b2G-yG-sRg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mDZ-ZV-dDy">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mDZ-ZV-dDy">
                                         <rect key="frame" x="10" y="6" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="plus_icon.png">
@@ -344,7 +344,7 @@
                                             <action selector="homePressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="iRB-yo-XQY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="RsM-Zh-9yr">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="RsM-Zh-9yr">
                                         <rect key="frame" x="10" y="6" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="plus_icon.png">
@@ -452,7 +452,7 @@
                                 <rect key="frame" x="0.0" y="485" width="320" height="83"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Close">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -524,6 +524,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jsb-n2-Dc3"/>
+        <segue reference="ZgF-6Z-SNa"/>
     </inferredMetricsTieBreakers>
 </document>

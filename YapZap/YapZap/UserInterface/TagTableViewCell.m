@@ -65,12 +65,14 @@
         [self.timer invalidate];
         self.timer=nil;
         [self.waveFormImage setPercent:1];
+        [self.label setAlpha:1];
         [self.waveFormImage setNeedsDisplay];
         self.playButton.hidden = NO;
     }
     else{
         self.waveFormImage.filterColor = [UIColor blackColor];
         [self.waveFormImage setAlpha:0.1];
+        [self.label setAlpha:0.1];
     }
 }
 
