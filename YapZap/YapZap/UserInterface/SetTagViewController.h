@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetTagViewController : UIViewController
+@interface SetTagViewController : UIViewController <UITextFieldDelegate>
 - (IBAction)homePressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *tagTextField;
 
 @end

@@ -15,6 +15,7 @@
 @interface TagTableViewCell()
 @property  (nonatomic, strong) NSTimer* timer;
 @property  NSInteger timerCount;
+@property BOOL isPlaying;
 
 @end
 
@@ -22,6 +23,7 @@
 
 @synthesize recording = _recording;
 @synthesize timer = _timer;
+@synthesize isPlaying = _isPlaying;
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
@@ -72,12 +74,38 @@
     }
 }
 
+-(void)stopPlaying{
+    [self.delegate setCell:self playing:NO];
+    [self.playButton setImage:[UIImage imageNamed:@"play_small_button.png"] forState:UIControlStateNormal];
+        
+    [self.timer invalidate];
+    self.timer=nil;
+    
+    [self.waveFormImage setPercent:1];
+    [self.waveFormImage setNeedsDisplay];
+    
+    self.isPlaying = false;
+}
 
-- (IBAction)playClicked:(id)sender {
+-(void)startPlaying{
+    
+    self.isPlaying = true;
     [self.delegate setCell:self playing:YES];
-    self.playButton.hidden = YES;
+    [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
+    
     self.timerCount = 0;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
+    
+}
+
+
+- (IBAction)playClicked:(id)sender {
+    if (self.isPlaying){
+        [self stopPlaying];
+    }
+    else {
+        [self startPlaying];
+    }
 }
 
 -(void)updateImage{
@@ -88,12 +116,7 @@
     [self.waveFormImage setNeedsDisplay];
     
     if (self.timerCount>=50){
-        [self.timer invalidate];
-        self.timer=nil;
-        [self.delegate setCell:self playing:NO];
-        [self.waveFormImage setPercent:1];
-        [self.waveFormImage setNeedsDisplay];
-        self.playButton.hidden = NO;
+        [self stopPlaying];
     }
     
 }

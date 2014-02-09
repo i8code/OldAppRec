@@ -40,7 +40,7 @@
     
     MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,50,275,35) duration:4.0 andFadeLength:15.0f];
     marqueeLabel.text = @"Season 1 Episode 500";
-    marqueeLabel.font = [UIFont systemFontOfSize:25];
+    marqueeLabel.font = [UIFont fontWithName:@"Futura" size:25];
     marqueeLabel.textAlignment = NSTextAlignmentCenter;
     marqueeLabel.autoresizesSubviews = NO;
     marqueeLabel.textColor = [UIColor whiteColor];

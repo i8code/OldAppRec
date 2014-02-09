@@ -40,7 +40,7 @@
 	// Do any additional setup after loading the view.
     
     [self.backgroundImage setImage:[UIImage imageNamed:@"background.png"]];
-    self.backgroundImage.filterColor = [UIColor whiteColor];
+    self.backgroundImage.filterColor = nil;
     [self loadPageSet:NO];
     
 //    for (UIView *v in self.pageController.view.subviews) {
