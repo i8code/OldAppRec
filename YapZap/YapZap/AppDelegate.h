@@ -12,4 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+-(void)goToLoginView;
+-(void)goToHomeView;
+-(void)gotoLoadingView;
+
 @end

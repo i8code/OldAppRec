@@ -38,6 +38,7 @@
 		C747FC3D18A7D6E30083A533 /* heart_icon_lite.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC3B18A7D6E30083A533 /* heart_icon_lite.png */; };
 		C747FC3F18A7F4440083A533 /* color_wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC3E18A7F4440083A533 /* color_wheel.png */; };
 		C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4118A7F4E80083A533 /* MoodSelectView.m */; };
+		C747FC4618A7FCC60083A533 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4518A7FCC60083A533 /* SettingsViewController.m */; };
 		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
@@ -417,6 +418,8 @@
 		C747FC4018A7F4E80083A533 /* MoodSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodSelectView.h; path = UserInterface/MoodSelectView.h; sourceTree = "<group>"; };
 		C747FC4118A7F4E80083A533 /* MoodSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodSelectView.m; path = UserInterface/MoodSelectView.m; sourceTree = "<group>"; };
 		C747FC4318A7F5540083A533 /* MoodProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoodProtocol.h; path = UserInterface/MoodProtocol.h; sourceTree = "<group>"; };
+		C747FC4418A7FCC60083A533 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = UserInterface/SettingsViewController.h; sourceTree = "<group>"; };
+		C747FC4518A7FCC60083A533 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = UserInterface/SettingsViewController.m; sourceTree = "<group>"; };
 		C75D50CA18A1F3FB00E3D878 /* Mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mock.png; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
@@ -622,6 +625,8 @@
 				C747FC4018A7F4E80083A533 /* MoodSelectView.h */,
 				C747FC4118A7F4E80083A533 /* MoodSelectView.m */,
 				C747FC4318A7F5540083A533 /* MoodProtocol.h */,
+				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
+				C747FC4518A7FCC60083A533 /* SettingsViewController.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1434,6 +1439,7 @@
 				C796204B18A6B30300D1BEAB /* SampleData.m in Sources */,
 				C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */,
 				C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */,
+				C747FC4618A7FCC60083A533 /* SettingsViewController.m in Sources */,
 				C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */,
 				C747FC2218A738EC0083A533 /* LoginViewController.m in Sources */,
 				C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */,

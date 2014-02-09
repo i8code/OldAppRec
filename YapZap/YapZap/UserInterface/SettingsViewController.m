@@ -1,19 +1,19 @@
 //
-//  LoginViewController.m
+//  SettingsViewController.m
 //  YapZap
 //
-//  Created by Jason R Boggess on 2/8/14.
+//  Created by Jason R Boggess on 2/9/14.
 //  Copyright (c) 2014 YapZap. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "SettingsViewController.h"
 #import "AppDelegate.h"
 
-@interface LoginViewController ()
+@interface SettingsViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation SettingsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,8 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     self.loginButton.delegate = self;
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,19 +37,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)savePressed:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
+    NSLog(@"%@", user.id);
+    NSLog(@"%@", user.name);
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app goToHomeView];
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    NSLog(@"Not logged in");
-}
+    AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app goToLoginView];}
 
 // Handle possible errors that can occur during login
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
