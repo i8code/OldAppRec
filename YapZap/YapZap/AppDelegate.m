@@ -14,18 +14,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
     [FBLoginView class];
     
-    //Check to see if the user is logged in
     
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    //Check to see if the user is logged in
+    /*
     if (![self loginFacebook]){
         [self goToLoginView];
     }
     else{
         [self gotoLoadingView];
     }
+    */
     
+    {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"recording"]];
+        
+    }
     // Override point for customization after application launch.
     [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
     return YES;
