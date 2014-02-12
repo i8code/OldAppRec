@@ -23,6 +23,7 @@
 
 
 #import "NovocaineViewController.h"
+#import "S3Helper.h"
 
 @interface NovocaineViewController ()
 
@@ -52,13 +53,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    
-//    __weak NovocaineViewController * wself = self;
-//    
-//    self.ringBuffer = new RingBuffer(32768, 2);
-//    self.audioManager = [Novocaine audioManager];
-//    
-//    
+    
+    __weak NovocaineViewController * wself = self;
+    
+    self.ringBuffer = new RingBuffer(32768, 2);
+    self.audioManager = [Novocaine audioManager];
+    
+    
     // Basic playthru example
     //    [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels) {
     //        float volume = 0.5;
@@ -214,18 +215,32 @@
                                    nil];
         NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     
-    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:outputFileURL
-                                                                   error:nil];
-    player.numberOfLoops = -1; //Infinite
+//    NSLog(@"%@", [outputFileURL absoluteString]);
+//    NSLog(@"%@", [outputFileURL relativePath]);
+//    NSLog(@"%@", [outputFileURL relativeString]);
+//    
+//    NSLog(@"%@", [[NSFileManager defaultManager] fileExistsAtPath:[outputFileURL absoluteString] isDirectory:NO]?@"exists":@"does not exist");
+//    NSLog(@"%@", [[NSFileManager defaultManager] fileExistsAtPath:[outputFileURL relativePath] isDirectory:NO]?@"exists":@"does not exist");
+//    NSLog(@"%@", [[NSFileManager defaultManager] fileExistsAtPath:[outputFileURL relativeString] isDirectory:NO]?@"exists":@"does not exist");
+//    
+//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:[outputFileURL relativePath]];
+//    
+//    [S3Helper saveToS3:data withName:@"jasontest.m4a"];
+//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:outputFileURL
+//                                                                   error:nil];
+//    player.numberOfLoops = -1; //Infinite
+//    
+//    [player play];
+//    return;
     
-    [player play];
-    return;
     
-    /*
+    
+    float* outputBlocks = (float*)malloc(sizeof(float)*450);
+    
     
         NSLog(@"URL: %@", outputFileURL);
     
-    [self listFileAtPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
+        [self listFileAtPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
     
         self.fileWriter = [[AudioFileWriter alloc]
                            initWithAudioFileURL:outputFileURL
@@ -236,15 +251,41 @@
         __block int counter = 0;
         self.audioManager.inputBlock = ^(float *data, UInt32 numFrames, UInt32 numChannels) {
             [wself.fileWriter writeNewAudio:data numFrames:numFrames numChannels:numChannels];
-            NSLog(@"%f", data[0]);
+            
+            float sum = 0;
+            for (int y=0;y<numFrames;y++){
+                sum+=data[y*numChannels];
+            }
+            outputBlocks[counter]=fabs(sum);
             counter += 1;
-            if (counter > 400) { // roughly 5 seconds of audio
+            if (counter > 450) { // roughly 5 seconds of audio
                 wself.audioManager.inputBlock = nil;
+                [wself.fileWriter pause];
+                wself.fileWriter = nil;
+                
+                NSString* csv = [NSString stringWithFormat:@"%f", outputBlocks[0]];
+                for (int i=1;i<450;i++){
+                    NSLog(@"%f", outputBlocks[i]);
+                    csv = [NSString stringWithFormat:@"%@,%f", csv, outputBlocks[i]];
+                }
+                
+                NSData *data = [[NSFileManager defaultManager] contentsAtPath:[outputFileURL relativePath]];
+                //
+                [S3Helper saveToS3:data withName:@"jasontest.m4a"];
+                
+                data = [csv dataUsingEncoding:NSUTF8StringEncoding];
+                [S3Helper saveToS3:data withName:@"waveform.csv"];
+                data=nil;
+                NSString* download = [[NSString alloc] initWithData:[S3Helper fileFromS3WithName:@"waveform.csv"]
+                                                           encoding:NSUTF8StringEncoding];
+                NSLog(@"%@", download);
             }
         };
     
+
+    
     // START IT UP YO
-    [self.audioManager play];*/
+    [self.audioManager play];
     
 }
 

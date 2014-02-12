@@ -10,4 +10,7 @@
 
 @interface S3Helper : NSObject
 
++(NSData*)fileFromS3WithName:(NSString*)name;
++(void)saveToS3:(NSData*)data withName:(NSString*)name;
+
 @end
