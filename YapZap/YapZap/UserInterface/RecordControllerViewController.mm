@@ -7,6 +7,7 @@
 //
 
 #import "RecordControllerViewController.h"
+#import "Recorder.h"
 
 @interface RecordControllerViewController ()
 
@@ -14,6 +15,7 @@
 @property CGFloat hue;
 @property CGFloat timerCount;
 @property BOOL recording;
+@property (nonatomic, strong) Recorder* recorder;
 @end
 
 @implementation RecordControllerViewController
@@ -45,7 +47,7 @@
     width*=(self.timerCount/100.0f);
     [self.waveformImage setFrame:CGRectMake(0, self.waveformImage.frame.origin.y, width, self.waveformImage.frame.size.height)];
     
-    if (self.timerCount>=100){
+    if (![self.recorder isRecoring]){
         [self stopRecording];
     }
     self.timerCount++;
@@ -61,6 +63,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    self.recorder = [[Recorder alloc] initWithSeconds:10];
     [self startRecording];
 }
 
@@ -76,6 +79,8 @@
     
     [self.recordButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
     
+    [self.recorder start];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateBackgroundColor)userInfo:nil repeats:YES];
 }
 
@@ -86,6 +91,7 @@
     self.finishedPanel.hidden = NO;
     [self.timer invalidate];
     self.timer = nil;
+    [self.recorder stop];
     
     [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
 }
