@@ -5,17 +5,26 @@
 //  Created by Jason R Boggess on 2/8/14.
 //  Copyright (c) 2014 YapZap. All rights reserved.
 //
-
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 #import "RecordControllerViewController.h"
 #import "Recorder.h"
+#import "RecordingInfo.h"
+#import "WaveformView.h"
 
 @interface RecordControllerViewController ()
 
 @property (nonatomic, strong) NSTimer* timer;
+@property (nonatomic, strong) NSTimer* playTimer;
 @property CGFloat hue;
 @property CGFloat timerCount;
+@property CGFloat playTimerCount;
 @property BOOL recording;
+@property BOOL playing;
 @property (nonatomic, strong) Recorder* recorder;
+@property (nonatomic, strong) RecordingInfo* recordingInfo;
+@property (nonatomic, strong) WaveformView* waveform;
+@property (nonatomic, strong) AVAudioPlayer *player;
 @end
 
 @implementation RecordControllerViewController
@@ -30,6 +39,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.recording = false;
+        self.playing =false;
     }
     return self;
 }
@@ -42,16 +53,28 @@
     
     //This is confusing \/
     self.backgroundColor.backgroundColor = backgroundColor;
-    
-    CGFloat width = self.view.frame.size.width;
-    width*=(self.timerCount/100.0f);
-    [self.waveformImage setFrame:CGRectMake(0, self.waveformImage.frame.origin.y, width, self.waveformImage.frame.size.height)];
+    [self.waveform setNeedsDisplay];
+    self.waveform.hidden = NO;
     
     if (![self.recorder isRecoring]){
         [self stopRecording];
     }
     self.timerCount++;
 
+    
+}
+
+-(void) updatePlayLocation{
+    self.playTimerCount++;
+    float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
+    float percent = self.playTimerCount/(100);
+    
+    [self.waveform setHighlightPercent:percent];
+    [self.waveform setNeedsDisplay];
+    
+    if (percent>seconds/10.0){
+        [self stopPlaying];
+    }
     
 }
 
@@ -64,11 +87,20 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     self.recorder = [[Recorder alloc] initWithSeconds:10];
+    self.waveform = [[WaveformView alloc] init];
+    [self.waveform setFrame:CGRectMake(0, 305, self.view.frame.size.width, 150)];
+    [self.view addSubview:self.waveform];
+    [self.waveform setData:self.recorder.waveformData withSize:[self.recorder blockLength]];
+    
     [self startRecording];
 }
 
 -(void) startRecording{
     
+    if (self.playing)
+    {
+        [self stopPlaying];
+    }
     self.recording = true;
     
     self.backgroundColor.hidden = NO;
@@ -92,8 +124,34 @@
     [self.timer invalidate];
     self.timer = nil;
     [self.recorder stop];
+    self.recordingInfo = [self.recorder lastInfo];
     
     [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
+}
+
+-(void)startPlaying{
+    self.playTimerCount = 0;
+    self.finishedPanel.hidden = YES;
+    self.stopPanel.hidden = NO;
+    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updatePlayLocation)userInfo:nil repeats:YES];
+    
+    NSURL *soundFileURL = [NSURL fileURLWithPath:self.recordingInfo.url];
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    
+    [self.player play];
+    
+    self.playing = true;
+}
+-(void)stopPlaying{
+    self.finishedPanel.hidden = NO;
+    self.stopPanel.hidden = YES;
+    [self.waveform setHighlightPercent:0];
+    [self.waveform setNeedsDisplay];
+    [self.playTimer invalidate];
+    self.playTimer = nil;
+    
+    self.playing = false;
+    [self.player stop];
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,9 +175,14 @@
 }
 
 - (IBAction)trashButtonPressed:(id)sender {
-    [self.waveformImage setFrame:CGRectMake(0, self.waveformImage.frame.origin.y, 0, self.waveformImage.frame.size.height)];
+    self.waveform.hidden = YES;
     self.finishedPanel.hidden = YES;
 }
 - (IBAction)playButtonPressed:(id)sender {
+    [self startPlaying];
+}
+
+- (IBAction)stopButtonPressed:(id)sender {
+    [self stopPlaying];
 }
 @end

@@ -17,7 +17,9 @@
 @property (nonatomic, strong) RecordingInfo* lastInfo;
 @property BOOL isRecoring;
 -(void)start;
--(RecordingInfo*)stop;
+-(void)stop;
+
+-(int)blockLength;
 
 -(Recorder*)initWithSeconds:(int)seconds;
 

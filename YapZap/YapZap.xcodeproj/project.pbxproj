@@ -31,7 +31,6 @@
 		C7371F5C18A1DFEE007FB490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7371F3E18A1DFEE007FB490 /* UIKit.framework */; };
 		C7371F6418A1DFEE007FB490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7371F6218A1DFEE007FB490 /* InfoPlist.strings */; };
 		C7371F6618A1DFEE007FB490 /* YapZapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7371F6518A1DFEE007FB490 /* YapZapTests.m */; };
-		C7371F7318A1E316007FB490 /* MainBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7371F7218A1E316007FB490 /* MainBackgroundView.m */; };
 		C747FC1E18A7341C0083A533 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747FADE18A734050083A533 /* FacebookSDK.framework */; };
 		C747FC2218A738EC0083A533 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC2018A738EC0083A533 /* LoginViewController.m */; };
 		C747FC2F18A7CC1C0083A533 /* gear_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C747FC2418A7CC1C0083A533 /* gear_icon.png */; };
@@ -58,6 +57,7 @@
 		C75D50CB18A1F3FB00E3D878 /* Mock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75D50CA18A1F3FB00E3D878 /* Mock.png */; };
 		C761D03318AD7799003947C1 /* Recorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = C761D03218AD7799003947C1 /* Recorder.mm */; };
 		C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D03518AD7CB2003947C1 /* RecordingInfo.m */; };
+		C761D04D18AD8821003947C1 /* WaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04C18AD8821003947C1 /* WaveformView.m */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
@@ -90,7 +90,6 @@
 		C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79EF6F618A66D8B00AA1BDE /* QuartzCore.framework */; };
 		C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */; };
 		C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */; };
-		C7CF286C18A1E4790053DB9C /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286B18A1E4790053DB9C /* Button.m */; };
 		C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */; };
 		C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */; };
 		C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF287418A1E73A0053DB9C /* HomePageViewController.m */; };
@@ -205,8 +204,6 @@
 		C7371F6118A1DFEE007FB490 /* YapZapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YapZapTests-Info.plist"; sourceTree = "<group>"; };
 		C7371F6318A1DFEE007FB490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7371F6518A1DFEE007FB490 /* YapZapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YapZapTests.m; sourceTree = "<group>"; };
-		C7371F7118A1E316007FB490 /* MainBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainBackgroundView.h; path = UserInterface/MainBackgroundView.h; sourceTree = "<group>"; };
-		C7371F7218A1E316007FB490 /* MainBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainBackgroundView.m; path = UserInterface/MainBackgroundView.m; sourceTree = "<group>"; };
 		C747FADE18A734050083A533 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		C747FADF18A734050083A533 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C747FAE018A734050083A533 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -468,6 +465,8 @@
 		C761D03218AD7799003947C1 /* Recorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Recorder.mm; path = Recording/Recorder.mm; sourceTree = "<group>"; };
 		C761D03418AD7CB2003947C1 /* RecordingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordingInfo.h; path = Recording/RecordingInfo.h; sourceTree = "<group>"; };
 		C761D03518AD7CB2003947C1 /* RecordingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingInfo.m; path = Recording/RecordingInfo.m; sourceTree = "<group>"; };
+		C761D04B18AD8821003947C1 /* WaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaveformView.h; path = UserInterface/WaveformView.h; sourceTree = "<group>"; };
+		C761D04C18AD8821003947C1 /* WaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaveformView.m; path = UserInterface/WaveformView.m; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
@@ -517,8 +516,6 @@
 		C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarqueeLabel.m; path = UserInterface/lib/MarqueeLabel.m; sourceTree = "<group>"; };
 		C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredImageView.h; path = UserInterface/FilteredImageView.h; sourceTree = "<group>"; };
 		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
-		C7CF286A18A1E4790053DB9C /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = UserInterface/Button.h; sourceTree = "<group>"; };
-		C7CF286B18A1E4790053DB9C /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Button.m; path = UserInterface/Button.m; sourceTree = "<group>"; };
 		C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EpisodeViewController.h; path = UserInterface/EpisodeViewController.h; sourceTree = "<group>"; };
 		C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EpisodeViewController.m; path = UserInterface/EpisodeViewController.m; sourceTree = "<group>"; };
 		C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EpisodeViewController.xib; path = UserInterface/EpisodeViewController.xib; sourceTree = "<group>"; };
@@ -665,50 +662,11 @@
 		C7371F6F18A1E29B007FB490 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				C761D04A18AD8800003947C1 /* ViewControllers */,
+				C761D04918AD87D3003947C1 /* CustomViews */,
 				C79EF6F818A66DA600AA1BDE /* lib */,
-				C7371F7118A1E316007FB490 /* MainBackgroundView.h */,
-				C7371F7218A1E316007FB490 /* MainBackgroundView.m */,
-				C7CF286A18A1E4790053DB9C /* Button.h */,
-				C7CF286B18A1E4790053DB9C /* Button.m */,
-				C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */,
-				C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */,
-				C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */,
-				C7CF287318A1E73A0053DB9C /* HomePageViewController.h */,
-				C7CF287418A1E73A0053DB9C /* HomePageViewController.m */,
-				C79EF6D818A6591100AA1BDE /* TagTableViewController.h */,
-				C79EF6D918A6591100AA1BDE /* TagTableViewController.m */,
-				C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */,
-				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
-				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
-				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
-				C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */,
-				C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */,
-				C796203718A6825E00D1BEAB /* LoadingViewController.h */,
-				C796203818A6825E00D1BEAB /* LoadingViewController.m */,
-				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
-				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
-				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
 				C796205218A6E2AF00D1BEAB /* Util.h */,
 				C796205318A6E2AF00D1BEAB /* Util.m */,
-				C796205518A7035400D1BEAB /* RecordControllerViewController.h */,
-				C796205618A7035400D1BEAB /* RecordControllerViewController.mm */,
-				C796205818A703F600D1BEAB /* SetTagViewController.h */,
-				C796205918A703F600D1BEAB /* SetTagViewController.m */,
-				C747FC1F18A738EC0083A533 /* LoginViewController.h */,
-				C747FC2018A738EC0083A533 /* LoginViewController.m */,
-				C747FC4018A7F4E80083A533 /* MoodSelectView.h */,
-				C747FC4118A7F4E80083A533 /* MoodSelectView.m */,
-				C747FC4318A7F5540083A533 /* MoodProtocol.h */,
-				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
-				C747FC4518A7FCC60083A533 /* SettingsViewController.m */,
-				C747FC4718A816660083A533 /* SearchViewController.h */,
-				C747FC4818A816660083A533 /* SearchViewController.m */,
-				C747FC4918A816660083A533 /* SearchViewController.xib */,
-				C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */,
-				C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */,
-				C747FC4F18A81D9C0083A533 /* LikeViewController.h */,
-				C747FC5018A81D9C0083A533 /* LikeViewController.m */,
-				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -1205,6 +1163,59 @@
 			name = Recording;
 			sourceTree = "<group>";
 		};
+		C761D04918AD87D3003947C1 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */,
+				C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */,
+				C747FC4018A7F4E80083A533 /* MoodSelectView.h */,
+				C747FC4118A7F4E80083A533 /* MoodSelectView.m */,
+				C747FC4318A7F5540083A533 /* MoodProtocol.h */,
+				C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */,
+				C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */,
+				C761D04B18AD8821003947C1 /* WaveformView.h */,
+				C761D04C18AD8821003947C1 /* WaveformView.m */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		C761D04A18AD8800003947C1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */,
+				C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */,
+				C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */,
+				C7CF287318A1E73A0053DB9C /* HomePageViewController.h */,
+				C7CF287418A1E73A0053DB9C /* HomePageViewController.m */,
+				C79EF6D818A6591100AA1BDE /* TagTableViewController.h */,
+				C79EF6D918A6591100AA1BDE /* TagTableViewController.m */,
+				C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */,
+				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
+				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
+				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
+				C796203718A6825E00D1BEAB /* LoadingViewController.h */,
+				C796203818A6825E00D1BEAB /* LoadingViewController.m */,
+				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
+				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
+				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
+				C796205518A7035400D1BEAB /* RecordControllerViewController.h */,
+				C796205618A7035400D1BEAB /* RecordControllerViewController.mm */,
+				C796205818A703F600D1BEAB /* SetTagViewController.h */,
+				C796205918A703F600D1BEAB /* SetTagViewController.m */,
+				C747FC1F18A738EC0083A533 /* LoginViewController.h */,
+				C747FC2018A738EC0083A533 /* LoginViewController.m */,
+				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
+				C747FC4518A7FCC60083A533 /* SettingsViewController.m */,
+				C747FC4718A816660083A533 /* SearchViewController.h */,
+				C747FC4818A816660083A533 /* SearchViewController.m */,
+				C747FC4918A816660083A533 /* SearchViewController.xib */,
+				C747FC4F18A81D9C0083A533 /* LikeViewController.h */,
+				C747FC5018A81D9C0083A533 /* LikeViewController.m */,
+				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		C796203F18A6A6A800D1BEAB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1531,9 +1542,9 @@
 				C747FC5218A81D9C0083A533 /* LikeViewController.m in Sources */,
 				C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */,
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
+				C761D04D18AD8821003947C1 /* WaveformView.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C72C1DAA18AAE8B2006D136F /* Novocaine.m in Sources */,
-				C7CF286C18A1E4790053DB9C /* Button.m in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
 				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,
@@ -1551,7 +1562,6 @@
 				C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */,
 				C761D03318AD7799003947C1 /* Recorder.mm in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
-				C7371F7318A1E316007FB490 /* MainBackgroundView.m in Sources */,
 				C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */,
 				C72C1DB818AAFB24006D136F /* Reachability.m in Sources */,
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,

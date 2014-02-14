@@ -211,11 +211,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_waveform.png" id="bwB-YZ-HAD">
-                                <rect key="frame" x="0.0" y="280" width="0.0" height="150"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="skz-BV-8rE">
+                            <view opaque="NO" contentMode="scaleToFill" id="skz-BV-8rE">
                                 <rect key="frame" x="0.0" y="183" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -227,7 +223,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z1D-H5-3gA">
-                                        <rect key="frame" x="122" y="51" width="72" height="33"/>
+                                        <rect key="frame" x="124" y="51" width="72" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -261,13 +257,37 @@
                                         </connections>
                                     </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="64z-hd-XeY">
-                                        <rect key="frame" x="138" y="8" width="40" height="40"/>
+                                        <rect key="frame" x="140" y="8" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="play_small_button.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="playButtonPressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="KfT-mp-eQf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="lG8-Lf-Euq">
+                                <rect key="frame" x="0.0" y="183" width="320" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cBR-Vl-nNZ">
+                                        <rect key="frame" x="124" y="51" width="72" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ilY-W3-Rxg">
+                                        <rect key="frame" x="140" y="8" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="stop_button_small.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopButtonPressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="G6g-3y-XkY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -282,7 +302,7 @@
                         <outlet property="backgroundColor" destination="KnY-UL-Y2w" id="1BY-gu-mll"/>
                         <outlet property="finishedPanel" destination="skz-BV-8rE" id="Gdx-t4-5JU"/>
                         <outlet property="recordButton" destination="EFy-QJ-G1o" id="cAh-5T-kok"/>
-                        <outlet property="waveformImage" destination="bwB-YZ-HAD" id="vHJ-sh-p8Q"/>
+                        <outlet property="stopPanel" destination="lG8-Lf-Euq" id="sVp-VM-Xyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btn-hb-H9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -500,9 +520,9 @@
         <image name="play_small_button.png" width="128" height="128"/>
         <image name="plus_icon.png" width="34" height="34"/>
         <image name="record_button.png" width="128" height="128"/>
-        <image name="sample_waveform.png" width="355" height="100"/>
         <image name="search_icon.png" width="34" height="34"/>
         <image name="share_button_small.png" width="128" height="128"/>
+        <image name="stop_button_small.png" width="128" height="128"/>
         <image name="trash_button_small.png" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

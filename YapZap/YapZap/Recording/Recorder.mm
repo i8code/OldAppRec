@@ -33,6 +33,7 @@
     
     self.blocks = (UInt32)(seconds/0.011609977)/2;
     
+    _waveformData = (float*)malloc(sizeof(float)*self.blockLength);
     [self resetData:self.blocks];
     
     self.ringBuffer = new RingBuffer(32768, 2);
@@ -40,6 +41,10 @@
 
 }
 
+
+-(int)blockLength{
+    return self.blocks;
+}
 
 -(Recorder*)initWithSeconds:(int)seconds{
     self = [super init];
@@ -51,8 +56,8 @@
     
 }
 
+
 -(void)resetData:(int)size{
-    _waveformData = (float*)malloc(sizeof(float)*size);
     for (int i=0;i<size;i++){
         _waveformData[i]=0;
     }
@@ -70,6 +75,7 @@
 
 
 -(void)start{
+    [self resetData:self.blockLength];
     self.count = 0;
     self.currentPath = [self genURL];
     NSLog(@"URL: %@", self.currentPath);
@@ -88,8 +94,7 @@
         for (int y=0;y<numFrames;y++){
             sum+=data[y*numChannels]*data[y*numChannels];
         }
-        NSLog(@"%f", sum);
-        wself.waveformData[wself.count]=sqrtf(sum);
+        wself.waveformData[wself.count]=sqrtf(sqrtf(sum));
         wself.count += 1;
         if (wself.count > wself.blocks) {
             wself.audioManager.inputBlock = nil;
@@ -101,9 +106,9 @@
     [self.audioManager play];
     self.isRecoring=true;
 }
--(RecordingInfo*)stop{
+-(void)stop{
     if (!self.isRecoring){
-        return nil;
+        return;
     }
     self.audioManager.inputBlock = nil;
     [self.fileWriter pause];
@@ -111,7 +116,7 @@
     self.fileWriter = nil;
     self.isRecoring=false;
     
-    int blocksFinished = MAX(self.count-1, self.blocks);
+    int blocksFinished = MIN(self.count-1, self.blocks);
     self.count = MAXFLOAT;
     
     RecordingInfo* info = [[RecordingInfo alloc] init];
@@ -120,7 +125,7 @@
     [info setLength:blocksFinished];
     [info setData:self.waveformData];
     
-    return info;
+    self.lastInfo = info;
     
 }
 
