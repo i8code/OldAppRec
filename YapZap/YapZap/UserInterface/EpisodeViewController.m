@@ -14,12 +14,11 @@
 
 @interface EpisodeViewController ()
 
-
-@property (nonatomic, strong) TagPage* myPage;
-
 @end
 
 @implementation EpisodeViewController
+
+@synthesize tagPage = _tagPage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,11 +67,11 @@
 }
 
 -(UIColor*)getBackgroundColor{
-    return [Util colorFromMood:self.myPage.mood andIntesity:self.myPage.intensity];
+    return [Util colorFromMood:self.tagPage.mood andIntesity:self.tagPage.intensity];
 }
 
 -(void)setTagPage:(TagPage*)page{
-    self.myPage=page;
+    _tagPage=page;
     self.titleLabel.text = page.title;
     self.subTitleLabel.text = page.subTitle;
     

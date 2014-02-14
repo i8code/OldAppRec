@@ -17,6 +17,7 @@
 #import "DataSource.h"
 #import "UIPopoverController+iPhone.h"
 #import "SearchViewController.h"
+#import "SharingBundle.h"
 
 @interface HomePageViewController ()
 @property (nonatomic, strong) NSArray* pages;
@@ -70,7 +71,6 @@ bool here=false;
         PageSet* currentSet = [DataSource getSet:setIndex];
         if (initialLoad){
             initialLoad=false;
-        }{
             [NSThread sleepForTimeInterval:1.5];
         }
         
@@ -228,6 +228,16 @@ bool here=false;
     [self.poc presentPopoverFromRect:bounds inView:self.view  permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     self.poc.contentViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
     self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"record"]){
+        EpisodeViewController *currentViewController = (EpisodeViewController *)[self.pageController.viewControllers lastObject];
+        TagPage* tagPage = [currentViewController tagPage];
+        SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
+        [bundle setTagName:[NSString stringWithFormat:@"%@ %@", tagPage.title, tagPage.subTitle ]];
+        
+    }
 }
 /*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

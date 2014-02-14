@@ -60,6 +60,7 @@
 		C761D04D18AD8821003947C1 /* WaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04C18AD8821003947C1 /* WaveformView.m */; };
 		C761D05018AD9992003947C1 /* SharingBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04F18AD9992003947C1 /* SharingBundle.m */; };
 		C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D05218AD9C98003947C1 /* BorderedTextField.m */; };
+		C761D05618ADA286003947C1 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D05518ADA286003947C1 /* UploadViewController.m */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
@@ -473,6 +474,8 @@
 		C761D04F18AD9992003947C1 /* SharingBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharingBundle.m; path = Models/SharingBundle.m; sourceTree = "<group>"; };
 		C761D05118AD9C98003947C1 /* BorderedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderedTextField.h; path = UserInterface/BorderedTextField.h; sourceTree = "<group>"; };
 		C761D05218AD9C98003947C1 /* BorderedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderedTextField.m; path = UserInterface/BorderedTextField.m; sourceTree = "<group>"; };
+		C761D05418ADA286003947C1 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadViewController.h; path = UserInterface/UploadViewController.h; sourceTree = "<group>"; };
+		C761D05518ADA286003947C1 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadViewController.m; path = UserInterface/UploadViewController.m; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
@@ -1220,6 +1223,8 @@
 				C747FC4F18A81D9C0083A533 /* LikeViewController.h */,
 				C747FC5018A81D9C0083A533 /* LikeViewController.m */,
 				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
+				C761D05418ADA286003947C1 /* UploadViewController.h */,
+				C761D05518ADA286003947C1 /* UploadViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1557,6 +1562,7 @@
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C72C1DAA18AAE8B2006D136F /* Novocaine.m in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
+				C761D05618ADA286003947C1 /* UploadViewController.m in Sources */,
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
 				C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */,
 				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,

@@ -33,6 +33,7 @@
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.tagTextField.delegate = self;
+    self.tagTextField.text = self.sharingBundle.tagName;
     self.waveformImage.filterColor = [UIColor whiteColor];
     self.backgroundImage.filterColor = [UIColor whiteColor];
     [self.waveformImage setImage:self.sharingBundle.waveformImage];
