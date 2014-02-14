@@ -11,6 +11,7 @@
 #import "Recorder.h"
 #import "RecordingInfo.h"
 #import "WaveformView.h"
+#import "SharingBundle.h"
 
 @interface RecordControllerViewController ()
 
@@ -83,12 +84,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self initialize];
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)initialize{
     self.recorder = [[Recorder alloc] initWithSeconds:10];
+    [self.waveform removeFromSuperview];
     self.waveform = [[WaveformView alloc] init];
-    [self.waveform setFrame:CGRectMake(0, 305, self.view.frame.size.width, 150)];
+    [self.waveform setFrame:CGRectMake(0, 295, self.view.frame.size.width, 150)];
     [self.view addSubview:self.waveform];
     [self.waveform setData:self.recorder.waveformData withSize:[self.recorder blockLength]];
     
@@ -184,5 +187,13 @@
 
 - (IBAction)stopButtonPressed:(id)sender {
     [self stopPlaying];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"recordToShare"]){
+        SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
+        [bundle setRecordingInfo:self.recordingInfo];
+        [bundle setWaveformImage:[self.waveform asImage]];
+    }
 }
 @end

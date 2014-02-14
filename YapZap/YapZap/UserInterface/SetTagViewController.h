@@ -18,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet FilteredImageView *waveformImage;
 @property (weak, nonatomic) IBOutlet FilteredImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet MoodSelectView *moodSelector;
+@property (weak, nonatomic) IBOutlet UIImageView *waveformBorderY;
+@property (weak, nonatomic) IBOutlet UIImageView *waveformBorderX;
 
 @end

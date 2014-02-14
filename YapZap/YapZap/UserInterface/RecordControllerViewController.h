@@ -20,5 +20,6 @@
 - (IBAction)trashButtonPressed:(id)sender;
 - (IBAction)playButtonPressed:(id)sender;
 - (IBAction)stopButtonPressed:(id)sender;
+-(void)initialize;
 
 @end

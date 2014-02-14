@@ -13,5 +13,5 @@
 
 -(void)setData:(float*)data withSize:(int)size;
 @property float highlightPercent;
-
+- (UIImage *) asImage;
 @end

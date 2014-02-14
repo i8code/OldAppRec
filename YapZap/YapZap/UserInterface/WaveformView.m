@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 YapZap. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "WaveformView.h"
 
 @interface WaveformView()
@@ -68,12 +69,25 @@
         if (i/(float)self.dataLength>self.highlightPercent){
             [[UIColor whiteColor] setFill];
         }
-        CGRect rect = CGRectMake(i*step, mid-height, step+0.1, height*2);
+        CGRect rect = CGRectMake(i*step, mid-height, step*1.1   , height*2);
         CGContextFillRect(context, rect);
     }
     
     CGContextRestoreGState(context);
     
+}
+
+
+- (UIImage *) asImage
+{
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0.0);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
 }
 
 

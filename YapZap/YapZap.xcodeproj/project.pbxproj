@@ -58,6 +58,8 @@
 		C761D03318AD7799003947C1 /* Recorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = C761D03218AD7799003947C1 /* Recorder.mm */; };
 		C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D03518AD7CB2003947C1 /* RecordingInfo.m */; };
 		C761D04D18AD8821003947C1 /* WaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04C18AD8821003947C1 /* WaveformView.m */; };
+		C761D05018AD9992003947C1 /* SharingBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04F18AD9992003947C1 /* SharingBundle.m */; };
+		C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D05218AD9C98003947C1 /* BorderedTextField.m */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
@@ -467,6 +469,10 @@
 		C761D03518AD7CB2003947C1 /* RecordingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingInfo.m; path = Recording/RecordingInfo.m; sourceTree = "<group>"; };
 		C761D04B18AD8821003947C1 /* WaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaveformView.h; path = UserInterface/WaveformView.h; sourceTree = "<group>"; };
 		C761D04C18AD8821003947C1 /* WaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaveformView.m; path = UserInterface/WaveformView.m; sourceTree = "<group>"; };
+		C761D04E18AD9992003947C1 /* SharingBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharingBundle.h; path = Models/SharingBundle.h; sourceTree = "<group>"; };
+		C761D04F18AD9992003947C1 /* SharingBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharingBundle.m; path = Models/SharingBundle.m; sourceTree = "<group>"; };
+		C761D05118AD9C98003947C1 /* BorderedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorderedTextField.h; path = UserInterface/BorderedTextField.h; sourceTree = "<group>"; };
+		C761D05218AD9C98003947C1 /* BorderedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderedTextField.m; path = UserInterface/BorderedTextField.m; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
@@ -1175,6 +1181,8 @@
 				C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */,
 				C761D04B18AD8821003947C1 /* WaveformView.h */,
 				C761D04C18AD8821003947C1 /* WaveformView.m */,
+				C761D05118AD9C98003947C1 /* BorderedTextField.h */,
+				C761D05218AD9C98003947C1 /* BorderedTextField.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1227,6 +1235,8 @@
 				C796204A18A6B30300D1BEAB /* SampleData.m */,
 				C796204C18A6B71400D1BEAB /* PageSet.h */,
 				C796204D18A6B71400D1BEAB /* PageSet.m */,
+				C761D04E18AD9992003947C1 /* SharingBundle.h */,
+				C761D04F18AD9992003947C1 /* SharingBundle.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1540,6 +1550,7 @@
 			files = (
 				C796205A18A703F600D1BEAB /* SetTagViewController.m in Sources */,
 				C747FC5218A81D9C0083A533 /* LikeViewController.m in Sources */,
+				C761D05018AD9992003947C1 /* SharingBundle.m in Sources */,
 				C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */,
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C761D04D18AD8821003947C1 /* WaveformView.m in Sources */,
@@ -1547,6 +1558,7 @@
 				C72C1DAA18AAE8B2006D136F /* Novocaine.m in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
+				C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */,
 				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,
 				C796204B18A6B30300D1BEAB /* SampleData.m in Sources */,
 				C72C1DB518AAF9ED006D136F /* S3Helper.m in Sources */,
