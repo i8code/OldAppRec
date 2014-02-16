@@ -10,7 +10,7 @@
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
 		C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */; };
-		C72C1DAA18AAE8B2006D136F /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA518AAE8B2006D136F /* Novocaine.m */; };
+		C72C1DAA18AAE8B2006D136F /* Novocaine.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA518AAE8B2006D136F /* Novocaine.mm */; };
 		C72C1DAB18AAE8B2006D136F /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA718AAE8B2006D136F /* RingBuffer.mm */; };
 		C72C1DB018AAE9C2006D136F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1DAF18AAE9C2006D136F /* Accelerate.framework */; };
 		C72C1DB218AAE9C8006D136F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1DB118AAE9C8006D136F /* AVFoundation.framework */; };
@@ -179,7 +179,7 @@
 		C72C1DA218AAE8B2006D136F /* AudioFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileWriter.h; sourceTree = "<group>"; };
 		C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileWriter.m; sourceTree = "<group>"; };
 		C72C1DA418AAE8B2006D136F /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
-		C72C1DA518AAE8B2006D136F /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		C72C1DA518AAE8B2006D136F /* Novocaine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Novocaine.mm; sourceTree = "<group>"; };
 		C72C1DA618AAE8B2006D136F /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		C72C1DA718AAE8B2006D136F /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
 		C72C1DAF18AAE9C2006D136F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -574,7 +574,7 @@
 				C72C1DA218AAE8B2006D136F /* AudioFileWriter.h */,
 				C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */,
 				C72C1DA418AAE8B2006D136F /* Novocaine.h */,
-				C72C1DA518AAE8B2006D136F /* Novocaine.m */,
+				C72C1DA518AAE8B2006D136F /* Novocaine.mm */,
 				C72C1DA618AAE8B2006D136F /* RingBuffer.h */,
 				C72C1DA718AAE8B2006D136F /* RingBuffer.mm */,
 			);
@@ -1560,7 +1560,7 @@
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C761D04D18AD8821003947C1 /* WaveformView.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
-				C72C1DAA18AAE8B2006D136F /* Novocaine.m in Sources */,
+				C72C1DAA18AAE8B2006D136F /* Novocaine.mm in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
 				C761D05618ADA286003947C1 /* UploadViewController.m in Sources */,
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
