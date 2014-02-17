@@ -4,8 +4,6 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var tag_routes = require('./routes/tags');
 var http = require('http');
 var path = require('path');
 
@@ -37,6 +35,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+
+var routes = require('./routes');
+var tag_routes = require('./routes/tags');
+var recording_routes = require('./routes/recordings');
+
 app.get('/', routes.index);
 
 //Tags
@@ -46,19 +50,45 @@ app.get('/tag_names', tag_routes.getAllTagNames(Models));
 app.get('/tag_names/:name', tag_routes.searchTagNames(Models));
 app.post('/tags', tag_routes.create(Models));
 
+//Recordings
 app.get('/recordings', routes.recordings(Recording));
+app.get('/tags/:name/recordings', recording_routes.getAll(Models));
+app.get('/recordings/:name/recordings', recording_routes.getAll(Models));
+app.get('/recordings/:id', recording_routes.getById(Models));
+
+
+app.put('/recordings/:id', recording_routes.updateById(Models));
+app.del('/recordings/:id', recording_routes.deleteById(Models));
+
+
+app.post('/tags/:name/recordings', recording_routes.create(Models));
+app.post('/recordings/:name/recordings', recording_routes.create(Models));
+
 app.get('/likes', routes.likes(Like));
+
+// var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
+// r.save();
 /*
 var t = new Tag({name:"gameofthrones"});
 var r = new Recording({username:"mike"});
 var l = new Like({tag_name:"gameofthrones", username:"mike"});
 t.save();
 r.save();
-l.save();
-Tag.remove({}, function(err) { 
+l.save();*/
+
+
+// Tag.remove({}, function(err) { 
    // console.log('collection removed');
    // console.log(err);
-});*/
+// });
+// Recording.remove({}, function(err) { 
+//    console.log('collection removed');
+//    console.log(err);
+// });
+//Like.remove({}, function(err) { 
+   // console.log('collection removed');
+   // console.log(err);
+// });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
