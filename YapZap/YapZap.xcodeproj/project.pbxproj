@@ -97,6 +97,7 @@
 		C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */; };
 		C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF287418A1E73A0053DB9C /* HomePageViewController.m */; };
 		C7CF287C18A1F3400053DB9C /* PageExample.png in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287B18A1F3400053DB9C /* PageExample.png */; };
+		C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D764BB18B2B18D007B86B2 /* Tag.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -531,6 +532,8 @@
 		C7CF287318A1E73A0053DB9C /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageViewController.h; path = UserInterface/HomePageViewController.h; sourceTree = "<group>"; };
 		C7CF287418A1E73A0053DB9C /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageViewController.m; path = UserInterface/HomePageViewController.m; sourceTree = "<group>"; };
 		C7CF287B18A1F3400053DB9C /* PageExample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PageExample.png; sourceTree = "<group>"; };
+		C7D764BA18B2B18D007B86B2 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Models/Tag.h; sourceTree = "<group>"; };
+		C7D764BB18B2B18D007B86B2 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Models/Tag.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1242,6 +1245,8 @@
 				C796204D18A6B71400D1BEAB /* PageSet.m */,
 				C761D04E18AD9992003947C1 /* SharingBundle.h */,
 				C761D04F18AD9992003947C1 /* SharingBundle.m */,
+				C7D764BA18B2B18D007B86B2 /* Tag.h */,
+				C7D764BB18B2B18D007B86B2 /* Tag.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1588,6 +1593,7 @@
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
+				C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

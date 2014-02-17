@@ -11,6 +11,8 @@
     "mongodb": "*",
     "monk": "*",
     "jquery": "*",
-    "crypto": "0.0.3"
+    "crypto": "0.0.3",
+    "aws-sdk": "~2.0.0-rc9",
+    "http": "0.0.0"
   }
 }

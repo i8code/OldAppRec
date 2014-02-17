@@ -44,3 +44,13 @@ exports.tokens = function() {
         res.send(query);
     };
 };
+
+var https= require('https');
+
+exports.audio_proxy = function() {
+    return function(req, res) {
+        https.get('https://s3.amazonaws.com/yap-zap-audio/jasontest.m4a', function(proxyRes) {
+            proxyRes.pipe(res);
+        });
+    };
+};

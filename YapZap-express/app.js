@@ -79,6 +79,10 @@ app.del('/recordings/:id/likes/:username', like_routes.deleteById(Models));
 
 app.get('/tokens', routes.tokens());
 
+//Audio
+
+app.get('/a/:id', routes.audio_proxy());
+
 // var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
 // r.save();
 /*
