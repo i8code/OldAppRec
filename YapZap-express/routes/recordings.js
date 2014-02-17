@@ -1,6 +1,7 @@
 
 var Security = require('../modules/security');
 var $ = require('jquery');
+var RecordingUpdater = require('../modules/recording_update');
 
 /* GET /tags/:name/recording 
  * or
@@ -67,88 +68,6 @@ exports.getById = function(Models) {
     };
 };
 
-var updateTagPopularity = function(Models, tagname){
-    var query = Models.Tag.find({name:tagname});
-    query.exec(function(err, tags) {
-        if (!tags || tags.length===0){
-            return;
-        }
-
-        var tag = tags[0];
-        var popularityCount = 1;
-        var intensity = 0;
-        //TODO: mood
-
-        var childrenQuery = Models.Recording.find({parent_name:tagname, parent_type:"TAG"});
-        childrenQuery.exec(function(err, recordings) {
-            tag.children=0;
-            if (recordings){
-                for (var i=0;i<recordings.length;i++){
-                    popularityCount+=recordings[i].popularity || 0;
-                    intensity+=recordings[i].intensity || 0;
-                }
-                tag.children=recordings.length;
-                intensity/=recordings.length||1;
-            }
-
-            var created_date = new Date(tag.created_date);
-            var now = new Date();
-
-            popularityCount/=(now.getTime()-created_date.getTime());
-            tag.popularity = popularityCount*1000000;
-
-            tag.intensity = intensity;
-
-            tag.save();
-        });
-    });
-
-}
-
-var updateRecordingPopularity = function(Models, recording_name){
-    var query = Models.Recording.find({_id:recording_name});
-    query.exec(function(err, recordings) {
-        if (!recordings || recordings.length===0){
-            return;
-        }
-
-        var recording = recordings[0];
-        var popularityCount = 1;
-        var intensity = 0;
-        //TODO: mood
-
-        var childrenQuery = Models.Recording.find({parent_name:recording_name, parent_type:"REC"});
-        childrenQuery.exec(function(err, recordings) {
-
-            recording.children=0;
-            if (recordings){
-                for (var i=0;i<recordings.length;i++){
-                    popularityCount+=recordings[i].popularity || 0;
-                    intensity+=recordings[i].intensity || 0;
-                }
-                recording.children=recordings.length;
-                intensity/=recordings.length||1;
-            }
-
-            var created_date = new Date(recording.created_date);
-            var now = new Date();
-
-            popularityCount/=(now.getTime()-created_date.getTime());
-            recording.popularity = popularityCount*1000000;
-
-            recording.intensity = intensity;
-
-            recording.save();
-
-            if (recording.parent_type==="TAG"){
-                updateTagPopularity(Models, recording.parent_name);
-            } else {
-                updateRecordingPopularity(Models, recording.parent_name);
-            }
-        });
-    });
-
-}
 
 /* POST /tags/:name/recording 
  * or
@@ -184,9 +103,9 @@ exports.create = function(Models) {
         recording.save();
 
         if (type==="TAG"){
-            updateTagPopularity(Models, name);
+            RecordingUpdater.updateTagPopularity(Models, name);
         } else {
-            updateRecordingPopularity(Models, name);
+            RecordingUpdater.updateRecordingPopularity(Models, name);
         }
 
         res.status(201);
@@ -227,9 +146,9 @@ exports.updateById = function(Models) {
             recording[0].save();
 
             if (recording.parent_type==="TAG"){
-                updateTagPopularity(Models, recording.parent_name);
+                RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
             } else {
-                updateRecordingPopularity(Models, recording.parent_name);
+                RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
             }
 
             res.status(200);
@@ -282,9 +201,9 @@ exports.deleteById = function(Models) {
                 deleteAllChildren(Models, recording._id);
 
                 if (recording.parent_type==="TAG"){
-                    updateTagPopularity(Models, recording.parent_name);
+                    RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
                 } else {
-                    updateRecordingPopularity(Models, recording.parent_name);
+                    RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
                 }
 
                 res.status(200);

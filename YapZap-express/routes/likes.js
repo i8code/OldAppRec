@@ -1,6 +1,7 @@
 
 var Security = require('../modules/security');
 var $ = require('jquery');
+var RecordingUpdater = require('../modules/recording_update');
 
 /*
  * GET /recordings/:id/likes
