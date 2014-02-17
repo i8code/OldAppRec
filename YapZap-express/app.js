@@ -8,9 +8,11 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/yapzap');
+
+//Models
+
+var Models = require('./schema/schema.js');
+var Tag = Models.Tag;
 
 var app = express();
 
@@ -35,7 +37,14 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/userlist', routes.userlist(db));
+
+var t = new Tag({name:"gameofthrones"});
+t.save();
+Tag.remove({}, function(err) { 
+   console.log('collection removed');
+   console.log(err);
+});
+app.get('/tags', routes.tags(Tag));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
