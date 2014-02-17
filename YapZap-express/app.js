@@ -40,6 +40,7 @@ if ('development' == app.get('env')) {
 var routes = require('./routes');
 var tag_routes = require('./routes/tags');
 var recording_routes = require('./routes/recordings');
+var like_routes = require('./routes/likes');
 
 app.get('/', routes.index);
 
@@ -64,7 +65,14 @@ app.del('/recordings/:id', recording_routes.deleteById(Models));
 app.post('/tags/:name/recordings', recording_routes.create(Models));
 app.post('/recordings/:name/recordings', recording_routes.create(Models));
 
+
+//Likes
+
 app.get('/likes', routes.likes(Like));
+app.get('/recordings/:id/likes', like_routes.getAll(Models));
+app.get('/recordings/:id/likes/:username', like_routes.getById(Models));
+app.post('/recordings/:id/likes', like_routes.create(Models));
+app.del('/recordings/:id/likes/:username', like_routes.deleteById(Models));
 
 // var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
 // r.save();

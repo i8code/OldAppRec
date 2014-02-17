@@ -9,11 +9,14 @@ var tagSchema = new mongoose.Schema({
     popularity :{
         type:Number, default:0
     },
+    children :{
+        type: Number, default:0
+    },
     mood :{
-        type: Number
+        type: Number, default:0
     },
     intensity :{
-        type: Number
+        type: Number, default:0
     },
     created_date: {
         type:Date, default:Date.now
@@ -28,14 +31,26 @@ var recordingSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    tag_id :{
+    parent_name :{
         type:String
     },
+    parent_type :{
+        type:String, default: "TAG"
+    },
+    children :{
+        type: Number, default:0
+    },
     mood :{
-        type: Number
+        type: Number, default:0
     },
     intensity :{
-        type: Number
+        type: Number, default:0
+    },
+    likes : {
+        type:Number, default:0
+    },
+    popularity :{
+        type:Number, default:1
     },
     audio_url:{
         type:String
@@ -50,13 +65,12 @@ var recordingSchema = new mongoose.Schema({
 });
 
 var likeSchema = new mongoose.Schema({
-    tag_name : {
-        type: String,
-        trim: true
-    },
     username : {
         type: String,
         trim: true
+    },
+    recording_id :{
+        type:String
     },
     created_date: {
         type:Date, default:Date.now
