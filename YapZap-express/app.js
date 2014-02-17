@@ -5,6 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
+var tag_routes = require('./routes/tags');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
@@ -39,8 +40,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/tags', routes.tags(Tag));
-app.get('/tags', routes.tags(Tag));
+app.get('/tags', tag_routes.getAll(Models));
+app.get('/tags/:name', tag_routes.getById(Models));
 app.get('/recordings', routes.recordings(Recording));
 app.get('/likes', routes.likes(Like));
 
