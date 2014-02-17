@@ -6,7 +6,6 @@
 var express = require('express');
 var routes = require('./routes');
 var tag_routes = require('./routes/tags');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
@@ -39,14 +38,17 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+
+//Tags
 app.get('/tags', tag_routes.getAll(Models));
 app.get('/tags/:name', tag_routes.getById(Models));
+app.get('/tag_names', tag_routes.getAllTagNames(Models));
+app.get('/tag_names/:name', tag_routes.searchTagNames(Models));
+app.post('/tags', tag_routes.create(Models));
+
 app.get('/recordings', routes.recordings(Recording));
 app.get('/likes', routes.likes(Like));
-
-app.get('/:model', routes.model(Tag, Recording, Like));
-
+/*
 var t = new Tag({name:"gameofthrones"});
 var r = new Recording({username:"mike"});
 var l = new Like({tag_name:"gameofthrones", username:"mike"});
@@ -56,7 +58,7 @@ l.save();
 Tag.remove({}, function(err) { 
    // console.log('collection removed');
    // console.log(err);
-});
+});*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
