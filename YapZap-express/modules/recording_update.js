@@ -27,6 +27,7 @@ var updateCollection = function(Models, id, type){
             if (recordings){
                 for (var i=0;i<recordings.length;i++){
                     popularityCount+=recordings[i].popularity || 0;
+                    popularityCount+=recordings[i].likes || 0;
                     intensity+=recordings[i].intensity || 0;
 
                     var mood = recordings[i].mood*Math.PI*2;

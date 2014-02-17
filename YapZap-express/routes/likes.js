@@ -71,6 +71,8 @@ var updateLikes = function(Models, recording_id, delta){
         recording.likes+=delta;
         recording.save();
     });
+
+    RecordingUpdater.updateRecordingPopularity(Models, recording_id);
 }
 
 /*

@@ -2,7 +2,7 @@
 /*
  * GET home page.
  */
-
+var Security = require('../modules/security');
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
@@ -31,12 +31,13 @@ exports.likes = function(Likes) {
     };
 };
 
-exports.model = function(Tags, Recordings, Likes) {
+exports.tokens = function() {
     return function(req, res) {
+        var user = Security.getUsers()[0];
+        var t = (new Date()).getTime();
+        var hash = Security.getHash(user.secret, user.key, t.toString());
+        var query = "?key="+user.key+"&token="+hash+"&t="+t.toString();
 
-
-        Likes.find({}, function(err, likes){
-            res.send(likes);
-        });
+        res.send(query);
     };
 };
