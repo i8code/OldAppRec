@@ -14,3 +14,29 @@ exports.tags = function(Tag) {
         });
     };
 };
+
+exports.recordings = function(Recordings) {
+    return function(req, res) {
+        Recordings.find({}, function(err, Recordings){
+            res.send(Recordings);
+        });
+    };
+};
+
+exports.likes = function(Likes) {
+    return function(req, res) {
+        Likes.find({}, function(err, likes){
+            res.send(likes);
+        });
+    };
+};
+
+exports.model = function(Tags, Recordings, Likes) {
+    return function(req, res) {
+
+
+        Likes.find({}, function(err, likes){
+            res.send(likes);
+        });
+    };
+};

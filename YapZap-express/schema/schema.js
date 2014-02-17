@@ -6,6 +6,15 @@ var tagSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    popularity :{
+        type:Number, default:0
+    },
+    mood :{
+        type: Number
+    },
+    intensity :{
+        type: Number
+    },
     created_date: {
         type:Date, default:Date.now
     },
@@ -28,6 +37,10 @@ var recordingSchema = new mongoose.Schema({
     intensity :{
         type: Number
     },
+    audio_url:{
+        type:String
+    },
+    waveform_data: [Number],
     created_date: {
         type:Date, default:Date.now
     },
@@ -37,6 +50,10 @@ var recordingSchema = new mongoose.Schema({
 });
 
 var likeSchema = new mongoose.Schema({
+    tag_name : {
+        type: String,
+        trim: true
+    },
     username : {
         type: String,
         trim: true

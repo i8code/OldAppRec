@@ -13,6 +13,8 @@ var path = require('path');
 
 var Models = require('./schema/schema.js');
 var Tag = Models.Tag;
+var Recording = Models.Recording;
+var Like = Models.Like;
 
 var app = express();
 
@@ -37,14 +39,23 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/tags', routes.tags(Tag));
+app.get('/tags', routes.tags(Tag));
+app.get('/recordings', routes.recordings(Recording));
+app.get('/likes', routes.likes(Like));
+
+app.get('/:model', routes.model(Tag, Recording, Like));
 
 var t = new Tag({name:"gameofthrones"});
+var r = new Recording({username:"mike"});
+var l = new Like({tag_name:"gameofthrones", username:"mike"});
 t.save();
+r.save();
+l.save();
 Tag.remove({}, function(err) { 
-   console.log('collection removed');
-   console.log(err);
+   // console.log('collection removed');
+   // console.log(err);
 });
-app.get('/tags', routes.tags(Tag));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
