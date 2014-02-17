@@ -1,6 +1,3 @@
-
-
-
 var updateCollection = function(Models, id, type){
     var query;
     if (type==="TAG"){

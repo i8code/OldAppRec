@@ -34,6 +34,15 @@ exports.likes = function(Likes) {
     };
 };
 
+exports.audio_maps = function(AudioMap) {
+    return function(req, res) {
+        if (!Security.check(req, res)) return;
+        AudioMap.find({}, function(err, likes){
+            res.send(likes);
+        });
+    };
+};
+
 exports.tokens = function() {
     return function(req, res) {
         var user = Security.getUsers()[0];
@@ -45,12 +54,24 @@ exports.tokens = function() {
     };
 };
 
-var https= require('https');
+var https = require('https');
 
-exports.audio_proxy = function() {
+exports.audio_proxy = function(Models) {
     return function(req, res) {
-        https.get('https://s3.amazonaws.com/yap-zap-audio/jasontest.m4a', function(proxyRes) {
-            proxyRes.pipe(res);
+
+        var id = req.params.id;
+        var query = Models.AudioMap.find({hash:id}, function(err, maps){
+
+            if (!maps || maps.length==0){
+                res.send(404);
+                return;
+            }
+            var filename = maps[0].filename;
+            https.get('https://s3.amazonaws.com/yap-zap-audio/'+filename+'.m4a', function(proxyRes) {
+                proxyRes.pipe(res);
+            });
         });
+
+        
     };
 };

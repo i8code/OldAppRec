@@ -53,6 +53,10 @@ var recordingSchema = new mongoose.Schema({
         type:Number, default:1
     },
     audio_url:{
+        type:String,
+        default: "jasontest"
+    },
+    audio_hash:{
         type:String
     },
     waveform_data: [Number],
@@ -80,8 +84,18 @@ var likeSchema = new mongoose.Schema({
     }
 });
 
+var audioMapSchema = new mongoose.Schema({
+    filename : {
+        type: String,
+    },
+    hash :{
+        type:String
+    }
+});
+
 module.exports.Recording = mongoose.model('Recordings', recordingSchema);
 module.exports.Tag = mongoose.model('Tags', tagSchema);
 module.exports.Like = mongoose.model('Likes', likeSchema);
+module.exports.AudioMap = mongoose.model('AudioMap', audioMapSchema);
 
 module.exports.mongoose = mongoose;

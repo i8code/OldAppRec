@@ -2,6 +2,8 @@
 var Security = require('../modules/security');
 var $ = require('jquery');
 var RecordingUpdater = require('../modules/recording_update');
+var AudioMapper = require('../modules/audio_mapper');
+var async = require('async');
 
 /* GET /tags/:name/recording 
  * or
@@ -68,7 +70,6 @@ exports.getById = function(Models) {
     };
 };
 
-
 /* POST /tags/:name/recording 
  * or
  * POST /recordings/:name/recording
@@ -102,14 +103,22 @@ exports.create = function(Models) {
         recording.popularity=1;
         recording.save();
 
-        if (type==="TAG"){
-            RecordingUpdater.updateTagPopularity(Models, name);
-        } else {
-            RecordingUpdater.updateRecordingPopularity(Models, name);
-        }
+        //Update hash
+        var audioCallback = function(hash){
+            recording.audio_hash = hash;
+            recording.save(function(err){ 
 
-        res.status(201);
-        res.send(recording);
+                if (type==="TAG"){
+                    RecordingUpdater.updateTagPopularity(Models, name);
+                } else {
+                    RecordingUpdater.updateRecordingPopularity(Models, name);
+                }
+
+                res.status(201);
+                res.send(recording);
+            });
+         };
+         AudioMapper.getOrCreateHash(Models, recording.audio_url, audioCallback);
 
         return;
 

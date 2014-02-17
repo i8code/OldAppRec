@@ -81,7 +81,8 @@ app.get('/tokens', routes.tokens());
 
 //Audio
 
-app.get('/a/:id', routes.audio_proxy());
+app.get('/a/:id', routes.audio_proxy(Models));
+app.get('/audio_maps', routes.audio_maps(Models.AudioMap));
 
 // var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
 // r.save();
@@ -98,14 +99,17 @@ l.save();*/
    // console.log('collection removed');
    // console.log(err);
 // });
-// Recording.remove({}, function(err) { 
-//    console.log('collection removed');
-//    console.log(err);
-// });
-//Like.remove({}, function(err) { 
-   // console.log('collection removed');
-   // console.log(err);
-// });
+Recording.remove({}, function(err) { 
+   console.log('collection removed');
+   console.log(err);
+});
+Like.remove({}, function(err) { 
+   console.log('collection removed');
+   console.log(err);
+});
+Models.AudioMap.remove({}, function(err) { 
+   console.log('collection removed');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
