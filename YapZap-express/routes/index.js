@@ -9,6 +9,7 @@ exports.index = function(req, res){
 
 exports.tags = function(Tag) {
     return function(req, res) {
+        if (!Security.check(req, res)) return;
         Tag.find({}, function(err, tags){
             res.send(tags);
         });
@@ -17,6 +18,7 @@ exports.tags = function(Tag) {
 
 exports.recordings = function(Recordings) {
     return function(req, res) {
+        if (!Security.check(req, res)) return;
         Recordings.find({}, function(err, Recordings){
             res.send(Recordings);
         });
@@ -25,6 +27,7 @@ exports.recordings = function(Recordings) {
 
 exports.likes = function(Likes) {
     return function(req, res) {
+        if (!Security.check(req, res)) return;
         Likes.find({}, function(err, likes){
             res.send(likes);
         });
