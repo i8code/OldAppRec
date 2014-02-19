@@ -40,11 +40,11 @@
         [cloudEl setPosition:self.tagPositions];
     }
     
-    if (self.tagPositions/self.canvasWidth>0.1){
-        self.tagPositions=-10;
+    if (self.tagPositions>self.canvasWidth){
+        self.tagPositions=-2;
     }
     
-    NSLog(@"%f", self.tagPositions/self.canvasWidth);
+//    NSLog(@"%f", self.tagPositions/self.canvasWidth);
     
 }
 
@@ -56,7 +56,7 @@
         [cloudEl removeFromSuperView];
     }
     
-    self.tagPositions=-1;
+    self.tagPositions=-2;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.popularTags = [DataSource getPopularTags];
         
@@ -77,7 +77,7 @@
                 
                 CGPoint position = CGPointMake(
                                                10+x*self.canvasWidth/12.0 + (arc4random() % 40),
-                                               40+y*self.canvasHeight/13.0 + (arc4random() % 20));
+                                               35+y*self.canvasHeight/13.0 + (arc4random() % 30));
                 
                 int depth = (arc4random() % 40)+80;
                 CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag position:position andDepth:depth andCanvasWidth:self.canvasWidth inView:self.cloudView];
