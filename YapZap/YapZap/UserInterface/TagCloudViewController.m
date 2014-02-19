@@ -67,6 +67,8 @@
             
             
             int count=0;
+            self.canvasWidth = self.cloudView.frame.size.width*self.popularTags.count/40;
+            self.canvasHeight = self.cloudView.frame.size.height;
             
             for (Tag* tag in self.popularTags){
                 
@@ -101,8 +103,6 @@
 	// Do any additional setup after loading the view.
     self.background.filterColor = [UIColor whiteColor];
     [self.background setImage:[UIImage imageNamed:@"background.png"]];
-    self.canvasWidth = self.cloudView.frame.size.height*2.25;
-    self.canvasHeight = self.cloudView.frame.size.height;
     [self fetchTags];
     
 }
