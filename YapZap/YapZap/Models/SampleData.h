@@ -11,5 +11,7 @@
 @interface SampleData : NSObject
 
 +(NSString*)getJSON;
++(NSString*)getTagNameJson;
++(NSString*)getPopularTags;
 
 @end

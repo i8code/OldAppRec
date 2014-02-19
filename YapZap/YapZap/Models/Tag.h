@@ -46,4 +46,6 @@
 @property (nonatomic, strong) NSDate* createdDate;
 @property (nonatomic, strong) NSDate* lastUpdate;
 
++(Tag*)fromJSON:(NSDictionary*)jsonDictionary;
+
 @end

@@ -76,6 +76,8 @@
 		C796205E18A7056300D1BEAB /* ShareSample.png in Resources */ = {isa = PBXBuildFile; fileRef = C796205C18A7056300D1BEAB /* ShareSample.png */; };
 		C796206418A70A8000D1BEAB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206018A70A8000D1BEAB /* libTestFlight.a */; };
 		C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206518A70BD200D1BEAB /* libz.dylib */; };
+		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
+		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
 		C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6D918A6591100AA1BDE /* TagTableViewController.m */; };
 		C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */; };
 		C79EF6DE18A65DE300AA1BDE /* pup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DD18A65DE300AA1BDE /* pup.jpg */; };
@@ -505,6 +507,10 @@
 		C796206218A70A8000D1BEAB /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		C796206318A70A8000D1BEAB /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		C796206518A70BD200D1BEAB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C798E89218B4244400ED5890 /* TagCloudViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCloudViewController.h; path = UserInterface/TagCloudViewController.h; sourceTree = "<group>"; };
+		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
+		C798E89E18B4364B00ED5890 /* CloudTagElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudTagElement.h; path = UserInterface/CloudTagElement.h; sourceTree = "<group>"; };
+		C798E89F18B4364B00ED5890 /* CloudTagElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CloudTagElement.m; path = UserInterface/CloudTagElement.m; sourceTree = "<group>"; };
 		C79EF6D818A6591100AA1BDE /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewController.h; path = UserInterface/TagTableViewController.h; sourceTree = "<group>"; };
 		C79EF6D918A6591100AA1BDE /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewController.m; path = UserInterface/TagTableViewController.m; sourceTree = "<group>"; };
 		C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewController.xib; path = UserInterface/TagTableViewController.xib; sourceTree = "<group>"; };
@@ -1189,6 +1195,8 @@
 				C761D04C18AD8821003947C1 /* WaveformView.m */,
 				C761D05118AD9C98003947C1 /* BorderedTextField.h */,
 				C761D05218AD9C98003947C1 /* BorderedTextField.m */,
+				C798E89E18B4364B00ED5890 /* CloudTagElement.h */,
+				C798E89F18B4364B00ED5890 /* CloudTagElement.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1228,6 +1236,8 @@
 				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
 				C761D05418ADA286003947C1 /* UploadViewController.h */,
 				C761D05518ADA286003947C1 /* UploadViewController.m */,
+				C798E89218B4244400ED5890 /* TagCloudViewController.h */,
+				C798E89318B4244400ED5890 /* TagCloudViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1239,8 +1249,6 @@
 				C796204118A6A6CA00D1BEAB /* TagPage.m */,
 				C796204318A6A74000D1BEAB /* Recording.h */,
 				C796204418A6A74000D1BEAB /* Recording.m */,
-				C796204918A6B30300D1BEAB /* SampleData.h */,
-				C796204A18A6B30300D1BEAB /* SampleData.m */,
 				C796204C18A6B71400D1BEAB /* PageSet.h */,
 				C796204D18A6B71400D1BEAB /* PageSet.m */,
 				C761D04E18AD9992003947C1 /* SharingBundle.h */,
@@ -1274,6 +1282,8 @@
 		C7CF286D18A1E4910053DB9C /* Communication */ = {
 			isa = PBXGroup;
 			children = (
+				C796204918A6B30300D1BEAB /* SampleData.h */,
+				C796204A18A6B30300D1BEAB /* SampleData.m */,
 				C796204F18A6BBAD00D1BEAB /* DataSource.h */,
 				C796205018A6BBAD00D1BEAB /* DataSource.m */,
 				C72C1DB318AAF9ED006D136F /* S3Helper.h */,
@@ -1589,7 +1599,9 @@
 				C72C1DB818AAFB24006D136F /* Reachability.m in Sources */,
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,
 				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,
+				C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */,
 				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
+				C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */,
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,

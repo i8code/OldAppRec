@@ -9,6 +9,7 @@
 #import "DataSource.h"
 #import "SampleData.h"
 #import "PageSet.h"
+#import "Tag.h"
 
 @interface DataSource()
 
@@ -41,6 +42,38 @@ static NSArray* _pages;
     }
     
     return [DataSource pages][setNum];
+}
+
++(NSArray*)getTagNames{
+    
+    [NSThread sleepForTimeInterval:2];
+    
+    NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for (NSString* tagName in tagNamesJson){
+        [array addObject:tagName];
+    }
+    
+    return array;
+}
+
++(NSArray*)getPopularTags{
+    
+    [NSThread sleepForTimeInterval:2];
+    
+    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for (NSDictionary* tagDic in tagsJson){
+        [array addObject:[Tag fromJSON:tagDic]];
+    }
+    
+    return array;
 }
 
 @end

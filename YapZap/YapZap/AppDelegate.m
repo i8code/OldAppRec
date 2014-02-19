@@ -61,7 +61,7 @@
 }
 -(void)goToHomeView{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"home"]];
+    [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"cloud"]];
     
 }
 							

@@ -14,5 +14,7 @@
 @interface DataSource : NSObject
 
 +(PageSet*)getSet:(NSInteger)setNum;
++(NSArray*)getTagNames;
++(NSArray*)getPopularTags;
 
 @end
