@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
 		C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */; };
@@ -176,6 +177,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
+		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
 		C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
@@ -1238,6 +1241,8 @@
 				C761D05518ADA286003947C1 /* UploadViewController.m */,
 				C798E89218B4244400ED5890 /* TagCloudViewController.h */,
 				C798E89318B4244400ED5890 /* TagCloudViewController.m */,
+				C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */,
+				C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1574,6 +1579,7 @@
 				C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */,
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C761D04D18AD8821003947C1 /* WaveformView.m in Sources */,
+				C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C72C1DAA18AAE8B2006D136F /* Novocaine.mm in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,

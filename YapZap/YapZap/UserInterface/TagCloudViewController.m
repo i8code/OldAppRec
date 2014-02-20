@@ -101,8 +101,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.background.filterColor = [UIColor whiteColor];
-    [self.background setImage:[UIImage imageNamed:@"background.png"]];
     [self fetchTags];
     
 }
@@ -111,11 +109,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 @end

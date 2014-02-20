@@ -133,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQp-Jd-SfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="69" y="174"/>
+            <point key="canvasLocation" x="595" y="174"/>
         </scene>
         <!--Record Controller View Controller-->
         <scene sceneID="1Ku-f4-cP5">
@@ -307,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btn-hb-H9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="165"/>
+            <point key="canvasLocation" x="1636" y="165"/>
         </scene>
         <!--Set Tag View Controller-->
         <scene sceneID="OnD-0a-p5V">
@@ -420,12 +420,12 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="1644" y="136"/>
+            <point key="canvasLocation" x="2170" y="136"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NIl-Eo-aa8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sjr-EE-WWs" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="recordNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sjr-EE-WWs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-qx-Ryj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -438,12 +438,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77h-6f-xii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="584" y="165"/>
+            <point key="canvasLocation" x="1110" y="165"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="RaF-pV-IZA">
             <objects>
-                <viewController id="6UL-tv-reZ" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6UL-tv-reZ" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hcq-8c-otW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -486,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StW-E7-6fw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="798" y="-652"/>
+            <point key="canvasLocation" x="1324" y="-652"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="hpr-uf-Idc">
@@ -507,7 +507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1d-m6-xDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-142" y="-768"/>
+            <point key="canvasLocation" x="384" y="-768"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="D3G-iH-oD2">
@@ -550,59 +550,19 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="2213" y="290"/>
+            <point key="canvasLocation" x="2739" y="290"/>
         </scene>
         <!--Tag Cloud View Controller-->
         <scene sceneID="mCH-jF-YBd">
             <objects>
-                <viewController storyboardIdentifier="cloud" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQv-PE-BgR" customClass="TagCloudViewController" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQv-PE-BgR" customClass="TagCloudViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eLd-cd-Z1c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" id="dcD-Sp-xqf" customClass="FilteredImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <view opaque="NO" contentMode="scaleToFill" id="ucU-DH-WaT">
                                 <rect key="frame" x="0.0" y="62" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="rTL-T9-56c">
-                                <rect key="frame" x="123" y="485" width="74" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="record_button.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <view contentMode="scaleToFill" id="rCS-Mx-qeN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="xiJ-KY-QjM">
-                                        <rect key="frame" x="147" y="5" width="25" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="search_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="lWB-Uj-Wmv">
-                                        <rect key="frame" x="10" y="6" width="22" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="plus_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="KMf-Um-mch">
-                                        <rect key="frame" x="285" y="5" width="25" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="gear_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="KF0-yN-75O">
@@ -617,20 +577,38 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FKW-HM-L1W"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="KF0-yN-75O" id="lUZ-9g-q11"/>
-                        <outlet property="background" destination="dcD-Sp-xqf" id="2OO-39-lJv"/>
                         <outlet property="cloudView" destination="ucU-DH-WaT" id="ljK-Bl-QQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="biX-Y9-UDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="166" y="-156"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="74k-Tj-xIi">
+            <objects>
+                <navigationController storyboardIdentifier="cloud" automaticallyAdjustsScrollViewInsets="NO" id="YtI-3K-zO5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="14b-jA-hGV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LQv-PE-BgR" kind="relationship" relationship="rootViewController" id="kdt-v4-QtP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QQF-Of-mmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-360" y="-156"/>
         </scene>

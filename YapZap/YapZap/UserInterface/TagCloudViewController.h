@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FilteredImageView.h"
+#import "YapZapMainViewController.h"
 
-@interface TagCloudViewController : UIViewController
-@property (weak, nonatomic) IBOutlet FilteredImageView *background;
+@interface TagCloudViewController : YapZapMainViewController
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIView *cloudView;
 
