@@ -27,7 +27,7 @@
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
-    self.label.text = recording.firstName;
+    self.label.text = recording.username;
     
     //TODO set image
     

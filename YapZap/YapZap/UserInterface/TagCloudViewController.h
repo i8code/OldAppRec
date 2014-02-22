@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIView *cloudView;
 
 -(void)updateTagPositions;
+-(void)swipedRight:(UIGestureRecognizer*)recognizer;
 
 @end

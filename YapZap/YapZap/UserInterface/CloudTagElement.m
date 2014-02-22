@@ -16,11 +16,11 @@
 @property CGPoint startingPoint;
 @property CGFloat canvasWidth;
 @property CGFloat depth;
-
+@property (nonatomic, strong) void (^onclickBlock)(Tag*);
 @end
 
 @implementation CloudTagElement
--(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth andCanvasWidth:(CGFloat)canvasWidth inView:(UIView*)view{
+-(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth andCanvasWidth:(CGFloat)canvasWidth inView:(UIView*)view andOnclick:(void (^)(Tag *))onclick{
     self = [super init];
     if (self){
         self.tag = tag;
@@ -28,6 +28,7 @@
         self.depth = depth;
         self.position = -100;
         self.canvasWidth = canvasWidth;
+        self.onclickBlock = onclick;
         
         self.button = [[UIButton alloc] init];
         [self.button setFrame:CGRectMake(origin.x+1000, origin.y, 200, 50)];
@@ -40,10 +41,18 @@
         
         [self.button setShowsTouchWhenHighlighted:YES];
         [self.button sizeToFit];
+        
+        [self.button addTarget:self
+                        action:@selector(onClick:)
+                      forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:self.button];
     }
     
     return self;
+}
+
+-(void)onClick:(id)sender{
+    self.onclickBlock(self.tag);
 }
 
 -(void)setPosition:(CGFloat)position{

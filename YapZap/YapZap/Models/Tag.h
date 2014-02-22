@@ -40,7 +40,7 @@
 @property (nonatomic, strong) NSString* _id;
 @property (nonatomic, strong) NSString* name;
 @property double popularity;
-@property int children;
+@property int childrenLength;
 @property double mood;
 @property double intensity;
 @property (nonatomic, strong) NSDate* createdDate;

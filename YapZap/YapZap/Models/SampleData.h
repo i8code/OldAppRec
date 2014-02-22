@@ -13,5 +13,6 @@
 +(NSString*)getJSON;
 +(NSString*)getTagNameJson;
 +(NSString*)getPopularTags;
++(NSString*)getRecordingsForTagName:(NSString*)tagName;
 
 @end

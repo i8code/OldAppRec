@@ -12,7 +12,7 @@
 
 
 @interface CloudTagElement : NSObject
--(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth andCanvasWidth:(CGFloat)canvasWidth inView:(UIView*)view;
+-(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth andCanvasWidth:(CGFloat)canvasWidth inView:(UIView*)view andOnclick:(void (^)(Tag*))onclick;
 
 @property (nonatomic) CGFloat position;
 

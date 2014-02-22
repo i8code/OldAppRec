@@ -27,7 +27,7 @@
     tag._id = [jsonDictionary valueForKey:@"_id"];
     tag.name = [jsonDictionary valueForKey:@"name"];
     tag.popularity = [[jsonDictionary valueForKey:@"popularity"] doubleValue];
-    tag.children = [[jsonDictionary valueForKey:@"children"] integerValue];
+    tag.childrenLength = [[jsonDictionary valueForKey:@"children_length"] integerValue];
     tag.mood = [[jsonDictionary valueForKey:@"mood"] doubleValue];
     tag.intensity = [[jsonDictionary valueForKey:@"intensity"]doubleValue];
     

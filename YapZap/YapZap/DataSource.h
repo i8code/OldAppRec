@@ -10,11 +10,14 @@
 
 
 @class PageSet;
+@class Tag;
 
 @interface DataSource : NSObject
 
 +(PageSet*)getSet:(NSInteger)setNum;
 +(NSArray*)getTagNames;
 +(NSArray*)getPopularTags;
++(Tag*)getNextPopularTag;
++(NSArray*)getRecordingsForTagName:(NSString*)tagName;
 
 @end
