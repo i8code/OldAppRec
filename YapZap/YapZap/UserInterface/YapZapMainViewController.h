@@ -18,5 +18,8 @@
 @property (nonatomic, strong) UIButton* likeButton;
 @property (nonatomic, strong) UIButton* searchButton;
 - (IBAction)searchPressed:(id)sender;
-- (IBAction)startRecording:(id)sender;
+- (IBAction)recordingButtonPressed:(id)sender;
+- (IBAction)recordingButtonLifted:(id)sender;
+-(IBAction)goHome:(id)sender;
+-(IBAction)goBack:(id)sender;
 @end

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
+		C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245A18B6CD6E00D1BEB0 /* Social.framework */; };
+		C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245C18B6CD7400D1BEB0 /* Twitter.framework */; };
+		C706246D18B6D25C00D1BEB0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706246C18B6D25C00D1BEB0 /* Accounts.framework */; };
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
 		C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */; };
@@ -179,6 +182,9 @@
 /* Begin PBXFileReference section */
 		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
 		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
+		C706245A18B6CD6E00D1BEB0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C706245C18B6CD7400D1BEB0 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		C706246C18B6D25C00D1BEB0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
 		C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
@@ -550,6 +556,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C706246D18B6D25C00D1BEB0 /* Accounts.framework in Frameworks */,
+				C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */,
+				C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */,
 				C72C1DBA18AAFB43006D136F /* SystemConfiguration.framework in Frameworks */,
 				C72C1DB218AAE9C8006D136F /* AVFoundation.framework in Frameworks */,
 				C72C1DB018AAE9C2006D136F /* Accelerate.framework in Frameworks */,
@@ -615,6 +624,9 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C706246C18B6D25C00D1BEB0 /* Accounts.framework */,
+				C706245C18B6CD7400D1BEB0 /* Twitter.framework */,
+				C706245A18B6CD6E00D1BEB0 /* Social.framework */,
 				C72C1DBB18AAFFDE006D136F /* AWSRuntime.framework */,
 				C72C1DB918AAFB42006D136F /* SystemConfiguration.framework */,
 				C72C1DB118AAE9C8006D136F /* AVFoundation.framework */,
@@ -640,7 +652,7 @@
 				C796203F18A6A6A800D1BEAB /* Models */,
 				C7CF287618A1F0F90053DB9C /* Images */,
 				C7CF286D18A1E4910053DB9C /* Communication */,
-				C7371F7018A1E2B2007FB490 /* CoreData */,
+				C7371F7018A1E2B2007FB490 /* User */,
 				C7371F6F18A1E29B007FB490 /* UserInterface */,
 				C7371F4918A1DFEE007FB490 /* AppDelegate.h */,
 				C7371F4A18A1DFEE007FB490 /* AppDelegate.m */,
@@ -692,11 +704,11 @@
 			name = UserInterface;
 			sourceTree = "<group>";
 		};
-		C7371F7018A1E2B2007FB490 /* CoreData */ = {
+		C7371F7018A1E2B2007FB490 /* User */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = CoreData;
+			name = User;
 			sourceTree = "<group>";
 		};
 		C747FADD18A734050083A533 /* FacebookSDK */ = {

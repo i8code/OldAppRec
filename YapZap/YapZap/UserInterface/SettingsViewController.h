@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "YapZapMainViewController.h"
 
-@interface SettingsViewController : UIViewController<FBLoginViewDelegate>
+@interface SettingsViewController : YapZapMainViewController<FBLoginViewDelegate>
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
 
 @end

@@ -10,9 +10,13 @@
 #import "FilteredImageView.h"
 #import "UIPopoverController+iPhone.h"
 #import "SearchViewController.h"
+#import "SettingsViewController.h"
+#import "RecordControllerViewController.h"
 
 @interface YapZapMainViewController ()
 @property (nonatomic, retain) UIPopoverController *poc;
+@property (nonatomic, retain) SettingsViewController *settingsViewController;
+@property (nonatomic, retain) UINavigationController* recordNavigationViewController;
 
 @end
 
@@ -37,6 +41,7 @@
 
 -(void)createMainButtons{
     
+    /* Search Button  -o- */
     [self.searchButton removeFromSuperview];
     self.searchButton = [[UIButton alloc] init];
     [self.searchButton setTitle:@"" forState:UIControlStateNormal];
@@ -51,6 +56,25 @@
      forControlEvents:UIControlEventTouchDown];
     self.searchButton.showsTouchWhenHighlighted = YES;
     
+    /* Home Button  -o- */
+    [self.homeButton removeFromSuperview];
+    self.homeButton = [[UIButton alloc] init];
+    [self.homeButton setTitle:@"" forState:UIControlStateNormal];
+    [self.homeButton setImage:[UIImage imageNamed:@"home_button.png"] forState:UIControlStateNormal];
+    
+    [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
+                                           5, 25, 25)];
+    [self.view addSubview:self.homeButton];
+    [self.homeButton addTarget:self
+                        action:@selector(goHome:)
+              forControlEvents:UIControlEventTouchDown];
+    self.homeButton.showsTouchWhenHighlighted = YES;
+    self.homeButton.hidden = YES;
+
+    
+    
+    
+    /* Settings Button  --o */
     [self.settingsButton removeFromSuperview];
     self.settingsButton = [[UIButton alloc] init];
     [self.settingsButton setTitle:@"" forState:UIControlStateNormal];
@@ -67,6 +91,7 @@
     
     
     
+    /* Back Button  o-- */
     [self.backButton removeFromSuperview];
     self.backButton = [[UIButton alloc] init];
     [self.backButton setTitle:@"" forState:UIControlStateNormal];
@@ -74,10 +99,15 @@
     
     [self.backButton setFrame:CGRectMake(5, 5, 25, 25)];
     [self.view addSubview:self.backButton];
+    [self.settingsButton addTarget:self
+                            action:@selector(goBack:)
+                  forControlEvents:UIControlEventTouchDown];
     self.backButton.hidden= YES;
     self.backButton.showsTouchWhenHighlighted = YES;
     
     
+    
+    /* Record Button  \/ */
     [self.recordButton removeFromSuperview];
     self.recordButton = [[UIButton alloc] init];
     [self.recordButton setTitle:@"" forState:UIControlStateNormal];
@@ -87,8 +117,14 @@
     [self.view addSubview:self.recordButton];
     self.recordButton.showsTouchWhenHighlighted = YES;
     [self.recordButton addTarget:self
-                          action:@selector(startRecording:)
+                          action:@selector(recordingButtonPressed:)
                 forControlEvents:UIControlEventTouchDown];
+    [self.recordButton addTarget:self
+                          action:@selector(recordingButtonLifted:)
+                forControlEvents:UIControlEventTouchUpOutside];
+    [self.recordButton addTarget:self
+                          action:@selector(recordingButtonLifted:)
+                forControlEvents:UIControlEventTouchUpInside];
     
     
 }
@@ -135,15 +171,52 @@
     self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
 }
 
-- (IBAction)startRecording:(id)sender {
+- (IBAction)recordingButtonPressed:(id)sender {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self presentViewController:[storyboard instantiateViewControllerWithIdentifier:@"recordNav"] animated:NO completion:nil];
+//    if (self.recordControllerViewController==nil){
+        self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
+//    }
+    [self addChildViewController:self.recordNavigationViewController];
+    [self.view addSubview:self.recordNavigationViewController.view];
+    [self.navigationController didMoveToParentViewController:self];
+   // [self presentViewController:self.recordNavigationViewController animated:NO completion:nil];
+}
+
+
+- (IBAction)recordingButtonLifted:(id)sender {
+    
+    RecordControllerViewController* activeViewController = (RecordControllerViewController*)[self.recordNavigationViewController topViewController];
+    
+    [activeViewController stopRecording];
 }
 - (IBAction)showSettings:(id)sender {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self presentViewController:[storyboard instantiateViewControllerWithIdentifier:@"settings"] animated:YES completion:nil];
+    if (self.settingsViewController==nil){
+        self.settingsViewController =[storyboard instantiateViewControllerWithIdentifier:@"settings"];
+    }
+    [self presentViewController:self.settingsViewController animated:YES completion:nil];
 }
+
+-(IBAction)goHome:(id)sender{
+    UIViewController* viewController = [[self parentViewController] parentViewController];
+    if ([viewController isKindOfClass:[YapZapMainViewController class]]){
+        [self.view removeFromSuperview];
+        [self.navigationController.view removeFromSuperview];
+        [self.navigationController removeFromParentViewController];
+        for (UIViewController* child in [viewController childViewControllers]){
+            [child removeFromParentViewController];
+        }
+    }
+    else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+
+-(IBAction)goBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

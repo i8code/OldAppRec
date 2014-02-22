@@ -12,6 +12,7 @@
 #import "RecordingInfo.h"
 #import "WaveformView.h"
 #import "SharingBundle.h"
+#import "FilteredImageView.h"
 
 @interface RecordControllerViewController ()
 
@@ -83,8 +84,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self initialize];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.backButton.hidden=YES;
+    self.searchButton.hidden=YES;
+    self.settingsButton.hidden=YES;
+    self.recordButton.hidden = YES;
+    self.homeButton.hidden = NO;
+    [self.recordActiveButton setFrame:self.recordButton.frame];
+    [self.recordActiveButton setHighlighted:YES];
 }
 
 -(void)initialize{
@@ -96,6 +106,8 @@
     [self.waveform setData:self.recorder.waveformData withSize:[self.recorder blockLength]];
     
     [self startRecording];
+    
+    
 }
 
 -(void) startRecording{
@@ -112,7 +124,7 @@
     [self.timer invalidate];
     self.timerCount = 0;
     
-    [self.recordButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
+    [self.recordActiveButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
     
     [self.recorder start];
     
@@ -128,8 +140,9 @@
     self.timer = nil;
     [self.recorder stop];
     self.recordingInfo = [self.recorder lastInfo];
+    [self.recordActiveButton setHighlighted:NO];
     
-    [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
+    [self.recordActiveButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
 }
 
 -(void)startPlaying{
@@ -162,11 +175,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)homePressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 - (IBAction)recordButtonPressed:(id)sender {
     
     if (self.recording){

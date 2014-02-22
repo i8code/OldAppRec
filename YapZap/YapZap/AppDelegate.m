@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "TestFlight.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Twitter/Twitter.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @implementation AppDelegate
 
@@ -17,10 +20,11 @@
     
     [FBLoginView class];
     
-    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     //Check to see if the user is logged in
+    
+    [self askForTwitterAuth];
     
     if (![self loginFacebook]){
         [self goToLoginView];
@@ -132,4 +136,9 @@
     return wasHandled;
 }
 
+-(void)askForTwitterAuth{
+    ACAccountStore *store = [[ACAccountStore alloc] init]; // Long-lived
+    ACAccountType *twitterType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    [store requestAccessToAccountsWithType:twitterType options:nil completion:^(BOOL granted, NSError* err){}];
+}
 @end

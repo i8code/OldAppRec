@@ -144,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" id="DBQ-x3-juk">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" id="KnY-UL-Y2w">
@@ -160,43 +160,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="recordButtonPressed:" destination="AXK-p8-3zA" eventType="touchDown" id="HPA-1x-uQw"/>
                                     <action selector="recordButtonPressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="JFS-ID-Rse"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="7hi-O3-b7O">
-                                <rect key="frame" x="0.0" y="20" width="320" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="FLc-pU-iTv">
-                                        <rect key="frame" x="147" y="5" width="25" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="home_button.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="homePressed:" destination="AXK-p8-3zA" eventType="touchUpInside" id="xxI-6k-nfY"/>
-                                        </connections>
-                                    </button>
-                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="i1d-LN-VU2">
-                                        <rect key="frame" x="285" y="5" width="25" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="gear_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="6UL-tv-reZ" kind="modal" modalTransitionStyle="coverVertical" id="b2G-yG-sRg"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mDZ-ZV-dDy">
-                                        <rect key="frame" x="10" y="6" width="22" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="plus_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y7g-4N-89q">
                                 <rect key="frame" x="211" y="178" width="84" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -301,7 +268,7 @@
                     <connections>
                         <outlet property="backgroundColor" destination="KnY-UL-Y2w" id="1BY-gu-mll"/>
                         <outlet property="finishedPanel" destination="skz-BV-8rE" id="Gdx-t4-5JU"/>
-                        <outlet property="recordButton" destination="EFy-QJ-G1o" id="cAh-5T-kok"/>
+                        <outlet property="recordActiveButton" destination="EFy-QJ-G1o" id="9o8-O8-Rvk"/>
                         <outlet property="stopPanel" destination="lG8-Lf-Euq" id="sVp-VM-Xyg"/>
                     </connections>
                 </viewController>
@@ -577,7 +544,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="FKW-HM-L1W"/>

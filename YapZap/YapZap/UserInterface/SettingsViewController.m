@@ -41,6 +41,16 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.backButton.hidden=YES;
+    self.searchButton.hidden=YES;
+    self.settingsButton.hidden=YES;
+    self.recordButton.hidden = YES;
+    self.homeButton.hidden = NO;
+}
+
+
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
