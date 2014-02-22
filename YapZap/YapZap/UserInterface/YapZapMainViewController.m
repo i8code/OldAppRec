@@ -42,89 +42,93 @@
 -(void)createMainButtons{
     
     /* Search Button  -o- */
-    [self.searchButton removeFromSuperview];
-    self.searchButton = [[UIButton alloc] init];
-    [self.searchButton setTitle:@"" forState:UIControlStateNormal];
-    [self.searchButton setImage:[UIImage imageNamed:@"search_icon.png"] forState:UIControlStateNormal];
-    
-    [self.searchButton setFrame:CGRectMake(
+    if (!self.searchButton) {
+        self.searchButton = [[UIButton alloc] init];
+        [self.searchButton setTitle:@"" forState:UIControlStateNormal];
+        [self.searchButton setImage:[UIImage imageNamed:@"search_icon.png"] forState:UIControlStateNormal];
+        
+        [self.searchButton setFrame:CGRectMake(
                                            (self.view.frame.size.width-25)/2.0,
                                            5, 25, 25)];
-    [self.view addSubview:self.searchButton];
-    [self.searchButton addTarget:self
+        [self.view addSubview:self.searchButton];
+        [self.searchButton addTarget:self
                           action:@selector(searchPressed:)
-     forControlEvents:UIControlEventTouchDown];
-    self.searchButton.showsTouchWhenHighlighted = YES;
+                    forControlEvents:UIControlEventTouchDown];
+        self.searchButton.showsTouchWhenHighlighted = YES;
+    }
     
     /* Home Button  -o- */
-    [self.homeButton removeFromSuperview];
-    self.homeButton = [[UIButton alloc] init];
-    [self.homeButton setTitle:@"" forState:UIControlStateNormal];
-    [self.homeButton setImage:[UIImage imageNamed:@"home_button.png"] forState:UIControlStateNormal];
-    
-    [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
-                                           5, 25, 25)];
-    [self.view addSubview:self.homeButton];
-    [self.homeButton addTarget:self
-                        action:@selector(goHome:)
-              forControlEvents:UIControlEventTouchDown];
-    self.homeButton.showsTouchWhenHighlighted = YES;
-    self.homeButton.hidden = YES;
-
+    if (!self.homeButton){
+        self.homeButton = [[UIButton alloc] init];
+        [self.homeButton setTitle:@"" forState:UIControlStateNormal];
+        [self.homeButton setImage:[UIImage imageNamed:@"home_button.png"] forState:UIControlStateNormal];
+        
+        [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
+                                               5, 25, 25)];
+        [self.view addSubview:self.homeButton];
+        [self.homeButton addTarget:self
+                            action:@selector(goHome:)
+                  forControlEvents:UIControlEventTouchDown];
+        self.homeButton.showsTouchWhenHighlighted = YES;
+        self.homeButton.hidden = YES;
+    }
     
     
     
     /* Settings Button  --o */
-    [self.settingsButton removeFromSuperview];
-    self.settingsButton = [[UIButton alloc] init];
-    [self.settingsButton setTitle:@"" forState:UIControlStateNormal];
-    [self.settingsButton setImage:[UIImage imageNamed:@"gear_icon.png"] forState:UIControlStateNormal];
-    
-    [self.settingsButton setFrame:CGRectMake(
-                                             (self.view.frame.size.width-30),
-                                             5, 25, 25)];
-    [self.view addSubview:self.settingsButton];
-    self.settingsButton.showsTouchWhenHighlighted = YES;
-    [self.settingsButton addTarget:self
-                          action:@selector(showSettings:)
-                forControlEvents:UIControlEventTouchDown];
+    if (!self.settingsButton) {
+        self.settingsButton = [[UIButton alloc] init];
+        [self.settingsButton setTitle:@"" forState:UIControlStateNormal];
+        [self.settingsButton setImage:[UIImage imageNamed:@"gear_icon.png"] forState:UIControlStateNormal];
+        
+        [self.settingsButton setFrame:CGRectMake(
+                                                 (self.view.frame.size.width-30),
+                                                 5, 25, 25)];
+        [self.view addSubview:self.settingsButton];
+        self.settingsButton.showsTouchWhenHighlighted = YES;
+        [self.settingsButton addTarget:self
+                              action:@selector(showSettings:)
+                    forControlEvents:UIControlEventTouchDown];
+    }
     
     
     
     /* Back Button  o-- */
-    [self.backButton removeFromSuperview];
-    self.backButton = [[UIButton alloc] init];
-    [self.backButton setTitle:@"" forState:UIControlStateNormal];
-    [self.backButton setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
-    
-    [self.backButton setFrame:CGRectMake(5, 5, 25, 25)];
-    [self.view addSubview:self.backButton];
-    [self.settingsButton addTarget:self
-                            action:@selector(goBack:)
-                  forControlEvents:UIControlEventTouchDown];
-    self.backButton.hidden= YES;
-    self.backButton.showsTouchWhenHighlighted = YES;
+    if (!self.backButton){
+        self.backButton = [[UIButton alloc] init];
+        [self.backButton setTitle:@"" forState:UIControlStateNormal];
+        [self.backButton setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
+        
+        [self.backButton setFrame:CGRectMake(5, 5, 25, 25)];
+        [self.view addSubview:self.backButton];
+        [self.backButton addTarget:self
+                                action:@selector(goBack:)
+                      forControlEvents:UIControlEventTouchDown];
+        self.backButton.hidden= YES;
+        self.backButton.showsTouchWhenHighlighted = YES;
+    }
     
     
     
     /* Record Button  \/ */
-    [self.recordButton removeFromSuperview];
-    self.recordButton = [[UIButton alloc] init];
-    [self.recordButton setTitle:@"" forState:UIControlStateNormal];
-    [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
-    
-    [self.recordButton setFrame:CGRectMake((self.view.frame.size.width-75)/2.0, self.view.frame.size.height-90, 75, 75)];
-    [self.view addSubview:self.recordButton];
-    self.recordButton.showsTouchWhenHighlighted = YES;
-    [self.recordButton addTarget:self
-                          action:@selector(recordingButtonPressed:)
-                forControlEvents:UIControlEventTouchDown];
-    [self.recordButton addTarget:self
-                          action:@selector(recordingButtonLifted:)
-                forControlEvents:UIControlEventTouchUpOutside];
-    [self.recordButton addTarget:self
-                          action:@selector(recordingButtonLifted:)
-                forControlEvents:UIControlEventTouchUpInside];
+    if (!self.recordButton){
+        self.recordButton = [[UIButton alloc] init];
+        [self.recordButton setTitle:@"" forState:UIControlStateNormal];
+        [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
+        
+        [self.recordButton setFrame:CGRectMake((self.view.frame.size.width-75)/2.0, self.view.frame.size.height-90, 75, 75)];
+        [self.view addSubview:self.recordButton];
+        self.recordButton.showsTouchWhenHighlighted = YES;
+        [self.recordButton addTarget:self
+                              action:@selector(recordingButtonPressed:)
+                    forControlEvents:UIControlEventTouchDown];
+        [self.recordButton addTarget:self
+                              action:@selector(recordingButtonLifted:)
+                    forControlEvents:UIControlEventTouchUpOutside];
+        [self.recordButton addTarget:self
+                              action:@selector(recordingButtonLifted:)
+                    forControlEvents:UIControlEventTouchUpInside];
+    }
     
     
 }
@@ -200,17 +204,16 @@
 }
 
 -(IBAction)goHome:(id)sender{
-    UIViewController* viewController = [[self parentViewController] parentViewController];
-    if ([viewController isKindOfClass:[YapZapMainViewController class]]){
-        [self.view removeFromSuperview];
-        [self.navigationController.view removeFromSuperview];
-        [self.navigationController removeFromParentViewController];
-        for (UIViewController* child in [viewController childViewControllers]){
-            [child removeFromParentViewController];
-        }
-    }
-    else {
+    if ([self isKindOfClass:[SettingsViewController class]]){
         [self dismissModalViewControllerAnimated:YES];
+        return;
+    }
+    UIViewController* viewController = [[self parentViewController] parentViewController];
+    [self.view removeFromSuperview];
+    [self.navigationController.view removeFromSuperview];
+    [self.navigationController removeFromParentViewController];
+    for (UIViewController* child in [viewController childViewControllers]){
+        [child removeFromParentViewController];
     }
 }
 

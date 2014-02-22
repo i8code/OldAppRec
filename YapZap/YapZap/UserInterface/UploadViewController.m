@@ -53,7 +53,8 @@
         [self.timer invalidate];
         self.timer = nil;
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self.navigationController.view removeFromSuperview];
+        [self.navigationController removeFromParentViewController];
     }
     
 }

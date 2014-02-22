@@ -9,7 +9,7 @@ var tagSchema = new mongoose.Schema({
     popularity :{
         type:Number, default:0
     },
-    children :{
+    children_length :{
         type: Number, default:0
     },
     mood :{
@@ -37,7 +37,10 @@ var recordingSchema = new mongoose.Schema({
     parent_type :{
         type:String, default: "TAG"
     },
-    children :{
+    children:{
+        type:Array, default:[]
+    },
+    children_length :{
         type: Number, default:0
     },
     mood :{

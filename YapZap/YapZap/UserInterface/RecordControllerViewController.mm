@@ -94,7 +94,6 @@
     self.recordButton.hidden = YES;
     self.homeButton.hidden = NO;
     [self.recordActiveButton setFrame:self.recordButton.frame];
-    [self.recordActiveButton setHighlighted:YES];
 }
 
 -(void)initialize{
@@ -104,6 +103,7 @@
     [self.waveform setFrame:CGRectMake(0, 295, self.view.frame.size.width, 150)];
     [self.view addSubview:self.waveform];
     [self.waveform setData:self.recorder.waveformData withSize:[self.recorder blockLength]];
+    [self.recordActiveButton setHighlighted:YES];
     
     [self startRecording];
     

@@ -35,12 +35,18 @@
     self.tagTextField.delegate = self;
     self.tagTextField.text = self.sharingBundle.tagName;
     self.waveformImage.filterColor = [UIColor whiteColor];
-    self.backgroundImage.filterColor = [UIColor whiteColor];
     [self.waveformImage setImage:self.sharingBundle.waveformImage];
     [self.waveformBorderX setImage:self.sharingBundle.waveformImage];
     [self.waveformBorderY setImage:self.sharingBundle.waveformImage];
-    [self.backgroundImage setImage:[UIImage imageNamed:@"background.png"]];
     [self.moodSelector setColorDelegate:self];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.backButton.hidden=NO;
+    self.searchButton.hidden=YES;
+    self.settingsButton.hidden=NO;
+    self.recordButton.hidden = YES;
+    self.homeButton.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,13 +62,5 @@
 }
 -(void)setMoodColor:(UIColor *)color{
     self.waveformImage.filterColor = color;
-    self.backgroundImage.filterColor = color;
-}
-- (IBAction)goBack:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)homePressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
-}
-@end
+    self.background.filterColor = color;
+}@end

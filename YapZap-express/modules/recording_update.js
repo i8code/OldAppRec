@@ -20,7 +20,6 @@ var updateCollection = function(Models, id, type){
 
         var childrenQuery = Models.Recording.find({parent_name:id, parent_type:type});
         childrenQuery.exec(function(err, recordings) {
-            parent.children=0;
             if (recordings){
                 for (var i=0;i<recordings.length;i++){
                     popularityCount+=recordings[i].popularity || 0;
@@ -31,7 +30,8 @@ var updateCollection = function(Models, id, type){
                     moodSin+= Math.sin(mood)*recordings[i].intensity;
                     moodCos+= Math.cos(mood)*recordings[i].intensity;
                 }
-                parent.children=recordings.length||0;
+                parent.children = recordings;
+                parent.children_length=recordings.length||0;
                 moodSin/=intensity||1;
                 moodCos/=intensity||1;
                 intensity=Math.sqrt(moodSin*moodSin+moodCos*moodCos);
