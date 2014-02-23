@@ -31,7 +31,6 @@
     [super viewDidLoad];
     self.sharingBundle = [SharingBundle getCurrentSharingBundle];
 	// Do any additional setup after loading the view.
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.tagTextField.delegate = self;
     self.tagTextField.text = self.sharingBundle.tagName;
     self.waveformImage.filterColor = [UIColor whiteColor];
@@ -42,11 +41,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.backButton.hidden=NO;
-    self.searchButton.hidden=YES;
-    self.settingsButton.hidden=NO;
-    self.recordButton.hidden = YES;
-    self.homeButton.hidden = NO;
+    self.parent.backButton.hidden=NO;
+    self.parent.searchButton.hidden=YES;
+    self.parent.settingsButton.hidden=NO;
+    self.parent.recordButton.hidden = YES;
+    self.parent.homeButton.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,5 +61,5 @@
 }
 -(void)setMoodColor:(UIColor *)color{
     self.waveformImage.filterColor = color;
-    self.background.filterColor = color;
+    self.parent.background.filterColor = color;
 }@end

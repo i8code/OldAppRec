@@ -11,11 +11,12 @@
 @class Tag;
 @class Recording;
 
-@interface TagPageViewController : YapZapMainViewController
+@interface TagPageViewController : YapZapParentViewController<YapZapMainControllerProtocol>
 
 @property(nonatomic, strong) Tag* tag;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 -(void)swipedRight:(UIGestureRecognizer*)recognizer;
 -(void)swipedLeft:(UIGestureRecognizer*)recognizer;
+@property (weak, nonatomic) YapZapMainViewController* parent;
 
 @end

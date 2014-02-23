@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class FilteredImageView;
 
-@interface YapZapMainViewController : UIViewController
+@interface YapZapMainViewController : YapZapParentViewController
 @property (nonatomic, strong) FilteredImageView* background;
 @property (nonatomic, strong) UIButton* recordButton;
 @property (nonatomic, strong) UIButton* settingsButton;
@@ -17,6 +17,9 @@
 @property (nonatomic, strong) UIButton* homeButton;
 @property (nonatomic, strong) UIButton* likeButton;
 @property (nonatomic, strong) UIButton* searchButton;
+@property (nonatomic, strong) UIViewController* mainViewController;
+@property (nonatomic, strong) UIViewController* fullscreenViewController;
+
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)recordingButtonPressed:(id)sender;
 - (IBAction)recordingButtonLifted:(id)sender;

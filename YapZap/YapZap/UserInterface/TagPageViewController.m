@@ -40,7 +40,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.backButton.hidden = NO;
+    self.parent.backButton.hidden = NO;
     
     
     self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];

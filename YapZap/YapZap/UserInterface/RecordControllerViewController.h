@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YapZapMainViewController.h"
 
-@interface RecordControllerViewController : YapZapMainViewController
+@interface RecordControllerViewController : YapZapParentViewController<YapZapMainControllerProtocol>
 -(void) updateBackgroundColor;
 -(void)updatePlayLocation;
 @property (weak, nonatomic) IBOutlet UIView *finishedPanel;
 @property (weak, nonatomic) IBOutlet UIView *stopPanel;
 @property (weak, nonatomic) IBOutlet UIView *backgroundColor;
 @property (weak, nonatomic) IBOutlet UIButton *recordActiveButton;
+@property (nonatomic, weak) YapZapMainViewController* parent;
 - (IBAction)recordButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;
 - (IBAction)playButtonPressed:(id)sender;

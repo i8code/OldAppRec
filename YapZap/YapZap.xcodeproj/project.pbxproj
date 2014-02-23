@@ -13,6 +13,9 @@
 		C706246D18B6D25C00D1BEB0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706246C18B6D25C00D1BEB0 /* Accounts.framework */; };
 		C706247718B9371000D1BEB0 /* TagPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706247518B9371000D1BEB0 /* TagPageViewController.m */; };
 		C706247818B9371000D1BEB0 /* TagPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C706247618B9371000D1BEB0 /* TagPageViewController.xib */; };
+		C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706247B18B9548800D1BEB0 /* ParentNavigationViewController.m */; };
+		C706247E18B958DA00D1BEB0 /* TagCloudViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C706247D18B958DA00D1BEB0 /* TagCloudViewController.xib */; };
+		C706248118B95EEE00D1BEB0 /* YapZapParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706248018B95EEE00D1BEB0 /* YapZapParentViewController.m */; };
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
 		C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */; };
@@ -190,6 +193,12 @@
 		C706247418B9371000D1BEB0 /* TagPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagPageViewController.h; path = UserInterface/TagPageViewController.h; sourceTree = "<group>"; };
 		C706247518B9371000D1BEB0 /* TagPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagPageViewController.m; path = UserInterface/TagPageViewController.m; sourceTree = "<group>"; };
 		C706247618B9371000D1BEB0 /* TagPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagPageViewController.xib; path = UserInterface/TagPageViewController.xib; sourceTree = "<group>"; };
+		C706247918B9520700D1BEB0 /* YapZapMainControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YapZapMainControllerProtocol.h; path = UserInterface/YapZapMainControllerProtocol.h; sourceTree = "<group>"; };
+		C706247A18B9548800D1BEB0 /* ParentNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParentNavigationViewController.h; path = UserInterface/ParentNavigationViewController.h; sourceTree = "<group>"; };
+		C706247B18B9548800D1BEB0 /* ParentNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParentNavigationViewController.m; path = UserInterface/ParentNavigationViewController.m; sourceTree = "<group>"; };
+		C706247D18B958DA00D1BEB0 /* TagCloudViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagCloudViewController.xib; path = UserInterface/TagCloudViewController.xib; sourceTree = "<group>"; };
+		C706247F18B95EEE00D1BEB0 /* YapZapParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapParentViewController.h; path = UserInterface/YapZapParentViewController.h; sourceTree = "<group>"; };
+		C706248018B95EEE00D1BEB0 /* YapZapParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapParentViewController.m; path = UserInterface/YapZapParentViewController.m; sourceTree = "<group>"; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
 		C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
@@ -592,6 +601,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C706248218B95F5F00D1BEB0 /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */,
+				C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */,
+				C706247918B9520700D1BEB0 /* YapZapMainControllerProtocol.h */,
+				C706247A18B9548800D1BEB0 /* ParentNavigationViewController.h */,
+				C706247B18B9548800D1BEB0 /* ParentNavigationViewController.m */,
+				C706247F18B95EEE00D1BEB0 /* YapZapParentViewController.h */,
+				C706248018B95EEE00D1BEB0 /* YapZapParentViewController.m */,
+			);
+			name = Parent;
+			sourceTree = "<group>";
+		};
+		C706248318B95F6800D1BEB0 /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C798E89218B4244400ED5890 /* TagCloudViewController.h */,
+				C798E89318B4244400ED5890 /* TagCloudViewController.m */,
+				C706247D18B958DA00D1BEB0 /* TagCloudViewController.xib */,
+				C706247418B9371000D1BEB0 /* TagPageViewController.h */,
+				C706247518B9371000D1BEB0 /* TagPageViewController.m */,
+				C706247618B9371000D1BEB0 /* TagPageViewController.xib */,
+			);
+			name = MainFlow;
+			sourceTree = "<group>";
+		};
+		C706248418B95F6F00D1BEB0 /* RecordingFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C796205518A7035400D1BEAB /* RecordControllerViewController.h */,
+				C796205618A7035400D1BEAB /* RecordControllerViewController.mm */,
+				C796205818A703F600D1BEAB /* SetTagViewController.h */,
+				C796205918A703F600D1BEAB /* SetTagViewController.m */,
+				C761D05418ADA286003947C1 /* UploadViewController.h */,
+				C761D05518ADA286003947C1 /* UploadViewController.m */,
+			);
+			name = RecordingFlow;
+			sourceTree = "<group>";
+		};
+		C706248518B95F7500D1BEB0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C747FC1F18A738EC0083A533 /* LoginViewController.h */,
+				C747FC2018A738EC0083A533 /* LoginViewController.m */,
+				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
+				C747FC4518A7FCC60083A533 /* SettingsViewController.m */,
+				C747FC4718A816660083A533 /* SearchViewController.h */,
+				C747FC4818A816660083A533 /* SearchViewController.m */,
+				C747FC4918A816660083A533 /* SearchViewController.xib */,
+				C796203718A6825E00D1BEAB /* LoadingViewController.h */,
+				C796203818A6825E00D1BEAB /* LoadingViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		C72C1D9F18AAE8B2006D136F /* Novocaine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1224,6 +1289,10 @@
 		C761D04A18AD8800003947C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C706248518B95F7500D1BEB0 /* Settings */,
+				C706248418B95F6F00D1BEB0 /* RecordingFlow */,
+				C706248318B95F6800D1BEB0 /* MainFlow */,
+				C706248218B95F5F00D1BEB0 /* Parent */,
 				C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */,
 				C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */,
 				C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */,
@@ -1235,34 +1304,12 @@
 				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
 				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
 				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
-				C796203718A6825E00D1BEAB /* LoadingViewController.h */,
-				C796203818A6825E00D1BEAB /* LoadingViewController.m */,
 				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
 				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
 				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
-				C796205518A7035400D1BEAB /* RecordControllerViewController.h */,
-				C796205618A7035400D1BEAB /* RecordControllerViewController.mm */,
-				C796205818A703F600D1BEAB /* SetTagViewController.h */,
-				C796205918A703F600D1BEAB /* SetTagViewController.m */,
-				C747FC1F18A738EC0083A533 /* LoginViewController.h */,
-				C747FC2018A738EC0083A533 /* LoginViewController.m */,
-				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
-				C747FC4518A7FCC60083A533 /* SettingsViewController.m */,
-				C747FC4718A816660083A533 /* SearchViewController.h */,
-				C747FC4818A816660083A533 /* SearchViewController.m */,
-				C747FC4918A816660083A533 /* SearchViewController.xib */,
 				C747FC4F18A81D9C0083A533 /* LikeViewController.h */,
 				C747FC5018A81D9C0083A533 /* LikeViewController.m */,
 				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
-				C761D05418ADA286003947C1 /* UploadViewController.h */,
-				C761D05518ADA286003947C1 /* UploadViewController.m */,
-				C798E89218B4244400ED5890 /* TagCloudViewController.h */,
-				C798E89318B4244400ED5890 /* TagCloudViewController.m */,
-				C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */,
-				C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */,
-				C706247418B9371000D1BEB0 /* TagPageViewController.h */,
-				C706247518B9371000D1BEB0 /* TagPageViewController.m */,
-				C706247618B9371000D1BEB0 /* TagPageViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1569,6 +1616,7 @@
 				C747FC3018A7CC1C0083A533 /* heart_empty_icon.png in Resources */,
 				C747FC2F18A7CC1C0083A533 /* gear_icon.png in Resources */,
 				C796205D18A7056300D1BEAB /* RecordSample.png in Resources */,
+				C706247E18B958DA00D1BEB0 /* TagCloudViewController.xib in Resources */,
 				C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */,
 				C747FC3118A7CC1C0083A533 /* heart_icon.png in Resources */,
 				C79EF6EE18A6648B00AA1BDE /* background.png in Resources */,
@@ -1620,6 +1668,7 @@
 				C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */,
 				C706247718B9371000D1BEB0 /* TagPageViewController.m in Sources */,
 				C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */,
+				C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */,
 				C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */,
 				C761D03318AD7799003947C1 /* Recorder.mm in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
@@ -1629,6 +1678,7 @@
 				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,
 				C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */,
 				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
+				C706248118B95EEE00D1BEB0 /* YapZapParentViewController.m in Sources */,
 				C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */,
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,

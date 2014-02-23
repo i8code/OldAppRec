@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IndexedViewController : UIViewController
+@interface IndexedViewController : YapZapParentViewController
 @property (assign, nonatomic) NSInteger index;
 
 -(UIColor*)getBackgroundColor;

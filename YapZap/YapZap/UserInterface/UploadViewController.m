@@ -29,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
 	// Do any additional setup after loading the view.
     self.count =0;
     self.progressBar.progress=0;

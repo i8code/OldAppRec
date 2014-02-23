@@ -153,7 +153,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="EFy-QJ-G1o">
-                                <rect key="frame" x="123" y="484" width="74" height="75"/>
+                                <rect key="frame" x="123" y="479" width="74" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="record_button.png">
@@ -172,14 +172,14 @@
                                 </state>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P8A-ZH-E3v">
-                                <rect key="frame" x="74" y="139" width="173" height="33"/>
+                                <rect key="frame" x="74" y="68" width="173" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="37"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" id="skz-BV-8rE">
-                                <rect key="frame" x="0.0" y="183" width="320" height="92"/>
+                                <rect key="frame" x="0.0" y="133" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trash" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p50-en-dxc">
@@ -237,7 +237,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="lG8-Lf-Euq">
-                                <rect key="frame" x="0.0" y="183" width="320" height="92"/>
+                                <rect key="frame" x="0.0" y="133" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cBR-Vl-nNZ">
@@ -346,10 +346,10 @@
             </objects>
             <point key="canvasLocation" x="2170" y="136"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Parent Navigation View Controller-->
         <scene sceneID="NIl-Eo-aa8">
             <objects>
-                <navigationController storyboardIdentifier="recordNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sjr-EE-WWs" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="recordNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sjr-EE-WWs" customClass="ParentNavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-qx-Ryj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -362,7 +362,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77h-6f-xii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="165"/>
+            <point key="canvasLocation" x="797" y="170"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="RaF-pV-IZA">
@@ -431,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1d-m6-xDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="384" y="-768"/>
+            <point key="canvasLocation" x="591" y="-760"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="D3G-iH-oD2">
@@ -479,7 +479,7 @@
         <!--Tag Cloud View Controller-->
         <scene sceneID="mCH-jF-YBd">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQv-PE-BgR" customClass="TagCloudViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cloud" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQv-PE-BgR" customClass="TagCloudViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eLd-cd-Z1c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FilteredImageView.h"
-#import "YapZapMainViewController.h"
 
-@interface TagCloudViewController : YapZapMainViewController
+@interface TagCloudViewController : YapZapParentViewController<YapZapMainControllerProtocol>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIView *cloudView;
+@property (weak, nonatomic) YapZapMainViewController* parent;
 
 -(void)updateTagPositions;
 -(void)swipedRight:(UIGestureRecognizer*)recognizer;

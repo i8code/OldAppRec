@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "TestFlight.h"
+#import "YapZapMainViewController.h"
+#import "TagCloudViewController.h"
+#import "ParentNavigationViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Twitter/Twitter.h>
 #import <Social/Social.h>
@@ -64,8 +67,8 @@
     [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"login"]];
 }
 -(void)goToHomeView{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"cloud"]];
+    YapZapMainViewController* mainViewController =[[YapZapMainViewController alloc] init];
+    [self setActiveView:mainViewController];
     
 }
 							

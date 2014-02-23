@@ -12,15 +12,22 @@
 #import "SearchViewController.h"
 #import "SettingsViewController.h"
 #import "RecordControllerViewController.h"
+#import "YapZapMainControllerProtocol.h"
+#import "ParentNavigationViewController.h"
+#import "TagCloudViewController.h"
 
 @interface YapZapMainViewController ()
 @property (nonatomic, retain) UIPopoverController *poc;
 @property (nonatomic, retain) SettingsViewController *settingsViewController;
 @property (nonatomic, retain) UINavigationController* recordNavigationViewController;
+@property (nonatomic, retain) UIView* contentView;
+@property (nonatomic, retain) UIView* fullContentView;
 
 @end
 
 @implementation YapZapMainViewController
+@synthesize mainViewController = _mainViewController;
+@synthesize fullscreenViewController = _fullscreenViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +43,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
 }
 
 -(void)createMainButtons{
@@ -152,17 +159,58 @@
     [self createBackground];
     [self createMainButtons];
     
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y+5, self.view.frame.size.width, self.view.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y-self.recordButton.frame.size.height-30)];
+    [self.view addSubview:self.contentView];
+    
+    self.fullContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.fullContentView.hidden=YES;
+    [self.view addSubview:self.fullContentView];
+    
+    if (!self.mainViewController){
+        ParentNavigationViewController* navController = [[ParentNavigationViewController alloc] init];
+        TagCloudViewController* tagCloudViewController = [[TagCloudViewController alloc] initWithNibName:@"TagCloudViewController" bundle:nil];
+        [navController pushViewController:tagCloudViewController animated:NO];
+        [self setMainViewController:navController];
+
+    }
+}
+-(void)setMainViewController:(UIViewController *)mainViewController{
+    if (_mainViewController){
+        [_mainViewController.view removeFromSuperview];
+        [_mainViewController removeFromParentViewController];
+    }
+    
+    _mainViewController = mainViewController;
+    if ([[_mainViewController class] conformsToProtocol:@protocol(YapZapMainControllerProtocol)]){
+        [((id<YapZapMainControllerProtocol>)_mainViewController) setParent:self];
+    }
+    
+    [self addChildViewController:_mainViewController];
+    [_mainViewController.view setFrame:self.contentView.bounds];
+    [self.contentView addSubview:_mainViewController.view];
+    
+}
+-(void)setFullscreenViewController:(UIViewController *)fullscreenViewController{
+    if (_fullscreenViewController){
+        [_fullscreenViewController.view removeFromSuperview];
+        [_fullscreenViewController removeFromParentViewController];
+    }
+    
+    _fullscreenViewController = fullscreenViewController;
+    if ([[_fullscreenViewController class] conformsToProtocol:@protocol(YapZapMainControllerProtocol)]){
+        [((id<YapZapMainControllerProtocol>)_fullscreenViewController) setParent:self];
+    }
+    
+    [self addChildViewController:_fullscreenViewController];
+    [_fullscreenViewController.view setFrame:self.fullContentView.bounds];
+    [self.fullContentView addSubview:_fullscreenViewController.view];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 - (IBAction)searchPressed:(id)sender {
@@ -181,9 +229,11 @@
 //    if (self.recordControllerViewController==nil){
         self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
 //    }
-    [self addChildViewController:self.recordNavigationViewController];
-    [self.view addSubview:self.recordNavigationViewController.view];
-    [self.navigationController didMoveToParentViewController:self];
+    self.fullContentView.hidden=NO;
+    
+    RecordControllerViewController* activeViewController = (RecordControllerViewController*)[self.recordNavigationViewController topViewController];
+    activeViewController.parent=self;
+    [self setFullscreenViewController:self.recordNavigationViewController];
    // [self presentViewController:self.recordNavigationViewController animated:NO completion:nil];
 }
 
@@ -204,21 +254,37 @@
 }
 
 -(IBAction)goHome:(id)sender{
+    self.fullContentView.hidden=YES;
+    self.homeButton.hidden=YES;
+    self.searchButton.hidden=NO;
+    self.backButton.hidden=YES;
+    self.settingsButton.hidden=NO;
+    self.recordButton.hidden=NO;
     if ([self isKindOfClass:[SettingsViewController class]]){
         [self dismissModalViewControllerAnimated:YES];
         return;
     }
-    UIViewController* viewController = [[self parentViewController] parentViewController];
-    [self.view removeFromSuperview];
-    [self.navigationController.view removeFromSuperview];
-    [self.navigationController removeFromParentViewController];
-    for (UIViewController* child in [viewController childViewControllers]){
-        [child removeFromParentViewController];
-    }
+    
+//    UIViewController* viewController = [[self parentViewController] parentViewController];
+//    [self.view removeFromSuperview];
+//    [self.navigationController.view removeFromSuperview];
+//    [self.navigationController removeFromParentViewController];
+//    for (UIViewController* child in [viewController childViewControllers]){
+//        [child removeFromParentViewController];
+//    }
 }
 
 -(IBAction)goBack:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!self.fullContentView.hidden){
+        if ([self.fullscreenViewController isKindOfClass:[ParentNavigationViewController class]]){
+            [((ParentNavigationViewController*)self.fullscreenViewController) popViewControllerAnimated:YES];
+        }
+    }
+    else{
+        if ([self.mainViewController isKindOfClass:[ParentNavigationViewController class]]){
+            [((ParentNavigationViewController*)self.mainViewController) popViewControllerAnimated:YES];
+        }
+    }
 }
 
 
