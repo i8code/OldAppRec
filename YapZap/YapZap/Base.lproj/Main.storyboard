@@ -539,7 +539,7 @@
     </scenes>
     <resources>
         <image name="background.png" width="640" height="1136"/>
-        <image name="color_wheel.png" width="256" height="256"/>
+        <image name="color_wheel.png" width="324" height="324"/>
         <image name="gear_icon.png" width="34" height="34"/>
         <image name="play_small_button.png" width="128" height="128"/>
         <image name="plus_icon.png" width="34" height="34"/>
