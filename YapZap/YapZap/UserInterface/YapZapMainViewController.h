@@ -13,16 +13,12 @@
 @property (nonatomic, strong) FilteredImageView* background;
 @property (nonatomic, strong) UIButton* recordButton;
 @property (nonatomic, strong) UIButton* settingsButton;
-@property (nonatomic, strong) UIButton* backButton;
 @property (nonatomic, strong) UIButton* homeButton;
-@property (nonatomic, strong) UIButton* likeButton;
 @property (nonatomic, strong) UIButton* searchButton;
 @property (nonatomic, strong) UIViewController* mainViewController;
-@property (nonatomic, strong) UIViewController* fullscreenViewController;
 
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)recordingButtonPressed:(id)sender;
 - (IBAction)recordingButtonLifted:(id)sender;
 -(IBAction)goHome:(id)sender;
--(IBAction)goBack:(id)sender;
 @end

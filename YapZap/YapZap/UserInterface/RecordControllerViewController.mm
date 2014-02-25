@@ -89,12 +89,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.parent.backButton.hidden=YES;
-    self.parent.searchButton.hidden=YES;
-    self.parent.settingsButton.hidden=YES;
-    self.parent.recordButton.hidden = YES;
-    self.parent.homeButton.hidden = NO;
-    [self.recordActiveButton setFrame:self.parent.recordButton.frame];
+    self.finishedPanel.hidden = YES;
 }
 
 -(void)initialize{
@@ -104,10 +99,6 @@
     [self.waveform setFrame:CGRectMake(0, 245, self.view.frame.size.width, 150)];
     [self.view addSubview:self.waveform];
     [self.waveform setData:self.recorder.waveformData withSize:[self.recorder blockLength]];
-    [self.recordActiveButton setHighlighted:YES];
-    
-    [self startRecording];
-    
     
 }
 

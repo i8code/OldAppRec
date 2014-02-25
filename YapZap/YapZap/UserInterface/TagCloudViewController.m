@@ -116,6 +116,14 @@
     self.swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.cloudView addGestureRecognizer:self.swipeRight];
     
+    self.parent.homeButton.hidden=YES;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.parent.homeButton.hidden=YES;
 }
 
 - (void)didReceiveMemoryWarning

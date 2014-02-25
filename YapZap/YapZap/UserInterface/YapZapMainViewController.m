@@ -21,13 +21,11 @@
 @property (nonatomic, retain) SettingsViewController *settingsViewController;
 @property (nonatomic, retain) UINavigationController* recordNavigationViewController;
 @property (nonatomic, retain) UIView* contentView;
-@property (nonatomic, retain) UIView* fullContentView;
 
 @end
 
 @implementation YapZapMainViewController
 @synthesize mainViewController = _mainViewController;
-@synthesize fullscreenViewController = _fullscreenViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,13 +52,11 @@
         [self.searchButton setTitle:@"" forState:UIControlStateNormal];
         [self.searchButton setImage:[UIImage imageNamed:@"search_icon.png"] forState:UIControlStateNormal];
         
-        [self.searchButton setFrame:CGRectMake(
-                                           (self.view.frame.size.width-25)/2.0,
-                                           5, 25, 25)];
+        [self.searchButton setFrame:CGRectMake(5,5, 25, 25)];
         [self.view addSubview:self.searchButton];
         [self.searchButton addTarget:self
                           action:@selector(searchPressed:)
-                    forControlEvents:UIControlEventTouchDown];
+                    forControlEvents:UIControlEventTouchUpInside];
         self.searchButton.showsTouchWhenHighlighted = YES;
     }
     
@@ -68,16 +64,15 @@
     if (!self.homeButton){
         self.homeButton = [[UIButton alloc] init];
         [self.homeButton setTitle:@"" forState:UIControlStateNormal];
-        [self.homeButton setImage:[UIImage imageNamed:@"home_button.png"] forState:UIControlStateNormal];
+        [self.homeButton setImage:[UIImage imageNamed:@"home_icon.png"] forState:UIControlStateNormal];
         
         [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
                                                5, 25, 25)];
         [self.view addSubview:self.homeButton];
         [self.homeButton addTarget:self
                             action:@selector(goHome:)
-                  forControlEvents:UIControlEventTouchDown];
+                  forControlEvents:UIControlEventTouchUpInside];
         self.homeButton.showsTouchWhenHighlighted = YES;
-        self.homeButton.hidden = YES;
     }
     
     
@@ -95,24 +90,7 @@
         self.settingsButton.showsTouchWhenHighlighted = YES;
         [self.settingsButton addTarget:self
                               action:@selector(showSettings:)
-                    forControlEvents:UIControlEventTouchDown];
-    }
-    
-    
-    
-    /* Back Button  o-- */
-    if (!self.backButton){
-        self.backButton = [[UIButton alloc] init];
-        [self.backButton setTitle:@"" forState:UIControlStateNormal];
-        [self.backButton setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
-        
-        [self.backButton setFrame:CGRectMake(5, 5, 25, 25)];
-        [self.view addSubview:self.backButton];
-        [self.backButton addTarget:self
-                                action:@selector(goBack:)
-                      forControlEvents:UIControlEventTouchDown];
-        self.backButton.hidden= YES;
-        self.backButton.showsTouchWhenHighlighted = YES;
+                    forControlEvents:UIControlEventTouchUpInside];
     }
     
     
@@ -128,12 +106,6 @@
         self.recordButton.showsTouchWhenHighlighted = YES;
         [self.recordButton addTarget:self
                               action:@selector(recordingButtonPressed:)
-                    forControlEvents:UIControlEventTouchDown];
-        [self.recordButton addTarget:self
-                              action:@selector(recordingButtonLifted:)
-                    forControlEvents:UIControlEventTouchUpOutside];
-        [self.recordButton addTarget:self
-                              action:@selector(recordingButtonLifted:)
                     forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -162,10 +134,6 @@
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y+5, self.view.frame.size.width, self.view.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y-self.recordButton.frame.size.height-30)];
     [self.view addSubview:self.contentView];
     
-    self.fullContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    self.fullContentView.hidden=YES;
-    [self.view addSubview:self.fullContentView];
-    
     if (!self.mainViewController){
         ParentNavigationViewController* navController = [[ParentNavigationViewController alloc] init];
         TagCloudViewController* tagCloudViewController = [[TagCloudViewController alloc] initWithNibName:@"TagCloudViewController" bundle:nil];
@@ -190,22 +158,6 @@
     [self.contentView addSubview:_mainViewController.view];
     
 }
--(void)setFullscreenViewController:(UIViewController *)fullscreenViewController{
-    if (_fullscreenViewController){
-        [_fullscreenViewController.view removeFromSuperview];
-        [_fullscreenViewController removeFromParentViewController];
-    }
-    
-    _fullscreenViewController = fullscreenViewController;
-    if ([[_fullscreenViewController class] conformsToProtocol:@protocol(YapZapMainControllerProtocol)]){
-        [((id<YapZapMainControllerProtocol>)_fullscreenViewController) setParent:self];
-    }
-    
-    [self addChildViewController:_fullscreenViewController];
-    [_fullscreenViewController.view setFrame:self.fullContentView.bounds];
-    [self.fullContentView addSubview:_fullscreenViewController.view];
-    
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -226,23 +178,9 @@
 - (IBAction)recordingButtonPressed:(id)sender {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    if (self.recordControllerViewController==nil){
-        self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
-//    }
-    self.fullContentView.hidden=NO;
-    
-    RecordControllerViewController* activeViewController = (RecordControllerViewController*)[self.recordNavigationViewController topViewController];
-    activeViewController.parent=self;
-    [self setFullscreenViewController:self.recordNavigationViewController];
-   // [self presentViewController:self.recordNavigationViewController animated:NO completion:nil];
-}
+    self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
+    [self presentViewController:self.recordNavigationViewController animated:YES completion:^{}];
 
-
-- (IBAction)recordingButtonLifted:(id)sender {
-    
-    RecordControllerViewController* activeViewController = (RecordControllerViewController*)[self.recordNavigationViewController topViewController];
-    
-    [activeViewController stopRecording];
 }
 - (IBAction)showSettings:(id)sender {
     
@@ -254,37 +192,8 @@
 }
 
 -(IBAction)goHome:(id)sender{
-    self.fullContentView.hidden=YES;
-    self.homeButton.hidden=YES;
-    self.searchButton.hidden=NO;
-    self.backButton.hidden=YES;
-    self.settingsButton.hidden=NO;
-    self.recordButton.hidden=NO;
-    if ([self isKindOfClass:[SettingsViewController class]]){
-        [self dismissModalViewControllerAnimated:YES];
-        return;
-    }
+    [((UINavigationController*)self.mainViewController) popViewControllerAnimated:YES];
     
-//    UIViewController* viewController = [[self parentViewController] parentViewController];
-//    [self.view removeFromSuperview];
-//    [self.navigationController.view removeFromSuperview];
-//    [self.navigationController removeFromParentViewController];
-//    for (UIViewController* child in [viewController childViewControllers]){
-//        [child removeFromParentViewController];
-//    }
-}
-
--(IBAction)goBack:(id)sender{
-    if (!self.fullContentView.hidden){
-        if ([self.fullscreenViewController isKindOfClass:[ParentNavigationViewController class]]){
-            [((ParentNavigationViewController*)self.fullscreenViewController) popViewControllerAnimated:YES];
-        }
-    }
-    else{
-        if ([self.mainViewController isKindOfClass:[ParentNavigationViewController class]]){
-            [((ParentNavigationViewController*)self.mainViewController) popViewControllerAnimated:YES];
-        }
-    }
 }
 
 

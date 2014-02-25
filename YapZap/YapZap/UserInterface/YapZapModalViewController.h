@@ -10,4 +10,8 @@
 
 @interface YapZapModalViewController : YapZapViewController
 
+@property (nonatomic, strong) UIButton* backButton;
+@property (nonatomic, strong) UIButton* homeButton;
+-(void)homePressed:(id)sender;
+-(void)backPressed:(id)sender;
 @end
