@@ -762,12 +762,11 @@
 		C7371F4018A1DFEE007FB490 /* YapZap */ = {
 			isa = PBXGroup;
 			children = (
+				C7371F6F18A1E29B007FB490 /* UserInterface */,
 				C7CF287618A1F0F90053DB9C /* Images */,
 				C761D02718AD7777003947C1 /* Recording */,
 				C796203F18A6A6A800D1BEAB /* Models */,
 				C7CF286D18A1E4910053DB9C /* Communication */,
-				C7371F7018A1E2B2007FB490 /* User */,
-				C7371F6F18A1E29B007FB490 /* UserInterface */,
 				C7371F4918A1DFEE007FB490 /* AppDelegate.h */,
 				C7371F4A18A1DFEE007FB490 /* AppDelegate.m */,
 				C7371F4C18A1DFEE007FB490 /* Main.storyboard */,
@@ -816,13 +815,6 @@
 				C796205318A6E2AF00D1BEAB /* Util.m */,
 			);
 			name = UserInterface;
-			sourceTree = "<group>";
-		};
-		C7371F7018A1E2B2007FB490 /* User */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = User;
 			sourceTree = "<group>";
 		};
 		C747FADD18A734050083A533 /* FacebookSDK */ = {
