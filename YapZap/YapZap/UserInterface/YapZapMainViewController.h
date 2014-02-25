@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class FilteredImageView;
 
-@interface YapZapMainViewController : YapZapParentViewController
+@interface YapZapMainViewController : YapZapViewController
 @property (nonatomic, strong) FilteredImageView* background;
 @property (nonatomic, strong) UIButton* recordButton;
 @property (nonatomic, strong) UIButton* settingsButton;

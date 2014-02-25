@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordControllerViewController : YapZapParentViewController<YapZapMainControllerProtocol>
+@interface RecordControllerViewController : YapZapModalViewController<YapZapMainControllerProtocol>
 -(void) updateBackgroundColor;
 -(void)updatePlayLocation;
 @property (weak, nonatomic) IBOutlet UIView *finishedPanel;

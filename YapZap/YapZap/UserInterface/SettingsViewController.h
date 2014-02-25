@@ -10,9 +10,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "YapZapMainViewController.h"
 #import "YapZapMainControllerProtocol.h"
-#import "YapZapParentViewController.h"
 
-@interface SettingsViewController : YapZapParentViewController<FBLoginViewDelegate, YapZapMainControllerProtocol>
+@interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate, YapZapMainControllerProtocol>
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
 @property (weak, nonatomic) YapZapMainViewController* parent;
 

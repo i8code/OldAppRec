@@ -6,13 +6,10 @@
 //  Copyright (c) 2014 YapZap. All rights reserved.
 //
 
-#import "YapZapParentViewController.h"
+#import "YapZapViewController.h"
 
-@interface YapZapParentViewController ()
 
-@end
-
-@implementation YapZapParentViewController
+@implementation YapZapViewController
 
 - (void)viewDidLoad
 {

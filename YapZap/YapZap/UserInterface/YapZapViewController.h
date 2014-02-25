@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YapZapParentViewController : UIViewController
+@interface YapZapViewController : UIViewController
 
 @end

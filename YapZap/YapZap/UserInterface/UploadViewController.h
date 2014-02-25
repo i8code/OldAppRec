@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UploadViewController : YapZapParentViewController<YapZapMainControllerProtocol>
+@interface UploadViewController : YapZapModalViewController<YapZapMainControllerProtocol>
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 -(void) updateProgress;
 @property (weak, nonatomic) IBOutlet UILabel *doneLabel;

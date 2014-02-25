@@ -11,7 +11,7 @@
 @class Tag;
 @class Recording;
 
-@interface TagPageViewController : YapZapParentViewController<YapZapMainControllerProtocol>
+@interface TagPageViewController : YapZapViewController<YapZapMainControllerProtocol>
 
 @property(nonatomic, strong) Tag* tag;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;

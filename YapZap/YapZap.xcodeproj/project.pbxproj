@@ -15,7 +15,7 @@
 		C706247818B9371000D1BEB0 /* TagPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C706247618B9371000D1BEB0 /* TagPageViewController.xib */; };
 		C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706247B18B9548800D1BEB0 /* ParentNavigationViewController.m */; };
 		C706247E18B958DA00D1BEB0 /* TagCloudViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C706247D18B958DA00D1BEB0 /* TagCloudViewController.xib */; };
-		C706248118B95EEE00D1BEB0 /* YapZapParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706248018B95EEE00D1BEB0 /* YapZapParentViewController.m */; };
+		C706248118B95EEE00D1BEB0 /* YapZapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706248018B95EEE00D1BEB0 /* YapZapViewController.m */; };
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
 		C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA318AAE8B2006D136F /* AudioFileWriter.m */; };
@@ -99,6 +99,7 @@
 		C75E7BA718BC3B3200160720 /* ShareScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA118BC3B3200160720 /* ShareScreen.png */; };
 		C75E7BA818BC3B3200160720 /* TagPlayingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA218BC3B3200160720 /* TagPlayingScreen.png */; };
 		C75E7BA918BC3B3200160720 /* TagScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA318BC3B3200160720 /* TagScreen.png */; };
+		C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */; };
 		C761D03318AD7799003947C1 /* Recorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = C761D03218AD7799003947C1 /* Recorder.mm */; };
 		C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D03518AD7CB2003947C1 /* RecordingInfo.m */; };
 		C761D04D18AD8821003947C1 /* WaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04C18AD8821003947C1 /* WaveformView.m */; };
@@ -219,8 +220,8 @@
 		C706247A18B9548800D1BEB0 /* ParentNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParentNavigationViewController.h; path = UserInterface/ParentNavigationViewController.h; sourceTree = "<group>"; };
 		C706247B18B9548800D1BEB0 /* ParentNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParentNavigationViewController.m; path = UserInterface/ParentNavigationViewController.m; sourceTree = "<group>"; };
 		C706247D18B958DA00D1BEB0 /* TagCloudViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagCloudViewController.xib; path = UserInterface/TagCloudViewController.xib; sourceTree = "<group>"; };
-		C706247F18B95EEE00D1BEB0 /* YapZapParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapParentViewController.h; path = UserInterface/YapZapParentViewController.h; sourceTree = "<group>"; };
-		C706248018B95EEE00D1BEB0 /* YapZapParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapParentViewController.m; path = UserInterface/YapZapParentViewController.m; sourceTree = "<group>"; };
+		C706247F18B95EEE00D1BEB0 /* YapZapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapViewController.h; path = UserInterface/YapZapViewController.h; sourceTree = "<group>"; };
+		C706248018B95EEE00D1BEB0 /* YapZapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapViewController.m; path = UserInterface/YapZapViewController.m; sourceTree = "<group>"; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
 		C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
@@ -547,6 +548,8 @@
 		C75E7BA118BC3B3200160720 /* ShareScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareScreen.png; sourceTree = "<group>"; };
 		C75E7BA218BC3B3200160720 /* TagPlayingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TagPlayingScreen.png; sourceTree = "<group>"; };
 		C75E7BA318BC3B3200160720 /* TagScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TagScreen.png; sourceTree = "<group>"; };
+		C75E7BAA18BC3C4D00160720 /* YapZapModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapModalViewController.h; path = UserInterface/YapZapModalViewController.h; sourceTree = "<group>"; };
+		C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapModalViewController.m; path = UserInterface/YapZapModalViewController.m; sourceTree = "<group>"; };
 		C761D03118AD7799003947C1 /* Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recorder.h; path = Recording/Recorder.h; sourceTree = "<group>"; };
 		C761D03218AD7799003947C1 /* Recorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Recorder.mm; path = Recording/Recorder.mm; sourceTree = "<group>"; };
 		C761D03418AD7CB2003947C1 /* RecordingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordingInfo.h; path = Recording/RecordingInfo.h; sourceTree = "<group>"; };
@@ -653,8 +656,10 @@
 				C706247918B9520700D1BEB0 /* YapZapMainControllerProtocol.h */,
 				C706247A18B9548800D1BEB0 /* ParentNavigationViewController.h */,
 				C706247B18B9548800D1BEB0 /* ParentNavigationViewController.m */,
-				C706247F18B95EEE00D1BEB0 /* YapZapParentViewController.h */,
-				C706248018B95EEE00D1BEB0 /* YapZapParentViewController.m */,
+				C706247F18B95EEE00D1BEB0 /* YapZapViewController.h */,
+				C706248018B95EEE00D1BEB0 /* YapZapViewController.m */,
+				C75E7BAA18BC3C4D00160720 /* YapZapModalViewController.h */,
+				C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */,
 			);
 			name = Parent;
 			sourceTree = "<group>";
@@ -1774,13 +1779,14 @@
 				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,
 				C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */,
 				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
-				C706248118B95EEE00D1BEB0 /* YapZapParentViewController.m in Sources */,
+				C706248118B95EEE00D1BEB0 /* YapZapViewController.m in Sources */,
 				C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */,
 				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
 				C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
+				C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
