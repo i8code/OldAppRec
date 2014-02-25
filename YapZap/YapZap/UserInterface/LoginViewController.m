@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -38,12 +39,11 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    NSLog(@"%@", user.id);
-    NSLog(@"%@", user.name);
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    NSLog(@"You're logged in as");
+    AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app goToHomeView];
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {

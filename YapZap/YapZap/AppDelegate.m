@@ -8,16 +8,68 @@
 
 #import "AppDelegate.h"
 #import "TestFlight.h"
+#import "YapZapMainViewController.h"
+#import "TagCloudViewController.h"
+#import "ParentNavigationViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Twitter/Twitter.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     [FBLoginView class];
+    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    //Check to see if the user is logged in
+    
+    [self askForTwitterAuth];
+    
+    if (![self loginFacebook]){
+        [self goToLoginView];
+    }
+    else{
+        [self gotoLoadingView];
+    }
+    
+//    
+//    {
+//        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"recording"]];
+//        
+//    }
     // Override point for customization after application launch.
     [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
     return YES;
+}
+
+-(void)setActiveView:(UIViewController*)viewController{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.window setRootViewController:viewController];
+        [self.window makeKeyAndVisible];
+        
+    });
+}
+
+-(void)gotoLoadingView{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"loading"]];
+}
+
+-(void)goToLoginView{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"login"]];
+}
+-(void)goToHomeView{
+    YapZapMainViewController* mainViewController =[[YapZapMainViewController alloc] init];
+    [self setActiveView:mainViewController];
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -47,6 +99,33 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(BOOL)loginFacebook{
+    // Whenever a person opens the app, check for a cached session
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        // If there's one, just open the session silently, without showing the user the login UI
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+                                           allowLoginUI:NO
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          // Handler for session state changes
+                                          // This method will be called EACH time the session state changes,
+                                          // also for intermediate states and NOT just when the session open
+                                          if (FBSession.activeSession.isOpen){
+                                              [self goToHomeView];
+                                          }
+                                          else{
+                                              [self goToLoginView];
+                                          }
+                                      }];
+        });
+        
+        return true;
+    }
+    return false;
+    
+}
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -60,4 +139,9 @@
     return wasHandled;
 }
 
+-(void)askForTwitterAuth{
+    ACAccountStore *store = [[ACAccountStore alloc] init]; // Long-lived
+    ACAccountType *twitterType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    [store requestAccessToAccountsWithType:twitterType options:nil completion:^(BOOL granted, NSError* err){}];
+}
 @end

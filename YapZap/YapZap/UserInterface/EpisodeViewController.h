@@ -19,5 +19,5 @@
 @property (weak, nonatomic) IBOutlet UIView *tableViewArea;
 @property (strong, nonatomic) TagTableViewController* tableView;
 
--(void)setTagPage:(TagPage*)page;
+@property (strong, nonatomic) TagPage* tagPage;
 @end

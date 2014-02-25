@@ -7,9 +7,12 @@
 //
 
 #import "SetTagViewController.h"
+#import "MoodSelectView.h"
+#import "SharingBundle.h"
 
 @interface SetTagViewController ()
 
+@property (nonatomic, strong) SharingBundle* sharingBundle;
 @end
 
 @implementation SetTagViewController
@@ -26,8 +29,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.sharingBundle = [SharingBundle getCurrentSharingBundle];
 	// Do any additional setup after loading the view.
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    self.tagTextField.delegate = self;
+    self.tagTextField.text = self.sharingBundle.tagName;
+    self.waveformImage.filterColor = [UIColor whiteColor];
+    [self.waveformImage setImage:self.sharingBundle.waveformImage];
+    [self.waveformBorderX setImage:self.sharingBundle.waveformImage];
+    [self.waveformBorderY setImage:self.sharingBundle.waveformImage];
+    [self.moodSelector setColorDelegate:self];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.parent.backButton.hidden=NO;
+    self.parent.searchButton.hidden=YES;
+    self.parent.settingsButton.hidden=NO;
+    self.parent.recordButton.hidden = YES;
+    self.parent.homeButton.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +54,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)homePressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
-@end
+-(void)setMoodColor:(UIColor *)color{
+    self.waveformImage.filterColor = color;
+    self.parent.background.filterColor = color;
+}@end

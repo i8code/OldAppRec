@@ -15,6 +15,9 @@
 #import "TagPage.h"
 #import "PageSet.h"
 #import "DataSource.h"
+#import "UIPopoverController+iPhone.h"
+#import "SearchViewController.h"
+#import "SharingBundle.h"
 
 @interface HomePageViewController ()
 @property (nonatomic, strong) NSArray* pages;
@@ -40,7 +43,7 @@
 	// Do any additional setup after loading the view.
     
     [self.backgroundImage setImage:[UIImage imageNamed:@"background.png"]];
-    self.backgroundImage.filterColor = [UIColor whiteColor];
+    self.backgroundImage.filterColor = nil;
     [self loadPageSet:NO];
     
 //    for (UIView *v in self.pageController.view.subviews) {
@@ -52,6 +55,7 @@
 
 int setIndex=0;
 
+bool initialLoad=true;
 bool hasForwardPage=false;
 bool hasBackwardPage=false;
 int numRealPages = 0;
@@ -65,7 +69,10 @@ bool here=false;
         
         NSMutableArray* pages = [[NSMutableArray alloc] init];
         PageSet* currentSet = [DataSource getSet:setIndex];
-        [NSThread sleepForTimeInterval:1.5];
+        if (initialLoad){
+            initialLoad=false;
+            [NSThread sleepForTimeInterval:1.5];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
@@ -211,6 +218,25 @@ bool here=false;
     else if (indexOfCurrentPage==0 && hasBackwardPage){
         setIndex--;
         [self loadPageSet:YES];
+    }
+}
+- (IBAction)searchPressed:(id)sender {
+    UIButton* me = sender;
+    UIViewController *detailsViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    self.poc = [[UIPopoverController alloc] initWithContentViewController:detailsViewController];
+    CGRect bounds = CGRectMake(me.frame.origin.x, me.frame.origin.y+20, me.frame.size.width, me.frame.size.height);
+    [self.poc presentPopoverFromRect:bounds inView:self.view  permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    self.poc.contentViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"record"]){
+        EpisodeViewController *currentViewController = (EpisodeViewController *)[self.pageController.viewControllers lastObject];
+        TagPage* tagPage = [currentViewController tagPage];
+        SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
+        [bundle setTagName:[NSString stringWithFormat:@"%@ %@", tagPage.title, tagPage.subTitle ]];
+        
     }
 }
 /*
