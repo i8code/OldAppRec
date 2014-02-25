@@ -46,13 +46,15 @@
 
 -(void)createMainButtons{
     
+    int y = 20;
+    
     /* Search Button  -o- */
     if (!self.searchButton) {
         self.searchButton = [[UIButton alloc] init];
         [self.searchButton setTitle:@"" forState:UIControlStateNormal];
         [self.searchButton setImage:[UIImage imageNamed:@"search_icon.png"] forState:UIControlStateNormal];
         
-        [self.searchButton setFrame:CGRectMake(5,5, 25, 25)];
+        [self.searchButton setFrame:CGRectMake(5,y, 25, 25)];
         [self.view addSubview:self.searchButton];
         [self.searchButton addTarget:self
                           action:@selector(searchPressed:)
@@ -66,8 +68,7 @@
         [self.homeButton setTitle:@"" forState:UIControlStateNormal];
         [self.homeButton setImage:[UIImage imageNamed:@"home_icon.png"] forState:UIControlStateNormal];
         
-        [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
-                                               5, 25, 25)];
+        [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,y, 25, 25)];
         [self.view addSubview:self.homeButton];
         [self.homeButton addTarget:self
                             action:@selector(goHome:)
@@ -84,8 +85,7 @@
         [self.settingsButton setImage:[UIImage imageNamed:@"gear_icon.png"] forState:UIControlStateNormal];
         
         [self.settingsButton setFrame:CGRectMake(
-                                                 (self.view.frame.size.width-30),
-                                                 5, 25, 25)];
+                                                 (self.view.frame.size.width-30),y, 25, 25)];
         [self.view addSubview:self.settingsButton];
         self.settingsButton.showsTouchWhenHighlighted = YES;
         [self.settingsButton addTarget:self

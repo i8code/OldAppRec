@@ -19,6 +19,5 @@
 
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)recordingButtonPressed:(id)sender;
-- (IBAction)recordingButtonLifted:(id)sender;
 -(IBAction)goHome:(id)sender;
 @end

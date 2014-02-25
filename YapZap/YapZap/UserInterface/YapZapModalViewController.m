@@ -18,13 +18,16 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    
+    int y = 20;
+    
     /* Back Button  o-- */
     if (!self.backButton){
         self.backButton = [[UIButton alloc] init];
         [self.backButton setTitle:@"" forState:UIControlStateNormal];
         [self.backButton setImage:[UIImage imageNamed:@"back_icon.png"] forState:UIControlStateNormal];
         
-        [self.backButton setFrame:CGRectMake(5, 5, 25, 25)];
+        [self.backButton setFrame:CGRectMake(5, y, 25, 25)];
         [self.view addSubview:self.backButton];
         [self.backButton addTarget:self
                             action:@selector(backPressed:)
@@ -38,10 +41,10 @@
     if (!self.homeButton){
         self.homeButton = [[UIButton alloc] init];
         [self.homeButton setTitle:@"" forState:UIControlStateNormal];
-        [self.homeButton setImage:[UIImage imageNamed:@"home_button.png"] forState:UIControlStateNormal];
+        [self.homeButton setImage:[UIImage imageNamed:@"home_icon.png"] forState:UIControlStateNormal];
         
         [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
-                                             5, 25, 25)];
+                                             y, 25, 25)];
         [self.view addSubview:self.homeButton];
         [self.homeButton addTarget:self
                             action:@selector(homePressed:)

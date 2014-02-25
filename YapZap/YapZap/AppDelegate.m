@@ -45,6 +45,8 @@
 //    }
     // Override point for customization after application launch.
     [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
 
