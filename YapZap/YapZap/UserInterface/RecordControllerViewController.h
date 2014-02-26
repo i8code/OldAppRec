@@ -15,11 +15,11 @@
 @property (weak, nonatomic) IBOutlet UIView *stopPanel;
 @property (weak, nonatomic) IBOutlet UIView *backgroundColor;
 @property (weak, nonatomic) IBOutlet UIButton *recordActiveButton;
-- (IBAction)recordButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;
 - (IBAction)playButtonPressed:(id)sender;
 - (IBAction)stopButtonPressed:(id)sender;
 -(void)initialize;
--(void)stopRecording;
+-(IBAction)startRecording:(id)sender;
+-(IBAction)stopRecording:(id)sender;
 
 @end

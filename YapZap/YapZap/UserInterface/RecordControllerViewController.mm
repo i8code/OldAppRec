@@ -59,7 +59,7 @@
     self.waveform.hidden = NO;
     
     if (![self.recorder isRecoring]){
-        [self stopRecording];
+        [self stopRecording:nil];
     }
     self.timerCount++;
 
@@ -90,6 +90,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.finishedPanel.hidden = YES;
+    self.backButton.hidden=YES;
 }
 
 -(void)initialize{
@@ -102,7 +103,7 @@
     
 }
 
--(void) startRecording{
+-(IBAction)startRecording:(id)sender{
     
     if (self.playing)
     {
@@ -123,7 +124,7 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateBackgroundColor)userInfo:nil repeats:YES];
 }
 
--(void)stopRecording{
+-(IBAction)stopRecording:(id)sender{
     
     self.recording = false;
     self.backgroundColor.hidden = YES;
@@ -166,15 +167,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)recordButtonPressed:(id)sender {
-    
-    if (self.recording){
-        [self stopRecording];
-    }
-    else{
-        [self startRecording];
-    }
 }
 
 - (IBAction)trashButtonPressed:(id)sender {

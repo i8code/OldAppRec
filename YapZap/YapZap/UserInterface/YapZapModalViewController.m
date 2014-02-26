@@ -44,7 +44,7 @@
         [self.homeButton setImage:[UIImage imageNamed:@"home_icon.png"] forState:UIControlStateNormal];
         
         [self.homeButton setFrame:CGRectMake((self.view.frame.size.width-25)/2.0,
-                                             y, 25, 25)];
+                                             y+3, 25, 20)];
         [self.view addSubview:self.homeButton];
         [self.homeButton addTarget:self
                             action:@selector(homePressed:)
