@@ -15,6 +15,10 @@
 @property (nonatomic, strong) UIButton* settingsButton;
 @property (nonatomic, strong) UIButton* homeButton;
 @property (nonatomic, strong) UIButton* searchButton;
+@property (nonatomic, strong) UIView* bottomBar;
+@property (nonatomic, strong) UILabel* yapLabel;
+@property (nonatomic, strong) UILabel* zapLabel;
+@property (nonatomic, strong) UIFont* font;
 @property (nonatomic, strong) UIViewController* mainViewController;
 
 - (IBAction)searchPressed:(id)sender;

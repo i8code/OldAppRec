@@ -14,6 +14,22 @@
 
 @implementation ParentNavigationViewController
 
+@synthesize parent = _parent;
+
+-(YapZapMainViewController*)parent{
+    return _parent;
+}
+
+-(void)setParent:(YapZapMainViewController *)parent{
+    _parent = parent;
+    
+    for (UIViewController* child in self.viewControllers){
+        if ([[child class] conformsToProtocol:@protocol(YapZapMainControllerProtocol)]){
+            [((id<YapZapMainControllerProtocol>)child) setParent:self.parent];
+        }
+    }
+}
+
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [super pushViewController:viewController animated:animated];
     

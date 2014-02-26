@@ -41,6 +41,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    self.parent.homeButton.hidden = NO;
+    
     
     self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
     self.swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -74,7 +76,7 @@
     self.activityIndicator.hidden=NO;
     
     if (!self.titleLabel){
-        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,25,300,35) duration:4.0 andFadeLength:15.0f];
+        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,15,300,35) duration:4.0 andFadeLength:15.0f];
         marqueeLabel.text = self.tag.name;
         marqueeLabel.font = [UIFont fontWithName:@"Futura" size:16];
         marqueeLabel.textAlignment = NSTextAlignmentCenter;

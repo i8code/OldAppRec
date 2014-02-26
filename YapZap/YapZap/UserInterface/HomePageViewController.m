@@ -125,9 +125,9 @@ bool here=false;
             self.pageIndicator.currentPage = goToEnd?numRealPages-1:0;
             
             int firstIndex = hasBackwardPage?1:0;
-            int lastIndex = hasForwardPage?pages.count-2:pages.count-1;
+            long long lastIndex = hasForwardPage?pages.count-2:pages.count-1;
             
-            int startIndex = goToEnd? lastIndex:firstIndex;
+            long long startIndex = goToEnd? lastIndex:firstIndex;
             
             [self.pageController setViewControllers:[NSArray arrayWithObject:[self.pages objectAtIndex:startIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
             

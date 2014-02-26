@@ -183,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btn-hb-H9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="616"/>
+            <point key="canvasLocation" x="132" y="-56"/>
         </scene>
         <!--Set Tag View Controller-->
         <scene sceneID="OnD-0a-p5V">
@@ -266,7 +266,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="1098" y="616"/>
+            <point key="canvasLocation" x="578" y="-56"/>
         </scene>
         <!--Parent Navigation View Controller-->
         <scene sceneID="NIl-Eo-aa8">
@@ -284,7 +284,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77h-6f-xii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="610"/>
+            <point key="canvasLocation" x="-311" y="-62"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="RaF-pV-IZA">
@@ -400,67 +400,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="1523" y="616"/>
-        </scene>
-        <!--Tag Cloud View Controller-->
-        <scene sceneID="mCH-jF-YBd">
-            <objects>
-                <viewController storyboardIdentifier="cloud" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LQv-PE-BgR" customClass="TagCloudViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eLd-cd-Z1c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" id="ucU-DH-WaT">
-                                <rect key="frame" x="0.0" y="62" width="320" height="415"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="KF0-yN-75O">
-                                <rect key="frame" x="142" y="265" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yapzap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i6f-OX-QjO">
-                                <rect key="frame" x="72" y="39" width="177" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="FKW-HM-L1W"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <connections>
-                        <outlet property="activityIndicator" destination="KF0-yN-75O" id="lUZ-9g-q11"/>
-                        <outlet property="cloudView" destination="ucU-DH-WaT" id="ljK-Bl-QQn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="biX-Y9-UDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="193" y="-96"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="74k-Tj-xIi">
-            <objects>
-                <navigationController storyboardIdentifier="cloud" automaticallyAdjustsScrollViewInsets="NO" id="YtI-3K-zO5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="14b-jA-hGV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="LQv-PE-BgR" kind="relationship" relationship="rootViewController" id="kdt-v4-QtP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QQF-Of-mmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-340" y="-104"/>
+            <point key="canvasLocation" x="1003" y="-56"/>
         </scene>
     </scenes>
     <resources>

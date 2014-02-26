@@ -114,7 +114,7 @@
     [self fetchTags];
     self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
     self.swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.cloudView addGestureRecognizer:self.swipeRight];
+    [self.view addGestureRecognizer:self.swipeRight];
     
     self.parent.homeButton.hidden=YES;
     

@@ -58,7 +58,7 @@
 
 
 -(void)homePressed:(id)sender{
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 -(void)backPressed:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];

@@ -57,7 +57,7 @@
         [self.timer invalidate];
         self.timer = nil;
         
-        [self.parentViewController dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:^{}];
     }
     
 }

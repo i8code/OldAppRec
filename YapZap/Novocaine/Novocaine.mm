@@ -889,7 +889,7 @@ void sessionPropertyListener(void *                  inClientData,
     CheckError( AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareInputNumberChannels, &size, &newNumChannels), "Checking number of input channels");
     self.numInputChannels = newNumChannels;
     //    self.numInputChannels = 1;
-    NSLog(@"We've got %lu input channels", self.numInputChannels);
+    NSLog(@"We've got %u input channels", (unsigned int)self.numInputChannels);
     
     
     // Check the number of input channels.
@@ -897,7 +897,7 @@ void sessionPropertyListener(void *                  inClientData,
     CheckError( AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareOutputNumberChannels, &size, &newNumChannels), "Checking number of output channels");
     self.numOutputChannels = newNumChannels;
     //    self.numOutputChannels = 1;
-    NSLog(@"We've got %lu output channels", self.numOutputChannels);
+    NSLog(@"We've got %u output channels", (unsigned int)self.numOutputChannels);
     
     
     // Get the hardware sampling rate. This is settable, but here we're only reading.

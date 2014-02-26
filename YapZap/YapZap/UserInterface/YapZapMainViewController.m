@@ -44,6 +44,60 @@
     
 }
 
+-(void)createBottomBar{
+    if (!self.bottomBar){
+        int height=50;
+        CGRect barFrame = CGRectMake(0, self.view.frame.size.height-height, self.view.frame.size.width, height);
+        self.bottomBar = [[UIView alloc] initWithFrame:barFrame];
+        self.bottomBar.backgroundColor = [[UIColor alloc] initWithRed:0.15686274509 green:0.15686274509 blue:0.15686274509 alpha:1];
+        
+        [self.view addSubview:self.bottomBar];
+    }
+    
+    if (!self.font){
+        self.font = [UIFont fontWithName:@"Future" size:13];
+    }
+    
+    
+    int top=15;
+    if (!self.yapLabel){
+        CGRect yap = CGRectMake(self.view.frame.size.width/4-13, top, 100, 20);
+        self.yapLabel = [[UILabel alloc] initWithFrame:yap];
+        [self.yapLabel setFont:self.font];
+        [self.yapLabel setText:@"YAP IT"];
+        [self.yapLabel setTextColor:[UIColor whiteColor]];
+        
+        [self.bottomBar addSubview:self.yapLabel];
+    }
+    
+    if (!self.zapLabel){
+        CGRect zap = CGRectMake(self.view.frame.size.width/2+41, top, 100, 20);
+        self.zapLabel = [[UILabel alloc] initWithFrame:zap];
+        [self.zapLabel setFont:self.font];
+        [self.zapLabel setText:@"ZAP IT"];
+        [self.zapLabel setTextColor:[UIColor whiteColor]];
+        
+        [self.bottomBar addSubview:self.zapLabel];
+    }
+    
+    /* Record Button  \/ */
+    if (!self.recordButton){
+        self.recordButton = [[UIButton alloc] init];
+        [self.recordButton setTitle:@"" forState:UIControlStateNormal];
+        [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
+        
+        [self.recordButton setFrame:CGRectMake((self.bottomBar.frame.size.width-46)/2.0, 2, 46, 46)];
+        self.recordButton.showsTouchWhenHighlighted = YES;
+        [self.recordButton addTarget:self
+                              action:@selector(recordingButtonPressed:)
+                    forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomBar addSubview:self.recordButton];
+    }
+    
+    
+    
+}
+
 -(void)createMainButtons{
     
     int y = 20;
@@ -95,19 +149,7 @@
     
     
     
-    /* Record Button  \/ */
-    if (!self.recordButton){
-        self.recordButton = [[UIButton alloc] init];
-        [self.recordButton setTitle:@"" forState:UIControlStateNormal];
-        [self.recordButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
-        
-        [self.recordButton setFrame:CGRectMake((self.view.frame.size.width-75)/2.0, self.view.frame.size.height-90, 75, 75)];
-        [self.view addSubview:self.recordButton];
-        self.recordButton.showsTouchWhenHighlighted = YES;
-        [self.recordButton addTarget:self
-                              action:@selector(recordingButtonPressed:)
-                    forControlEvents:UIControlEventTouchUpInside];
-    }
+
     
     
 }
@@ -130,9 +172,13 @@
     
     [self createBackground];
     [self createMainButtons];
+    [self createBottomBar];
     
-    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y+5, self.view.frame.size.width, self.view.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y-self.recordButton.frame.size.height-30)];
-    [self.view addSubview:self.contentView];
+    
+    if (!self.contentView) {
+        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.bottomBar.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y)];
+        [self.view addSubview:self.contentView];
+    }
     
     if (!self.mainViewController){
         ParentNavigationViewController* navController = [[ParentNavigationViewController alloc] init];
@@ -179,7 +225,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
-    [self presentViewController:self.recordNavigationViewController animated:YES completion:^{}];
+    [self presentViewController:self.recordNavigationViewController animated:YES completion:nil];
 
 }
 - (IBAction)showSettings:(id)sender {

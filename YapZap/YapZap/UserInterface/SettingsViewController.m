@@ -38,7 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)savePressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
