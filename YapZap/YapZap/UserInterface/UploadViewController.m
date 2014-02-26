@@ -36,6 +36,11 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress)userInfo:nil repeats:YES];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.backButton.hidden=YES;
+    self.parent.homeButton.hidden = YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
