@@ -92,6 +92,9 @@
 		C75E7BA818BC3B3200160720 /* TagPlayingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA218BC3B3200160720 /* TagPlayingScreen.png */; };
 		C75E7BA918BC3B3200160720 /* TagScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA318BC3B3200160720 /* TagScreen.png */; };
 		C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */; };
+		C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75E7BAF18BF69DA00160720 /* TagPageTableViewController.m */; };
+		C75E7BB218BF69DA00160720 /* TagPageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BB018BF69DA00160720 /* TagPageTableViewController.xib */; };
+		C75E7BB518BF6A7800160720 /* DTCustomColoredAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = C75E7BB418BF6A7800160720 /* DTCustomColoredAccessory.m */; };
 		C761D03318AD7799003947C1 /* Recorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = C761D03218AD7799003947C1 /* Recorder.mm */; };
 		C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D03518AD7CB2003947C1 /* RecordingInfo.m */; };
 		C761D04D18AD8821003947C1 /* WaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04C18AD8821003947C1 /* WaveformView.m */; };
@@ -534,6 +537,11 @@
 		C75E7BA318BC3B3200160720 /* TagScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TagScreen.png; sourceTree = "<group>"; };
 		C75E7BAA18BC3C4D00160720 /* YapZapModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapModalViewController.h; path = UserInterface/YapZapModalViewController.h; sourceTree = "<group>"; };
 		C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapModalViewController.m; path = UserInterface/YapZapModalViewController.m; sourceTree = "<group>"; };
+		C75E7BAE18BF69DA00160720 /* TagPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagPageTableViewController.h; path = UserInterface/TagPageTableViewController.h; sourceTree = "<group>"; };
+		C75E7BAF18BF69DA00160720 /* TagPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagPageTableViewController.m; path = UserInterface/TagPageTableViewController.m; sourceTree = "<group>"; };
+		C75E7BB018BF69DA00160720 /* TagPageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagPageTableViewController.xib; path = UserInterface/TagPageTableViewController.xib; sourceTree = "<group>"; };
+		C75E7BB318BF6A7800160720 /* DTCustomColoredAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCustomColoredAccessory.h; sourceTree = "<group>"; };
+		C75E7BB418BF6A7800160720 /* DTCustomColoredAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCustomColoredAccessory.m; sourceTree = "<group>"; };
 		C761D03118AD7799003947C1 /* Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recorder.h; path = Recording/Recorder.h; sourceTree = "<group>"; };
 		C761D03218AD7799003947C1 /* Recorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Recorder.mm; path = Recording/Recorder.mm; sourceTree = "<group>"; };
 		C761D03418AD7CB2003947C1 /* RecordingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordingInfo.h; path = Recording/RecordingInfo.h; sourceTree = "<group>"; };
@@ -755,7 +763,6 @@
 				C7CF287618A1F0F90053DB9C /* Images */,
 				C761D02718AD7777003947C1 /* Recording */,
 				C796203F18A6A6A800D1BEAB /* Models */,
-				C7CF286D18A1E4910053DB9C /* Communication */,
 				C7371F4918A1DFEE007FB490 /* AppDelegate.h */,
 				C7371F4A18A1DFEE007FB490 /* AppDelegate.m */,
 				C7371F4C18A1DFEE007FB490 /* Main.storyboard */,
@@ -799,6 +806,7 @@
 			children = (
 				C761D04A18AD8800003947C1 /* ViewControllers */,
 				C761D04918AD87D3003947C1 /* CustomViews */,
+				C7CF286D18A1E4910053DB9C /* Communication */,
 				C79EF6F818A66DA600AA1BDE /* lib */,
 				C796205218A6E2AF00D1BEAB /* Util.h */,
 				C796205318A6E2AF00D1BEAB /* Util.m */,
@@ -1306,6 +1314,18 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
+		C75E7BAD18BF692F00160720 /* Tableviews */ = {
+			isa = PBXGroup;
+			children = (
+				C75E7BAE18BF69DA00160720 /* TagPageTableViewController.h */,
+				C75E7BAF18BF69DA00160720 /* TagPageTableViewController.m */,
+				C75E7BB018BF69DA00160720 /* TagPageTableViewController.xib */,
+				C75E7BB318BF6A7800160720 /* DTCustomColoredAccessory.h */,
+				C75E7BB418BF6A7800160720 /* DTCustomColoredAccessory.m */,
+			);
+			name = Tableviews;
+			sourceTree = "<group>";
+		};
 		C761D02718AD7777003947C1 /* Recording */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,6 +1360,7 @@
 		C761D04A18AD8800003947C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C75E7BAD18BF692F00160720 /* Tableviews */,
 				C706248518B95F7500D1BEB0 /* Settings */,
 				C706248418B95F6F00D1BEB0 /* RecordingFlow */,
 				C706248318B95F6800D1BEB0 /* MainFlow */,
@@ -1643,6 +1664,7 @@
 				C75E7B9618BC3B2200160720 /* zeus elements-08.png in Resources */,
 				C75E7BA418BC3B3200160720 /* home_screen.png in Resources */,
 				C75E7B9818BC3B2200160720 /* zeus elements-10.png in Resources */,
+				C75E7BB218BF69DA00160720 /* TagPageTableViewController.xib in Resources */,
 				C75E7B7E18BC3B0B00160720 /* pause_button_small.png in Resources */,
 				C75E7B7B18BC3B0B00160720 /* cancel_small_button.png in Resources */,
 				C75E7B8C18BC3B0B00160720 /* bolt_white.png in Resources */,
@@ -1717,6 +1739,7 @@
 				C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */,
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C761D04D18AD8821003947C1 /* WaveformView.m in Sources */,
+				C75E7BB518BF6A7800160720 /* DTCustomColoredAccessory.m in Sources */,
 				C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C72C1DAA18AAE8B2006D136F /* Novocaine.mm in Sources */,
@@ -1753,6 +1776,7 @@
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
 				C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */,
+				C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
 				C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */,
 			);

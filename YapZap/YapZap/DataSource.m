@@ -48,7 +48,7 @@ static NSArray* _tags;
 
 +(NSArray*)getTagNames{
     
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:0];
     
     NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -64,7 +64,7 @@ static NSArray* _tags;
 
 +(NSArray*)getPopularTags{
     
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:0];
     
     NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -88,7 +88,7 @@ static NSArray* _tags;
 }
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName{
     
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:0];
     
     NSData *jsonData = [[SampleData getRecordingsForTagName:tagName] dataUsingEncoding:NSUTF8StringEncoding];
     

@@ -14,12 +14,14 @@
 #import "MarqueeLabel.h"
 #import "Util.h"
 #import "FilteredImageView.h"
+#import "TagPageTableViewController.h"
 @interface TagPageViewController ()
 
 @property(nonatomic, strong)NSArray* recordings;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeLeft;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeRight;
 @property(nonatomic, strong)MarqueeLabel* titleLabel;
+@property(nonatomic, strong)TagPageTableViewController* tableController;
 @end
 
 @implementation TagPageViewController
@@ -45,17 +47,20 @@
     
     self.parent.homeButton.hidden = NO;
     
+    if (!self.swipeRight){
+        self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
+        self.swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self.view addGestureRecognizer:self.swipeRight];
+    }
     
-    self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
-    self.swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:self.swipeRight];
     
+    if (!self.swipeLeft){
+        self.swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedLeft:)];
+        self.swipeLeft.direction = UISwipeGestureRecognizerDirectionRight;
+        [self.view addGestureRecognizer:self.swipeLeft];
+    }
     
-    self.swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedLeft:)];
-    self.swipeLeft.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:self.swipeLeft];
-    
-
+    self.view.hidden=NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,7 +83,7 @@
     self.activityIndicator.hidden=NO;
     
     if (!self.titleLabel){
-        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,15,300,45) duration:4.0 andFadeLength:15.0f];
+        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,5,300,45) duration:4.0 andFadeLength:15.0f];
         marqueeLabel.text = self.tag.name;
         marqueeLabel.font = [UIFont fontWithName:@"Futura" size:32];
         marqueeLabel.textAlignment = NSTextAlignmentCenter;
@@ -97,6 +102,18 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.activityIndicator.hidden=YES;
+            
+            if (self.tableController){
+                [self.tableController removeFromParentViewController];
+                [self.tableController.view removeFromSuperview];
+            }
+            
+            self.tableController = [[TagPageTableViewController alloc] initWithNibName:@"TagPageTableViewController" bundle:nil];
+            
+            [self addChildViewController:self.tableController];
+            [self.tableArea addSubview:self.tableController.view];
+            [self.tableController didMoveToParentViewController:self];
+            
         });
         
     });
@@ -106,6 +123,7 @@
 
 -(void)swipedRight:(UIGestureRecognizer*)recognizer{
     //Go to Random Tag
+    self.view.hidden=YES;
     TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
     [tagPageViewController setParent:self.parent];
     [tagPageViewController setTag:[DataSource getNextPopularTag]];

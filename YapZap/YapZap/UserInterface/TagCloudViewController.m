@@ -106,7 +106,9 @@
     [super viewDidLoad];
     __weak YapZapMainViewController* __parent = self.parent;
     __block UINavigationController* nav = self.navigationController;
+    __block UIView* __view = self.view;
     self.gotoTagBlock = ^(Tag* tag) {
+        __view.hidden = YES;
         TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
         [tagPageViewController setParent:__parent];
         [tagPageViewController setTag:tag];
@@ -124,8 +126,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.view.hidden=NO;
     self.parent.homeButton.hidden=YES;
+    self.parent.background.filterColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
