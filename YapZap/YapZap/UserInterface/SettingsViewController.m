@@ -44,10 +44,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    self.parent.searchButton.hidden=YES;
-    self.parent.settingsButton.hidden=YES;
-    self.parent.recordButton.hidden = YES;
-    self.parent.homeButton.hidden = NO;
+    self.backButton.hidden=YES;
+    self.homeButton.hidden = YES;
 }
 
 

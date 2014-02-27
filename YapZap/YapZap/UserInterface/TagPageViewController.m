@@ -12,6 +12,8 @@
 #import "Recording.h"
 #import "DataSource.h"
 #import "MarqueeLabel.h"
+#import "Util.h"
+#import "FilteredImageView.h"
 @interface TagPageViewController ()
 
 @property(nonatomic, strong)NSArray* recordings;
@@ -76,9 +78,9 @@
     self.activityIndicator.hidden=NO;
     
     if (!self.titleLabel){
-        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,15,300,35) duration:4.0 andFadeLength:15.0f];
+        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,15,300,45) duration:4.0 andFadeLength:15.0f];
         marqueeLabel.text = self.tag.name;
-        marqueeLabel.font = [UIFont fontWithName:@"Futura" size:16];
+        marqueeLabel.font = [UIFont fontWithName:@"Futura" size:32];
         marqueeLabel.textAlignment = NSTextAlignmentCenter;
         marqueeLabel.autoresizesSubviews = NO;
         marqueeLabel.textColor = [UIColor whiteColor];
@@ -87,6 +89,8 @@
     }
     self.titleLabel.text = self.tag.name;
     [self.titleLabel restartLabel];
+    
+    self.parent.background.filterColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.recordings = [DataSource getRecordingsForTagName:self.tag.name];
@@ -103,6 +107,7 @@
 -(void)swipedRight:(UIGestureRecognizer*)recognizer{
     //Go to Random Tag
     TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
+    [tagPageViewController setParent:self.parent];
     [tagPageViewController setTag:[DataSource getNextPopularTag]];
     [self.navigationController pushViewController:tagPageViewController animated:YES];
     [self removeFromParentViewController];

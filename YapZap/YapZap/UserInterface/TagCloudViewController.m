@@ -104,9 +104,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    __weak YapZapMainViewController* __parent = self.parent;
     __block UINavigationController* nav = self.navigationController;
     self.gotoTagBlock = ^(Tag* tag) {
         TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
+        [tagPageViewController setParent:__parent];
         [tagPageViewController setTag:tag];
         [nav pushViewController:tagPageViewController animated:YES];
     };
