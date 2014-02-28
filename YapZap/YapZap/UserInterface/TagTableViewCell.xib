@@ -40,7 +40,7 @@
                     </button>
                     <view opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" id="Iid-JY-MOh" customClass="WaveformView">
                         <rect key="frame" x="44" y="4" width="195" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yhb-mw-L1v">
@@ -50,13 +50,25 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view hidden="YES" contentMode="scaleToFill" id="UEX-3L-Kxj">
+                        <rect key="frame" x="270" y="19" width="2" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <view hidden="YES" contentMode="scaleToFill" id="f4J-dU-15N">
+                        <rect key="frame" x="270" y="0.0" width="2" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="bottomBar" destination="UEX-3L-Kxj" id="kSu-4A-oxl"/>
                 <outlet property="label" destination="yhb-mw-L1v" id="Sg0-8i-907"/>
                 <outlet property="playButton" destination="0k6-NC-b9j" id="Qof-on-1QU"/>
+                <outlet property="topBar" destination="f4J-dU-15N" id="uwy-5y-Zkf"/>
                 <outlet property="waveFormImage" destination="Iid-JY-MOh" id="QKl-nE-Lcb"/>
             </connections>
         </tableViewCell>

@@ -20,6 +20,11 @@
 @property (weak, nonatomic) IBOutlet WaveformView *waveFormImage;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) TagTableViewController *delegate;
+@property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIView *bottomBar;
+
+@property(nonatomic) BOOL comment;
+@property(nonatomic) BOOL selected;
 
 -(void)setEnabled:(BOOL)enabled;
 - (IBAction)playClicked:(id)sender;

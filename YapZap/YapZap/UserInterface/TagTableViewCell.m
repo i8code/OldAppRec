@@ -25,6 +25,8 @@
 @synthesize recording = _recording;
 @synthesize timer = _timer;
 @synthesize isPlaying = _isPlaying;
+@synthesize comment = _comment;
+@synthesize selected = _selected;
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
@@ -50,6 +52,18 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)setComment:(BOOL)comment{
+    _comment = comment;
+    self.backgroundColor = comment?[UIColor colorWithWhite:1 alpha:0.17]:[UIColor clearColor];
+    self.topBar.hidden=!comment;
+    self.bottomBar.hidden=!self.selected && !self.comment;
+}
+
+-(void)setSelected:(BOOL)selected{
+    _selected = selected;
+    self.bottomBar.hidden=!self.selected && !self.comment;
 }
 
 -(void)setEnabled:(BOOL)enabled{

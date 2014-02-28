@@ -104,7 +104,7 @@
 {
     
     static NSString *tagCellIdentifier = @"TagTableViewCell";
-    static NSString *commentCellIdentifier = @"CommentTableViewCell";
+//    static NSString *commentCellIdentifier = @"CommentTableViewCell";
     static NSString *recordNewCellIdentifier = @"RecordNewTableViewCell";
     
     UITableViewCell *cell;
@@ -123,6 +123,17 @@
             }
             Recording* recording = [self.recordings objectAtIndex:indexPath.section];
             [((TagTableViewCell*)cell) setRecording:recording];
+            [((TagTableViewCell*)cell) setComment:NO];
+//            [((TagTableViewCell*)cell) setSelected:[expandedSections containsIndex:indexPath.section]];
+            
+            if ([expandedSections containsIndex:indexPath.section])
+            {
+                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
+            }
+            else
+            {
+                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
+            }
         }
         else if (indexPath.row==1){
             cell = [tableView dequeueReusableCellWithIdentifier:recordNewCellIdentifier];
@@ -134,16 +145,17 @@
         }
         else
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:commentCellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:tagCellIdentifier];
             
             if (cell == nil) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil];
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TagTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
             
             Recording* recording = [self.recordings objectAtIndex:indexPath.section];
             Recording* comment = [recording.children objectAtIndex:indexPath.row-1];
-            [((CommentTableViewCell*)cell) setRecording:comment];
+            [((TagTableViewCell*)cell) setRecording:comment];
+            [((TagTableViewCell*)cell) setComment:YES];
         }
     }
     else
@@ -236,21 +248,23 @@
                 [tmpArray addObject:tmpIndexPath];
             }
             
-//            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             
             if (currentlyExpanded)
             {
                 [tableView deleteRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
                 
-//                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//                [((TagTableViewCell*)cell) setSelected:NO];
+                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
                 
             }
             else
             {
                 [tableView insertRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
-//                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeUp];
+//                [((TagTableViewCell*)cell) setSelected:YES];
+                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
                 
             }
             
