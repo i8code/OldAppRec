@@ -24,7 +24,7 @@
                             <action selector="playClicked:" destination="Qqv-Ml-BeS" eventType="touchUpInside" id="ouE-4b-ZZ6"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="bnA-FW-zqU">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="bnA-FW-zqU">
                         <rect key="frame" x="247" y="9" width="33" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="comments_full.png">
@@ -34,10 +34,14 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="tHG-st-bUr">
                         <rect key="frame" x="286" y="9" width="33" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" image="heart_empty.png">
+                        <state key="normal" image="heart_full.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments_full.png" id="deg-6r-RPO">
+                        <rect key="frame" x="248" y="9" width="33" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                     <view opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" id="Iid-JY-MOh" customClass="WaveformView">
                         <rect key="frame" x="44" y="4" width="195" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
@@ -60,13 +64,32 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3rW-wW-fV4">
+                        <rect key="frame" x="244" y="9" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1xg-F1-aJ8">
+                        <rect key="frame" x="286" y="9" width="32" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="bottomBar" destination="UEX-3L-Kxj" id="kSu-4A-oxl"/>
+                <outlet property="commentButton" destination="deg-6r-RPO" id="RUK-tE-w0J"/>
+                <outlet property="commentLabel" destination="3rW-wW-fV4" id="fRM-iu-KVe"/>
                 <outlet property="label" destination="yhb-mw-L1v" id="Sg0-8i-907"/>
+                <outlet property="likeButton" destination="tHG-st-bUr" id="zbb-ZI-hkT"/>
+                <outlet property="likeClicked" destination="tHG-st-bUr" id="Avn-0a-o07"/>
+                <outlet property="likesLabel" destination="1xg-F1-aJ8" id="csB-MN-oNs"/>
                 <outlet property="playButton" destination="0k6-NC-b9j" id="Qof-on-1QU"/>
                 <outlet property="topBar" destination="f4J-dU-15N" id="uwy-5y-Zkf"/>
                 <outlet property="waveFormImage" destination="Iid-JY-MOh" id="QKl-nE-Lcb"/>
@@ -75,7 +98,7 @@
     </objects>
     <resources>
         <image name="comments_full.png" width="80" height="64"/>
-        <image name="heart_empty.png" width="80" height="64"/>
+        <image name="heart_full.png" width="80" height="64"/>
         <image name="play_small_button.png" width="128" height="128"/>
     </resources>
 </document>

@@ -183,9 +183,9 @@
     
     if (!self.mainViewController){
         ParentNavigationViewController* navController = [[ParentNavigationViewController alloc] init];
+        [self setMainViewController:navController];
         TagCloudViewController* tagCloudViewController = [[TagCloudViewController alloc] initWithNibName:@"TagCloudViewController" bundle:nil];
         [navController pushViewController:tagCloudViewController animated:NO];
-        [self setMainViewController:navController];
 
     }
 }

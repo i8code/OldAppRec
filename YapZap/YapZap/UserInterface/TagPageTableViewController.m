@@ -126,14 +126,14 @@
             [((TagTableViewCell*)cell) setComment:NO];
 //            [((TagTableViewCell*)cell) setSelected:[expandedSections containsIndex:indexPath.section]];
             
-            if ([expandedSections containsIndex:indexPath.section])
+           /* if ([expandedSections containsIndex:indexPath.section])
             {
                 cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
             }
             else
             {
                 cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
-            }
+            }*/
         }
         else if (indexPath.row==1){
             cell = [tableView dequeueReusableCellWithIdentifier:recordNewCellIdentifier];
@@ -256,7 +256,7 @@
                                  withRowAnimation:UITableViewRowAnimationTop];
                 
 //                [((TagTableViewCell*)cell) setSelected:NO];
-                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
+//                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
                 
             }
             else
@@ -264,7 +264,7 @@
                 [tableView insertRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
 //                [((TagTableViewCell*)cell) setSelected:YES];
-                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
+//                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
                 
             }
             

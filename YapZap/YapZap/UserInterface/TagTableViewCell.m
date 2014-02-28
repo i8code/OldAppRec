@@ -32,6 +32,17 @@
     _recording = recording;
     self.label.text = recording.username;
     
+    self.likesLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.likes];
+    self.likesLabel.textColor = recording.likes?[UIColor blackColor]:[UIColor whiteColor];
+    self.commentLabel.text = [NSString stringWithFormat:@"%ld", recording.childrenLength];
+    self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
+    
+    UIImage* likeImage = recording.likes?[UIImage imageNamed:@"heart_full.png"]:[UIImage imageNamed:@"heart_empty.png"];
+    [self.likeButton setImage:likeImage forState:UIControlStateNormal];
+    
+    UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
+    [self.commentButton setImage:commentImage];
+    
     [self.waveFormImage setData:recording.rawWaveformData withSize:(int)recording.waveformData.count];
     [self.waveFormImage setColor:[Util colorFromMood:recording.mood andIntesity:recording.intensity]];
     [self.waveFormImage setNeedsDisplay];
@@ -59,6 +70,8 @@
     self.backgroundColor = comment?[UIColor colorWithWhite:1 alpha:0.17]:[UIColor clearColor];
     self.topBar.hidden=!comment;
     self.bottomBar.hidden=!self.selected && !self.comment;
+    self.commentButton.hidden=self.comment;
+    self.commentLabel.hidden=self.comment;
 }
 
 -(void)setSelected:(BOOL)selected{
