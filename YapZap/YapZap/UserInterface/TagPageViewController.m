@@ -101,7 +101,6 @@
         self.recordings = [DataSource getRecordingsForTagName:self.tag.name];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.activityIndicator.hidden=YES;
             
             if (self.tableController){
                 [self.tableController removeFromParentViewController];
@@ -109,10 +108,12 @@
             }
             
             self.tableController = [[TagPageTableViewController alloc] initWithNibName:@"TagPageTableViewController" bundle:nil];
+            [self.tableController setRecordings:self.recordings];
             
             [self addChildViewController:self.tableController];
             [self.tableArea addSubview:self.tableController.view];
             [self.tableController didMoveToParentViewController:self];
+            self.activityIndicator.hidden=YES;
             
         });
         

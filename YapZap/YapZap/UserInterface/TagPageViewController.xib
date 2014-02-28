@@ -25,10 +25,10 @@
                     <rect key="frame" x="142" y="265" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
-                <view contentMode="scaleToFill" id="k9G-hS-Xga">
+                <view opaque="NO" contentMode="scaleToFill" id="k9G-hS-Xga">
                     <rect key="frame" x="0.0" y="106" width="320" height="462"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.80000000000000004" green="0.40000000000000002" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

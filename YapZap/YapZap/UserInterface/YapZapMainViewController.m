@@ -49,10 +49,14 @@
         int height=50;
         CGRect barFrame = CGRectMake(0, self.view.frame.size.height-height, self.view.frame.size.width, height);
         self.bottomBar = [[UIView alloc] initWithFrame:barFrame];
-        self.bottomBar.backgroundColor = [[UIColor alloc] initWithRed:0.15686274509 green:0.15686274509 blue:0.15686274509 alpha:1];
+        self.bottomBar.backgroundColor = [[UIColor alloc] initWithRed:0.16 green:0.16 blue:0.16 alpha:0.975];
+        self.bottomBar.opaque=NO;
+        
         
         [self.view addSubview:self.bottomBar];
     }
+    
+    
     
     if (!self.font){
         self.font = [UIFont fontWithName:@"Future" size:13];
@@ -146,9 +150,6 @@
                               action:@selector(showSettings:)
                     forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    
-    
 
     
     
@@ -172,13 +173,13 @@
     
     [self createBackground];
     [self createMainButtons];
-    [self createBottomBar];
-    
     
     if (!self.contentView) {
-        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.bottomBar.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y)];
+        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y)];
         [self.view addSubview:self.contentView];
     }
+    [self createBottomBar];
+    
     
     if (!self.mainViewController){
         ParentNavigationViewController* navController = [[ParentNavigationViewController alloc] init];

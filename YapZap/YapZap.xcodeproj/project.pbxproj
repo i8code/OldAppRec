@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C701DBE318C0139D00FD407A /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE218C0139D00FD407A /* CommentTableViewCell.m */; };
+		C701DBE518C013BC00FD407A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */; };
 		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
 		C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245A18B6CD6E00D1BEB0 /* Social.framework */; };
 		C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245C18B6CD7400D1BEB0 /* Twitter.framework */; };
@@ -203,6 +205,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C701DBE118C0139D00FD407A /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTableViewCell.h; path = UserInterface/CommentTableViewCell.h; sourceTree = "<group>"; };
+		C701DBE218C0139D00FD407A /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTableViewCell.m; path = UserInterface/CommentTableViewCell.m; sourceTree = "<group>"; };
+		C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentTableViewCell.xib; path = UserInterface/CommentTableViewCell.xib; sourceTree = "<group>"; };
 		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
 		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
 		C706245A18B6CD6E00D1BEB0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -1317,11 +1322,17 @@
 		C75E7BAD18BF692F00160720 /* Tableviews */ = {
 			isa = PBXGroup;
 			children = (
+				C75E7BB318BF6A7800160720 /* DTCustomColoredAccessory.h */,
+				C75E7BB418BF6A7800160720 /* DTCustomColoredAccessory.m */,
 				C75E7BAE18BF69DA00160720 /* TagPageTableViewController.h */,
 				C75E7BAF18BF69DA00160720 /* TagPageTableViewController.m */,
 				C75E7BB018BF69DA00160720 /* TagPageTableViewController.xib */,
-				C75E7BB318BF6A7800160720 /* DTCustomColoredAccessory.h */,
-				C75E7BB418BF6A7800160720 /* DTCustomColoredAccessory.m */,
+				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
+				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
+				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
+				C701DBE118C0139D00FD407A /* CommentTableViewCell.h */,
+				C701DBE218C0139D00FD407A /* CommentTableViewCell.m */,
+				C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */,
 			);
 			name = Tableviews;
 			sourceTree = "<group>";
@@ -1373,9 +1384,6 @@
 				C79EF6D818A6591100AA1BDE /* TagTableViewController.h */,
 				C79EF6D918A6591100AA1BDE /* TagTableViewController.m */,
 				C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */,
-				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
-				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
-				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
 				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
 				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
 				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
@@ -1699,6 +1707,7 @@
 				C75E7B7D18BC3B0B00160720 /* smile_icon.png in Resources */,
 				C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */,
 				C75E7B6818BC3B0B00160720 /* sample_waveform.png in Resources */,
+				C701DBE518C013BC00FD407A /* CommentTableViewCell.xib in Resources */,
 				C747FC5318A81D9C0083A533 /* LikeViewController.xib in Resources */,
 				C75E7B8218BC3B0B00160720 /* back_icon.png in Resources */,
 				C75E7B7618BC3B0B00160720 /* gear_icon.png in Resources */,
@@ -1762,6 +1771,7 @@
 				C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */,
 				C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */,
 				C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */,
+				C701DBE318C0139D00FD407A /* CommentTableViewCell.m in Sources */,
 				C761D03318AD7799003947C1 /* Recorder.mm in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
 				C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */,

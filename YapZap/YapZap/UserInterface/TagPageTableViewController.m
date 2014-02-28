@@ -8,12 +8,14 @@
 
 #import "TagPageTableViewController.h"
 #import "DTCustomColoredAccessory.h"
-
+#import "Recording.h"
 @interface TagPageTableViewController ()
 
 @end
 
 @implementation TagPageTableViewController
+
+@synthesize recordings = _recordings;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +34,25 @@
     {
         expandedSections = [[NSMutableIndexSet alloc] init];
     }
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+}
+
+- (void)refresh
+{
+    [self performSelector:@selector(updateTable) withObject:nil
+               afterDelay:1];
+}
+- (void)updateTable
+{
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+-(void)setRecordings:(NSArray *)recordings{
+    _recordings = recordings;
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,7 +65,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canCollapseSection:(NSInteger)section
 {
-    if (section>0) return YES;
+    if (section>=0) return YES;
     
     return NO;
 }
@@ -54,7 +75,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return self.recordings.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,7 +84,9 @@
     {
         if ([expandedSections containsIndex:section])
         {
-            return 5; // return rows when expanded
+            Recording* recording = (Recording*)[self.recordings objectAtIndex:section];
+            
+            return recording.childrenLength; // return rows when expanded
         }
         
         return 1; // only top row showing
@@ -75,21 +98,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
+    UITableViewCell *cell;
+   
     // Configure the cell...
     
     if ([self tableView:tableView canCollapseSection:indexPath.section])
     {
         if (!indexPath.row)
         {
+            static NSString *CellIdentifier = @"TagTableViewCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TagTableViewCell" owner:self options:nil];
+                cell = [nib objectAtIndex:0];
+            }
+            
             // first row
-            cell.textLabel.text = @"Expandable"; // only top row showing
+//            cell.textLabel.text = @"Expandable"; // only top row showing
             
             if ([expandedSections containsIndex:indexPath.section])
             {
@@ -102,10 +128,13 @@
         }
         else
         {
-            // all other rows
-            cell.textLabel.text = @"Some Detail";
-            cell.accessoryView = nil;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            static NSString *CellIdentifier2 = @"CommentTableViewCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+            
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil];
+                cell = [nib objectAtIndex:0];
+            }
         }
     }
     else

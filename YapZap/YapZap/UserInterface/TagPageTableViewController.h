@@ -10,6 +10,9 @@
 
 @interface TagPageTableViewController : UITableViewController
 {
-NSMutableIndexSet *expandedSections;
+    NSMutableIndexSet *expandedSections;
 }
+@property (nonatomic, strong) NSArray* recordings;
+-(void)refresh;
+-(void)updateTable;
 @end
