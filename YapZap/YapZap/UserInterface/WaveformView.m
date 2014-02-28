@@ -15,6 +15,9 @@
 @property float* data;
 @property int dataLength;
 
+@property (nonatomic, strong) UIColor* mainColor;
+@property (nonatomic, strong) UIColor* semiColor;
+
 @end
 
 @implementation WaveformView
@@ -27,10 +30,20 @@
         self.hasData = false;
         self.opaque = false;
         self.highlightPercent=-1;
+        self.mainColor = [UIColor whiteColor];
+        self.semiColor = [UIColor colorWithWhite:1 alpha:0.5];
     }
     return self;
 }
 
+-(void)setColor:(UIColor*)color{
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    self.mainColor = color;
+    self.semiColor = [UIColor colorWithRed:red green:green blue:blue alpha:(alpha/2.0f)];
+    [self setNeedsDisplay];
+}
 
 
 -(void)setData:(float*)data withSize:(int)size{
@@ -58,7 +71,7 @@
     CGRect bounds = CGRectMake(0, 0, width, height);
     CGContextClearRect(context, bounds);
     
-    [[UIColor yellowColor] setFill];
+    [self.semiColor setFill];
     
     float step = width/(float)self.dataLength;
     float heightScale = height/7.0;
@@ -67,7 +80,7 @@
     for (int i=0;i<self.dataLength;i++){
         float height = self.data[i]*heightScale;
         if (i/(float)self.dataLength>self.highlightPercent){
-            [[UIColor whiteColor] setFill];
+            [self.mainColor setFill];
         }
         CGRect rect = CGRectMake(i*step, mid-height, step*1.1   , height*2);
         CGContextFillRect(context, rect);

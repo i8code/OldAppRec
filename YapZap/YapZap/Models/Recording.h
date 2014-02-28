@@ -63,6 +63,7 @@
 @property (nonatomic, strong) NSString* audioUrl;
 @property (nonatomic, strong) NSString* audioHash;
 @property (nonatomic, strong) NSArray* waveformData;
+@property float* rawWaveformData;
 
 @property CGFloat mood;
 @property CGFloat intensity;

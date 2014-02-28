@@ -9,6 +9,10 @@
 #import "TagPageTableViewController.h"
 #import "DTCustomColoredAccessory.h"
 #import "Recording.h"
+#import "TagTableViewCell.h"
+#import "CommentTableViewCell.h"
+#import "RecordNewTableViewCell.h"
+
 @interface TagPageTableViewController ()
 
 @end
@@ -86,7 +90,7 @@
         {
             Recording* recording = (Recording*)[self.recordings objectAtIndex:section];
             
-            return recording.childrenLength; // return rows when expanded
+            return recording.childrenLength+1; // return rows when expanded
         }
         
         return 1; // only top row showing
@@ -98,6 +102,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    static NSString *tagCellIdentifier = @"TagTableViewCell";
+    static NSString *commentCellIdentifier = @"CommentTableViewCell";
+    static NSString *recordNewCellIdentifier = @"RecordNewTableViewCell";
+    
     UITableViewCell *cell;
    
     // Configure the cell...
@@ -106,35 +115,35 @@
     {
         if (!indexPath.row)
         {
-            static NSString *CellIdentifier = @"TagTableViewCell";
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:tagCellIdentifier];
             
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TagTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            Recording* recording = [self.recordings objectAtIndex:indexPath.section];
+            [((TagTableViewCell*)cell) setRecording:recording];
+        }
+        else if (indexPath.row==1){
+            cell = [tableView dequeueReusableCellWithIdentifier:recordNewCellIdentifier];
             
-            // first row
-//            cell.textLabel.text = @"Expandable"; // only top row showing
-            
-            if ([expandedSections containsIndex:indexPath.section])
-            {
-                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeUp];
-            }
-            else
-            {
-                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RecordNewTableViewCell" owner:self options:nil];
+                cell = [nib objectAtIndex:0];
             }
         }
         else
         {
-            static NSString *CellIdentifier2 = @"CommentTableViewCell";
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+            cell = [tableView dequeueReusableCellWithIdentifier:commentCellIdentifier];
             
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            
+            Recording* recording = [self.recordings objectAtIndex:indexPath.section];
+            Recording* comment = [recording.children objectAtIndex:indexPath.row-1];
+            [((CommentTableViewCell*)cell) setRecording:comment];
         }
     }
     else
@@ -145,6 +154,10 @@
     }
     
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
 }
 
 /*
@@ -223,21 +236,21 @@
                 [tmpArray addObject:tmpIndexPath];
             }
             
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             
             if (currentlyExpanded)
             {
                 [tableView deleteRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
                 
-                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
                 
             }
             else
             {
                 [tableView insertRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
-                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeUp];
+//                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeUp];
                 
             }
             

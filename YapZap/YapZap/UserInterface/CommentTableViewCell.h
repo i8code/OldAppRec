@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recording.h"
 
 @interface CommentTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) Recording* recording;
 @end

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C701DBE318C0139D00FD407A /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE218C0139D00FD407A /* CommentTableViewCell.m */; };
 		C701DBE518C013BC00FD407A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */; };
+		C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */; };
+		C701DBEA18C0190100FD407A /* RecordNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */; };
 		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
 		C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245A18B6CD6E00D1BEB0 /* Social.framework */; };
 		C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245C18B6CD7400D1BEB0 /* Twitter.framework */; };
@@ -208,6 +210,9 @@
 		C701DBE118C0139D00FD407A /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTableViewCell.h; path = UserInterface/CommentTableViewCell.h; sourceTree = "<group>"; };
 		C701DBE218C0139D00FD407A /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTableViewCell.m; path = UserInterface/CommentTableViewCell.m; sourceTree = "<group>"; };
 		C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentTableViewCell.xib; path = UserInterface/CommentTableViewCell.xib; sourceTree = "<group>"; };
+		C701DBE618C018EB00FD407A /* RecordNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordNewTableViewCell.h; path = UserInterface/RecordNewTableViewCell.h; sourceTree = "<group>"; };
+		C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordNewTableViewCell.m; path = UserInterface/RecordNewTableViewCell.m; sourceTree = "<group>"; };
+		C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordNewTableViewCell.xib; path = UserInterface/RecordNewTableViewCell.xib; sourceTree = "<group>"; };
 		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
 		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
 		C706245A18B6CD6E00D1BEB0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -810,7 +815,6 @@
 			isa = PBXGroup;
 			children = (
 				C761D04A18AD8800003947C1 /* ViewControllers */,
-				C761D04918AD87D3003947C1 /* CustomViews */,
 				C7CF286D18A1E4910053DB9C /* Communication */,
 				C79EF6F818A66DA600AA1BDE /* lib */,
 				C796205218A6E2AF00D1BEAB /* Util.h */,
@@ -1327,12 +1331,15 @@
 				C75E7BAE18BF69DA00160720 /* TagPageTableViewController.h */,
 				C75E7BAF18BF69DA00160720 /* TagPageTableViewController.m */,
 				C75E7BB018BF69DA00160720 /* TagPageTableViewController.xib */,
-				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
 				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
 				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
+				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
 				C701DBE118C0139D00FD407A /* CommentTableViewCell.h */,
 				C701DBE218C0139D00FD407A /* CommentTableViewCell.m */,
 				C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */,
+				C701DBE618C018EB00FD407A /* RecordNewTableViewCell.h */,
+				C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */,
+				C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */,
 			);
 			name = Tableviews;
 			sourceTree = "<group>";
@@ -1371,6 +1378,7 @@
 		C761D04A18AD8800003947C1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C761D04918AD87D3003947C1 /* CustomViews */,
 				C75E7BAD18BF692F00160720 /* Tableviews */,
 				C706248518B95F7500D1BEB0 /* Settings */,
 				C706248418B95F6F00D1BEB0 /* RecordingFlow */,
@@ -1669,6 +1677,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C701DBEA18C0190100FD407A /* RecordNewTableViewCell.xib in Resources */,
 				C75E7B9618BC3B2200160720 /* zeus elements-08.png in Resources */,
 				C75E7BA418BC3B3200160720 /* home_screen.png in Resources */,
 				C75E7B9818BC3B2200160720 /* zeus elements-10.png in Resources */,
@@ -1774,6 +1783,7 @@
 				C701DBE318C0139D00FD407A /* CommentTableViewCell.m in Sources */,
 				C761D03318AD7799003947C1 /* Recorder.mm in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
+				C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */,
 				C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */,
 				C72C1DB818AAFB24006D136F /* Reachability.m in Sources */,
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,

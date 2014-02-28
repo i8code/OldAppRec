@@ -11,6 +11,7 @@
 #import "FilteredImageView.h"
 #import "Util.h"
 #import "TagTableViewController.h"
+#import "WaveformView.h"
 
 @interface TagTableViewCell()
 @property  (nonatomic, strong) NSTimer* timer;
@@ -29,12 +30,8 @@
     _recording = recording;
     self.label.text = recording.username;
     
-    //TODO set image
-    
-    [self.waveFormImage setImage:[UIImage imageNamed:@"sample_waveform.png"]];
-    self.waveFormImage.filterColor = [Util colorFromMood:recording.mood andIntesity:recording.intensity];
-    [self.waveFormImage setPercent:1];
-    [self.waveFormImage setPartialFill:YES];
+    [self.waveFormImage setData:recording.rawWaveformData withSize:(int)recording.waveformData.count];
+    [self.waveFormImage setColor:[Util colorFromMood:recording.mood andIntesity:recording.intensity]];
     [self.waveFormImage setNeedsDisplay];
     
 }
@@ -59,18 +56,16 @@
     
     self.playButton.hidden = !enabled;
     if (enabled){
-        self.waveFormImage.filterColor = [Util colorFromMood:self.recording.mood andIntesity:self.recording.intensity];
         [self.waveFormImage setAlpha:1];
         
         [self.timer invalidate];
         self.timer=nil;
-        [self.waveFormImage setPercent:1];
+        [self.waveFormImage setHighlightPercent:1];
         [self.label setAlpha:1];
         [self.waveFormImage setNeedsDisplay];
         self.playButton.hidden = NO;
     }
     else{
-        self.waveFormImage.filterColor = [UIColor blackColor];
         [self.waveFormImage setAlpha:0.1];
         [self.label setAlpha:0.1];
     }
@@ -83,7 +78,7 @@
     [self.timer invalidate];
     self.timer=nil;
     
-    [self.waveFormImage setPercent:1];
+    [self.waveFormImage setHighlightPercent:1];
     [self.waveFormImage setNeedsDisplay];
     
     self.isPlaying = false;
@@ -114,7 +109,7 @@
     
     self.timerCount++;
     
-    [self.waveFormImage setPercent:(((float)self.timerCount)/50.0f)];
+    [self.waveFormImage setHighlightPercent:(((float)self.timerCount)/50.0f)];
     [self.waveFormImage setNeedsDisplay];
     
     if (self.timerCount>=50){

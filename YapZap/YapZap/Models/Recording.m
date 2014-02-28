@@ -10,6 +10,18 @@
 
 @implementation Recording
 
+@synthesize rawWaveformData = _rawWaveformData;
+
+-(float*)rawWaveformData{
+    float* data = (float*)malloc(sizeof(float)*self.waveformData.count);
+    for (int i=0;i<self.waveformData.count;i++){
+        data[i] = [self.waveformData[i] floatValue];
+    }
+    return data;
+}
+
+-(void)setRawWaveformData:(float *)rawWaveformData{
+}
 
 
 +(Recording*)fromJSON:(NSDictionary*)dictionary{

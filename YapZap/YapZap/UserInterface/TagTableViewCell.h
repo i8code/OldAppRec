@@ -11,12 +11,13 @@
 @class Recording;
 @class FilteredImageView;
 @class TagTableViewController;
+@class WaveformView;
 
 @interface TagTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @property (strong, nonatomic) Recording* recording;
-@property (weak, nonatomic) IBOutlet FilteredImageView *waveFormImage;
+@property (weak, nonatomic) IBOutlet WaveformView *waveFormImage;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) TagTableViewController *delegate;
 
