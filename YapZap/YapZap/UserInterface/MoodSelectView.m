@@ -76,14 +76,17 @@
         hueAngle+=pi2; //2pi
     }
     
-    CGFloat hue = hueAngle/pi2; //hue between 0 and 1
+    CGFloat hue = hueAngle/pi2+0.41666; //hue between 0 and 1
+    while (hue>1){
+        hue-=1;
+    }
     
     CGFloat intensity = sqrtf(dx*dx+dy*dy)/size;
     if (intensity>1){
         intensity=1;
     }
     
-    return [UIColor colorWithHue:hue saturation:intensity brightness:(0.7+intensity*0.3) alpha:1];
+    return [UIColor colorWithHue:hue saturation:(intensity/2.0) brightness:(0.7+0.3*intensity) alpha:1];
 }
 
 /*

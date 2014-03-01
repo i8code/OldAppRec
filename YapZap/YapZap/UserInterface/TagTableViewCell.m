@@ -17,6 +17,7 @@
 @property  (nonatomic, strong) NSTimer* timer;
 @property  NSInteger timerCount;
 @property BOOL isPlaying;
+@property (nonatomic) BOOL liked;
 
 @end
 
@@ -27,18 +28,27 @@
 @synthesize isPlaying = _isPlaying;
 @synthesize comment = _comment;
 @synthesize selected = _selected;
+@synthesize liked = _liked;
+
+-(void)setLiked:(BOOL)liked{
+    _liked = liked;
+    UIImage* likeImage = _liked?[UIImage imageNamed:@"heart_full.png"]:[UIImage imageNamed:@"heart_empty.png"];
+    [self.likeButton setImage:likeImage forState:UIControlStateNormal];
+    
+    self.likesLabel.textColor = _liked?[UIColor blackColor]:[UIColor whiteColor];
+    self.likesLabel.text = [NSString stringWithFormat:@"%ld", (long)self.recording.likes+(_liked?1:0)];
+}
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
     self.label.text = recording.username;
     
-    self.likesLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.likes];
-    self.likesLabel.textColor = recording.likes?[UIColor blackColor]:[UIColor whiteColor];
+    self.liked = NO;
+    
+    
     self.commentLabel.text = [NSString stringWithFormat:@"%ld", recording.childrenLength];
     self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
     
-    UIImage* likeImage = recording.likes?[UIImage imageNamed:@"heart_full.png"]:[UIImage imageNamed:@"heart_empty.png"];
-    [self.likeButton setImage:likeImage forState:UIControlStateNormal];
     
     UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
     [self.commentButton setImage:commentImage];
@@ -72,6 +82,7 @@
     self.bottomBar.hidden=!self.selected && !self.comment;
     self.commentButton.hidden=self.comment;
     self.commentLabel.hidden=self.comment;
+    self.spacerView.hidden=!self.comment;
 }
 
 -(void)setSelected:(BOOL)selected{
@@ -145,4 +156,7 @@
     
 }
 
+- (IBAction)likePressed:(id)sender {
+    self.liked = !self.liked;
+}
 @end

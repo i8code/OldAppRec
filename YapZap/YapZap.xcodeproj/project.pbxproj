@@ -110,7 +110,7 @@
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
 		C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204118A6A6CA00D1BEAB /* TagPage.m */; };
 		C796204518A6A74000D1BEAB /* Recording.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204418A6A74000D1BEAB /* Recording.m */; };
-		C796204B18A6B30300D1BEAB /* SampleData.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204A18A6B30300D1BEAB /* SampleData.m */; };
+		C796204B18A6B30300D1BEAB /* SampleData.mm in Sources */ = {isa = PBXBuildFile; fileRef = C796204A18A6B30300D1BEAB /* SampleData.mm */; };
 		C796204E18A6B71400D1BEAB /* PageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204D18A6B71400D1BEAB /* PageSet.m */; };
 		C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205018A6BBAD00D1BEAB /* DataSource.m */; };
 		C796205418A6E2AF00D1BEAB /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205318A6E2AF00D1BEAB /* Util.m */; };
@@ -213,6 +213,7 @@
 		C701DBE618C018EB00FD407A /* RecordNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordNewTableViewCell.h; path = UserInterface/RecordNewTableViewCell.h; sourceTree = "<group>"; };
 		C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordNewTableViewCell.m; path = UserInterface/RecordNewTableViewCell.m; sourceTree = "<group>"; };
 		C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordNewTableViewCell.xib; path = UserInterface/RecordNewTableViewCell.xib; sourceTree = "<group>"; };
+		C701DBEC18C1508400FD407A /* RecordingData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RecordingData.h; path = Communication/RecordingData.h; sourceTree = "<group>"; };
 		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
 		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
 		C706245A18B6CD6E00D1BEB0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -574,7 +575,7 @@
 		C796204318A6A74000D1BEAB /* Recording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recording.h; path = Models/Recording.h; sourceTree = "<group>"; };
 		C796204418A6A74000D1BEAB /* Recording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recording.m; path = Models/Recording.m; sourceTree = "<group>"; };
 		C796204918A6B30300D1BEAB /* SampleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleData.h; path = Models/SampleData.h; sourceTree = "<group>"; };
-		C796204A18A6B30300D1BEAB /* SampleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleData.m; path = Models/SampleData.m; sourceTree = "<group>"; };
+		C796204A18A6B30300D1BEAB /* SampleData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SampleData.mm; path = Models/SampleData.mm; sourceTree = "<group>"; };
 		C796204C18A6B71400D1BEAB /* PageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageSet.h; path = Models/PageSet.h; sourceTree = "<group>"; };
 		C796204D18A6B71400D1BEAB /* PageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageSet.m; path = Models/PageSet.m; sourceTree = "<group>"; };
 		C796204F18A6BBAD00D1BEAB /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
@@ -1443,13 +1444,14 @@
 			isa = PBXGroup;
 			children = (
 				C796204918A6B30300D1BEAB /* SampleData.h */,
-				C796204A18A6B30300D1BEAB /* SampleData.m */,
+				C796204A18A6B30300D1BEAB /* SampleData.mm */,
 				C796204F18A6BBAD00D1BEAB /* DataSource.h */,
 				C796205018A6BBAD00D1BEAB /* DataSource.m */,
 				C72C1DB318AAF9ED006D136F /* S3Helper.h */,
 				C72C1DB418AAF9ED006D136F /* S3Helper.m */,
 				C72C1DB618AAFB24006D136F /* Reachability.h */,
 				C72C1DB718AAFB24006D136F /* Reachability.m */,
+				C701DBEC18C1508400FD407A /* RecordingData.h */,
 			);
 			name = Communication;
 			sourceTree = "<group>";
@@ -1766,7 +1768,7 @@
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
 				C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */,
 				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,
-				C796204B18A6B30300D1BEAB /* SampleData.m in Sources */,
+				C796204B18A6B30300D1BEAB /* SampleData.mm in Sources */,
 				C72C1DB518AAF9ED006D136F /* S3Helper.m in Sources */,
 				C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */,
 				C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */,

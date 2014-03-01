@@ -83,9 +83,9 @@
     self.activityIndicator.hidden=NO;
     
     if (!self.titleLabel){
-        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,5,300,45) duration:4.0 andFadeLength:15.0f];
+        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,0,300,45) duration:4.0 andFadeLength:15.0f];
         marqueeLabel.text = self.tag.name;
-        marqueeLabel.font = [UIFont fontWithName:@"Futura" size:32];
+        marqueeLabel.font = [UIFont fontWithName:@"Futura" size:24];
         marqueeLabel.textAlignment = NSTextAlignmentCenter;
         marqueeLabel.autoresizesSubviews = NO;
         marqueeLabel.textColor = [UIColor whiteColor];

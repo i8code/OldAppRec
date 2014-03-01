@@ -82,7 +82,7 @@
         if (i/(float)self.dataLength>self.highlightPercent){
             [self.mainColor setFill];
         }
-        CGRect rect = CGRectMake(i*step, mid-height, step*1.1   , height*2);
+        CGRect rect = CGRectMake(i*step, mid-height, step*2, height*2);
         CGContextFillRect(context, rect);
     }
     

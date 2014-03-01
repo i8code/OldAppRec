@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property (weak, nonatomic) IBOutlet UIView *spacerView;
+- (IBAction)likePressed:(id)sender;
 
 
 @property(nonatomic) BOOL comment;
@@ -33,7 +35,6 @@
 
 -(void)setEnabled:(BOOL)enabled;
 - (IBAction)playClicked:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *likeClicked;
 
 -(void)updateImage;
 

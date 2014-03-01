@@ -89,8 +89,7 @@
         if ([expandedSections containsIndex:section])
         {
             Recording* recording = (Recording*)[self.recordings objectAtIndex:section];
-            
-            return recording.childrenLength+1; // return rows when expanded
+            return recording.childrenLength+2; // return rows when expanded
         }
         
         return 1; // only top row showing
@@ -153,7 +152,7 @@
             }
             
             Recording* recording = [self.recordings objectAtIndex:indexPath.section];
-            Recording* comment = [recording.children objectAtIndex:indexPath.row-1];
+            Recording* comment = [recording.children objectAtIndex:indexPath.row-2];
             [((TagTableViewCell*)cell) setRecording:comment];
             [((TagTableViewCell*)cell) setComment:YES];
         }
