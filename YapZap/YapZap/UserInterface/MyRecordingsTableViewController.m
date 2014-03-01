@@ -1,42 +1,22 @@
 //
-//  TagTableViewController.m
+//  MyRecordingsTableViewController.m
 //  YapZap
 //
-//  Created by Jason R Boggess on 2/8/14.
+//  Created by Jason R Boggess on 3/1/14.
 //  Copyright (c) 2014 YapZap. All rights reserved.
 //
 
-#import "TagTableViewController.h"
-#import "TagTableViewCell.h"
-#import "Recording.h"
-#import "UIPopoverController+iPhone.h"
-#import "LikeViewController.h"
+#import "MyRecordingsTableViewController.h"
 
-@interface TagTableViewController ()
-
-@property (nonatomic, strong) UIPopoverController* likePopover;
+@interface MyRecordingsTableViewController ()
 
 @end
 
-@implementation TagTableViewController
-@synthesize records = _records;
+@implementation MyRecordingsTableViewController
 
-
--(void)setRecords:(NSArray *)records{
-    _records = records;
-    [self.tableView reloadData];
-}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -52,15 +32,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [self setCell:nil playing:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,78 +44,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.records count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    TagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TagTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Recording* recording = [self.records objectAtIndex:indexPath.row];
-    cell.delegate = self;
-    [cell setRecording:recording];
+    // Configure the cell...
+    
     return cell;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
-
-- (void)refresh
-{
-    [self performSelector:@selector(updateTable) withObject:nil
-               afterDelay:1];
-}
-- (void)updateTable
-{
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
-}
-
-
--(void)setCell:(TagTableViewCell*)playingCell playing:(bool)playing{
-    NSArray* cells = [self.tableView visibleCells];
-    
-    self.tableView.scrollEnabled = !playing;
-    
-    for (TagTableViewCell* cell in cells){
-        if (playing && ![cell isEqual:playingCell]){
-            [cell setEnabled:NO];
-        }
-        else {
-            [cell setEnabled:YES];
-            if (playing){
-                //show popup
-                [self.likePopover dismissPopoverAnimated:NO];
-                UIView* me = playingCell.playButton;
-                UIViewController *likeViewController = [[LikeViewController alloc] initWithNibName:@"LikeViewController" bundle:nil];
-                self.likePopover = [[UIPopoverController alloc] initWithContentViewController:likeViewController];
-                CGRect bounds = CGRectMake(me.frame.origin.x, me.frame.origin.y, me.frame.size.width, me.frame.size.height);
-                [self.likePopover presentPopoverFromRect:bounds inView:playingCell permittedArrowDirections:(UIPopoverArrowDirectionUp) animated:YES];
-                self.likePopover.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
-            }
-        }
-    }
-    
-    
-}
-
-
 
 /*
 // Override to support conditional editing of the table view.

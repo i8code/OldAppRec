@@ -133,6 +133,7 @@
 }
 -(void)swipedLeft:(UIGestureRecognizer*)recognizer{
     
+    self.view.hidden=YES;
     //Go home
     [self.navigationController popToRootViewControllerAnimated:YES];
     

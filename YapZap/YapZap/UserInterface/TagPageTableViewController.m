@@ -10,7 +10,6 @@
 #import "DTCustomColoredAccessory.h"
 #import "Recording.h"
 #import "TagTableViewCell.h"
-#import "CommentTableViewCell.h"
 #import "RecordNewTableViewCell.h"
 
 @interface TagPageTableViewController ()

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C701DBE318C0139D00FD407A /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE218C0139D00FD407A /* CommentTableViewCell.m */; };
-		C701DBE518C013BC00FD407A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */; };
 		C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */; };
 		C701DBEA18C0190100FD407A /* RecordNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */; };
 		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
@@ -51,8 +49,15 @@
 		C747FC4A18A816660083A533 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4818A816660083A533 /* SearchViewController.m */; };
 		C747FC4B18A816660083A533 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747FC4918A816660083A533 /* SearchViewController.xib */; };
 		C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */; };
-		C747FC5218A81D9C0083A533 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747FC5018A81D9C0083A533 /* LikeViewController.m */; };
-		C747FC5318A81D9C0083A533 /* LikeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747FC5118A81D9C0083A533 /* LikeViewController.xib */; };
+		C74A6C9D18C245E40086F78D /* record_button_black.png in Resources */ = {isa = PBXBuildFile; fileRef = C74A6C9C18C245E40086F78D /* record_button_black.png */; };
+		C74A6CA218C249D80086F78D /* MyRecordingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CA018C249D80086F78D /* MyRecordingsTableViewController.m */; };
+		C74A6CA318C249D80086F78D /* MyRecordingsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CA118C249D80086F78D /* MyRecordingsTableViewController.xib */; };
+		C74A6CA718C249ED0086F78D /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CA518C249ED0086F78D /* SearchTableViewController.m */; };
+		C74A6CA818C249ED0086F78D /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CA618C249ED0086F78D /* SearchTableViewController.xib */; };
+		C74A6CAB18C24E4D0086F78D /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CAA18C24E4D0086F78D /* SearchCell.m */; };
+		C74A6CAD18C255720086F78D /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CAC18C255720086F78D /* SearchCell.xib */; };
+		C74A6CB018C255800086F78D /* MyRecordingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CAF18C255800086F78D /* MyRecordingsCell.m */; };
+		C74A6CB218C255E10086F78D /* MyRecordingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */; };
 		C75E7B6818BC3B0B00160720 /* sample_waveform.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B4218BC3B0A00160720 /* sample_waveform.png */; };
 		C75E7B6B18BC3B0B00160720 /* pause_button.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B4518BC3B0B00160720 /* pause_button.png */; };
 		C75E7B6C18BC3B0B00160720 /* play_button_small.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B4618BC3B0B00160720 /* play_button_small.png */; };
@@ -120,16 +125,11 @@
 		C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206518A70BD200D1BEAB /* libz.dylib */; };
 		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
 		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
-		C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6D918A6591100AA1BDE /* TagTableViewController.m */; };
-		C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */; };
 		C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */; };
 		C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */; };
 		C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79EF6F618A66D8B00AA1BDE /* QuartzCore.framework */; };
 		C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */; };
 		C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */; };
-		C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */; };
-		C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */; };
-		C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF287418A1E73A0053DB9C /* HomePageViewController.m */; };
 		C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D764BB18B2B18D007B86B2 /* Tag.m */; };
 /* End PBXBuildFile section */
 
@@ -207,9 +207,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C701DBE118C0139D00FD407A /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTableViewCell.h; path = UserInterface/CommentTableViewCell.h; sourceTree = "<group>"; };
-		C701DBE218C0139D00FD407A /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTableViewCell.m; path = UserInterface/CommentTableViewCell.m; sourceTree = "<group>"; };
-		C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentTableViewCell.xib; path = UserInterface/CommentTableViewCell.xib; sourceTree = "<group>"; };
 		C701DBE618C018EB00FD407A /* RecordNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordNewTableViewCell.h; path = UserInterface/RecordNewTableViewCell.h; sourceTree = "<group>"; };
 		C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordNewTableViewCell.m; path = UserInterface/RecordNewTableViewCell.m; sourceTree = "<group>"; };
 		C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordNewTableViewCell.xib; path = UserInterface/RecordNewTableViewCell.xib; sourceTree = "<group>"; };
@@ -501,9 +498,19 @@
 		C747FC4918A816660083A533 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = UserInterface/SearchViewController.xib; sourceTree = "<group>"; };
 		C747FC4C18A8169C0083A533 /* UIPopoverController+iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPopoverController+iPhone.h"; path = "UserInterface/UIPopoverController+iPhone.h"; sourceTree = "<group>"; };
 		C747FC4D18A8169C0083A533 /* UIPopoverController+iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIPopoverController+iPhone.m"; path = "UserInterface/UIPopoverController+iPhone.m"; sourceTree = "<group>"; };
-		C747FC4F18A81D9C0083A533 /* LikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LikeViewController.h; path = UserInterface/LikeViewController.h; sourceTree = "<group>"; };
-		C747FC5018A81D9C0083A533 /* LikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LikeViewController.m; path = UserInterface/LikeViewController.m; sourceTree = "<group>"; };
-		C747FC5118A81D9C0083A533 /* LikeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LikeViewController.xib; path = UserInterface/LikeViewController.xib; sourceTree = "<group>"; };
+		C74A6C9C18C245E40086F78D /* record_button_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_button_black.png; sourceTree = "<group>"; };
+		C74A6C9F18C249D80086F78D /* MyRecordingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecordingsTableViewController.h; path = UserInterface/MyRecordingsTableViewController.h; sourceTree = "<group>"; };
+		C74A6CA018C249D80086F78D /* MyRecordingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecordingsTableViewController.m; path = UserInterface/MyRecordingsTableViewController.m; sourceTree = "<group>"; };
+		C74A6CA118C249D80086F78D /* MyRecordingsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyRecordingsTableViewController.xib; path = UserInterface/MyRecordingsTableViewController.xib; sourceTree = "<group>"; };
+		C74A6CA418C249ED0086F78D /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewController.h; path = UserInterface/SearchTableViewController.h; sourceTree = "<group>"; };
+		C74A6CA518C249ED0086F78D /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewController.m; path = UserInterface/SearchTableViewController.m; sourceTree = "<group>"; };
+		C74A6CA618C249ED0086F78D /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchTableViewController.xib; path = UserInterface/SearchTableViewController.xib; sourceTree = "<group>"; };
+		C74A6CA918C24E4D0086F78D /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchCell.h; path = UserInterface/SearchCell.h; sourceTree = "<group>"; };
+		C74A6CAA18C24E4D0086F78D /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchCell.m; path = UserInterface/SearchCell.m; sourceTree = "<group>"; };
+		C74A6CAC18C255720086F78D /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchCell.xib; path = UserInterface/SearchCell.xib; sourceTree = "<group>"; };
+		C74A6CAE18C255800086F78D /* MyRecordingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecordingsCell.h; path = UserInterface/MyRecordingsCell.h; sourceTree = "<group>"; };
+		C74A6CAF18C255800086F78D /* MyRecordingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecordingsCell.m; path = UserInterface/MyRecordingsCell.m; sourceTree = "<group>"; };
+		C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyRecordingsCell.xib; path = UserInterface/MyRecordingsCell.xib; sourceTree = "<group>"; };
 		C75E7B4218BC3B0A00160720 /* sample_waveform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_waveform.png; sourceTree = "<group>"; };
 		C75E7B4518BC3B0B00160720 /* pause_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause_button.png; sourceTree = "<group>"; };
 		C75E7B4618BC3B0B00160720 /* play_button_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button_small.png; sourceTree = "<group>"; };
@@ -595,9 +602,6 @@
 		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
 		C798E89E18B4364B00ED5890 /* CloudTagElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudTagElement.h; path = UserInterface/CloudTagElement.h; sourceTree = "<group>"; };
 		C798E89F18B4364B00ED5890 /* CloudTagElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CloudTagElement.m; path = UserInterface/CloudTagElement.m; sourceTree = "<group>"; };
-		C79EF6D818A6591100AA1BDE /* TagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewController.h; path = UserInterface/TagTableViewController.h; sourceTree = "<group>"; };
-		C79EF6D918A6591100AA1BDE /* TagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewController.m; path = UserInterface/TagTableViewController.m; sourceTree = "<group>"; };
-		C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewController.xib; path = UserInterface/TagTableViewController.xib; sourceTree = "<group>"; };
 		C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TagTableViewCell.xib; path = UserInterface/TagTableViewCell.xib; sourceTree = "<group>"; };
 		C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagTableViewCell.h; path = UserInterface/TagTableViewCell.h; sourceTree = "<group>"; };
 		C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagTableViewCell.m; path = UserInterface/TagTableViewCell.m; sourceTree = "<group>"; };
@@ -606,11 +610,6 @@
 		C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarqueeLabel.m; path = UserInterface/lib/MarqueeLabel.m; sourceTree = "<group>"; };
 		C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredImageView.h; path = UserInterface/FilteredImageView.h; sourceTree = "<group>"; };
 		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
-		C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EpisodeViewController.h; path = UserInterface/EpisodeViewController.h; sourceTree = "<group>"; };
-		C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EpisodeViewController.m; path = UserInterface/EpisodeViewController.m; sourceTree = "<group>"; };
-		C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EpisodeViewController.xib; path = UserInterface/EpisodeViewController.xib; sourceTree = "<group>"; };
-		C7CF287318A1E73A0053DB9C /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageViewController.h; path = UserInterface/HomePageViewController.h; sourceTree = "<group>"; };
-		C7CF287418A1E73A0053DB9C /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageViewController.m; path = UserInterface/HomePageViewController.m; sourceTree = "<group>"; };
 		C7D764BA18B2B18D007B86B2 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Models/Tag.h; sourceTree = "<group>"; };
 		C7D764BB18B2B18D007B86B2 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Models/Tag.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -654,6 +653,8 @@
 		C706248218B95F5F00D1BEB0 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
+				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
 				C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */,
 				C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */,
 				C706247918B9520700D1BEB0 /* YapZapMainControllerProtocol.h */,
@@ -667,9 +668,10 @@
 			name = Parent;
 			sourceTree = "<group>";
 		};
-		C706248318B95F6800D1BEB0 /* MainFlow */ = {
+		C706248318B95F6800D1BEB0 /* Main Flow */ = {
 			isa = PBXGroup;
 			children = (
+				C75E7BAD18BF692F00160720 /* Table Views */,
 				C798E89218B4244400ED5890 /* TagCloudViewController.h */,
 				C798E89318B4244400ED5890 /* TagCloudViewController.m */,
 				C706247D18B958DA00D1BEB0 /* TagCloudViewController.xib */,
@@ -677,10 +679,10 @@
 				C706247518B9371000D1BEB0 /* TagPageViewController.m */,
 				C706247618B9371000D1BEB0 /* TagPageViewController.xib */,
 			);
-			name = MainFlow;
+			name = "Main Flow";
 			sourceTree = "<group>";
 		};
-		C706248418B95F6F00D1BEB0 /* RecordingFlow */ = {
+		C706248418B95F6F00D1BEB0 /* Recording Flow */ = {
 			isa = PBXGroup;
 			children = (
 				C796205518A7035400D1BEAB /* RecordControllerViewController.h */,
@@ -690,12 +692,13 @@
 				C761D05418ADA286003947C1 /* UploadViewController.h */,
 				C761D05518ADA286003947C1 /* UploadViewController.m */,
 			);
-			name = RecordingFlow;
+			name = "Recording Flow";
 			sourceTree = "<group>";
 		};
 		C706248518B95F7500D1BEB0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C74A6C9E18C249640086F78D /* Table Views */,
 				C747FC1F18A738EC0083A533 /* LoginViewController.h */,
 				C747FC2018A738EC0083A533 /* LoginViewController.m */,
 				C747FC4418A7FCC60083A533 /* SettingsViewController.h */,
@@ -705,6 +708,7 @@
 				C747FC4918A816660083A533 /* SearchViewController.xib */,
 				C796203718A6825E00D1BEAB /* LoadingViewController.h */,
 				C796203818A6825E00D1BEAB /* LoadingViewController.m */,
+				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1298,6 +1302,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C74A6C9E18C249640086F78D /* Table Views */ = {
+			isa = PBXGroup;
+			children = (
+				C74A6C9F18C249D80086F78D /* MyRecordingsTableViewController.h */,
+				C74A6CA018C249D80086F78D /* MyRecordingsTableViewController.m */,
+				C74A6CA118C249D80086F78D /* MyRecordingsTableViewController.xib */,
+				C74A6CA418C249ED0086F78D /* SearchTableViewController.h */,
+				C74A6CA518C249ED0086F78D /* SearchTableViewController.m */,
+				C74A6CA618C249ED0086F78D /* SearchTableViewController.xib */,
+				C74A6CA918C24E4D0086F78D /* SearchCell.h */,
+				C74A6CAA18C24E4D0086F78D /* SearchCell.m */,
+				C74A6CAC18C255720086F78D /* SearchCell.xib */,
+				C74A6CAE18C255800086F78D /* MyRecordingsCell.h */,
+				C74A6CAF18C255800086F78D /* MyRecordingsCell.m */,
+				C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */,
+			);
+			name = "Table Views";
+			sourceTree = "<group>";
+		};
 		C75E7B8E18BC3B1300160720 /* Zeus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,7 +1347,7 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
-		C75E7BAD18BF692F00160720 /* Tableviews */ = {
+		C75E7BAD18BF692F00160720 /* Table Views */ = {
 			isa = PBXGroup;
 			children = (
 				C75E7BB318BF6A7800160720 /* DTCustomColoredAccessory.h */,
@@ -1335,14 +1358,11 @@
 				C79EF6E118A65F0700AA1BDE /* TagTableViewCell.h */,
 				C79EF6E218A65F0700AA1BDE /* TagTableViewCell.m */,
 				C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */,
-				C701DBE118C0139D00FD407A /* CommentTableViewCell.h */,
-				C701DBE218C0139D00FD407A /* CommentTableViewCell.m */,
-				C701DBE418C013BC00FD407A /* CommentTableViewCell.xib */,
 				C701DBE618C018EB00FD407A /* RecordNewTableViewCell.h */,
 				C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */,
 				C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */,
 			);
-			name = Tableviews;
+			name = "Table Views";
 			sourceTree = "<group>";
 		};
 		C761D02718AD7777003947C1 /* Recording */ = {
@@ -1380,25 +1400,10 @@
 			isa = PBXGroup;
 			children = (
 				C761D04918AD87D3003947C1 /* CustomViews */,
-				C75E7BAD18BF692F00160720 /* Tableviews */,
 				C706248518B95F7500D1BEB0 /* Settings */,
-				C706248418B95F6F00D1BEB0 /* RecordingFlow */,
-				C706248318B95F6800D1BEB0 /* MainFlow */,
+				C706248418B95F6F00D1BEB0 /* Recording Flow */,
+				C706248318B95F6800D1BEB0 /* Main Flow */,
 				C706248218B95F5F00D1BEB0 /* Parent */,
-				C7CF286E18A1E5ED0053DB9C /* EpisodeViewController.h */,
-				C7CF286F18A1E5ED0053DB9C /* EpisodeViewController.m */,
-				C7CF287018A1E5ED0053DB9C /* EpisodeViewController.xib */,
-				C7CF287318A1E73A0053DB9C /* HomePageViewController.h */,
-				C7CF287418A1E73A0053DB9C /* HomePageViewController.m */,
-				C79EF6D818A6591100AA1BDE /* TagTableViewController.h */,
-				C79EF6D918A6591100AA1BDE /* TagTableViewController.m */,
-				C79EF6DA18A6591100AA1BDE /* TagTableViewController.xib */,
-				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
-				C796203C18A6857500D1BEAB /* IndexedViewController.h */,
-				C796203D18A6857500D1BEAB /* IndexedViewController.m */,
-				C747FC4F18A81D9C0083A533 /* LikeViewController.h */,
-				C747FC5018A81D9C0083A533 /* LikeViewController.m */,
-				C747FC5118A81D9C0083A533 /* LikeViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1459,6 +1464,7 @@
 		C7CF287618A1F0F90053DB9C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C74A6C9C18C245E40086F78D /* record_button_black.png */,
 				C75E7B9D18BC3B2600160720 /* Mocks */,
 				C75E7B8E18BC3B1300160720 /* Zeus */,
 				C75E7B4218BC3B0A00160720 /* sample_waveform.png */,
@@ -1686,12 +1692,14 @@
 				C75E7BB218BF69DA00160720 /* TagPageTableViewController.xib in Resources */,
 				C75E7B7E18BC3B0B00160720 /* pause_button_small.png in Resources */,
 				C75E7B7B18BC3B0B00160720 /* cancel_small_button.png in Resources */,
+				C74A6CA818C249ED0086F78D /* SearchTableViewController.xib in Resources */,
 				C75E7B8C18BC3B0B00160720 /* bolt_white.png in Resources */,
 				C75E7BA918BC3B3200160720 /* TagScreen.png in Resources */,
 				C75E7B7918BC3B0B00160720 /* circle_icon.png in Resources */,
 				C75E7B6C18BC3B0B00160720 /* play_button_small.png in Resources */,
 				C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */,
 				C75E7B6B18BC3B0B00160720 /* pause_button.png in Resources */,
+				C74A6CAD18C255720086F78D /* SearchCell.xib in Resources */,
 				C75E7B7F18BC3B0B00160720 /* stop_button_small.png in Resources */,
 				C75E7B7018BC3B0B00160720 /* heart_empty.png in Resources */,
 				C75E7B7718BC3B0B00160720 /* plus_icon.png in Resources */,
@@ -1712,29 +1720,28 @@
 				C75E7B9718BC3B2200160720 /* zeus elements-09.png in Resources */,
 				C75E7B6D18BC3B0B00160720 /* comments_full.png in Resources */,
 				C75E7B8D18BC3B0B00160720 /* bolt_glow.png in Resources */,
+				C74A6CB218C255E10086F78D /* MyRecordingsCell.xib in Resources */,
 				C75E7B8618BC3B0B00160720 /* play_icon.png in Resources */,
 				C75E7BA818BC3B3200160720 /* TagPlayingScreen.png in Resources */,
 				C75E7B8418BC3B0B00160720 /* trash_button_small.png in Resources */,
 				C75E7B7D18BC3B0B00160720 /* smile_icon.png in Resources */,
 				C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */,
 				C75E7B6818BC3B0B00160720 /* sample_waveform.png in Resources */,
-				C701DBE518C013BC00FD407A /* CommentTableViewCell.xib in Resources */,
-				C747FC5318A81D9C0083A533 /* LikeViewController.xib in Resources */,
 				C75E7B8218BC3B0B00160720 /* back_icon.png in Resources */,
 				C75E7B7618BC3B0B00160720 /* gear_icon.png in Resources */,
 				C75E7B6F18BC3B0B00160720 /* heart_full.png in Resources */,
 				C7371F4E18A1DFEE007FB490 /* Main.storyboard in Resources */,
 				C75E7B7A18BC3B0B00160720 /* search_icon.png in Resources */,
 				C75E7B8118BC3B0B00160720 /* play_small_button.png in Resources */,
-				C79EF6DC18A6591100AA1BDE /* TagTableViewController.xib in Resources */,
 				C75E7B9A18BC3B2200160720 /* zeus elements-12.png in Resources */,
+				C74A6C9D18C245E40086F78D /* record_button_black.png in Resources */,
 				C75E7B8518BC3B0B00160720 /* share_button_small.png in Resources */,
 				C75E7B7518BC3B0B00160720 /* sharing_icon.png in Resources */,
 				C706247E18B958DA00D1BEB0 /* TagCloudViewController.xib in Resources */,
 				C75E7B8A18BC3B0B00160720 /* color_wheel.png in Resources */,
 				C75E7B9C18BC3B2200160720 /* zeus elements-14.png in Resources */,
 				C75E7BA518BC3B3200160720 /* RecordingScreen.png in Resources */,
-				C7CF287218A1E5ED0053DB9C /* EpisodeViewController.xib in Resources */,
+				C74A6CA318C249D80086F78D /* MyRecordingsTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1754,23 +1761,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				C796205A18A703F600D1BEAB /* SetTagViewController.m in Sources */,
-				C747FC5218A81D9C0083A533 /* LikeViewController.m in Sources */,
 				C761D05018AD9992003947C1 /* SharingBundle.m in Sources */,
 				C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */,
 				C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */,
 				C761D04D18AD8821003947C1 /* WaveformView.m in Sources */,
 				C75E7BB518BF6A7800160720 /* DTCustomColoredAccessory.m in Sources */,
+				C74A6CA718C249ED0086F78D /* SearchTableViewController.m in Sources */,
 				C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */,
 				C7371F4B18A1DFEE007FB490 /* AppDelegate.m in Sources */,
 				C72C1DAA18AAE8B2006D136F /* Novocaine.mm in Sources */,
 				C7371F4718A1DFEE007FB490 /* main.m in Sources */,
+				C74A6CA218C249D80086F78D /* MyRecordingsTableViewController.m in Sources */,
 				C761D05618ADA286003947C1 /* UploadViewController.m in Sources */,
 				C796204518A6A74000D1BEAB /* Recording.m in Sources */,
 				C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */,
 				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,
 				C796204B18A6B30300D1BEAB /* SampleData.mm in Sources */,
 				C72C1DB518AAF9ED006D136F /* S3Helper.m in Sources */,
-				C7CF287518A1E73A0053DB9C /* HomePageViewController.m in Sources */,
 				C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */,
 				C747FC4618A7FCC60083A533 /* SettingsViewController.m in Sources */,
 				C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */,
@@ -1778,11 +1785,11 @@
 				C747FC2218A738EC0083A533 /* LoginViewController.m in Sources */,
 				C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */,
 				C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */,
+				C74A6CAB18C24E4D0086F78D /* SearchCell.m in Sources */,
 				C706247718B9371000D1BEB0 /* TagPageViewController.m in Sources */,
 				C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */,
 				C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */,
 				C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */,
-				C701DBE318C0139D00FD407A /* CommentTableViewCell.m in Sources */,
 				C761D03318AD7799003947C1 /* Recorder.mm in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
 				C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */,
@@ -1791,16 +1798,15 @@
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,
 				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,
 				C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */,
-				C79EF6DB18A6591100AA1BDE /* TagTableViewController.m in Sources */,
 				C706248118B95EEE00D1BEB0 /* YapZapViewController.m in Sources */,
 				C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */,
-				C7CF287118A1E5ED0053DB9C /* EpisodeViewController.m in Sources */,
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
 				C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */,
 				C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
 				C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */,
+				C74A6CB018C255800086F78D /* MyRecordingsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

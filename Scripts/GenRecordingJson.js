@@ -23,7 +23,7 @@ function genRecording(parentId){
     var b = Math.random()*10;
 
     for (var i=0;i<420;i++){
-        waveform_data[i] = (Math.sin(a*i/500.0+b)*5).toFixed(5);
+        waveform_data[i] = (Math.sin(a*i/500.0+b)*2.3).toFixed(5);
     }
 
     var parent_type = parentId?"REC":"TAG";

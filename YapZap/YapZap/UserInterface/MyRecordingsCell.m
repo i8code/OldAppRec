@@ -1,15 +1,14 @@
 //
-//  RecordingTableViewCell.m
+//  MyRecordingsCell.m
 //  YapZap
 //
-//  Created by Jason R Boggess on 2/27/14.
+//  Created by Jason R Boggess on 3/1/14.
 //  Copyright (c) 2014 YapZap. All rights reserved.
 //
 
-#import "CommentTableViewCell.h"
+#import "MyRecordingsCell.h"
 
-@implementation CommentTableViewCell
-@synthesize recording = _recording;
+@implementation MyRecordingsCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,11 +24,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
--(void)setRecording:(Recording *)recording{
-    _recording = recording;
-    //TODO
 }
 
 @end

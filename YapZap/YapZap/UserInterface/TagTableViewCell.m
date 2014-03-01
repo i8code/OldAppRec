@@ -10,7 +10,7 @@
 #import "Recording.h"
 #import "FilteredImageView.h"
 #import "Util.h"
-#import "TagTableViewController.h"
+
 #import "WaveformView.h"
 
 @interface TagTableViewCell()
@@ -110,7 +110,7 @@
 }
 
 -(void)stopPlaying{
-    [self.delegate setCell:self playing:NO];
+    //[self.delegate setCell:self playing:NO];
     [self.playButton setImage:[UIImage imageNamed:@"play_small_button.png"] forState:UIControlStateNormal];
         
     [self.timer invalidate];
@@ -125,7 +125,7 @@
 -(void)startPlaying{
     
     self.isPlaying = true;
-    [self.delegate setCell:self playing:YES];
+    //[self.delegate setCell:self playing:YES];
     [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
     
     self.timerCount = 0;
