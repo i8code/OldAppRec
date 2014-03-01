@@ -12,6 +12,7 @@
 #import "Util.h"
 #import "CloudTagElement.h"
 #import "TagPageViewController.h"
+#import "NotificationTableViewController.h"
 
 @interface TagCloudViewController ()
 
@@ -76,16 +77,16 @@
             
             for (Tag* tag in self.popularTags){
                 
-                int y = (count%10);
-                int x = (count/10);
+                int y = (count%8);
+                int x = (count/8);
                 
                 count++;
                 
                 CGPoint position = CGPointMake(
-                                               10+x*self.canvasWidth/12.0 + (arc4random() % 40),
-                                               35+y*self.canvasHeight/13.0 + (arc4random() % 30));
+                                               10+x*self.canvasWidth/10.0 + (arc4random() % 5)+30*(y%2==0?1:0),
+                                               10+y*self.canvasHeight/9.0 + (arc4random() % 10)+10*(x%2==0?1:0));
                 
-                int depth = (arc4random() % 40)+80;
+                int depth = (arc4random() % 20)+80;
                 CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag position:position andDepth:depth andCanvasWidth:self.canvasWidth inView:self.cloudView andOnclick:self.gotoTagBlock];
                 
                 [buttons addObject:element];
@@ -119,6 +120,13 @@
     self.swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
     self.swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:self.swipeRight];
+    
+    if (!self.notificationView){
+        self.notificationView = [[NotificationTableViewController alloc] initWithNibName:@"NotificationTableViewController" bundle:nil];
+        [self addChildViewController:self.notificationView];
+        [self.notificationView.view setFrame:self.historyView.bounds];
+        [self.historyView addSubview:self.notificationView.view];
+    }
     
     self.parent.homeButton.hidden=YES;
     

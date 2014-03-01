@@ -50,7 +50,6 @@
     if (recording.childrenLength>0){
         NSArray* childrenJson = [dictionary valueForKey:@"children"];
         NSMutableArray* children = [[NSMutableArray alloc] initWithCapacity:recording.childrenLength];
-        NSLog(@"%ld", (long)recording.childrenLength);
         for (int i=0;i<recording.childrenLength;i++){
             Recording* child = [Recording fromJSON:childrenJson[i]];
             [children addObject:child];

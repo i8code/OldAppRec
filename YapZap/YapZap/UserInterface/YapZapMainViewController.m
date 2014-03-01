@@ -175,7 +175,7 @@
     [self createMainButtons];
     
     if (!self.contentView) {
-        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.homeButton.frame.size.height-self.homeButton.frame.origin.y)];
+        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.homeButton.frame.size.height+self.homeButton.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.homeButton.frame.size.height-70)]; //70 is the height of the top bar and bottom bar;
         [self.view addSubview:self.contentView];
     }
     [self createBottomBar];

@@ -58,6 +58,10 @@
 		C74A6CAD18C255720086F78D /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CAC18C255720086F78D /* SearchCell.xib */; };
 		C74A6CB018C255800086F78D /* MyRecordingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CAF18C255800086F78D /* MyRecordingsCell.m */; };
 		C74A6CB218C255E10086F78D /* MyRecordingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */; };
+		C74A6CB618C270690086F78D /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CB418C270690086F78D /* NotificationTableViewController.m */; };
+		C74A6CB718C270690086F78D /* NotificationTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CB518C270690086F78D /* NotificationTableViewController.xib */; };
+		C74A6CBA18C270D60086F78D /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A6CB918C270D60086F78D /* NotificationCell.m */; };
+		C74A6CBC18C270E80086F78D /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C74A6CBB18C270E80086F78D /* NotificationCell.xib */; };
 		C75E7B6818BC3B0B00160720 /* sample_waveform.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B4218BC3B0A00160720 /* sample_waveform.png */; };
 		C75E7B6B18BC3B0B00160720 /* pause_button.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B4518BC3B0B00160720 /* pause_button.png */; };
 		C75E7B6C18BC3B0B00160720 /* play_button_small.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B4618BC3B0B00160720 /* play_button_small.png */; };
@@ -511,6 +515,12 @@
 		C74A6CAE18C255800086F78D /* MyRecordingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecordingsCell.h; path = UserInterface/MyRecordingsCell.h; sourceTree = "<group>"; };
 		C74A6CAF18C255800086F78D /* MyRecordingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecordingsCell.m; path = UserInterface/MyRecordingsCell.m; sourceTree = "<group>"; };
 		C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyRecordingsCell.xib; path = UserInterface/MyRecordingsCell.xib; sourceTree = "<group>"; };
+		C74A6CB318C270690086F78D /* NotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationTableViewController.h; path = UserInterface/NotificationTableViewController.h; sourceTree = "<group>"; };
+		C74A6CB418C270690086F78D /* NotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationTableViewController.m; path = UserInterface/NotificationTableViewController.m; sourceTree = "<group>"; };
+		C74A6CB518C270690086F78D /* NotificationTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotificationTableViewController.xib; path = UserInterface/NotificationTableViewController.xib; sourceTree = "<group>"; };
+		C74A6CB818C270D60086F78D /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = UserInterface/NotificationCell.h; sourceTree = "<group>"; };
+		C74A6CB918C270D60086F78D /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = UserInterface/NotificationCell.m; sourceTree = "<group>"; };
+		C74A6CBB18C270E80086F78D /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotificationCell.xib; path = UserInterface/NotificationCell.xib; sourceTree = "<group>"; };
 		C75E7B4218BC3B0A00160720 /* sample_waveform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_waveform.png; sourceTree = "<group>"; };
 		C75E7B4518BC3B0B00160720 /* pause_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause_button.png; sourceTree = "<group>"; };
 		C75E7B4618BC3B0B00160720 /* play_button_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button_small.png; sourceTree = "<group>"; };
@@ -1361,6 +1371,12 @@
 				C701DBE618C018EB00FD407A /* RecordNewTableViewCell.h */,
 				C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */,
 				C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */,
+				C74A6CB318C270690086F78D /* NotificationTableViewController.h */,
+				C74A6CB418C270690086F78D /* NotificationTableViewController.m */,
+				C74A6CB518C270690086F78D /* NotificationTableViewController.xib */,
+				C74A6CB818C270D60086F78D /* NotificationCell.h */,
+				C74A6CB918C270D60086F78D /* NotificationCell.m */,
+				C74A6CBB18C270E80086F78D /* NotificationCell.xib */,
 			);
 			name = "Table Views";
 			sourceTree = "<group>";
@@ -1704,6 +1720,7 @@
 				C75E7B7018BC3B0B00160720 /* heart_empty.png in Resources */,
 				C75E7B7718BC3B0B00160720 /* plus_icon.png in Resources */,
 				C75E7B9918BC3B2200160720 /* zeus elements-11.png in Resources */,
+				C74A6CBC18C270E80086F78D /* NotificationCell.xib in Resources */,
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
 				C75E7B6E18BC3B0B00160720 /* comments_empty.png in Resources */,
 				C75E7B8818BC3B0B00160720 /* record_button.png in Resources */,
@@ -1741,6 +1758,7 @@
 				C75E7B8A18BC3B0B00160720 /* color_wheel.png in Resources */,
 				C75E7B9C18BC3B2200160720 /* zeus elements-14.png in Resources */,
 				C75E7BA518BC3B3200160720 /* RecordingScreen.png in Resources */,
+				C74A6CB718C270690086F78D /* NotificationTableViewController.xib in Resources */,
 				C74A6CA318C249D80086F78D /* MyRecordingsTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1790,10 +1808,12 @@
 				C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */,
 				C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */,
 				C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */,
+				C74A6CB618C270690086F78D /* NotificationTableViewController.m in Sources */,
 				C761D03318AD7799003947C1 /* Recorder.mm in Sources */,
 				C79EF6E318A65F0700AA1BDE /* TagTableViewCell.m in Sources */,
 				C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */,
 				C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */,
+				C74A6CBA18C270D60086F78D /* NotificationCell.m in Sources */,
 				C72C1DB818AAFB24006D136F /* Reachability.m in Sources */,
 				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,
 				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,

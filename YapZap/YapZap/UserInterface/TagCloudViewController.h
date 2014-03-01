@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FilteredImageView.h"
 
+@class NotificationTableViewController;
+
 @interface TagCloudViewController : YapZapViewController<YapZapMainControllerProtocol>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIView *cloudView;
+@property (weak, nonatomic) IBOutlet UIView *historyView;
 @property (weak, nonatomic) YapZapMainViewController* parent;
+@property (strong, nonatomic) NotificationTableViewController* notificationView;
 
 -(void)updateTagPositions;
 -(void)swipedRight:(UIGestureRecognizer*)recognizer;
