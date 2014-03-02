@@ -4,6 +4,7 @@ var $ = require('jquery');
 var RecordingUpdater = require('../modules/recording_update');
 var AudioMapper = require('../modules/audio_mapper');
 var async = require('async');
+var NotificationManager = require('../modules/set_notification');
 
 /* GET /tags/:name/recording 
  * or
@@ -112,6 +113,7 @@ exports.create = function(Models) {
                     RecordingUpdater.updateTagPopularity(Models, name);
                 } else {
                     RecordingUpdater.updateRecordingPopularity(Models, name);
+                    NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name);
                 }
 
                 res.status(201);
@@ -132,8 +134,6 @@ exports.updateById = function(Models) {
     return function(req, res) {
         console.log("here");
         if (!Security.check(req, res)) return;
-
-        console.log("here");
 
         var id = req.params.id;
 

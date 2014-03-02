@@ -2,6 +2,7 @@
 var Security = require('../modules/security');
 var $ = require('jquery');
 var RecordingUpdater = require('../modules/recording_update');
+var NotificationManager = require('../modules/set_notification');
 
 /*
  * GET /recordings/:id/likes
@@ -103,6 +104,8 @@ exports.create = function(Models) {
 
             res.status(201);
             res.send(like);
+
+            NotificationManager.addNotificationForLike(Models, username, id);
         });
     };
 };
