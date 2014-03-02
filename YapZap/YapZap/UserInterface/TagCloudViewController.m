@@ -41,14 +41,26 @@
 }
 
 -(void)updateTagPositions{
-    self.tagPositions+=.005;
+    static CGFloat speed = 0.02;//0.5;
+//    NSLog(@"%fl",self.tagPositions);
+//    NSLog(@"%fl",self.canvasWidth);
+    if (speed<=0.02){
+        self.tagPositions+=0.02;
+    }
+    else {
+//        CGFloat speed =(1*self.canvasWidth/60.0+self.tagPositions*0.005)/(self.tagPositions+self.canvasWidth/60.0);
+//        NSLog(@"%fl", speed);
+        self.tagPositions+=speed;
+    }
     for (CloudTagElement* cloudEl in self.buttons){
         [cloudEl setPosition:self.tagPositions];
     }
     
-    if (self.tagPositions>self.canvasWidth){
-        self.tagPositions=-2;
-    }
+    //speed*=0.95;
+    
+//    if (self.tagPositions>self.canvasWidth){
+//        self.tagPositions=0;
+//    }
     
 //    NSLog(@"%f", self.tagPositions/self.canvasWidth);
     
@@ -62,7 +74,7 @@
         [cloudEl removeFromSuperView];
     }
     
-    self.tagPositions=-2;
+    self.tagPositions=16;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.popularTags = [DataSource getPopularTags];
         
@@ -70,6 +82,74 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMutableArray* buttons = [[NSMutableArray alloc] init];
             
+            
+            int numberOfFlows=4;
+            self.canvasHeight = self.cloudView.frame.size.height;
+            
+            CGFloat rowHeight = 17.0f;
+            CGFloat nRows =(int)(self.canvasHeight/rowHeight-1);
+            
+            CGFloat* rowDepths = (CGFloat*)malloc(sizeof(CGFloat)*nRows);
+            
+            for (int i=0;i<nRows;i++){
+                rowDepths[i]=0;
+            }
+            
+            long tagLength = self.popularTags.count;
+            int timestamp = 0;
+            
+            for (int tagIndex=0;tagIndex<tagLength;){
+                
+                //Find available slots
+                NSMutableArray* slots = [[NSMutableArray alloc] init];
+                for (int i=0;i<nRows;i++){
+                    if (rowDepths[i]<=timestamp){
+                        [slots addObject:[NSNumber numberWithInt:i]];
+                    }
+                }
+                
+                long numberOfSelections = MIN(numberOfFlows, slots.count);
+                
+                NSMutableArray* selections = [[NSMutableArray alloc] initWithCapacity:numberOfSelections];
+                for (int i=0;i<numberOfSelections;i++){
+                    long selectedIndex =(NSUInteger)(arc4random()%slots.count);
+                    NSNumber* selection = [slots objectAtIndex:selectedIndex];
+                    [selections addObject:selection];
+                    [slots removeObjectAtIndex:selectedIndex];
+                }
+                
+                for (int i=0;i<numberOfSelections && tagIndex<tagLength;i++){
+                    long selectedRow = [[selections objectAtIndex:i] integerValue];
+                    
+                    Tag* tag = [self.popularTags objectAtIndex:tagIndex];
+                    
+                    if (timestamp<rowDepths[selectedRow]){
+                        NSLog(@"ERROR");
+                    }
+                    
+                    
+                    CGPoint position = CGPointMake(timestamp+self.cloudView.frame.size.width, (selectedRow+0.5)*rowHeight);
+                    
+                    int depth = 80;//(arc4random() % 20)+80;
+                    CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag position:position andDepth:depth  inView:self.cloudView andOnclick:self.gotoTagBlock];
+                    
+                    [buttons addObject:element];
+                    
+                    rowDepths[selectedRow]=timestamp+self.cloudView.frame.size.width*80.0/depth/5.0+(arc4random()%5);
+
+                    tagIndex++;
+                }
+                
+                timestamp+=(arc4random()%20)+15;
+            }
+            
+            CGFloat max=0;
+            for (int i=0;i<nRows;i++){
+                max = MAX(max, rowDepths[i]);
+            }
+            
+            self.canvasWidth = max;
+            /*
             
             int count=0;
             self.canvasWidth = self.cloudView.frame.size.width*self.popularTags.count/40;
@@ -90,9 +170,13 @@
                 CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag position:position andDepth:depth andCanvasWidth:self.canvasWidth inView:self.cloudView andOnclick:self.gotoTagBlock];
                 
                 [buttons addObject:element];
-            }
+            }*/
             
             self.buttons = buttons;
+            
+            for (CloudTagElement* element in self.buttons){
+                [element setCanvasWidth:self.canvasWidth];
+            }
             
             self.activityIndicator.hidden = YES;
             

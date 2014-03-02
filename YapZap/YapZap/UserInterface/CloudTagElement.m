@@ -14,20 +14,18 @@
 @property (nonatomic, strong) Tag* tag;
 @property (nonatomic, strong) UIButton* button;
 @property CGPoint startingPoint;
-@property CGFloat canvasWidth;
 @property CGFloat depth;
 @property (nonatomic, strong) void (^onclickBlock)(Tag*);
 @end
 
 @implementation CloudTagElement
--(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth andCanvasWidth:(CGFloat)canvasWidth inView:(UIView*)view andOnclick:(void (^)(Tag *))onclick{
+-(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth inView:(UIView*)view andOnclick:(void (^)(Tag *))onclick{
     self = [super init];
     if (self){
         self.tag = tag;
         self.startingPoint = origin;
         self.depth = depth;
         self.position = -100;
-        self.canvasWidth = canvasWidth;
         self.onclickBlock = onclick;
         
         self.button = [[UIButton alloc] init];
@@ -35,7 +33,7 @@
         [self.button setTitle:tag.name forState:UIControlStateNormal];
         [self.button setTitleColor:[Util colorFromMood:tag.mood andIntesity:tag.intensity] forState:UIControlStateNormal];
         
-        UIFont* font = [UIFont fontWithName:@"Futura" size:15*depth/80.0];
+        UIFont* font = [UIFont fontWithName:@"Futura" size:16*depth/80.0];
         
         [self.button.titleLabel setFont:font];
         
