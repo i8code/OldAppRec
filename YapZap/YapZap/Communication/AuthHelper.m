@@ -27,7 +27,7 @@
     
     NSData *out = [NSData dataWithBytes:digest length:CC_SHA512_DIGEST_LENGTH];
     
-    return [out description];
+    return [[[[out description] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""];
 }
 
 +(NSDictionary*)getTokens{

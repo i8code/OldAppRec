@@ -11,8 +11,8 @@
 @interface RestHelper : NSObject
 
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query;
-+(NSString*)post:(NSString*)url withQuery:(NSDictionary*)query;
-+(NSString*)put:(NSString*)url withQuery:(NSDictionary*)query;
++(NSString*)post:(NSString*)url withBody:(NSString*)body andQuery:(NSDictionary*)query;
++(NSString*)put:(NSString*)url  withBody:(NSString*)body andQuery:(NSDictionary*)query;
 +(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query;
 
 @end

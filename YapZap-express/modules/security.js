@@ -13,11 +13,17 @@ exports.getHash = function(secret, key, t){
 
 exports.check = function(req, res){
 
-    return true; //for now
+    //return true; //for now
 
     var t_in = req.query.t;
     var key = req.query.key;
     var token = req.query.token;
+
+    // console.log("security check");
+
+    // console.log(t_in);
+    // console.log(key);
+    // console.log(token);
 
     if (!t_in || !key || !token){
         res.send(401);
@@ -28,14 +34,21 @@ exports.check = function(req, res){
         var user = users[i];
         var hash = exports.getHash(user.secret, user.key, t_in);
 
-        var t = (new Date()).getTime();
+        var t = (new Date()).getTime()/1000;
         var t_in_int = +t_in;
+
+        // console.log("computed hash");
+        // console.log(hash);
+        // console.log(t);
+        // console.log(t_in);
+        // console.log("time "+(t_in_int<t && t_in_int+30000>t));
 
         if (hash===token && key===user.key && t_in_int<t && t_in_int+30000>t){
             return true;
         }
         
     }
+    console.log("unauthorized");
     res.send(401);
     return false;
 };
