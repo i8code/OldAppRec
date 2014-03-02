@@ -13,6 +13,7 @@ var Models = require('./schema/schema.js');
 var Tag = Models.Tag;
 var Recording = Models.Recording;
 var Like = Models.Like;
+var Notification = Models.Notification;
 
 var app = express();
 
@@ -41,6 +42,7 @@ var routes = require('./routes');
 var tag_routes = require('./routes/tags');
 var recording_routes = require('./routes/recordings');
 var like_routes = require('./routes/likes');
+var notification_routes = require('./routes/notifications');
 
 app.get('/', routes.index);
 
@@ -65,6 +67,9 @@ app.del('/recordings/:id', recording_routes.deleteById(Models));
 app.post('/tags/:name/recordings', recording_routes.create(Models));
 app.post('/recordings/:name/recordings', recording_routes.create(Models));
 
+    //by User
+app.get('/users/:username/recordings', recording_routes.recordingsForUser(Models));
+
 
 //Likes
 
@@ -73,6 +78,9 @@ app.get('/recordings/:id/likes', like_routes.getAll(Models));
 app.get('/recordings/:id/likes/:username', like_routes.getById(Models));
 app.post('/recordings/:id/likes', like_routes.create(Models));
 app.del('/recordings/:id/likes/:username', like_routes.deleteById(Models));
+
+//Notifications
+app.get("/notifications/:username", notification_routes.getByUser(Models));
 
 
 //Security
@@ -94,22 +102,33 @@ t.save();
 r.save();
 l.save();*/
 
+/*
+var n = new Notification({
+    username_for : "jason",
+    username_by : "andy",
+    tag_name:"gameofthrones",
+    recording_id :"",
+    created_date:new Date(2012, 7, 14),
+    type:"LIKE"
+});
+n.save();
+*/
 
 // Tag.remove({}, function(err) { 
    // console.log('collection removed');
    // console.log(err);
 // });
-Recording.remove({}, function(err) { 
-   console.log('collection removed');
-   console.log(err);
-});
-Like.remove({}, function(err) { 
-   console.log('collection removed');
-   console.log(err);
-});
-Models.AudioMap.remove({}, function(err) { 
-   console.log('collection removed');
-});
+// Recording.remove({}, function(err) { 
+//    console.log('collection removed');
+//    console.log(err);
+// });
+// Like.remove({}, function(err) { 
+//    console.log('collection removed');
+//    console.log(err);
+// });
+// Models.AudioMap.remove({}, function(err) { 
+//    console.log('collection removed');
+// });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

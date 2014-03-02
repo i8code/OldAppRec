@@ -87,6 +87,29 @@ var likeSchema = new mongoose.Schema({
     }
 });
 
+var notificationSchema = new mongoose.Schema({
+    username_for : {
+        type: String,
+        trim: true
+    },
+    username_by : {
+        type: String,
+        trim: true
+    },
+    tag_name:{
+        type:String
+    },
+    recording_id :{
+        type:String
+    },
+    created_date: {
+        type:Date, default:Date.now
+    },
+    type:{
+        type:String
+    }
+});
+
 var audioMapSchema = new mongoose.Schema({
     filename : {
         type: String,
@@ -99,6 +122,7 @@ var audioMapSchema = new mongoose.Schema({
 module.exports.Recording = mongoose.model('Recordings', recordingSchema);
 module.exports.Tag = mongoose.model('Tags', tagSchema);
 module.exports.Like = mongoose.model('Likes', likeSchema);
+module.exports.Notification = mongoose.model('Notification', notificationSchema);
 module.exports.AudioMap = mongoose.model('AudioMap', audioMapSchema);
 
 module.exports.mongoose = mongoose;

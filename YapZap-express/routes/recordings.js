@@ -224,3 +224,33 @@ exports.deleteById = function(Models) {
     };
 };
 
+/* GET /users/:username/recorings
+* Gets all recordings for a certain user
+*/
+exports.recordingsForUser = function(Models) {
+    return function(req, res) {
+        if (!Security.check(req, res)) return;
+
+        var username = req.params.username;
+
+        if (!username){
+            res.send(404);
+            return;
+        }
+
+        var query = Models.Recording.find({username:username});
+        query.exec(function(err, recordings) {
+
+            if (!recordings || recordings.length==0){
+                res.send(404);
+                return;
+            }
+
+            res.status(200);
+            res.send(recordings);
+        });
+    };
+};
+
+
+
