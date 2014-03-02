@@ -167,6 +167,7 @@
     [self.background setImage:[UIImage imageNamed:@"background.png"]];
     [self.view addSubview:self.background];
     [self.background setContentMode:UIViewContentModeScaleToFill];
+    self.background.alpha=0.5;
     [self.background setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
     [self.view sendSubviewToBack:self.background];
