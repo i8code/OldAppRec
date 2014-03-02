@@ -117,6 +117,8 @@
 		C777172318C2D13000C9B1A6 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C777171D18C2D13000C9B1A6 /* libTestFlight.a */; };
 		C777172418C2D13000C9B1A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C777171E18C2D13000C9B1A6 /* README.md */; };
 		C777172518C2D13000C9B1A6 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C777171F18C2D13000C9B1A6 /* release_notes.md */; };
+		C79276DC18C38A47000476D1 /* RestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C79276DB18C38A47000476D1 /* RestHelper.m */; };
+		C79276E818C38A9E000476D1 /* AuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C79276E718C38A9E000476D1 /* AuthHelper.m */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
@@ -590,6 +592,12 @@
 		C777172018C2D13000C9B1A6 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		C777172118C2D13000C9B1A6 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		C777172218C2D13000C9B1A6 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		C79276DA18C38A47000476D1 /* RestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestHelper.h; path = Communication/RestHelper.h; sourceTree = "<group>"; };
+		C79276DB18C38A47000476D1 /* RestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestHelper.m; path = Communication/RestHelper.m; sourceTree = "<group>"; };
+		C79276E618C38A9E000476D1 /* AuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthHelper.h; path = Communication/AuthHelper.h; sourceTree = "<group>"; };
+		C79276E718C38A9E000476D1 /* AuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthHelper.m; path = Communication/AuthHelper.m; sourceTree = "<group>"; };
+		C79276E918C39034000476D1 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
+		C79276EB18C39049000476D1 /* libcorecrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcorecrypto.dylib; path = usr/lib/system/libcorecrypto.dylib; sourceTree = SDKROOT; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
@@ -764,6 +772,8 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C79276EB18C39049000476D1 /* libcorecrypto.dylib */,
+				C79276E918C39034000476D1 /* libcommonCrypto.dylib */,
 				C777171C18C2D13000C9B1A6 /* TestFlightSDK3.0.0 */,
 				C706246C18B6D25C00D1BEB0 /* Accounts.framework */,
 				C706245C18B6CD7400D1BEB0 /* Twitter.framework */,
@@ -1479,6 +1489,10 @@
 				C72C1DB618AAFB24006D136F /* Reachability.h */,
 				C72C1DB718AAFB24006D136F /* Reachability.m */,
 				C701DBEC18C1508400FD407A /* RecordingData.h */,
+				C79276DA18C38A47000476D1 /* RestHelper.h */,
+				C79276DB18C38A47000476D1 /* RestHelper.m */,
+				C79276E618C38A9E000476D1 /* AuthHelper.h */,
+				C79276E718C38A9E000476D1 /* AuthHelper.m */,
 			);
 			name = Communication;
 			sourceTree = "<group>";
@@ -1803,6 +1817,7 @@
 				C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */,
 				C747FC4218A7F4E80083A533 /* MoodSelectView.m in Sources */,
 				C796204B18A6B30300D1BEAB /* SampleData.mm in Sources */,
+				C79276DC18C38A47000476D1 /* RestHelper.m in Sources */,
 				C72C1DB518AAF9ED006D136F /* S3Helper.m in Sources */,
 				C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */,
 				C747FC4618A7FCC60083A533 /* SettingsViewController.m in Sources */,
@@ -1812,6 +1827,7 @@
 				C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */,
 				C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */,
 				C74A6CAB18C24E4D0086F78D /* SearchCell.m in Sources */,
+				C79276E818C38A9E000476D1 /* AuthHelper.m in Sources */,
 				C706247718B9371000D1BEB0 /* TagPageViewController.m in Sources */,
 				C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */,
 				C706247C18B9548800D1BEB0 /* ParentNavigationViewController.m in Sources */,
@@ -2193,6 +2209,7 @@
 					"$(inherited)",
 					/Users/jrboggess/dev/git/github/YapZap/YapZap,
 					/Users/jrboggess/dev/git/github/YapZap/YapZap/TestFlightSDK3.0.0,
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2220,6 +2237,7 @@
 					"$(inherited)",
 					/Users/jrboggess/dev/git/github/YapZap/YapZap,
 					/Users/jrboggess/dev/git/github/YapZap/YapZap/TestFlightSDK3.0.0,
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
