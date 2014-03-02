@@ -172,6 +172,7 @@
 - (IBAction)trashButtonPressed:(id)sender {
     self.waveform.hidden = YES;
     self.finishedPanel.hidden = YES;
+    [self dismissModalViewControllerAnimated:YES];
 }
 - (IBAction)playButtonPressed:(id)sender {
     [self startPlaying];

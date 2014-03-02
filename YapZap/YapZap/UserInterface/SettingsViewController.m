@@ -8,12 +8,14 @@
 
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
+#import "MyRecordingsTableViewController.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
+@synthesize myRecordingsViewController = _myRecordingsViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +48,15 @@
 
     self.backButton.hidden=YES;
     self.homeButton.hidden = YES;
+    
+    if (!self.myRecordingsViewController){
+        self.myRecordingsViewController = [[MyRecordingsTableViewController alloc] initWithNibName:@"MyRecordingsTableViewController" bundle:nil];
+        
+        [self addChildViewController:self.myRecordingsViewController];
+        [self.manageArea addSubview:self.myRecordingsViewController.view];
+        [self.myRecordingsViewController.view setFrame:self.manageArea.bounds];
+        
+    }
 }
 
 

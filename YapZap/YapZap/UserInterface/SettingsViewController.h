@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
+@class MyRecordingsTableViewController;
+
 @interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate>
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
+@property (weak, nonatomic) IBOutlet UIView *manageArea;
+@property (strong, nonatomic) MyRecordingsTableViewController* myRecordingsViewController;
 
 @end
