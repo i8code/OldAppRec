@@ -181,6 +181,8 @@
             self.activityIndicator.hidden = YES;
             
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateTagPositions) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:self.timer
+                                         forMode:NSRunLoopCommonModes];
             
         });
     });
