@@ -16,8 +16,6 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
-#import "RestHelper.h"
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -25,8 +23,6 @@
     
     [FBLoginView class];
     
-    [RestHelper get:@"/tag_names" withQuery:nil];
-    /*
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     //Check to see if the user is logged in
@@ -38,7 +34,7 @@
     }
     else{
         [self gotoLoadingView];
-    }*/
+    }
     
 //    
 //    {

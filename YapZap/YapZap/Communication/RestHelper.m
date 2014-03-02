@@ -8,6 +8,7 @@
 
 #import "RestHelper.h"
 #import "AuthHelper.h"
+#import "Reachability.h"
 
 @implementation RestHelper
 
@@ -53,10 +54,26 @@
     return[components URL];
 }
 
-+(NSString*)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type{
++(NSString*)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSString*)body{
+    
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    if (![r isReachable]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet to use this app."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return nil;
+    }
+    
     NSURL* url = [self getFullPath:path withQuery:query];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:type];
+    if (body){
+        NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPBody:bodyData];
+    }
     [request setURL:url];
     
     NSError *error = [[NSError alloc] init];
@@ -73,19 +90,16 @@
 }
 
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query{
-    NSString* response = [self getDataFromRequestPath:url withQuery:query withHttpType:@"GET"];
-
-    return nil;
+    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"GET" andBody:nil];
 }
 +(NSString*)post:(NSString*)url withBody:(NSString*)body andQuery:(NSDictionary*)query{
- 
-    return nil;
+    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"POST" andBody:body];
 }
 +(NSString*)put:(NSString*)url  withBody:(NSString*)body andQuery:(NSDictionary*)query{
-    return nil;
+    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"PUT" andBody:body];
 }
 +(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query{
-    return nil;
+    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"DELETE" andBody:nil];
 }
 
 @end
