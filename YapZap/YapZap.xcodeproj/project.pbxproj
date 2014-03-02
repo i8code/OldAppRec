@@ -114,6 +114,9 @@
 		C761D05018AD9992003947C1 /* SharingBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D04F18AD9992003947C1 /* SharingBundle.m */; };
 		C761D05318AD9C98003947C1 /* BorderedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D05218AD9C98003947C1 /* BorderedTextField.m */; };
 		C761D05618ADA286003947C1 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C761D05518ADA286003947C1 /* UploadViewController.m */; };
+		C777172318C2D13000C9B1A6 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C777171D18C2D13000C9B1A6 /* libTestFlight.a */; };
+		C777172418C2D13000C9B1A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C777171E18C2D13000C9B1A6 /* README.md */; };
+		C777172518C2D13000C9B1A6 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C777171F18C2D13000C9B1A6 /* release_notes.md */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
@@ -125,7 +128,6 @@
 		C796205418A6E2AF00D1BEAB /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205318A6E2AF00D1BEAB /* Util.m */; };
 		C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C796205618A7035400D1BEAB /* RecordControllerViewController.mm */; };
 		C796205A18A703F600D1BEAB /* SetTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205918A703F600D1BEAB /* SetTagViewController.m */; };
-		C796206418A70A8000D1BEAB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206018A70A8000D1BEAB /* libTestFlight.a */; };
 		C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206518A70BD200D1BEAB /* libz.dylib */; };
 		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
 		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
@@ -582,6 +584,12 @@
 		C761D05218AD9C98003947C1 /* BorderedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorderedTextField.m; path = UserInterface/BorderedTextField.m; sourceTree = "<group>"; };
 		C761D05418ADA286003947C1 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadViewController.h; path = UserInterface/UploadViewController.h; sourceTree = "<group>"; };
 		C761D05518ADA286003947C1 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadViewController.m; path = UserInterface/UploadViewController.m; sourceTree = "<group>"; };
+		C777171D18C2D13000C9B1A6 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		C777171E18C2D13000C9B1A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C777171F18C2D13000C9B1A6 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		C777172018C2D13000C9B1A6 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		C777172118C2D13000C9B1A6 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		C777172218C2D13000C9B1A6 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
@@ -603,10 +611,6 @@
 		C796205618A7035400D1BEAB /* RecordControllerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RecordControllerViewController.mm; path = UserInterface/RecordControllerViewController.mm; sourceTree = "<group>"; };
 		C796205818A703F600D1BEAB /* SetTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetTagViewController.h; path = UserInterface/SetTagViewController.h; sourceTree = "<group>"; };
 		C796205918A703F600D1BEAB /* SetTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetTagViewController.m; path = UserInterface/SetTagViewController.m; sourceTree = "<group>"; };
-		C796206018A70A8000D1BEAB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		C796206118A70A8000D1BEAB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		C796206218A70A8000D1BEAB /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		C796206318A70A8000D1BEAB /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		C796206518A70BD200D1BEAB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C798E89218B4244400ED5890 /* TagCloudViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCloudViewController.h; path = UserInterface/TagCloudViewController.h; sourceTree = "<group>"; };
 		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
@@ -632,13 +636,13 @@
 				C706246D18B6D25C00D1BEB0 /* Accounts.framework in Frameworks */,
 				C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */,
 				C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */,
+				C777172318C2D13000C9B1A6 /* libTestFlight.a in Frameworks */,
 				C72C1DBA18AAFB43006D136F /* SystemConfiguration.framework in Frameworks */,
 				C72C1DB218AAE9C8006D136F /* AVFoundation.framework in Frameworks */,
 				C72C1DB018AAE9C2006D136F /* Accelerate.framework in Frameworks */,
 				C72C1DBC18AAFFDE006D136F /* AWSRuntime.framework in Frameworks */,
 				C747FC1E18A7341C0083A533 /* FacebookSDK.framework in Frameworks */,
 				C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */,
-				C796206418A70A8000D1BEAB /* libTestFlight.a in Frameworks */,
 				C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */,
 				C7371F3D18A1DFEE007FB490 /* CoreGraphics.framework in Frameworks */,
 				C7371F3F18A1DFEE007FB490 /* UIKit.framework in Frameworks */,
@@ -760,6 +764,7 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C777171C18C2D13000C9B1A6 /* TestFlightSDK3.0.0 */,
 				C706246C18B6D25C00D1BEB0 /* Accounts.framework */,
 				C706245C18B6CD7400D1BEB0 /* Twitter.framework */,
 				C706245A18B6CD6E00D1BEB0 /* Social.framework */,
@@ -767,7 +772,6 @@
 				C72C1DB918AAFB42006D136F /* SystemConfiguration.framework */,
 				C72C1DB118AAE9C8006D136F /* AVFoundation.framework */,
 				C72C1DAF18AAE9C2006D136F /* Accelerate.framework */,
-				C796205F18A70A6800D1BEAB /* TestFlight */,
 				C72C1D9F18AAE8B2006D136F /* Novocaine */,
 				C72C1D8318AA5AAA006D136F /* AWSS3.framework */,
 				C747FADD18A734050083A533 /* FacebookSDK */,
@@ -1424,6 +1428,19 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		C777171C18C2D13000C9B1A6 /* TestFlightSDK3.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				C777171D18C2D13000C9B1A6 /* libTestFlight.a */,
+				C777171E18C2D13000C9B1A6 /* README.md */,
+				C777171F18C2D13000C9B1A6 /* release_notes.md */,
+				C777172018C2D13000C9B1A6 /* TestFlight+AsyncLogging.h */,
+				C777172118C2D13000C9B1A6 /* TestFlight+ManualSessions.h */,
+				C777172218C2D13000C9B1A6 /* TestFlight.h */,
+			);
+			path = TestFlightSDK3.0.0;
+			sourceTree = "<group>";
+		};
 		C796203F18A6A6A800D1BEAB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1439,17 +1456,6 @@
 				C7D764BB18B2B18D007B86B2 /* Tag.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		C796205F18A70A6800D1BEAB /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				C796206018A70A8000D1BEAB /* libTestFlight.a */,
-				C796206118A70A8000D1BEAB /* TestFlight.h */,
-				C796206218A70A8000D1BEAB /* TestFlight+AsyncLogging.h */,
-				C796206318A70A8000D1BEAB /* TestFlight+ManualSessions.h */,
-			);
-			name = TestFlight;
 			sourceTree = "<group>";
 		};
 		C79EF6F818A66DA600AA1BDE /* lib */ = {
@@ -1719,6 +1725,7 @@
 				C75E7B7F18BC3B0B00160720 /* stop_button_small.png in Resources */,
 				C75E7B7018BC3B0B00160720 /* heart_empty.png in Resources */,
 				C75E7B7718BC3B0B00160720 /* plus_icon.png in Resources */,
+				C777172518C2D13000C9B1A6 /* release_notes.md in Resources */,
 				C75E7B9918BC3B2200160720 /* zeus elements-11.png in Resources */,
 				C74A6CBC18C270E80086F78D /* NotificationCell.xib in Resources */,
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
@@ -1743,6 +1750,7 @@
 				C75E7B8418BC3B0B00160720 /* trash_button_small.png in Resources */,
 				C75E7B7D18BC3B0B00160720 /* smile_icon.png in Resources */,
 				C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */,
+				C777172418C2D13000C9B1A6 /* README.md in Resources */,
 				C75E7B6818BC3B0B00160720 /* sample_waveform.png in Resources */,
 				C75E7B8218BC3B0B00160720 /* back_icon.png in Resources */,
 				C75E7B7618BC3B0B00160720 /* gear_icon.png in Resources */,
@@ -2184,6 +2192,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jrboggess/dev/git/github/YapZap/YapZap,
+					/Users/jrboggess/dev/git/github/YapZap/YapZap/TestFlightSDK3.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2210,6 +2219,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jrboggess/dev/git/github/YapZap/YapZap,
+					/Users/jrboggess/dev/git/github/YapZap/YapZap/TestFlightSDK3.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
