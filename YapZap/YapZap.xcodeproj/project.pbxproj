@@ -119,6 +119,7 @@
 		C777172518C2D13000C9B1A6 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C777171F18C2D13000C9B1A6 /* release_notes.md */; };
 		C79276DC18C38A47000476D1 /* RestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C79276DB18C38A47000476D1 /* RestHelper.m */; };
 		C79276E818C38A9E000476D1 /* AuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C79276E718C38A9E000476D1 /* AuthHelper.m */; };
+		C79276EF18C3BBD6000476D1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C79276EE18C3BBD6000476D1 /* User.m */; };
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
@@ -598,6 +599,8 @@
 		C79276E718C38A9E000476D1 /* AuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthHelper.m; path = Communication/AuthHelper.m; sourceTree = "<group>"; };
 		C79276E918C39034000476D1 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		C79276EB18C39049000476D1 /* libcorecrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcorecrypto.dylib; path = usr/lib/system/libcorecrypto.dylib; sourceTree = SDKROOT; };
+		C79276ED18C3BBD6000476D1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
+		C79276EE18C3BBD6000476D1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
 		C796203718A6825E00D1BEAB /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingViewController.h; path = UserInterface/LoadingViewController.h; sourceTree = "<group>"; };
 		C796203818A6825E00D1BEAB /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingViewController.m; path = UserInterface/LoadingViewController.m; sourceTree = "<group>"; };
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
@@ -799,7 +802,6 @@
 			isa = PBXGroup;
 			children = (
 				C7371F6F18A1E29B007FB490 /* UserInterface */,
-				C7CF287618A1F0F90053DB9C /* Images */,
 				C761D02718AD7777003947C1 /* Recording */,
 				C796203F18A6A6A800D1BEAB /* Models */,
 				C7371F4918A1DFEE007FB490 /* AppDelegate.h */,
@@ -843,6 +845,7 @@
 		C7371F6F18A1E29B007FB490 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				C7CF287618A1F0F90053DB9C /* Images */,
 				C761D04A18AD8800003947C1 /* ViewControllers */,
 				C7CF286D18A1E4910053DB9C /* Communication */,
 				C79EF6F818A66DA600AA1BDE /* lib */,
@@ -1464,6 +1467,8 @@
 				C761D04F18AD9992003947C1 /* SharingBundle.m */,
 				C7D764BA18B2B18D007B86B2 /* Tag.h */,
 				C7D764BB18B2B18D007B86B2 /* Tag.m */,
+				C79276ED18C3BBD6000476D1 /* User.h */,
+				C79276EE18C3BBD6000476D1 /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1800,6 +1805,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79276EF18C3BBD6000476D1 /* User.m in Sources */,
 				C796205A18A703F600D1BEAB /* SetTagViewController.m in Sources */,
 				C761D05018AD9992003947C1 /* SharingBundle.m in Sources */,
 				C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */,

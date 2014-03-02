@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import "MyRecordingsTableViewController.h"
+#import "User.h"
 
 @interface SettingsViewController ()
 
@@ -57,6 +58,8 @@
         [self.myRecordingsViewController.view setFrame:self.manageArea.bounds];
         
     }
+    
+    self.usernameLabel.text = [User getUser].displayName;
 }
 
 
@@ -72,7 +75,8 @@
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
     AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app goToLoginView];}
+    [app goToLoginView];
+}
 
 // Handle possible errors that can occur during login
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {

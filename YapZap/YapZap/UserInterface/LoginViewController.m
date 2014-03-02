@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController ()
 
@@ -28,6 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [FBLoginView class];
     self.loginButton.delegate = self;
 }
 

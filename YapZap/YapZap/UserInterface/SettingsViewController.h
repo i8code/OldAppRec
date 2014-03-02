@@ -15,5 +15,11 @@
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *manageArea;
 @property (strong, nonatomic) MyRecordingsTableViewController* myRecordingsViewController;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentCount;
+@property (weak, nonatomic) IBOutlet UILabel *likeCount;
+@property (weak, nonatomic) IBOutlet UISwitch *facebookSwitched;
+@property (weak, nonatomic) IBOutlet UISwitch *twitterSwitched;
+@property (weak, nonatomic) IBOutlet UIButton *helpNeeded;
 
 @end
