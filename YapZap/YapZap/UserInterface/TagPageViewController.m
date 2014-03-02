@@ -89,6 +89,8 @@
         marqueeLabel.textAlignment = NSTextAlignmentCenter;
         marqueeLabel.autoresizesSubviews = NO;
         marqueeLabel.textColor = [UIColor whiteColor];
+        marqueeLabel.backgroundColor = [UIColor clearColor];
+        marqueeLabel.opaque=NO;
         [self.view addSubview:marqueeLabel];
         self.titleLabel = marqueeLabel;
     }
@@ -113,6 +115,7 @@
             [self addChildViewController:self.tableController];
             [self.tableArea addSubview:self.tableController.view];
             [self.tableController didMoveToParentViewController:self];
+            [self.tableController.view setFrame:self.tableArea.bounds];
             self.activityIndicator.hidden=YES;
             
         });

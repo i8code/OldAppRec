@@ -69,6 +69,8 @@
         self.yapLabel = [[UILabel alloc] initWithFrame:yap];
         [self.yapLabel setFont:self.font];
         [self.yapLabel setText:@"YAP IT"];
+        self.yapLabel.backgroundColor = [UIColor clearColor];
+        self.yapLabel.opaque=NO;
         [self.yapLabel setTextColor:[UIColor whiteColor]];
         
         [self.bottomBar addSubview:self.yapLabel];
@@ -79,6 +81,8 @@
         self.zapLabel = [[UILabel alloc] initWithFrame:zap];
         [self.zapLabel setFont:self.font];
         [self.zapLabel setText:@"ZAP IT"];
+        self.zapLabel.backgroundColor = [UIColor clearColor];
+        self.zapLabel.opaque=NO;
         [self.zapLabel setTextColor:[UIColor whiteColor]];
         
         [self.bottomBar addSubview:self.zapLabel];

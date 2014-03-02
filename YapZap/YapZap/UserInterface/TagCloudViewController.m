@@ -77,14 +77,14 @@
             
             for (Tag* tag in self.popularTags){
                 
-                int y = (count%8);
-                int x = (count/8);
+                int y = (count%7);
+                int x = (count/7);
                 
                 count++;
                 
                 CGPoint position = CGPointMake(
-                                               10+x*self.canvasWidth/10.0 + (arc4random() % 5)+30*(y%2==0?1:0),
-                                               10+y*self.canvasHeight/9.0 + (arc4random() % 10)+10*(x%2==0?1:0));
+                                               10+x*self.canvasWidth/10.0 + (arc4random() % 5)+30*(y%2),
+                                               10+y*self.canvasHeight/8.0 + (arc4random() % 10)+15*(x%3));
                 
                 int depth = (arc4random() % 20)+80;
                 CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag position:position andDepth:depth andCanvasWidth:self.canvasWidth inView:self.cloudView andOnclick:self.gotoTagBlock];

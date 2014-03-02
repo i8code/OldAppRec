@@ -64,7 +64,6 @@
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NotificationCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
-        cell.textLabel.text = @"Notification";
 
     }
     
