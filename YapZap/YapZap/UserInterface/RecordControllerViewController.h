@@ -21,5 +21,7 @@
 -(void)initialize;
 -(IBAction)startRecording:(id)sender;
 -(IBAction)stopRecording:(id)sender;
+-(void)homePressed:(id)sender;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

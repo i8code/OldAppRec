@@ -41,29 +41,11 @@
 }
 
 -(void)updateTagPositions{
-    static CGFloat speed = 0.02;//0.5;
-//    NSLog(@"%fl",self.tagPositions);
-//    NSLog(@"%fl",self.canvasWidth);
-    if (speed<=0.02){
-        self.tagPositions+=0.02;
-    }
-    else {
-//        CGFloat speed =(1*self.canvasWidth/60.0+self.tagPositions*0.005)/(self.tagPositions+self.canvasWidth/60.0);
-//        NSLog(@"%fl", speed);
-        self.tagPositions+=speed;
-    }
+    
+    self.tagPositions+=0.03;
     for (CloudTagElement* cloudEl in self.buttons){
         [cloudEl setPosition:self.tagPositions];
     }
-    
-    //speed*=0.95;
-    
-//    if (self.tagPositions>self.canvasWidth){
-//        self.tagPositions=0;
-//    }
-    
-//    NSLog(@"%f", self.tagPositions/self.canvasWidth);
-    
 }
 
 -(void)fetchTags{
@@ -222,7 +204,7 @@
     [super viewWillAppear:animated];
     self.view.hidden=NO;
     self.parent.homeButton.hidden=YES;
-    self.parent.background.filterColor = [UIColor whiteColor];
+    self.parent.background.filterColor = nil;
 }
 
 - (void)didReceiveMemoryWarning

@@ -231,6 +231,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
+    ((YapZapModalViewController*)[self.recordNavigationViewController.childViewControllers objectAtIndex:0]).parent = self;
     [self presentViewController:self.recordNavigationViewController animated:YES completion:nil];
 
 }

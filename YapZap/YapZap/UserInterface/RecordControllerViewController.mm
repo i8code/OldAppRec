@@ -27,6 +27,7 @@
 @property (nonatomic, strong) RecordingInfo* recordingInfo;
 @property (nonatomic, strong) WaveformView* waveform;
 @property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic) BOOL backPressedLast;
 @end
 
 @implementation RecordControllerViewController
@@ -90,7 +91,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.finishedPanel.hidden = YES;
-    self.backButton.hidden=YES;
+    self.backButton.hidden=NO;
 }
 
 -(void)initialize{
@@ -133,9 +134,16 @@
     self.timer = nil;
     [self.recorder stop];
     self.recordingInfo = [self.recorder lastInfo];
+    
+    
+    float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
+    if (seconds<2){
+        [self trashButtonPressed:nil];
+    }
     [self.recordActiveButton setHighlighted:NO];
     
     [self.recordActiveButton setImage:[UIImage imageNamed:@"record_button.png"] forState:UIControlStateNormal];
+    
 }
 
 -(void)startPlaying{
@@ -172,10 +180,58 @@
 - (IBAction)trashButtonPressed:(id)sender {
     self.waveform.hidden = YES;
     self.finishedPanel.hidden = YES;
-    [self dismissModalViewControllerAnimated:YES];
 }
 - (IBAction)playButtonPressed:(id)sender {
     [self startPlaying];
+}
+
+-(void)homePressed:(id)sender{
+    if (!self.finishedPanel.hidden){
+        //There is an active recording
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                        message:@"Are you sure you want to delete this recording?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+        self.backPressedLast=NO;
+        [alert show];
+    }
+    else{
+        [super homePressed:sender];
+    }
+}
+
+-(void)backPressed:(id)sender{
+    
+    if (!self.finishedPanel.hidden){
+        //There is an active recording
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                        message:@"Are you sure you want to delete this recording?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+        self.backPressedLast=YES;
+        [alert show];
+    }
+    else {
+        [super backPressed:sender];
+        [self dismissViewControllerAnimated:YES completion:^{}];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        if (self.backPressedLast){
+            [super backPressed:self];
+            [self dismissViewControllerAnimated:YES completion:^{}];
+        }else {
+            [super homePressed:nil];
+        }
+    }
 }
 
 - (IBAction)stopButtonPressed:(id)sender {

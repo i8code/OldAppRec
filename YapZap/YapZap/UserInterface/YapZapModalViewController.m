@@ -7,8 +7,10 @@
 //
 
 #import "YapZapModalViewController.h"
+#import "SettingsViewController.h"
 
 @interface YapZapModalViewController ()
+@property (nonatomic, retain) SettingsViewController *settingsViewController;
 
 @end
 
@@ -52,17 +54,42 @@
         self.homeButton.showsTouchWhenHighlighted = YES;
     }
     
+    /* Settings Button  --o */
+    if (!self.settingsButton) {
+        self.settingsButton = [[UIButton alloc] init];
+        [self.settingsButton setTitle:@"" forState:UIControlStateNormal];
+        [self.settingsButton setImage:[UIImage imageNamed:@"gear_icon.png"] forState:UIControlStateNormal];
+        
+        [self.settingsButton setFrame:CGRectMake(
+                                                 (self.view.frame.size.width-30),y, 25, 25)];
+        [self.view addSubview:self.settingsButton];
+        self.settingsButton.showsTouchWhenHighlighted = YES;
+        [self.settingsButton addTarget:self
+                                action:@selector(showSettings:)
+                      forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     
     
 }
 
 
 -(void)homePressed:(id)sender{
+    [self.parent goHome:self];
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 -(void)backPressed:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)showSettings:(id)sender {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if (self.settingsViewController==nil){
+        self.settingsViewController =[storyboard instantiateViewControllerWithIdentifier:@"settings"];
+    }
+    [self presentViewController:self.settingsViewController animated:YES completion:nil];
+}
+
 
 
 @end
