@@ -49,6 +49,7 @@
 
     self.backButton.hidden=YES;
     self.homeButton.hidden = YES;
+    self.settingsButton.hidden = YES;
     
     if (!self.myRecordingsViewController){
         self.myRecordingsViewController = [[MyRecordingsTableViewController alloc] initWithNibName:@"MyRecordingsTableViewController" bundle:nil];
