@@ -24,12 +24,15 @@
                             <action selector="playClicked:" destination="Qqv-Ml-BeS" eventType="touchUpInside" id="ouE-4b-ZZ6"/>
                         </connections>
                     </button>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="bnA-FW-zqU">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="bnA-FW-zqU">
                         <rect key="frame" x="247" y="9" width="33" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="comments_full.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="commentSelected:" destination="Qqv-Ml-BeS" eventType="touchUpInside" id="SPT-0h-Ral"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="tHG-st-bUr">
                         <rect key="frame" x="286" y="9" width="33" height="25"/>
@@ -41,10 +44,6 @@
                             <action selector="likePressed:" destination="Qqv-Ml-BeS" eventType="touchUpInside" id="lz9-wH-8C1"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments_full.png" id="deg-6r-RPO">
-                        <rect key="frame" x="248" y="9" width="33" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <view opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" id="Iid-JY-MOh" customClass="WaveformView">
                         <rect key="frame" x="44" y="4" width="195" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
@@ -94,7 +93,7 @@
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="bottomBar" destination="UEX-3L-Kxj" id="kSu-4A-oxl"/>
-                <outlet property="commentButton" destination="deg-6r-RPO" id="RUK-tE-w0J"/>
+                <outlet property="commentButton" destination="bnA-FW-zqU" id="Xb1-Jq-sko"/>
                 <outlet property="commentLabel" destination="3rW-wW-fV4" id="fRM-iu-KVe"/>
                 <outlet property="label" destination="yhb-mw-L1v" id="Sg0-8i-907"/>
                 <outlet property="likeButton" destination="tHG-st-bUr" id="zbb-ZI-hkT"/>

@@ -10,7 +10,7 @@
 #import "Recording.h"
 #import "FilteredImageView.h"
 #import "Util.h"
-
+#import "TagPageTableViewController.h"
 #import "WaveformView.h"
 
 @interface TagTableViewCell()
@@ -51,7 +51,7 @@
     
     
     UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
-    [self.commentButton setImage:commentImage];
+    [self.commentButton setImage:commentImage forState:UIControlStateNormal];
     
     [self.waveFormImage setData:recording.rawWaveformData withSize:(int)recording.waveformData.count];
     [self.waveFormImage setColor:[Util colorFromMood:recording.mood andIntesity:recording.intensity]];
@@ -158,5 +158,12 @@
 
 - (IBAction)likePressed:(id)sender {
     self.liked = !self.liked;
+}
+
+- (IBAction)commentSelected:(id)sender {
+    UITableView *tv = (UITableView *) self.superview.superview;
+    UITableViewController *vc = (UITableViewController *) tv.dataSource;
+    
+    [((TagPageTableViewController*)vc)commentPressed:self];
 }
 @end

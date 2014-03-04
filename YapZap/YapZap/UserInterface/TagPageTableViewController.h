@@ -15,4 +15,5 @@
 @property (nonatomic, strong) NSArray* recordings;
 -(void)refresh;
 -(void)updateTable;
+-(void)commentPressed:(UITableViewCell*)cell;
 @end

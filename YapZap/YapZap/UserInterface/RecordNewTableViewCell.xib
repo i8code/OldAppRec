@@ -32,6 +32,9 @@
                         <state key="normal" image="record_button_black.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="recordPressed:" destination="xUr-jK-Klo" eventType="touchUpInside" id="g1A-yL-mGR"/>
+                        </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>

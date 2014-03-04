@@ -162,7 +162,7 @@
         cell.textLabel.text = @"Normal Cell";
         
     }
-    
+    cell.selectedBackgroundView.hidden = YES;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -208,11 +208,11 @@
  return YES;
  }
  */
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)commentPressed:(UITableViewCell*)cell{
+    
+    UITableView* tableView = self.tableView;
+    NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+    
     if ([self tableView:tableView canCollapseSection:indexPath.section])
     {
         if (!indexPath.row)
@@ -253,21 +253,38 @@
                 [tableView deleteRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
                 
-//                [((TagTableViewCell*)cell) setSelected:NO];
-//                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
+                //                [((TagTableViewCell*)cell) setSelected:NO];
+                //                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeDown];
                 
             }
             else
             {
                 [tableView insertRowsAtIndexPaths:tmpArray
                                  withRowAnimation:UITableViewRowAnimationTop];
-//                [((TagTableViewCell*)cell) setSelected:YES];
-//                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
+                //                [((TagTableViewCell*)cell) setSelected:YES];
+                //                cell.accessoryView =  [DTCustomColoredAccessory accessoryWithColor:[UIColor whiteColor] type:DTCustomColoredAccessoryTypeUp];
                 
             }
             
             [self.tableView endUpdates];
         }
+    }
+
+}
+
+#pragma mark - Table view delegate
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([cell isKindOfClass:[TagTableViewCell class]]){
+        [((TagTableViewCell*)cell) playClicked:self];
+    }
+    else if ([cell isKindOfClass:[RecordNewTableViewCell class]]){
+        [((RecordNewTableViewCell*)cell) recordPressed:self];
     }
 }
 

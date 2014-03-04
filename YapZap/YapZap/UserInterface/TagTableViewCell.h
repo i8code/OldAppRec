@@ -22,12 +22,13 @@
 //@property (weak, nonatomic) TagTableViewController *delegate;
 @property (weak, nonatomic) IBOutlet UIView *topBar;
 @property (weak, nonatomic) IBOutlet UIView *bottomBar;
-@property (weak, nonatomic) IBOutlet UIImageView *commentButton;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 @property (weak, nonatomic) IBOutlet UIView *spacerView;
 - (IBAction)likePressed:(id)sender;
+- (IBAction)commentSelected:(id)sender;
 
 
 @property(nonatomic) BOOL comment;

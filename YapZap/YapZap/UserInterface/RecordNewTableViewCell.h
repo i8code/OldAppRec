@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RecordNewTableViewCell : UITableViewCell
+- (IBAction)recordPressed:(id)sender;
 
 @end
