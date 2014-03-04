@@ -19,5 +19,6 @@
 -(void)swipedLeft:(UIGestureRecognizer*)recognizer;
 @property (weak, nonatomic) YapZapMainViewController* parent;
 @property (weak, nonatomic) IBOutlet UIView *tableArea;
+@property (weak, nonatomic) IBOutlet UIView *colorBar;
 
 @end

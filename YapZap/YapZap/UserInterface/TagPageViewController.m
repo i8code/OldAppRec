@@ -82,20 +82,26 @@
 -(void)loadRecordingsForTag{
     self.activityIndicator.hidden=NO;
     
+    NSLog(@"%@", [self.tag.name uppercaseString]);
+    
     if (!self.titleLabel){
         MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,0,300,45) duration:4.0 andFadeLength:15.0f];
-        marqueeLabel.text = self.tag.name;
-        marqueeLabel.font = [UIFont fontWithName:@"Futura" size:24];
-        marqueeLabel.textAlignment = NSTextAlignmentCenter;
-        marqueeLabel.autoresizesSubviews = NO;
-        marqueeLabel.textColor = [UIColor whiteColor];
-        marqueeLabel.backgroundColor = [UIColor clearColor];
-        marqueeLabel.opaque=NO;
-        [self.view addSubview:marqueeLabel];
         self.titleLabel = marqueeLabel;
+        
+        [self.view addSubview:marqueeLabel];
     }
-    self.titleLabel.text = self.tag.name;
-    [self.titleLabel restartLabel];
+    NSString* text = [NSString stringWithFormat:@"   %@", [self.tag.name uppercaseString] ];
+    self.titleLabel.text = text;
+    self.titleLabel.font = [UIFont fontWithName:@"Futura" size:18];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.autoresizesSubviews = NO;
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.backgroundColor = [UIColor blackColor];
+    self.titleLabel.opaque=YES;
+    [self.titleLabel sizeToFit];
+    [self.titleLabel setFrame:CGRectMake((self.view.frame.size.width - self.titleLabel.frame.size.width)/2.0-10, 0, self.titleLabel.frame.size.width, 50)];
+    self.colorBar.backgroundColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
+//    [self.titleLabel restartLabel];
     
     self.parent.background.filterColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
     

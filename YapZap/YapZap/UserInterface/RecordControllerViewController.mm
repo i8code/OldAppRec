@@ -90,7 +90,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.finishedPanel.hidden = YES;
+    self.finishedPanel.hidden = self.waveform.hidden;
     self.backButton.hidden=NO;
 }
 
