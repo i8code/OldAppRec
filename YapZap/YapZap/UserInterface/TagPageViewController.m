@@ -15,6 +15,8 @@
 #import "Util.h"
 #import "FilteredImageView.h"
 #import "TagPageTableViewController.h"
+#import "SharingBundle.h"
+
 @interface TagPageViewController ()
 
 @property(nonatomic, strong)NSArray* recordings;
@@ -82,7 +84,7 @@
 -(void)loadRecordingsForTag{
     self.activityIndicator.hidden=NO;
     
-    NSLog(@"%@", [self.tag.name uppercaseString]);
+    [[SharingBundle getCurrentSharingBundle] setTagName:[self.tag.name uppercaseString]];
     
     if (!self.titleLabel){
         MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,0,300,45) duration:4.0 andFadeLength:15.0f];
