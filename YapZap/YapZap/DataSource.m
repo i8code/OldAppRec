@@ -92,7 +92,7 @@ static NSArray* _tags;
     NSString* dateStr = [dateFormatter stringFromDate:lastUpdate];
     [query setObject:dateStr forKey:@"after"];
     
-    NSString* path = [NSString stringWithFormat:@"/notifications/%@", [User getUser].username];
+    NSString* path = [NSString stringWithFormat:@"/notifications/%@", [User getUser].qualifiedUsername];
     
     NSData *jsonData = [[RestHelper get:path withQuery:query] dataUsingEncoding:NSUTF8StringEncoding];
     if (!jsonData){
@@ -113,9 +113,10 @@ static NSArray* _tags;
 }
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName{
     
-    [NSThread sleepForTimeInterval:0];
+//    NSData *jsonData = [[SampleData getRecordingsForTagName:tag Name] dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *jsonData = [[SampleData getRecordingsForTagName:tagName] dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* path = [NSString stringWithFormat:@"/tags/%@/recordings", tagName];
+    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
     
     NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
