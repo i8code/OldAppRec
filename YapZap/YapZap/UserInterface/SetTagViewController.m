@@ -13,6 +13,7 @@
 @interface SetTagViewController ()
 
 @property (nonatomic, strong) SharingBundle* sharingBundle;
+@property (nonatomic) BOOL hasSelectedMood;
 @end
 
 @implementation SetTagViewController
@@ -29,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hasSelectedMood = false;
     self.sharingBundle = [SharingBundle getCurrentSharingBundle];
 	// Do any additional setup after loading the view.
     self.tagTextField.delegate = self;
@@ -91,7 +93,14 @@
     
     return NO;
 }
-
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if (!self.hasSelectedMood){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Select Mood" message:@"Please select a mood before continuing." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        return false;
+    }
+    return true;
+}
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
@@ -100,4 +109,9 @@
 -(void)setMoodColor:(UIColor *)color{
     self.waveformImage.filterColor = color;
     self.parent.background.filterColor = color;
-}@end
+    
+    self.hasSelectedMood = YES;
+    
+    [[SharingBundle getCurrentSharingBundle] setMoodAndIntensity:color];
+}
+@end

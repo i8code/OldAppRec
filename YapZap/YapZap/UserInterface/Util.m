@@ -95,5 +95,16 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
     return [UIColor colorWithRed:*r green:*g blue:*b alpha:1.0f];
     
 }
++(CGFloat)moodFromColor:(UIColor*)color{
+    CGFloat h, s, b, a;
+    [color getHue:&h saturation:&s brightness:&b alpha:&a];
+    return h;
+    
+}
++(CGFloat)intenstiyFromColor:(UIColor*)color{
+    CGFloat h, s, b, a;
+    [color getHue:&h saturation:&s brightness:&b alpha:&a];
+    return s;
+}
 
 @end

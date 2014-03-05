@@ -18,4 +18,5 @@
 @property (nonatomic, strong) NSString* tagName;
 +(SharingBundle*)getCurrentSharingBundle;
 +(void)clearSharingBundle;
+-(void)setMoodAndIntensity:(UIColor*)color;
 @end

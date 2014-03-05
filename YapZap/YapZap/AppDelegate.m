@@ -16,6 +16,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "User.h"
+#import "DataSource.h"
 
 @implementation AppDelegate
 
@@ -25,6 +26,8 @@
 //    [FBLoginView class];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    //Load Tag names
+    [DataSource getTagNames];
     
     //Check to see if the user is logged in
     

@@ -86,7 +86,7 @@
         intensity=1;
     }
     
-    return [UIColor colorWithHue:hue saturation:(intensity/2.0) brightness:(0.7+0.3*intensity) alpha:1];
+    return [UIColor colorWithHue:hue saturation:0.5 brightness:1 alpha:1];
 }
 
 /*

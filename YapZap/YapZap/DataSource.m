@@ -11,6 +11,7 @@
 #import "PageSet.h"
 #import "Tag.h"
 #import "Recording.h"
+#import "RestHelper.h"
 
 @interface DataSource()
 
@@ -48,18 +49,23 @@ static NSArray* _tags;
 
 +(NSArray*)getTagNames{
     
-    [NSThread sleepForTimeInterval:0];
-    
-    NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for (NSString* tagName in tagNamesJson){
-        [array addObject:tagName];
+    static NSMutableArray* tagNames;
+    if (tagNames){
+        return tagNames;
     }
     
-    return array;
+    //Mock NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    
+    tagNames = [[NSMutableArray alloc] init];
+    for (NSString* tagName in tagNamesJson){
+        [tagNames addObject:tagName];
+    }
+    
+    return tagNames;
+
+    
 }
 
 +(NSArray*)getPopularTags{

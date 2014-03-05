@@ -8,6 +8,7 @@
 
 #import "SharingBundle.h"
 #import "RecordingInfo.h"
+#import "Util.h"
 
 @implementation SharingBundle
 
@@ -25,5 +26,10 @@ static SharingBundle* _sharingBundle;
     _sharingBundle = nil;
 }
 
+-(void)setMoodAndIntensity:(UIColor*)color{
+    self.moodHue = [Util moodFromColor:color];
+    self.intensity = [Util intenstiyFromColor:color];
+    
+}
 
 @end
