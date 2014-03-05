@@ -33,6 +33,14 @@
     self.hasSelectedMood = false;
     self.sharingBundle = [SharingBundle getCurrentSharingBundle];
 	// Do any additional setup after loading the view.
+    if ([self.tagTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [UIColor grayColor];
+        self.tagTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"TAG ME" attributes:@{NSForegroundColorAttributeName: color}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        // TODO: Add fall-back code to set placeholder color.
+    }
+    
     self.tagTextField.delegate = self;
     self.tagTextField.text = self.sharingBundle.tagName;
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
@@ -45,13 +53,7 @@
     [self.moodSelector setColorDelegate:self];
     
     
-    if ([self.tagTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
-        UIColor *color = [UIColor grayColor];
-        self.tagTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"TAG ME" attributes:@{NSForegroundColorAttributeName: color}];
-    } else {
-        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
-        // TODO: Add fall-back code to set placeholder color.
-    }
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

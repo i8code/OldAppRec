@@ -7,6 +7,10 @@
 //
 
 #import "Recording.h"
+@interface Recording()
+@property(nonatomic)float* rawWaveformData;
+
+@end
 
 @implementation Recording
 
@@ -19,10 +23,6 @@
     }
     return data;
 }
-
--(void)setRawWaveformData:(float *)rawWaveformData{
-}
-
 
 +(Recording*)fromJSON:(NSDictionary*)dictionary{
     Recording* recording = [[Recording alloc] init];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class RecordingInfo;
+@class Recording;
 @interface SharingBundle : NSObject
 
 @property (nonatomic, strong) RecordingInfo* recordingInfo;
@@ -16,8 +17,12 @@
 @property CGFloat moodHue;
 @property CGFloat intensity;
 @property (nonatomic, strong) NSString* tagName;
+@property (nonatomic, strong) NSString* parentName;
+@property (nonatomic) BOOL comment;
+@property(nonatomic, strong) NSString* filename;
 +(SharingBundle*)getCurrentSharingBundle;
 +(void)clearSharingBundle;
 -(void)setMoodAndIntensity:(UIColor*)color;
 -(NSURL*)getRecordingPath;
+-(Recording*)asNewRecording;
 @end

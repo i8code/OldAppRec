@@ -8,6 +8,7 @@
 
 #import "SharingBundle.h"
 #import "RecordingInfo.h"
+#import "Recording.h"
 #import "User.h"
 
 @interface SharingBundle()
@@ -24,6 +25,14 @@ static SharingBundle* _sharingBundle;
     }
     
     return _sharingBundle;
+}
+
+-(id)init{
+    self = [super init];
+    if (self) {
+        self.comment = NO;
+    }
+    return self;
 }
 
 +(void)clearSharingBundle{
@@ -44,15 +53,64 @@ static SharingBundle* _sharingBundle;
     NSDateFormatter* dateFormatter = [Util getDateFormatter];
     NSString* dateStr = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
     
-    NSString* filename = [NSString stringWithFormat:@"%@_%@", dateStr, [User getUser].qualifiedUsername];
+    self.filename = [NSString stringWithFormat:@"%@_%@.mp4", dateStr, [User getUser].qualifiedUsername];
     
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               filename,
+                               self.filename,
                                nil];
     self.recordingURL = [NSURL fileURLWithPathComponents:pathComponents];
     
     return self.recordingURL;
+}
+
+-(Recording*)asNewRecording{
+    Recording* recording = [[Recording alloc] init];
+    
+    /*
+     
+     @property (nonatomic, strong) NSString* _id;
+     @property (nonatomic, strong) NSString* username;
+     @property (nonatomic, strong) NSString* parentName;
+     @property (nonatomic, strong) NSString* parentType;
+     @property (nonatomic, strong) NSArray* children;
+     @property NSInteger childrenLength;
+     @property (nonatomic, strong) NSString* audioUrl;
+     @property (nonatomic, strong) NSString* audioHash;
+     @property (nonatomic, strong) NSArray* waveformData;
+     @property float* rawWaveformData;
+     
+     @property CGFloat mood;
+     @property CGFloat intensity;
+     
+     @property NSInteger likes;
+     @property NSInteger popularity;
+     
+     @property (nonatomic, strong) NSDate* createdDate;
+     @property (nonatomic, strong) NSDate* lastUpdate;
+     
+*/
+    recording.username = [User getUser].qualifiedUsername;
+    recording.parentName = self.parentName;
+    recording.parentType = self.comment?@"REC":@"TAG";
+    recording.children = nil;
+    recording.childrenLength = 0;
+    recording.audioUrl = self.filename;
+    
+    //Set by server :recording.audioHash
+    NSMutableArray* waveformData = [[NSMutableArray alloc] initWithCapacity:self.recordingInfo.length];
+    for (int i=0;i<self.recordingInfo.length;i++){
+        [waveformData addObject:[[NSNumber alloc] initWithFloat:self.recordingInfo.data[i]]];
+    }
+    recording.waveformData = waveformData;
+    recording.mood= self.moodHue;
+    recording.intensity = self.intensity;
+    recording.likes=0;
+    recording.popularity=0;
+    //Set by server :recording.createdDate
+    //Set by server :recording.lastUpdate
+    
+    return recording;
 }
 
 @end

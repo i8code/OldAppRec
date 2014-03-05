@@ -54,7 +54,7 @@
     return[components URL];
 }
 
-+(NSString*)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSString*)body{
++(NSString*)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body{
     
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]){
@@ -72,8 +72,8 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:type];
     if (body){
-        NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
-        [request setHTTPBody:bodyData];
+//        NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPBody:body];
     }
     [request setURL:url];
     
@@ -93,10 +93,10 @@
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query{
     return[self getDataFromRequestPath:url withQuery:query withHttpType:@"GET" andBody:nil];
 }
-+(NSString*)post:(NSString*)url withBody:(NSString*)body andQuery:(NSDictionary*)query{
++(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query{
     return[self getDataFromRequestPath:url withQuery:query withHttpType:@"POST" andBody:body];
 }
-+(NSString*)put:(NSString*)url  withBody:(NSString*)body andQuery:(NSDictionary*)query{
++(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query{
     return[self getDataFromRequestPath:url withQuery:query withHttpType:@"PUT" andBody:body];
 }
 +(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query{
