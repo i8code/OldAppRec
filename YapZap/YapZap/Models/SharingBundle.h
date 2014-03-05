@@ -19,4 +19,5 @@
 +(SharingBundle*)getCurrentSharingBundle;
 +(void)clearSharingBundle;
 -(void)setMoodAndIntensity:(UIColor*)color;
+-(NSURL*)getRecordingPath;
 @end

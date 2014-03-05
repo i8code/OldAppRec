@@ -25,14 +25,6 @@
 
 
 +(Recording*)fromJSON:(NSDictionary*)dictionary{
-    static NSDateFormatter *dateFormatter;
-    
-    if (!dateFormatter){
-        dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        [dateFormatter setLocale:enUSPOSIXLocale];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    }
     Recording* recording = [[Recording alloc] init];
     recording._id = [dictionary valueForKey:@"_id"];
     recording.username = [dictionary valueForKey:@"username"];

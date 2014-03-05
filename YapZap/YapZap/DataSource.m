@@ -79,17 +79,8 @@ static NSArray* _tags;
         lastUpdate = [[NSDate alloc] initWithTimeIntervalSince1970:0];
     }
     
-    static NSDateFormatter *dateFormatter;
-    
-    if (!dateFormatter){
-        dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        [dateFormatter setLocale:enUSPOSIXLocale];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    }
-    
     NSMutableDictionary* query = [[NSMutableDictionary alloc] init];
-    NSString* dateStr = [dateFormatter stringFromDate:lastUpdate];
+    NSString* dateStr = [[Util getDateFormatter] stringFromDate:lastUpdate];
     [query setObject:dateStr forKey:@"after"];
     
     NSString* path = [NSString stringWithFormat:@"/notifications/%@", [User getUser].qualifiedUsername];

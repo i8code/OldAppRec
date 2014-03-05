@@ -8,7 +8,11 @@
 
 #import "SharingBundle.h"
 #import "RecordingInfo.h"
-#import "Util.h"
+#import "User.h"
+
+@interface SharingBundle()
+@property(nonatomic, strong) NSURL* recordingURL;
+@end
 
 @implementation SharingBundle
 
@@ -30,6 +34,25 @@ static SharingBundle* _sharingBundle;
     self.moodHue = [Util moodFromColor:color];
     self.intensity = [Util intenstiyFromColor:color];
     
+}
+
+-(NSURL*)getRecordingPath{
+    if (self.recordingURL){
+        return self.recordingURL;
+    }
+    
+    NSDateFormatter* dateFormatter = [Util getDateFormatter];
+    NSString* dateStr = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    NSString* filename = [NSString stringWithFormat:@"%@_%@", dateStr, [User getUser].qualifiedUsername];
+    
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               filename,
+                               nil];
+    self.recordingURL = [NSURL fileURLWithPathComponents:pathComponents];
+    
+    return self.recordingURL;
 }
 
 @end

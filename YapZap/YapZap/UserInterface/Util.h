@@ -14,5 +14,6 @@
 +(UIColor*)colorFromMood:(CGFloat)mood andIntesity:(CGFloat)intensity;
 +(CGFloat)moodFromColor:(UIColor*)color;
 +(CGFloat)intenstiyFromColor:(UIColor*)color;
++(NSDateFormatter*)getDateFormatter;
 
 @end

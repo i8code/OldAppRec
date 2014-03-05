@@ -12,15 +12,7 @@
 
 
 +(Tag*)fromJSON:(NSDictionary*)jsonDictionary{
-    
-    static NSDateFormatter *dateFormatter;
-    
-    if (!dateFormatter){
-        dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        [dateFormatter setLocale:enUSPOSIXLocale];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    }
+    NSDateFormatter *dateFormatter = [Util getDateFormatter];
     
     Tag* tag = [[Tag alloc] init];
     

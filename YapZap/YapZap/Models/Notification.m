@@ -12,14 +12,8 @@
 
 
 +(Notification*)fromJSON:(NSDictionary*)dictionary{
-    static NSDateFormatter *dateFormatter;
+    NSDateFormatter *dateFormatter = [Util getDateFormatter];
     
-    if (!dateFormatter){
-        dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        [dateFormatter setLocale:enUSPOSIXLocale];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    }
     Notification* notification = [[Notification alloc] init];
     notification._id = [dictionary valueForKey:@"_id"];
     notification.usernameBy = [dictionary valueForKey:@"username_by"];

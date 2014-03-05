@@ -11,6 +11,8 @@
 #import "RingBuffer.h"
 #import "AudioFileWriter.h"
 #import "RecordingInfo.h"
+#import "User.h"
+#import "SharingBundle.h"
 
 @interface Recorder()
 
@@ -63,21 +65,12 @@
     }
 }
 
--(NSURL*)genURL{
-    
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"test.m4a",
-                               nil];
-    NSURL *url = [NSURL fileURLWithPathComponents:pathComponents];
-    return url;
-}
 
 
 -(void)start{
     [self resetData:self.blockLength];
     self.count = 0;
-    self.currentPath = [self genURL];
+    self.currentPath = [[SharingBundle getCurrentSharingBundle] getRecordingPath];
     NSLog(@"URL: %@", self.currentPath);
     
     __weak Recorder * wself = self;

@@ -106,5 +106,18 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
     [color getHue:&h saturation:&s brightness:&b alpha:&a];
     return s;
 }
++(NSDateFormatter*)getDateFormatter{
+    
+    static NSDateFormatter *dateFormatter;
+    
+    if (!dateFormatter){
+        dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        [dateFormatter setLocale:enUSPOSIXLocale];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    }
+    
+    return dateFormatter;
+}
 
 @end
