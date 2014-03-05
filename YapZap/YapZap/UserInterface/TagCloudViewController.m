@@ -130,30 +130,7 @@
                 max = MAX(max, rowDepths[i]);
             }
             
-            self.canvasWidth = max;
-            /*
-            
-            int count=0;
-            self.canvasWidth = self.cloudView.frame.size.width*self.popularTags.count/40;
-            self.canvasHeight = self.cloudView.frame.size.height;
-            
-            for (Tag* tag in self.popularTags){
-                
-                int y = (count%7);
-                int x = (count/7);
-                
-                count++;
-                
-                CGPoint position = CGPointMake(
-                                               10+x*self.canvasWidth/10.0 + (arc4random() % 5)+30*(y%2),
-                                               10+y*self.canvasHeight/8.0 + (arc4random() % 10)+15*(x%3));
-                
-                int depth = (arc4random() % 20)+80;
-                CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag position:position andDepth:depth andCanvasWidth:self.canvasWidth inView:self.cloudView andOnclick:self.gotoTagBlock];
-                
-                [buttons addObject:element];
-            }*/
-            
+            self.canvasWidth = MAX(self.cloudView.frame.size.width, max);
             self.buttons = buttons;
             
             for (CloudTagElement* element in self.buttons){

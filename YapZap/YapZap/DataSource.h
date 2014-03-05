@@ -14,10 +14,10 @@
 
 @interface DataSource : NSObject
 
-+(PageSet*)getSet:(NSInteger)setNum;
 +(NSArray*)getTagNames;
 +(NSArray*)getPopularTags;
 +(Tag*)getNextPopularTag;
++(NSArray*)getNotifications;
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName;
 
 @end

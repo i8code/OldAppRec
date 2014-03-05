@@ -13,7 +13,7 @@ exports.getHash = function(secret, key, t){
 
 exports.check = function(req, res){
 
-    //return true; //for now
+    return true; //for now
 
     var t_in = req.query.t;
     var key = req.query.key;

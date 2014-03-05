@@ -8,10 +8,11 @@
 
 #import "DataSource.h"
 #import "SampleData.h"
-#import "PageSet.h"
 #import "Tag.h"
 #import "Recording.h"
 #import "RestHelper.h"
+#import "Notification.h"
+#import "User.h"
 
 @interface DataSource()
 
@@ -20,32 +21,7 @@
 @implementation DataSource
 
 
-static NSArray* _pages;
 static NSArray* _tags;
-
-+(NSArray*)pages{
-    if (_pages==nil){
-        NSData *jsonData = [[SampleData getJSON] dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray* pagesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-        
-        NSMutableArray* array = [[NSMutableArray alloc] init];
-        for (NSDictionary* page in pagesJson){
-            [array addObject:[PageSet fromJSON:page]];
-        }
-        _pages = array;
-    }
-    
-    return _pages;
-}
-
-+(PageSet*)getSet:(NSInteger)setNum{
-    
-    if ([DataSource pages]==nil || setNum<0 || setNum>=[DataSource pages].count){
-        return nil;
-    }
-    
-    return [DataSource pages][setNum];
-}
 
 +(NSArray*)getTagNames{
     
@@ -55,7 +31,7 @@ static NSArray* _tags;
     }
     
     //Mock NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[RestHelper get:@"/tag_names" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
     NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     tagNames = [[NSMutableArray alloc] init];
@@ -70,10 +46,9 @@ static NSArray* _tags;
 
 +(NSArray*)getPopularTags{
     
-    [NSThread sleepForTimeInterval:0];
+//Mock    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
-    
+    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
     NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     NSMutableArray* array = [[NSMutableArray alloc] init];
@@ -85,12 +60,56 @@ static NSArray* _tags;
 }
 
 +(Tag*)getNextPopularTag{
-    static int currentTag = 0;
+    static int currentTag =-1;
     if(_tags==nil){
        [self getPopularTags];
     }
+    currentTag=(currentTag+1)%_tags.count;
+    return [_tags objectAtIndex:currentTag];
+}
+
+#define NOTIFICATION_KEY @"last_notification_update"
+
++(NSArray*)getNotifications{
+    if (![User getUser].username){
+        return nil;
+    }
+    NSDate* lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:NOTIFICATION_KEY];
+    if (!lastUpdate) {
+        lastUpdate = [[NSDate alloc] initWithTimeIntervalSince1970:0];
+    }
     
-    return [_tags objectAtIndex:currentTag++];
+    static NSDateFormatter *dateFormatter;
+    
+    if (!dateFormatter){
+        dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        [dateFormatter setLocale:enUSPOSIXLocale];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    }
+    
+    NSMutableDictionary* query = [[NSMutableDictionary alloc] init];
+    NSString* dateStr = [dateFormatter stringFromDate:lastUpdate];
+    [query setObject:dateStr forKey:@"after"];
+    
+    NSString* path = [NSString stringWithFormat:@"/notifications/%@", [User getUser].username];
+    
+    NSData *jsonData = [[RestHelper get:path withQuery:query] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData){
+        return nil;
+    }
+    
+    NSArray* notificiationsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for (NSDictionary* note in notificiationsDic){
+        [array addObject:[Notification fromJSON:note]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[[NSDate alloc] initWithTimeIntervalSinceNow:0] forKey:NOTIFICATION_KEY];
+    
+    return array;
+
 }
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName{
     

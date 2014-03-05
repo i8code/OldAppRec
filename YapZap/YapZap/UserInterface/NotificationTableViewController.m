@@ -8,8 +8,11 @@
 
 #import "NotificationTableViewController.h"
 #import "NotificationCell.h"
+#import "DataSource.h"
 
 @interface NotificationTableViewController ()
+
+@property (nonatomic, strong)NSArray* data;
 
 @end
 
@@ -28,8 +31,18 @@
 }
 - (void)refresh
 {
-    [self performSelector:@selector(updateTable) withObject:nil
-               afterDelay:1];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (int i=0;i<10;i++){
+            [NSThread sleepForTimeInterval:0.1];
+            self.data = [DataSource getNotifications];
+            if (self.data){
+                [self updateTable];
+                break;
+            }
+        }
+        [self updateTable];
+        
+    });
 }
 - (void)updateTable
 {
@@ -41,6 +54,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.refreshControl beginRefreshing];
+    [self refresh];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -64,7 +80,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    if (!self.data || !self.data.count){
+        return 1;
+    }
+    
+    return self.data.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -74,7 +94,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Notification";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NotificationCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
@@ -82,6 +102,14 @@
     }
     
     // Configure the cell...
+    
+    if (!self.data || !self.data.count){
+        [cell.textLabel setText:@"Notifications will appear here"];
+        [cell.textLabel setTextColor:[UIColor whiteColor]];
+    }
+    else {
+        [cell setNotification:self.data[indexPath.row]];
+    }
     
     return cell;
 }

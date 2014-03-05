@@ -123,10 +123,8 @@
 		C796203A18A6825E00D1BEAB /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203818A6825E00D1BEAB /* LoadingViewController.m */; };
 		C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C796203918A6825E00D1BEAB /* LoadingViewController.xib */; };
 		C796203E18A6857500D1BEAB /* IndexedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796203D18A6857500D1BEAB /* IndexedViewController.m */; };
-		C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204118A6A6CA00D1BEAB /* TagPage.m */; };
 		C796204518A6A74000D1BEAB /* Recording.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204418A6A74000D1BEAB /* Recording.m */; };
 		C796204B18A6B30300D1BEAB /* SampleData.mm in Sources */ = {isa = PBXBuildFile; fileRef = C796204A18A6B30300D1BEAB /* SampleData.mm */; };
-		C796204E18A6B71400D1BEAB /* PageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C796204D18A6B71400D1BEAB /* PageSet.m */; };
 		C796205118A6BBAD00D1BEAB /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205018A6BBAD00D1BEAB /* DataSource.m */; };
 		C796205418A6E2AF00D1BEAB /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205318A6E2AF00D1BEAB /* Util.m */; };
 		C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C796205618A7035400D1BEAB /* RecordControllerViewController.mm */; };
@@ -140,6 +138,7 @@
 		C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */; };
 		C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */; };
 		C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D764BB18B2B18D007B86B2 /* Tag.m */; };
+		C7D81A7A18C6AC1500FC3937 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D81A7918C6AC1500FC3937 /* Notification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -606,14 +605,10 @@
 		C796203918A6825E00D1BEAB /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingViewController.xib; path = UserInterface/LoadingViewController.xib; sourceTree = "<group>"; };
 		C796203C18A6857500D1BEAB /* IndexedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexedViewController.h; path = UserInterface/IndexedViewController.h; sourceTree = "<group>"; };
 		C796203D18A6857500D1BEAB /* IndexedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexedViewController.m; path = UserInterface/IndexedViewController.m; sourceTree = "<group>"; };
-		C796204018A6A6CA00D1BEAB /* TagPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagPage.h; path = Models/TagPage.h; sourceTree = "<group>"; };
-		C796204118A6A6CA00D1BEAB /* TagPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagPage.m; path = Models/TagPage.m; sourceTree = "<group>"; };
 		C796204318A6A74000D1BEAB /* Recording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recording.h; path = Models/Recording.h; sourceTree = "<group>"; };
 		C796204418A6A74000D1BEAB /* Recording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recording.m; path = Models/Recording.m; sourceTree = "<group>"; };
 		C796204918A6B30300D1BEAB /* SampleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleData.h; path = Models/SampleData.h; sourceTree = "<group>"; };
 		C796204A18A6B30300D1BEAB /* SampleData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SampleData.mm; path = Models/SampleData.mm; sourceTree = "<group>"; };
-		C796204C18A6B71400D1BEAB /* PageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageSet.h; path = Models/PageSet.h; sourceTree = "<group>"; };
-		C796204D18A6B71400D1BEAB /* PageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageSet.m; path = Models/PageSet.m; sourceTree = "<group>"; };
 		C796204F18A6BBAD00D1BEAB /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		C796205018A6BBAD00D1BEAB /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		C796205218A6E2AF00D1BEAB /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = UserInterface/Util.h; sourceTree = "<group>"; };
@@ -637,6 +632,8 @@
 		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
 		C7D764BA18B2B18D007B86B2 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Models/Tag.h; sourceTree = "<group>"; };
 		C7D764BB18B2B18D007B86B2 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Models/Tag.m; sourceTree = "<group>"; };
+		C7D81A7818C6AC1500FC3937 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = Models/Notification.h; sourceTree = "<group>"; };
+		C7D81A7918C6AC1500FC3937 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = Models/Notification.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1457,16 +1454,14 @@
 		C796203F18A6A6A800D1BEAB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C796204018A6A6CA00D1BEAB /* TagPage.h */,
-				C796204118A6A6CA00D1BEAB /* TagPage.m */,
-				C796204318A6A74000D1BEAB /* Recording.h */,
-				C796204418A6A74000D1BEAB /* Recording.m */,
-				C796204C18A6B71400D1BEAB /* PageSet.h */,
-				C796204D18A6B71400D1BEAB /* PageSet.m */,
 				C761D04E18AD9992003947C1 /* SharingBundle.h */,
 				C761D04F18AD9992003947C1 /* SharingBundle.m */,
 				C7D764BA18B2B18D007B86B2 /* Tag.h */,
 				C7D764BB18B2B18D007B86B2 /* Tag.m */,
+				C796204318A6A74000D1BEAB /* Recording.h */,
+				C796204418A6A74000D1BEAB /* Recording.m */,
+				C7D81A7818C6AC1500FC3937 /* Notification.h */,
+				C7D81A7918C6AC1500FC3937 /* Notification.m */,
 				C79276ED18C3BBD6000476D1 /* User.h */,
 				C79276EE18C3BBD6000476D1 /* User.m */,
 			);
@@ -1831,7 +1826,6 @@
 				C72C1DAB18AAE8B2006D136F /* RingBuffer.mm in Sources */,
 				C747FC2218A738EC0083A533 /* LoginViewController.m in Sources */,
 				C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */,
-				C796204218A6A6CA00D1BEAB /* TagPage.m in Sources */,
 				C74A6CAB18C24E4D0086F78D /* SearchCell.m in Sources */,
 				C79276E818C38A9E000476D1 /* AuthHelper.m in Sources */,
 				C706247718B9371000D1BEB0 /* TagPageViewController.m in Sources */,
@@ -1845,13 +1839,13 @@
 				C761D03618AD7CB2003947C1 /* RecordingInfo.m in Sources */,
 				C74A6CBA18C270D60086F78D /* NotificationCell.m in Sources */,
 				C72C1DB818AAFB24006D136F /* Reachability.m in Sources */,
-				C796204E18A6B71400D1BEAB /* PageSet.m in Sources */,
 				C747FC4E18A8169D0083A533 /* UIPopoverController+iPhone.m in Sources */,
 				C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */,
 				C706248118B95EEE00D1BEB0 /* YapZapViewController.m in Sources */,
 				C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */,
 				C747FC4A18A816660083A533 /* SearchViewController.m in Sources */,
 				C796205418A6E2AF00D1BEAB /* Util.m in Sources */,
+				C7D81A7A18C6AC1500FC3937 /* Notification.m in Sources */,
 				C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */,
 				C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,

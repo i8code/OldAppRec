@@ -68,6 +68,7 @@
     }
     
     NSURL* url = [self getFullPath:path withQuery:query];
+    NSLog(@"%@ %@", type, [url absoluteString]);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:type];
     if (body){

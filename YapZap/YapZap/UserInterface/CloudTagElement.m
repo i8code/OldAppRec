@@ -59,7 +59,7 @@
     frame.origin.x = self.startingPoint.x-position*(self.depth-70)*2;
     
     while (frame.origin.x+frame.size.width<0) {
-        frame.origin.x+=self.canvasWidth;
+        frame.origin.x+=self.canvasWidth+frame.size.width;
     }
     
     [self.button setFrame:frame];

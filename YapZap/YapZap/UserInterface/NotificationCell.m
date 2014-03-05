@@ -7,6 +7,7 @@
 //
 
 #import "NotificationCell.h"
+#import "Notification.h"
 
 @implementation NotificationCell
 
@@ -26,4 +27,20 @@
     // Configure the view for the selected state
 }
 
+
+-(void)setNotification:(Notification *)notification{
+    _notification  = notification;
+    if ([_notification.type isEqualToString:@"LIKE"]) {
+        self.likePanel.hidden = NO;
+        self.commentPanel.hidden = YES;
+        
+    }
+    else{
+        self.likePanel.hidden = YES;
+        self.commentPanel.hidden = NO;
+        
+    }
+}
+- (IBAction)tagButtonPressed:(id)sender {
+}
 @end

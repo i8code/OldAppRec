@@ -36,7 +36,7 @@ exports.getByUser = function(Models) {
         query.limit(50).sort({created_date: -1}).exec(function(err, notifications) {
 
             if (!notifications || notifications.length==0){
-                res.status(404);
+                res.status(200);
                 res.send([]);
                 return;
             }
