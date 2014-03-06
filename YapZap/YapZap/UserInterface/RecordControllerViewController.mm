@@ -13,6 +13,7 @@
 #import "WaveformView.h"
 #import "SharingBundle.h"
 #import "FilteredImageView.h"
+#import "Player.h"
 
 @interface RecordControllerViewController ()
 
@@ -26,7 +27,7 @@
 @property (nonatomic, strong) Recorder* recorder;
 @property (nonatomic, strong) RecordingInfo* recordingInfo;
 @property (nonatomic, strong) WaveformView* waveform;
-@property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic, strong) Player *player;
 @property (nonatomic) BOOL backPressedLast;
 @end
 
@@ -152,9 +153,7 @@
     self.stopPanel.hidden = NO;
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updatePlayLocation)userInfo:nil repeats:YES];
     
-    NSURL *soundFileURL = [NSURL fileURLWithPath:self.recordingInfo.url];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-    
+    self.player = [[Player alloc] initWithPath:self.recordingInfo.url];
     [self.player play];
     
     self.playing = true;
