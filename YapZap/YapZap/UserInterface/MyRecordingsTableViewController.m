@@ -7,6 +7,10 @@
 //
 
 #import "MyRecordingsTableViewController.h"
+#import "MyRecordingsCell.h"
+#import "DataSource.h"
+#import "SettingsViewController.h"
+
 
 @interface MyRecordingsTableViewController ()
 
@@ -22,6 +26,9 @@
     }
     return self;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self refresh];
+}
 
 - (void)viewDidLoad
 {
@@ -32,6 +39,29 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self refresh];
+}
+
+- (void)refresh
+{
+    [self setRecordings:[DataSource getMyRecordings]];
+    [self.delegate setRecordings:self.recordings];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+//- (void)updateTable
+//{
+//    [self.tableView reloadData];
+//    [self.refreshControl endRefreshing];
+//}
+
+-(void)setRecordings:(NSArray *)recordings{
+    _recordings = recordings;
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,28 +74,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return self.recordings.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"MyRecordingsCell";
+    MyRecordingsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MyRecordingsCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
+    
+    [cell setRecording:[self.recordings objectAtIndex:indexPath.row]];
     
     // Configure the cell...
     
+    cell.selectedBackgroundView.hidden = YES;
     return cell;
 }
 

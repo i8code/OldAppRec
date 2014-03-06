@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MyRecordingsTableViewController.h"
 #import "User.h"
+#import "Recording.h"
 
 @interface SettingsViewController ()
 
@@ -43,6 +44,21 @@
 - (IBAction)savePressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
+-(void)setRecordings:(NSArray *)recordings{
+    _recordings = recordings;
+    
+    NSUInteger likes = 0;
+    NSUInteger comments = 0;
+    
+    for (Recording* recording in recordings){
+        likes+=recording.likes;
+        comments+=recording.childrenLength;
+    }
+    
+    self.commentCount.text = [NSString stringWithFormat:@"%lu", comments];
+    self.likeCount.text = [NSString stringWithFormat:@"%lu", likes];
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -53,6 +69,8 @@
     
     if (!self.myRecordingsViewController){
         self.myRecordingsViewController = [[MyRecordingsTableViewController alloc] initWithNibName:@"MyRecordingsTableViewController" bundle:nil];
+        
+        self.myRecordingsViewController.delegate = self;
         
         [self addChildViewController:self.myRecordingsViewController];
         [self.manageArea addSubview:self.myRecordingsViewController.view];

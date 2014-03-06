@@ -19,5 +19,6 @@
 +(Tag*)getNextPopularTag;
 +(NSArray*)getNotifications;
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName;
++(NSArray*)getMyRecordings;
 
 @end

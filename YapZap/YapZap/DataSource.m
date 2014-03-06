@@ -119,4 +119,18 @@ static NSArray* _tags;
     return array;
 }
 
++(NSArray*)getMyRecordings{
+    NSString* path = [NSString stringWithFormat:@"/users/%@/recordings", [User getUser].qualifiedUsername];
+    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for (NSDictionary* recDic in recordingsDic){
+        [array addObject:[Recording fromJSON:recDic]];
+    }
+    
+    return array;
+}
+
 @end

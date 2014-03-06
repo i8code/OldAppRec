@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *facebookSwitched;
 @property (weak, nonatomic) IBOutlet UISwitch *twitterSwitched;
 @property (weak, nonatomic) IBOutlet UIButton *helpNeeded;
+@property (strong, nonatomic) NSArray* recordings;
 
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SettingsViewController;
+
 @interface MyRecordingsTableViewController : UITableViewController
+@property(nonatomic, strong) NSArray* recordings;
+@property(nonatomic, weak) SettingsViewController* delegate;
 
 @end

@@ -23,9 +23,6 @@
     if (self) {
         // Custom initialization
         
-        self.refreshControl = [[UIRefreshControl alloc] init];
-        [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-        self.refreshControl.tintColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -33,11 +30,11 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         for (int i=0;i<10;i++){
-            [NSThread sleepForTimeInterval:0.1];
+            [NSThread sleepForTimeInterval:1.0];
             self.data = [DataSource getNotifications];
             if (self.data){
                 [self updateTable];
-                break;
+                return;
             }
         }
         [self updateTable];
@@ -46,8 +43,10 @@
 }
 - (void)updateTable
 {
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+    });
 }
 
 
@@ -60,6 +59,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor whiteColor];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self.refreshControl beginRefreshing];

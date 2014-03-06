@@ -1361,15 +1361,15 @@
 				C74A6C9F18C249D80086F78D /* MyRecordingsTableViewController.h */,
 				C74A6CA018C249D80086F78D /* MyRecordingsTableViewController.m */,
 				C74A6CA118C249D80086F78D /* MyRecordingsTableViewController.xib */,
+				C74A6CAE18C255800086F78D /* MyRecordingsCell.h */,
+				C74A6CAF18C255800086F78D /* MyRecordingsCell.m */,
+				C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */,
 				C74A6CA418C249ED0086F78D /* SearchTableViewController.h */,
 				C74A6CA518C249ED0086F78D /* SearchTableViewController.m */,
 				C74A6CA618C249ED0086F78D /* SearchTableViewController.xib */,
 				C74A6CA918C24E4D0086F78D /* SearchCell.h */,
 				C74A6CAA18C24E4D0086F78D /* SearchCell.m */,
 				C74A6CAC18C255720086F78D /* SearchCell.xib */,
-				C74A6CAE18C255800086F78D /* MyRecordingsCell.h */,
-				C74A6CAF18C255800086F78D /* MyRecordingsCell.m */,
-				C74A6CB118C255E10086F78D /* MyRecordingsCell.xib */,
 			);
 			name = "Table Views";
 			sourceTree = "<group>";
