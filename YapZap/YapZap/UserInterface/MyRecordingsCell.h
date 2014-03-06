@@ -22,6 +22,7 @@
 - (IBAction)likePressed:(id)sender;
 - (IBAction)commentSelected:(id)sender;
 - (IBAction)playClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 - (IBAction)trashPressed:(id)sender;
 

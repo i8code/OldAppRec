@@ -9,6 +9,16 @@
 #import "MyRecordingsCell.h"
 #import "Recording.h"
 #import "WaveformView.h"
+#import "S3Helper.h"
+#import "Player.h"
+
+@interface MyRecordingsCell()
+@property(nonatomic, strong)Player* player;
+@property  (nonatomic, strong) NSTimer* timer;
+@property  NSInteger timerCount;
+@property BOOL isPlaying;
+
+@end
 
 @implementation MyRecordingsCell
 
@@ -51,8 +61,80 @@
 - (IBAction)commentSelected:(id)sender{
     
 }
-- (IBAction)playClicked:(id)sender{
+
+-(void)stopPlaying{
+    //[self.delegate setCell:self playing:NO];
     
+    [self.player stop];
+    [self.playButton setImage:[UIImage imageNamed:@"play_small_button.png"] forState:UIControlStateNormal];
+    
+    [self.timer invalidate];
+    self.timer=nil;
+    
+    [self.waveFormImage setHighlightPercent:0];
+    [self.waveFormImage setNeedsDisplay];
+    
+    self.isPlaying = false;
+}
+
+-(void)updateImage{
+    
+    self.timerCount++;
+    
+    [self.waveFormImage setHighlightPercent:(((float)self.timerCount)/50.0f)];
+    [self.waveFormImage setNeedsDisplay];
+    
+    if (self.timerCount>=50){
+        [self stopPlaying];
+    }
+    
+}
+
+-(void)startPlaying{
+    
+    [self.player play];
+    
+    self.isPlaying = true;
+    //[self.delegate setCell:self playing:YES];
+    [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
+    
+    self.timerCount = 0;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
+    
+}
+-(NSURL*)getFileURL{
+    NSURL *furl = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:self.recording.audioUrl]];
+    
+    return furl;
+}
+
+
+- (IBAction)playClicked:(id)sender {
+    if (self.isPlaying){
+        [self stopPlaying];
+    }
+    else {
+        self.playButton.hidden = YES;
+        self.loadingIndicator.hidden = NO;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSURL* path = [self getFileURL];
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[path path]]){
+                //Download
+                NSData* data = [S3Helper fileFromS3WithName:self.recording.audioUrl];
+                [data writeToFile:[path path] atomically:YES];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.player = [[Player alloc] initWithPath:[path path]];
+                self.loadingIndicator.hidden = YES;
+                self.playButton.hidden = NO;
+                [self startPlaying];
+            });
+        });
+    }
 }
 
 - (IBAction)trashPressed:(id)sender {

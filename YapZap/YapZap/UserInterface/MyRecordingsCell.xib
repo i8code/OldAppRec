@@ -82,6 +82,11 @@
                             <action selector="trashPressed:" destination="wcQ-Ar-fpZ" eventType="touchUpInside" id="tfX-uw-0eE"/>
                         </connections>
                     </button>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Jf5-hF-nqZ">
+                        <rect key="frame" x="11" y="13" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
@@ -91,6 +96,7 @@
                 <outlet property="commentLabel" destination="WLs-Vy-E5O" id="2d9-M5-xqW"/>
                 <outlet property="likeButton" destination="tLa-7N-BnJ" id="ac7-qP-tdw"/>
                 <outlet property="likesLabel" destination="1xM-N8-vms" id="xnt-Rq-uWg"/>
+                <outlet property="loadingIndicator" destination="Jf5-hF-nqZ" id="vHO-k5-PBR"/>
                 <outlet property="playButton" destination="SJs-a7-NB6" id="rmo-gh-vZ7"/>
                 <outlet property="tagLabel" destination="D4C-UZ-H24" id="i0z-Ho-qik"/>
                 <outlet property="waveFormImage" destination="G7A-TI-h4Y" id="Umd-fA-pca"/>
