@@ -34,10 +34,15 @@
     if ([_notification.type isEqualToString:@"LIKE"]) {
         self.likePanel.hidden = NO;
         self.commentPanel.hidden = YES;
+        
+        [self.likedButton setTitle:notification.tagName forState:UIControlStateNormal];
     }
     else{
         self.likePanel.hidden = YES;
         self.commentPanel.hidden = NO;
+        
+        
+        [self.commentedButton setTitle:notification.tagName forState:UIControlStateNormal];
     }
 }
 - (IBAction)tagButtonPressed:(id)sender {

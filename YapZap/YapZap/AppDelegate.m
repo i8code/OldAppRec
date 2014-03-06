@@ -17,6 +17,7 @@
 #import <Accounts/Accounts.h>
 #import "User.h"
 #import "DataSource.h"
+#import "CoreDataManager.h"
 
 @implementation AppDelegate
 
@@ -28,6 +29,8 @@
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     //Load Tag names
     [DataSource getTagNames];
+    [CoreDataManager database];
+    
     
     //Check to see if the user is logged in
     

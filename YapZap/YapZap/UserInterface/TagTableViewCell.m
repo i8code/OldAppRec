@@ -14,12 +14,14 @@
 #import "WaveformView.h"
 #import "RestHelper.h"
 #import "User.h"
+#import "CoreDataManager.h"
 
 @interface TagTableViewCell()
 @property  (nonatomic, strong) NSTimer* timer;
 @property  NSInteger timerCount;
 @property BOOL isPlaying;
 @property (nonatomic) BOOL liked;
+@property (nonatomic) BOOL likeIncludedInCount;
 
 @end
 
@@ -38,14 +40,22 @@
     [self.likeButton setImage:likeImage forState:UIControlStateNormal];
     
     self.likesLabel.textColor = _liked?[UIColor blackColor]:[UIColor whiteColor];
-    self.likesLabel.text = [NSString stringWithFormat:@"%ld", (long)self.recording.likes+(_liked?1:0)];
+    NSUInteger likes = self.recording.likes;
+    if (!self.liked && self.likeIncludedInCount){
+        likes--;
+    }
+    else if (self.liked && !self.likeIncludedInCount){
+        likes++;
+    }
+    self.likesLabel.text = [NSString stringWithFormat:@"%ld", likes];
 }
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
     self.label.text = recording.displayName;
     
-    self.liked = NO;
+    self.likeIncludedInCount = [CoreDataManager liked:recording._id];
+    self.liked = self.likeIncludedInCount;
     
     
     self.commentLabel.text = [NSString stringWithFormat:@"%ld", recording.childrenLength];
@@ -164,6 +174,7 @@
     User* user = [User getUser];
     
     if (self.liked){
+        [CoreDataManager like:self.recording._id];
         NSString* body = [NSString stringWithFormat:@"{\"username\":\"%@\"}", user.qualifiedUsername];
         NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
         NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes", self.recording._id];
@@ -171,6 +182,7 @@
         [RestHelper post:path withBody:bodyData andQuery:nil];
     }
     else {
+        [CoreDataManager unlike:self.recording._id];
         NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes/%@", self.recording._id, user.qualifiedUsername];
         [RestHelper del:path withQuery:nil];
     }
