@@ -18,16 +18,7 @@
 @synthesize displayName = _displayName;
 
 -(NSString*)displayName{
-    if (!self.username){
-        return nil;
-    }
-    
-    NSRange underscore = [self.username rangeOfString: @"_"];
-    if (underscore.location  == NSNotFound ){
-        return self.username;
-    }
-    
-    return [self.username substringWithRange:NSMakeRange(underscore.location+1, self.username.length - underscore.location-1)];
+    return [Util trimUsername:self.username];
 }
 
 -(float*)rawWaveformData{

@@ -30,15 +30,14 @@
 
 -(void)setNotification:(Notification *)notification{
     _notification  = notification;
+    self.userBy.text = [Util trimUsername:[notification usernameBy]];
     if ([_notification.type isEqualToString:@"LIKE"]) {
         self.likePanel.hidden = NO;
         self.commentPanel.hidden = YES;
-        
     }
     else{
         self.likePanel.hidden = YES;
         self.commentPanel.hidden = NO;
-        
     }
 }
 - (IBAction)tagButtonPressed:(id)sender {

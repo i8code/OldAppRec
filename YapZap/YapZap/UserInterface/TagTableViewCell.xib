@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="0k6-NC-b9j">
-                        <rect key="frame" x="6" y="4" width="30" height="30"/>
+                        <rect key="frame" x="6" y="7" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="play_small_button.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,12 +45,12 @@
                         </connections>
                     </button>
                     <view opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" id="Iid-JY-MOh" customClass="WaveformView">
-                        <rect key="frame" x="44" y="4" width="195" height="30"/>
+                        <rect key="frame" x="44" y="0.0" width="195" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yhb-mw-L1v">
-                        <rect key="frame" x="46" y="0.0" width="193" height="41"/>
+                        <rect key="frame" x="46" y="13" width="193" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

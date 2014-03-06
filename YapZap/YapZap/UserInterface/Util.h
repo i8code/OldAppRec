@@ -15,5 +15,5 @@
 +(CGFloat)moodFromColor:(UIColor*)color;
 +(CGFloat)intenstiyFromColor:(UIColor*)color;
 +(NSDateFormatter*)getDateFormatter;
-
++(NSString*)trimUsername:(NSString*)username;
 @end

@@ -94,9 +94,20 @@ exports.create = function(Models) {
 
         if (req.url.substring(0,5)==="/tags"){
             type = "TAG";
+
+            Models.Tag.find({name:name}).exec(function(err, tags) {
+                if (!tags || tags.length===0){
+                    //Create the tag
+                    console.log("creating new tag");
+                    var tag = new Models.Tag({name:name});
+                    tag.save();
+                }
+            });
+
         } else {
             type = "REC";
         }
+
 
         var recording = new Models.Recording(req.body);
         recording.parent_type = type;

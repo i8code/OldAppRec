@@ -119,5 +119,17 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
     
     return dateFormatter;
 }
++(NSString*)trimUsername:(NSString*)username{
+    if (!username){
+        return nil;
+    }
+    
+    NSRange underscore = [username rangeOfString: @"_"];
+    if (underscore.location  == NSNotFound ){
+        return username;
+    }
+    
+    return [username substringWithRange:NSMakeRange(underscore.location+1, username.length - underscore.location-1)];
+}
 
 @end

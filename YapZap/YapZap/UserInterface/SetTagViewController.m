@@ -95,8 +95,15 @@
     
     return NO;
 }
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+-(NSString*)fixTag{
     NSString* tagname = self.tagTextField.text;
+    tagname = [[[tagname componentsSeparatedByCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]] componentsJoinedByString:@""] uppercaseString];
+    
+    return tagname;
+    
+}
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    NSString* tagname = [self fixTag];
     [self.sharingBundle setTagName:tagname];
     if (!tagname || !tagname.length) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tag Name" message:@"Please tag before continuing." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];

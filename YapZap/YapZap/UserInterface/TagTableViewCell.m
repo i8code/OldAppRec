@@ -12,6 +12,8 @@
 #import "Util.h"
 #import "TagPageTableViewController.h"
 #import "WaveformView.h"
+#import "RestHelper.h"
+#import "User.h"
 
 @interface TagTableViewCell()
 @property  (nonatomic, strong) NSTimer* timer;
@@ -158,6 +160,20 @@
 
 - (IBAction)likePressed:(id)sender {
     self.liked = !self.liked;
+    
+    User* user = [User getUser];
+    
+    if (self.liked){
+        NSString* body = [NSString stringWithFormat:@"{\"username\":\"%@\"}", user.qualifiedUsername];
+        NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
+        NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes", self.recording._id];
+        
+        [RestHelper post:path withBody:bodyData andQuery:nil];
+    }
+    else {
+        NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes/%@", self.recording._id, user.qualifiedUsername];
+        [RestHelper del:path withQuery:nil];
+    }
 }
 
 - (IBAction)commentSelected:(id)sender {

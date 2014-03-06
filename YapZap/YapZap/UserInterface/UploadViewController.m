@@ -120,7 +120,7 @@
 
 -(void) updateProgress{
     self.count++;
-    if (self.uploadComplete && self.uploadedTime+30<self.count){
+    if (self.uploadComplete && self.uploadedTime+10<self.count){
         //Done, done
         [self.timer invalidate];
         self.timer = nil;

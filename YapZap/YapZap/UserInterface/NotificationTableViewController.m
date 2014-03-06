@@ -31,7 +31,7 @@
 }
 - (void)refresh
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         for (int i=0;i<10;i++){
             [NSThread sleepForTimeInterval:0.1];
             self.data = [DataSource getNotifications];
@@ -54,15 +54,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.refreshControl beginRefreshing];
-    [self refresh];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [self.refreshControl beginRefreshing];
+    [self refresh];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,7 +83,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!self.data || !self.data.count){
-        return 1;
+        return 0;
     }
     
     return self.data.count;

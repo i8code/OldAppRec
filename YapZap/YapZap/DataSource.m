@@ -85,7 +85,7 @@ static NSArray* _tags;
     
     NSString* path = [NSString stringWithFormat:@"/notifications/%@", [User getUser].qualifiedUsername];
     
-    NSData *jsonData = [[RestHelper get:path withQuery:query] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
     if (!jsonData){
         return nil;
     }
