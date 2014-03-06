@@ -118,6 +118,7 @@
             }
             
             self.tableController = [[TagPageTableViewController alloc] initWithNibName:@"TagPageTableViewController" bundle:nil];
+            [self.tableController setTagName:self.tag.name];
             [self.tableController setRecordings:self.recordings];
             
             [self addChildViewController:self.tableController];

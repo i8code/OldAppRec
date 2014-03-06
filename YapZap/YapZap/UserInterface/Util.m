@@ -90,7 +90,7 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
 +(UIColor*)colorFromMood:(CGFloat)mood andIntesity:(CGFloat)intensity{
     
     float *r = malloc(sizeof(float)), *g=malloc(sizeof(float)), *b=malloc(sizeof(float));
-    HSVtoRGB(r,g,b,mood, intensity, 1);
+    HSVtoRGB(r,g,b,mood*360, intensity, 1);
     
     return [UIColor colorWithRed:*r green:*g blue:*b alpha:1.0f];
     

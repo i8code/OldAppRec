@@ -71,9 +71,9 @@ exports.getById = function(Models) {
     };
 };
 
-/* POST /tags/:name/recording 
+/* POST /tags/:name/recordings
  * or
- * POST /recordings/:name/recording
+ * POST /recordings/:name/recordings
  */
 exports.create = function(Models) {
     return function(req, res) {

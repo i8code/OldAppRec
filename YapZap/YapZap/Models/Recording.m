@@ -15,6 +15,20 @@
 @implementation Recording
 
 @synthesize rawWaveformData = _rawWaveformData;
+@synthesize displayName = _displayName;
+
+-(NSString*)displayName{
+    if (!self.username){
+        return nil;
+    }
+    
+    NSRange underscore = [self.username rangeOfString: @"_"];
+    if (underscore.location  == NSNotFound ){
+        return self.username;
+    }
+    
+    return [self.username substringWithRange:NSMakeRange(underscore.location+1, self.username.length - underscore.location-1)];
+}
 
 -(float*)rawWaveformData{
     float* data = (float*)malloc(sizeof(float)*self.waveformData.count);
@@ -25,9 +39,12 @@
 }
 
 +(Recording*)fromJSON:(NSDictionary*)dictionary{
+    NSDateFormatter *dateFormatter = [Util getDateFormatter];
     Recording* recording = [[Recording alloc] init];
     recording._id = [dictionary valueForKey:@"_id"];
     recording.username = [dictionary valueForKey:@"username"];
+    recording.parentName = [dictionary valueForKey:@"parent_name"];
+    recording.parentType = [dictionary valueForKey:@"parent_type"];
     recording.popularity = [[dictionary valueForKey:@"popularity"] doubleValue];
     recording.likes = [[dictionary valueForKey:@"likes"] integerValue];
     recording.mood = [[dictionary valueForKey:@"mood"] doubleValue];
@@ -38,6 +55,9 @@
     recording.waveformData = [dictionary valueForKey:@"waveform_data"];
     
     recording.childrenLength = [[dictionary valueForKey:@"children_length"] integerValue];
+    
+    recording.createdDate = [dateFormatter dateFromString:[dictionary valueForKey:@"created_date"]];
+    recording.lastUpdate = [dateFormatter dateFromString:[dictionary valueForKey:@"last_update"]];
     
     if (recording.childrenLength>0){
         NSArray* childrenJson = [dictionary valueForKey:@"children"];
@@ -50,5 +70,19 @@
     }
     
     return recording;
+}
+
+-(NSDictionary*)toJSON{
+    
+    //For creation
+    NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] init];
+    [dictionary setObject:self.username forKey:@"username"];
+    [dictionary setObject:[NSNumber numberWithFloat:self.mood] forKey:@"mood"];
+    [dictionary setObject:[NSNumber numberWithFloat:self.intensity] forKey:@"intensity"];
+    [dictionary setObject:self.audioUrl forKey:@"audio_url"];
+    [dictionary setObject:self.waveformData forKey:@"waveform_data"];
+    
+    
+    return dictionary;
 }
 @end

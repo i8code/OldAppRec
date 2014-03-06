@@ -41,7 +41,7 @@
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
-    self.label.text = recording.username;
+    self.label.text = recording.displayName;
     
     self.liked = NO;
     

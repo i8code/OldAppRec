@@ -10,6 +10,7 @@
 #import "DTCustomColoredAccessory.h"
 #import "Recording.h"
 #import "TagTableViewCell.h"
+#import "DataSource.h"
 #import "RecordNewTableViewCell.h"
 
 @interface TagPageTableViewController ()
@@ -44,14 +45,15 @@
 
 - (void)refresh
 {
-    [self performSelector:@selector(updateTable) withObject:nil
-               afterDelay:1];
-}
-- (void)updateTable
-{
+    [self setRecordings:[DataSource getRecordingsForTagName:self.tagName]];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
+//- (void)updateTable
+//{
+//    [self.tableView reloadData];
+//    [self.refreshControl endRefreshing];
+//}
 
 -(void)setRecordings:(NSArray *)recordings{
     _recordings = recordings;

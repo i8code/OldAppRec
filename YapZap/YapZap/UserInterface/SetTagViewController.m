@@ -96,11 +96,20 @@
     return NO;
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    NSString* tagname = self.tagTextField.text;
+    [self.sharingBundle setTagName:tagname];
+    if (!tagname || !tagname.length) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tag Name" message:@"Please tag before continuing." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        return false;
+    }
     if (!self.hasSelectedMood){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Select Mood" message:@"Please select a mood before continuing." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
         return false;
     }
+    
+    
     return true;
 }
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{

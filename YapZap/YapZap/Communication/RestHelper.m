@@ -71,6 +71,7 @@
     NSLog(@"%@ %@", type, [url absoluteString]);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:type];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     if (body){
 //        NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:body];
@@ -82,7 +83,7 @@
     
     NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
-    if([responseCode statusCode] != 200){
+    if([responseCode statusCode] >= 400){
         NSLog(@"Error getting %@, HTTP status code %li", url, (long)[responseCode statusCode]);
         return nil;
     }

@@ -15,6 +15,7 @@
 @interface UploadViewController ()
 
 @property int count;
+@property int uploadedTime;
 @property (nonatomic, strong) NSTimer* timer;
 @property (nonatomic) BOOL uploadComplete;
 @property (nonatomic, strong) Recording* uploadedRecording;
@@ -37,9 +38,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.count =0;
+    self.uploadedTime=0;
     self.progressBar.progress=0;
     self.doneLabel.hidden = YES;
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress)userInfo:nil repeats:YES];
+    self.uploadComplete = NO;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress)userInfo:nil repeats:YES];
     [self upload];
 }
 
@@ -52,6 +55,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+-(void)showError{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading the tag. Please try again later" delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
+    [alert show];
 }
 
 -(void)upload{
@@ -67,15 +80,23 @@
         [S3Helper saveToS3:data withName:[bundle filename]];
         
         //Now save the Recording object
-        NSData* jsonBody = [NSJSONSerialization dataWithJSONObject:recordingToCreate options:0 error:nil];
+        NSData* jsonBody = [NSJSONSerialization dataWithJSONObject:recordingToCreate.toJSON options:0 error:nil];
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonBody encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@", jsonString);
         NSString* recordingURL;
         if ([bundle comment]){
-            recordingURL = [NSString stringWithFormat:@"/recordings/%@", recordingToCreate.parentName];
+            recordingURL = [NSString stringWithFormat:@"/recordings/%@/recordings", recordingToCreate.parentName];
         }
         else {
-            recordingURL = [NSString stringWithFormat:@"/tags/%@", recordingToCreate.parentName];
+            recordingURL = [NSString stringWithFormat:@"/tags/%@/recordings", [recordingToCreate.parentName lowercaseString]];
         }
         NSString* recordingResponse = [RestHelper post:recordingURL withBody:jsonBody andQuery:nil];
+        if (!recordingResponse){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showError];
+            });
+            return;
+        }
         NSDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:[recordingResponse dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         self.uploadedRecording = [Recording fromJSON:jsonResponse];
         
@@ -84,7 +105,7 @@
         
         self.uploadComplete = YES;
     });
-    dispatch_async(dispatch_get_main_queue(), ^{
+    /*dispatch_async(dispatch_get_main_queue(), ^{
         for (int i=0;i<1000;i++){
             if (self.uploadComplete){
                 //More here
@@ -94,20 +115,31 @@
             [NSThread sleepForTimeInterval:0.1];
             [self.progressBar setProgress:i/10.0];
         }
-    });
+    });*/
 }
 
 -(void) updateProgress{
     self.count++;
-    [self.progressBar setProgress:self.count/20.0];
-    if (self.count>20){
-        self.doneLabel.hidden = NO;
-    }
-    if (self.count>30){
+    if (self.uploadComplete && self.uploadedTime+30<self.count){
+        //Done, done
         [self.timer invalidate];
         self.timer = nil;
-        
         [self dismissViewControllerAnimated:YES completion:^{}];
+    }
+    else if (self.uploadComplete &&!self.uploadedTime){
+        self.doneLabel.hidden = NO;
+        self.uploadedTime = self.count;
+    }
+    else if (self.count>1000){
+        [self showError];
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    if (!self.uploadComplete){
+        [self.progressBar setProgress:self.count/100.0];
+    }
+    else {
+        [self.progressBar setProgress:1];
     }
     
 }

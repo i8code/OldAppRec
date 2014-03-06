@@ -12,6 +12,7 @@
 {
     NSMutableIndexSet *expandedSections;
 }
+@property (nonatomic, strong) NSString* tagName;
 @property (nonatomic, strong) NSArray* recordings;
 -(void)refresh;
 -(void)updateTable;

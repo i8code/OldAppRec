@@ -92,6 +92,9 @@ static SharingBundle* _sharingBundle;
 */
     recording.username = [User getUser].qualifiedUsername;
     recording.parentName = self.parentName;
+    if (!recording.parentName){
+        recording.parentName = self.tagName;
+    }
     recording.parentType = self.comment?@"REC":@"TAG";
     recording.children = nil;
     recording.childrenLength = 0;

@@ -56,6 +56,7 @@
 
 @property (nonatomic, strong) NSString* _id;
 @property (nonatomic, strong) NSString* username;
+@property (nonatomic, strong) NSString* displayName;
 @property (nonatomic, strong) NSString* parentName;
 @property (nonatomic, strong) NSString* parentType;
 @property (nonatomic, strong) NSArray* children;
@@ -76,5 +77,6 @@
 
 
 +(Recording*)fromJSON:(NSDictionary*)dictionary;
+-(NSDictionary*)toJSON;
 
 @end
