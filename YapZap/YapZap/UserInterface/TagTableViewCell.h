@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *spacerView;
 - (IBAction)likePressed:(id)sender;
 - (IBAction)commentSelected:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 
 @property(nonatomic) BOOL comment;

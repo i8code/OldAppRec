@@ -87,6 +87,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" id="Dhe-pl-DDU">
+                        <rect key="frame" x="12" y="10" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
@@ -98,6 +103,7 @@
                 <outlet property="label" destination="yhb-mw-L1v" id="Sg0-8i-907"/>
                 <outlet property="likeButton" destination="tHG-st-bUr" id="zbb-ZI-hkT"/>
                 <outlet property="likesLabel" destination="1xg-F1-aJ8" id="csB-MN-oNs"/>
+                <outlet property="loadingIndicator" destination="Dhe-pl-DDU" id="jIf-TI-4K2"/>
                 <outlet property="playButton" destination="0k6-NC-b9j" id="Qof-on-1QU"/>
                 <outlet property="spacerView" destination="olY-fE-z0I" id="gS4-su-HC0"/>
                 <outlet property="topBar" destination="f4J-dU-15N" id="uwy-5y-Zkf"/>

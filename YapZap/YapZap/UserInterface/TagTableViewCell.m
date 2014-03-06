@@ -15,6 +15,8 @@
 #import "RestHelper.h"
 #import "User.h"
 #import "CoreDataManager.h"
+#import "S3Helper.h"
+#import "Player.h"
 
 @interface TagTableViewCell()
 @property  (nonatomic, strong) NSTimer* timer;
@@ -22,6 +24,7 @@
 @property BOOL isPlaying;
 @property (nonatomic) BOOL liked;
 @property (nonatomic) BOOL likeIncludedInCount;
+@property (nonatomic, strong) Player* player;
 
 @end
 
@@ -123,18 +126,22 @@
 
 -(void)stopPlaying{
     //[self.delegate setCell:self playing:NO];
+    
+    [self.player stop];
     [self.playButton setImage:[UIImage imageNamed:@"play_small_button.png"] forState:UIControlStateNormal];
         
     [self.timer invalidate];
     self.timer=nil;
     
-    [self.waveFormImage setHighlightPercent:1];
+    [self.waveFormImage setHighlightPercent:0];
     [self.waveFormImage setNeedsDisplay];
     
     self.isPlaying = false;
 }
 
 -(void)startPlaying{
+    
+    [self.player play];
     
     self.isPlaying = true;
     //[self.delegate setCell:self playing:YES];
@@ -144,6 +151,11 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
     
 }
+-(NSURL*)getFileURL{
+    NSURL *furl = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:self.recording.audioUrl]];
+    
+    return furl;
+}
 
 
 - (IBAction)playClicked:(id)sender {
@@ -151,7 +163,26 @@
         [self stopPlaying];
     }
     else {
-        [self startPlaying];
+        self.playButton.hidden = YES;
+        self.loadingIndicator.hidden = NO;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSURL* path = [self getFileURL];
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[path path]]){
+                //Download
+                NSData* data = [S3Helper fileFromS3WithName:self.recording.audioUrl];
+                [data writeToFile:[path path] atomically:YES];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.player = [[Player alloc] initWithPath:[path path]];
+                self.loadingIndicator.hidden = YES;
+                self.playButton.hidden = NO;
+                [self startPlaying];
+            });
+        });
     }
 }
 
