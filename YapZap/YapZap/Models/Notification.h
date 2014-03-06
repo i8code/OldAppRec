@@ -39,6 +39,8 @@
 @property (nonatomic, strong) NSString* recordingId;
 @property (nonatomic, strong) NSDate* createdDate;
 @property (nonatomic, strong) NSString* type;
+@property CGFloat mood;
+@property CGFloat intensity;
 
 +(Notification*)fromJSON:(NSDictionary*)json;
 @end

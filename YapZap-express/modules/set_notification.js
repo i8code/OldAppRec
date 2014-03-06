@@ -23,6 +23,8 @@ exports.addNotificationForLike = function(Models, username_by, recording_id){
                 username_for : username_for,
                 username_by : username_by,
                 tag_name: tag_name,
+                mood: parent_recording.mood,
+                intensity: parent_recording.intensity,
                 recording_id : recording_id,
                 type:"LIKE"
             });
@@ -44,6 +46,8 @@ exports.addNotificationForLike = function(Models, username_by, recording_id){
                 username_for : username_for,
                 username_by : username_by,
                 tag_name: tag_name,
+                mood: recordings[0].mood,
+                intensity: recordings[0].intensity,
                 recording_id : recording_id,
                 type:"LIKE"
             });
@@ -73,6 +77,8 @@ exports.addNotificationForComment = function(Models, username_by, recording_pare
             username_for : username_for,
             username_by : username_by,
             tag_name: tag_name,
+            mood: parent.mood,
+            intensity: parent.intensity,
             recording_id : recording_parent,
             type:"COMMENT"
         });

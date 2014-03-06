@@ -22,6 +22,8 @@
     notification.tagName =[dictionary valueForKey:@"tag_name"];
     notification.recordingId =[dictionary valueForKey:@"recording_id"];
     notification.type =[dictionary valueForKey:@"type"];
+    notification.mood = [[dictionary valueForKey:@"mood"] doubleValue];
+    notification.intensity = [[dictionary valueForKey:@"intensity"]doubleValue];
     
     return notification;
 }

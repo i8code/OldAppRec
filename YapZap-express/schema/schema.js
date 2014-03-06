@@ -96,6 +96,12 @@ var notificationSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    mood :{
+        type: Number, default:0
+    },
+    intensity :{
+        type: Number, default:0
+    },
     tag_name:{
         type:String
     },

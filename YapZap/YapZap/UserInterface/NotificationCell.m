@@ -36,6 +36,7 @@
         self.commentPanel.hidden = YES;
         
         [self.likedButton setTitle:notification.tagName forState:UIControlStateNormal];
+        [self.likedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
     }
     else{
         self.likePanel.hidden = YES;
@@ -43,6 +44,7 @@
         
         
         [self.commentedButton setTitle:notification.tagName forState:UIControlStateNormal];
+        [self.likedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
     }
 }
 - (IBAction)tagButtonPressed:(id)sender {
