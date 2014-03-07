@@ -73,13 +73,13 @@
     
     [self.semiColor setFill];
     
-    float step = width/(float)self.dataLength;
+    float step = width/(float)430.7f;
     float heightScale = height/7.0;
     float mid = height/2.0;
     
     for (int i=0;i<self.dataLength;i++){
         float height = self.data[i]*heightScale;
-        if (i/(float)self.dataLength>self.highlightPercent){
+        if (i/430.7>self.highlightPercent){
             [self.mainColor setFill];
         }
         CGRect rect = CGRectMake(i*step, mid-height, step*2, height*2);
