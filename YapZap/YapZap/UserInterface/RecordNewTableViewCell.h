@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recording.h"
 
 @interface RecordNewTableViewCell : UITableViewCell
 - (IBAction)recordPressed:(id)sender;
-
+@property (nonatomic, strong) Recording* parentRecording;
+@property (nonatomic, weak) YapZapMainViewController* delegate;
 @end

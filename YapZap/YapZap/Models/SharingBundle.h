@@ -21,7 +21,7 @@
 @property (nonatomic) BOOL comment;
 @property(nonatomic, strong) NSString* filename;
 +(SharingBundle*)getCurrentSharingBundle;
-+(void)clearSharingBundle;
++(void)clear;
 -(void)setMoodAndIntensity:(UIColor*)color;
 -(NSURL*)getRecordingPath;
 -(Recording*)asNewRecording;

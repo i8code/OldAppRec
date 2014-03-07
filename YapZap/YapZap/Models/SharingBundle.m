@@ -35,7 +35,7 @@ static SharingBundle* _sharingBundle;
     return self;
 }
 
-+(void)clearSharingBundle{
++(void)clear{
     _sharingBundle = nil;
 }
 
@@ -92,7 +92,7 @@ static SharingBundle* _sharingBundle;
 */
     recording.username = [User getUser].qualifiedUsername;
     recording.parentName = self.parentName;
-    if (!recording.parentName){
+    if (!recording.parentName && !self.comment){
         recording.parentName = self.tagName;
     }
     recording.parentType = self.comment?@"REC":@"TAG";

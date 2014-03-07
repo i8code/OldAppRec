@@ -141,6 +141,8 @@
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RecordNewTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
+                [((RecordNewTableViewCell*)cell) setDelegate:self.delegate];
+                [((RecordNewTableViewCell*)cell) setParentRecording:[self.recordings objectAtIndex:indexPath.section]];
             }
         }
         else

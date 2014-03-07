@@ -20,5 +20,6 @@
 
 -(void)updateTagPositions;
 -(void)swipedRight:(UIGestureRecognizer*)recognizer;
+-(void)gotoTag:(Tag*)tag;
 
 @end

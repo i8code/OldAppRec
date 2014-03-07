@@ -124,6 +124,7 @@
         //Done, done
         [self.timer invalidate];
         self.timer = nil;
+        [SharingBundle clear];
         [self dismissViewControllerAnimated:YES completion:^{}];
     }
     else if (self.uploadComplete &&!self.uploadedTime){
@@ -132,6 +133,7 @@
     }
     else if (self.count>1000){
         [self showError];
+        [SharingBundle clear];
         [self.timer invalidate];
         self.timer = nil;
     }

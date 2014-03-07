@@ -17,4 +17,5 @@
 -(void)refresh;
 -(void)updateTable;
 -(void)commentPressed:(UITableViewCell*)cell;
+@property (nonatomic, weak) YapZapMainViewController* delegate;
 @end

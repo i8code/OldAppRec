@@ -7,6 +7,8 @@
 //
 
 #import "RecordNewTableViewCell.h"
+#import "RecordControllerViewController.h"
+#import "SharingBundle.h"
 
 @implementation RecordNewTableViewCell
 
@@ -26,9 +28,9 @@
 
     // Configure the view for the selected state
 }
-
-
-
-- (IBAction)recordPressed:(id)sender {
+-(void)recordPressed:(id)sender{
+    [[SharingBundle getCurrentSharingBundle] setParentName:self.parentRecording._id];
+    [[SharingBundle getCurrentSharingBundle] setComment:YES];
+    [self.delegate recordingButtonPressed:sender];
 }
 @end

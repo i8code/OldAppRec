@@ -91,7 +91,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.finishedPanel.hidden = self.waveform.hidden;
+    SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
+    self.finishedPanel.hidden = self.waveform.hidden = !bundle.recordingInfo;
     self.backButton.hidden=NO;
 }
 

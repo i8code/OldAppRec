@@ -158,7 +158,12 @@
         TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
         [tagPageViewController setParent:__parent];
         [tagPageViewController setTag:tag];
+        UIViewController* topViewController = nil;
+        if (nav.childViewControllers.count>3){
+            topViewController = [[nav childViewControllers] objectAtIndex:nav.childViewControllers.count-1];
+        }
         [nav pushViewController:tagPageViewController animated:YES];
+        [topViewController removeFromParentViewController];
     };
 	// Do any additional setup after loading the view.
     [self fetchTags];
@@ -188,6 +193,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)gotoTag:(Tag*) tag{
+    self.gotoTagBlock(tag);
 }
 - (void)swipedRight:(UIGestureRecognizer*)recognizer {
     self.gotoTagBlock([DataSource getNextPopularTag]);
