@@ -95,6 +95,8 @@
         cell = [nib objectAtIndex:0];
     }
     
+    [cell setParent:self];
+    
     [cell setRecording:[self.recordings objectAtIndex:indexPath.row]];
     
     // Configure the cell...

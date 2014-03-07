@@ -11,6 +11,7 @@
 #import "WaveformView.h"
 #import "S3Helper.h"
 #import "Player.h"
+#import "RestHelper.h"
 
 @interface MyRecordingsCell()
 @property(nonatomic, strong)Player* player;
@@ -138,6 +139,22 @@
 }
 
 - (IBAction)trashPressed:(id)sender {
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                    message:@"Are you sure you want to delete this recording?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    [alert show];
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1){
+        //Delete me
+        NSString* path = [NSString stringWithFormat:@"/recordings/%@", self.recording._id];
+        [RestHelper del:path withQuery:nil];
+        [self.parent refresh];
+    }
 }
 
 @end

@@ -13,5 +13,5 @@
 @interface MyRecordingsTableViewController : UITableViewController
 @property(nonatomic, strong) NSArray* recordings;
 @property(nonatomic, weak) SettingsViewController* delegate;
-
+- (void)refresh;
 @end

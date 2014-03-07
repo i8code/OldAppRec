@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TagTableViewCell.h"
+#import "MyRecordingsTableViewController.h"
 
-@interface MyRecordingsCell : UITableViewCell
+@interface MyRecordingsCell : UITableViewCell <UIAlertViewDelegate>
+@property(nonatomic, weak) MyRecordingsTableViewController* parent;
 @property(nonatomic, weak) IBOutlet UILabel* tagLabel;
 
 @property (strong, nonatomic) Recording* recording;

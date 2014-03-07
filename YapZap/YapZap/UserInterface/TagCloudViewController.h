@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FilteredImageView.h"
+#import "Tag.h"
 
 @class NotificationTableViewController;
 
