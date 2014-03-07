@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchTableViewController : UITableViewController
+@property(nonatomic, strong)NSString* searchTerms;
 
 @end

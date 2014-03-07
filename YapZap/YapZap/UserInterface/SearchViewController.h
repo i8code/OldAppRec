@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : YapZapViewController
+@interface SearchViewController : YapZapViewController<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
+@property (weak, nonatomic) IBOutlet UIView *autofillArea;
 @end

@@ -7,25 +7,25 @@
 //
 
 #import "SearchTableViewController.h"
+#import "DataSource.h"
 
 @interface SearchTableViewController ()
+@property(nonatomic, strong)NSArray* tagNames;
+@property(nonatomic, strong)NSArray* recentSearches;
+@property(nonatomic, strong)NSMutableArray* activeLabels;
 
 @end
 
 @implementation SearchTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 30;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tagNames = [DataSource getTagNames];
+    self.activeLabels = [[NSMutableArray alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,7 +33,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -44,26 +43,44 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
+}
+
+-(void)setSearchTerms:(NSString *)searchTerms{
+     _searchTerms = [searchTerms lowercaseString];
+    
+    [self searchAutocompleteEntriesWithSubstring:_searchTerms];
+}
+
+- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    
+    // Put anything that starts with this substring into the autocompleteUrls array
+    // The items in this array is what will show up in the table view
+    [self.activeLabels removeAllObjects];
+    for(NSString *curString in self.tagNames) {
+        NSRange substringRange = [[curString lowercaseString] rangeOfString:substring];
+        if (substringRange.location == 0) {
+            [self.activeLabels addObject:curString];
+        }
+    }
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return self.activeLabels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"SearchCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
+    cell.textLabel.text = self.activeLabels[indexPath.row];
     // Configure the cell...
     
     return cell;
