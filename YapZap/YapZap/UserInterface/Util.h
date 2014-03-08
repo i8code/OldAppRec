@@ -18,4 +18,9 @@
 +(NSString*)trimUsername:(NSString*)username;
 +(NSArray*)mostRecentSearches;
 +(void)addRecentSearch:(NSString*)term;
+
++(BOOL)shouldShareOnFB;
++(void)setShareOnFB:(BOOL)share;
++(BOOL)shouldShareOnTW;
++(void)setShareOnTW:(BOOL)share;
 @end

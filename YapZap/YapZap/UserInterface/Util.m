@@ -167,4 +167,22 @@ static const int recentSearchesCount = 10;
     }
 }
 
+
++(BOOL)shouldShareOnFB{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_share_fb"];
+}
+
++(void)setShareOnFB:(BOOL)share{
+    [[NSUserDefaults standardUserDefaults] setBool:share forKey:@"YapZap_share_fb"];
+}
+
++(BOOL)shouldShareOnTW{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_share_tw"];
+    
+}
+
++(void)setShareOnTW:(BOOL)share{
+    [[NSUserDefaults standardUserDefaults] setBool:share forKey:@"YapZap_share_tw"];
+}
+
 @end

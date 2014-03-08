@@ -34,6 +34,9 @@
     
     self.loginButton.delegate = self;
 	// Do any additional setup after loading the view.
+    
+    self.facebookSwitch.selected = [Util shouldShareOnFB];
+    self.twitterSwitch.selected = [Util shouldShareOnTW];
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,4 +143,11 @@
     }
 }
 
+- (IBAction)facebookSwitched:(id)sender {
+    [Util setShareOnFB:self.facebookSwitch.selected];
+}
+
+- (IBAction)twitterSwitched:(id)sender {
+    [Util setShareOnTW:self.twitterSwitch.selected];
+}
 @end

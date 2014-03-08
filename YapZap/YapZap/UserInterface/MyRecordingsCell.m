@@ -34,7 +34,7 @@
 
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
-    self.tagLabel.text = recording.parentName;
+    self.tagLabel.text = recording.tagName;
     
     
     self.commentLabel.text = [NSString stringWithFormat:@"%ld", recording.childrenLength];

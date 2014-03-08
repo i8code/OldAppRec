@@ -18,8 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
-@property (weak, nonatomic) IBOutlet UISwitch *facebookSwitched;
-@property (weak, nonatomic) IBOutlet UISwitch *twitterSwitched;
+@property (weak, nonatomic) IBOutlet UISwitch *facebookSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *twitterSwitch;
+- (IBAction)facebookSwitched:(id)sender;
+- (IBAction)twitterSwitched:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *helpNeeded;
 @property (strong, nonatomic) NSArray* recordings;
 
