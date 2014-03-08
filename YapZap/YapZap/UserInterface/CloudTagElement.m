@@ -9,31 +9,36 @@
 #import "CloudTagElement.h"
 #import "Tag.h"
 #import "Util.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CloudTagElement()
 @property (nonatomic, strong) Tag* tag;
 @property (nonatomic, strong) UIButton* button;
+@property (nonatomic, strong) UIButton* circle;
 @property CGPoint startingPoint;
-@property CGFloat depth;
+@property CGFloat pop;
 @property (nonatomic, strong) void (^onclickBlock)(Tag*);
 @end
 
 @implementation CloudTagElement
--(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth inView:(UIView*)view andOnclick:(void (^)(Tag *))onclick{
+
+static int lineHeight = 16;
+
+-(CloudTagElement*)initWithTag:(Tag*)tag withPopularity:(NSUInteger)pop inView:(UIView*)view andOnclick:(void (^)(Tag*))onclick{
     self = [super init];
     if (self){
         self.tag = tag;
-        self.startingPoint = origin;
-        self.depth = depth;
-        self.position = -100;
+        self.time = 0;
         self.onclickBlock = onclick;
+        self.pop = pop;
         
+        //Set up Button
         self.button = [[UIButton alloc] init];
-        [self.button setFrame:CGRectMake(origin.x+1000, origin.y, 200, 50)];
+        [self.button setFrame:CGRectMake(0,0, 200, lineHeight)];
         [self.button setTitle:tag.name forState:UIControlStateNormal];
-        [self.button setTitleColor:[Util colorFromMood:tag.mood andIntesity:tag.intensity] forState:UIControlStateNormal];
+        [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        UIFont* font = [UIFont fontWithName:@"Futura" size:16*depth/80.0];
+        UIFont* font = [UIFont fontWithName:@"Futura" size:lineHeight];
         
         [self.button.titleLabel setFont:font];
         
@@ -44,6 +49,19 @@
                         action:@selector(onClick:)
                       forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:self.button];
+        
+        [self.button sizeToFit];
+        
+        self.circle = [[UIButton alloc] init];
+        [self.circle setFrame:CGRectMake(-pop*lineHeight-5, 0, pop*lineHeight/2, pop*lineHeight/2)];
+        self.circle.backgroundColor = [Util colorFromMood:tag.mood andIntesity:tag.intensity];
+        self.circle.layer.cornerRadius = pop*lineHeight/4.0;
+        self.circle.clipsToBounds = YES;
+        self.circle.showsTouchWhenHighlighted= YES;
+        [self.circle addTarget:self
+                        action:@selector(onClick:)
+              forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:self.circle];
     }
     
     return self;
@@ -53,19 +71,42 @@
     self.onclickBlock(self.tag);
 }
 
--(void)setPosition:(CGFloat)position{
-    _position = position;
-    CGRect frame = self.button.frame;
-    frame.origin.x = self.startingPoint.x-position*(self.depth-70)*2;
+
+-(void)setTime:(CGFloat)time{
+    _time = time;
+    CGRect buttonFrame =CGRectMake(self.position.x-10*time,
+                                   self.position.y,
+                                   self.button.frame.size.width,
+                                   self.button.frame.size.height);
+    CGRect circleFrame =CGRectMake(self.position.x-self.pop*lineHeight/2-5-10*time,
+                                   self.position.y+(5-self.pop)*lineHeight/5.0,
+                                   self.circle.frame.size.width,
+                                   self.circle.frame.size.height);
+
     
-    while (frame.origin.x+frame.size.width<0) {
-        frame.origin.x+=self.canvasWidth+frame.size.width;
+    while (buttonFrame.origin.x+buttonFrame.size.width<0) {
+        buttonFrame.origin.x+=self.canvasWidth+buttonFrame.size.width;
+        circleFrame.origin.x+=self.canvasWidth+circleFrame.size.width;
     }
     
-    [self.button setFrame:frame];
+    [self.button setFrame:buttonFrame];
+    [self.circle setFrame:circleFrame];
+
 }
+
 -(void)removeFromSuperView{
     [self.button removeFromSuperview];
+}
+
+-(CGFloat)height{
+    return lineHeight*self.pop/2.0f;
+}
+-(CGFloat)width{
+    CGRect r = [self.tag.name boundingRectWithSize:CGSizeMake(200, 0)
+                                  options:NSStringDrawingUsesLineFragmentOrigin
+                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:lineHeight]}
+                                  context:nil];
+    return self.height+r.size.width+5;
 }
 
 @end

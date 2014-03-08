@@ -30,8 +30,8 @@ static NSMutableArray* tagNames;
         return tagNames;
     }
     
-    //Mock NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *jsonData = [[RestHelper get:@"/tag_names" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+   NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *jsonData = [[RestHelper get:@"/tag_names" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
     NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     tagNames = [[NSMutableArray alloc] init];
@@ -51,9 +51,9 @@ static NSMutableArray* tagNames;
 
 +(NSArray*)getPopularTags{
     
-//Mock    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
     NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     NSMutableArray* array = [[NSMutableArray alloc] init];

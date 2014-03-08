@@ -261,7 +261,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
                             <view opaque="NO" contentMode="scaleToFill" id="28C-UV-vbj" customClass="FilteredImageView">
-                                <rect key="frame" x="79" y="249" width="164" height="162"/>
+                                <rect key="frame" x="80" y="249" width="164" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>

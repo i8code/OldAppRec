@@ -12,10 +12,13 @@
 
 
 @interface CloudTagElement : NSObject
--(CloudTagElement*)initWithTag:(Tag*)tag position:(CGPoint)origin andDepth:(CGFloat)depth inView:(UIView*)view andOnclick:(void (^)(Tag*))onclick;
+-(CloudTagElement*)initWithTag:(Tag*)tag withPopularity:(NSUInteger)pop inView:(UIView*)view andOnclick:(void (^)(Tag*))onclick;
 
-@property (nonatomic) CGFloat position;
+@property (nonatomic) CGFloat time;
+@property (nonatomic) CGPoint position;
 @property (nonatomic) CGFloat canvasWidth;
+@property (nonatomic, readonly) CGFloat height;
+@property (nonatomic, readonly) CGFloat width;
 
 -(void)removeFromSuperView;
 @end
