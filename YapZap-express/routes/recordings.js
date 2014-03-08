@@ -112,8 +112,21 @@ exports.create = function(Models) {
         var recording = new Models.Recording(req.body);
         recording.parent_type = type;
         recording.parent_name = name;
+        recording.tag_name = name;
         recording.popularity=1;
         recording.save();
+
+        //update tag name
+        if (type==="REC"){
+            Models.Recording.find({_id:name}).exec(function(err, recordings) {
+                if (!recordings || recordings.length===0){
+                    //Create the tag
+                    return;
+                }
+                recording.tag_name = recordings[0].tag_name;
+                recording.save();
+            });
+        }
 
         //Update hash
         var audioCallback = function(hash){
@@ -132,8 +145,6 @@ exports.create = function(Models) {
             });
          };
          AudioMapper.getOrCreateHash(Models, recording.audio_url, audioCallback);
-
-        return;
 
     };
 };

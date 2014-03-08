@@ -22,10 +22,10 @@
 
 
 static NSArray* _tags;
+static NSMutableArray* tagNames;
 
 +(NSArray*)getTagNames{
     
-    static NSMutableArray* tagNames;
     if (tagNames){
         return tagNames;
     }
@@ -42,6 +42,11 @@ static NSArray* _tags;
     return tagNames;
 
     
+}
+
++(NSArray*)refreshTagNames{
+    tagNames = nil;
+    return  [self getTagNames];
 }
 
 +(NSArray*)getPopularTags{
@@ -66,6 +71,15 @@ static NSArray* _tags;
     }
     currentTag=(currentTag+1)%_tags.count;
     return [_tags objectAtIndex:currentTag];
+}
+
++(Tag*)getTagByName:(NSString*)name{
+    
+    NSString* path = [NSString stringWithFormat:@"/tags/%@", name];
+    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* tagJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    
+    return[Tag fromJSON:tagJson];
 }
 
 #define NOTIFICATION_KEY @"last_notification_update"

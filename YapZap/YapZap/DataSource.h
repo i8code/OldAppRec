@@ -15,7 +15,9 @@
 @interface DataSource : NSObject
 
 +(NSArray*)getTagNames;
++(NSArray*)refreshTagNames;
 +(NSArray*)getPopularTags;
++(Tag*)getTagByName:(NSString*)name;
 +(Tag*)getNextPopularTag;
 +(NSArray*)getNotifications;
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName;

@@ -19,6 +19,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.parent = [YapZapMainViewController getMe];
     
     
     int y = 20;

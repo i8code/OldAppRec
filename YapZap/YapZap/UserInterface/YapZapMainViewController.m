@@ -15,6 +15,8 @@
 #import "YapZapMainControllerProtocol.h"
 #import "ParentNavigationViewController.h"
 #import "TagCloudViewController.h"
+#import "DataSource.h"
+#import "TagPageViewController.h"
 
 @interface YapZapMainViewController ()
 @property (nonatomic, retain) UIPopoverController *poc;
@@ -40,6 +42,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    me = self;
 
     
 }
@@ -247,6 +250,41 @@
 -(IBAction)goHome:(id)sender{
     [((UINavigationController*)self.mainViewController) popViewControllerAnimated:YES];
     
+}
+
+
+-(void)gotoTagWithName:(NSString*)tagName{
+    //Lots of logic
+    //Check to see if we have that tag name
+    NSArray* tagNames = [DataSource getTagNames];
+    if (![tagNames containsObject:tagName]){
+        //If we don't, maybe it's a new tag, refresh names
+        tagNames = [DataSource refreshTagNames];
+        if (![tagNames containsObject:tagName]){
+            return;
+        }
+    }
+    
+    //Now see what's visible.
+    NSUInteger pages = [[self.mainViewController childViewControllers] count];
+    if (pages>1){
+        TagPageViewController* visiblePage = [[self.mainViewController childViewControllers] objectAtIndex:pages-1];
+        Tag* tag = visiblePage.tag;
+        if ([tag.name isEqualToString:tagName]){
+            //We good. just refresh
+            [visiblePage loadRecordingsForTag];
+            return;
+        }
+    }
+    TagCloudViewController* tagCloudViewController = [[self.mainViewController childViewControllers] objectAtIndex:0];
+    [tagCloudViewController gotoTagWithName:tagName];
+}
+
+static YapZapMainViewController* me;
+
+
++(YapZapMainViewController*)getMe{
+    return me;
 }
 
 

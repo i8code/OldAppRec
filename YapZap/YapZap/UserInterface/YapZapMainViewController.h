@@ -19,9 +19,11 @@
 @property (nonatomic, strong) UILabel* yapLabel;
 @property (nonatomic, strong) UILabel* zapLabel;
 @property (nonatomic, strong) UIFont* font;
-@property (nonatomic, strong) UIViewController* mainViewController;
+@property (nonatomic, strong) UINavigationController* mainViewController;
 
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)recordingButtonPressed:(id)sender;
 -(IBAction)goHome:(id)sender;
+-(void)gotoTagWithName:(NSString*)tagName;
++(YapZapMainViewController*)getMe;
 @end

@@ -159,9 +159,10 @@
         [tagPageViewController setParent:__parent];
         [tagPageViewController setTag:tag];
         UIViewController* topViewController = nil;
-        if (nav.childViewControllers.count>3){
+        if (nav.childViewControllers.count>1){
             topViewController = [[nav childViewControllers] objectAtIndex:nav.childViewControllers.count-1];
         }
+        topViewController.view.hidden = YES;
         [nav pushViewController:tagPageViewController animated:YES];
         [topViewController removeFromParentViewController];
     };
@@ -194,7 +195,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)gotoTag:(Tag*) tag{
+-(void)gotoTagWithName:(NSString*)name{
+    Tag* tag = [DataSource getTagByName:name];
     self.gotoTagBlock(tag);
 }
 - (void)swipedRight:(UIGestureRecognizer*)recognizer {

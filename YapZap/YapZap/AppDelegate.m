@@ -76,7 +76,6 @@
 -(void)goToHomeView{
     YapZapMainViewController* mainViewController =[[YapZapMainViewController alloc] init];
     [self setActiveView:mainViewController];
-    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

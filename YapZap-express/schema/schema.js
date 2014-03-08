@@ -37,6 +37,9 @@ var recordingSchema = new mongoose.Schema({
     parent_type :{
         type:String, default: "TAG"
     },
+    tag_name:{
+        type:String
+    },
     children:{
         type:Array, default:[]
     },
