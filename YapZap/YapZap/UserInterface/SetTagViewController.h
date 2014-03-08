@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *waveformBorderX;
 @property (weak, nonatomic) YapZapMainViewController* parent;
 @property (weak, nonatomic) IBOutlet UIView *autoFillZone;
+@property (weak, nonatomic) IBOutlet UIImageView *zeusFace;
 
 @end

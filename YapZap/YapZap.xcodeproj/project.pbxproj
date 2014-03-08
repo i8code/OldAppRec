@@ -105,11 +105,6 @@
 		C75E7B9A18BC3B2200160720 /* zeus elements-12.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B9318BC3B2200160720 /* zeus elements-12.png */; };
 		C75E7B9B18BC3B2200160720 /* zeus elements-13.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B9418BC3B2200160720 /* zeus elements-13.png */; };
 		C75E7B9C18BC3B2200160720 /* zeus elements-14.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B9518BC3B2200160720 /* zeus elements-14.png */; };
-		C75E7BA418BC3B3200160720 /* home_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B9E18BC3B3200160720 /* home_screen.png */; };
-		C75E7BA518BC3B3200160720 /* RecordingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7B9F18BC3B3200160720 /* RecordingScreen.png */; };
-		C75E7BA718BC3B3200160720 /* ShareScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA118BC3B3200160720 /* ShareScreen.png */; };
-		C75E7BA818BC3B3200160720 /* TagPlayingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA218BC3B3200160720 /* TagPlayingScreen.png */; };
-		C75E7BA918BC3B3200160720 /* TagScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BA318BC3B3200160720 /* TagScreen.png */; };
 		C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */; };
 		C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75E7BAF18BF69DA00160720 /* TagPageTableViewController.m */; };
 		C75E7BB218BF69DA00160720 /* TagPageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C75E7BB018BF69DA00160720 /* TagPageTableViewController.xib */; };
@@ -579,11 +574,6 @@
 		C75E7B9318BC3B2200160720 /* zeus elements-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zeus elements-12.png"; sourceTree = "<group>"; };
 		C75E7B9418BC3B2200160720 /* zeus elements-13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zeus elements-13.png"; sourceTree = "<group>"; };
 		C75E7B9518BC3B2200160720 /* zeus elements-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zeus elements-14.png"; sourceTree = "<group>"; };
-		C75E7B9E18BC3B3200160720 /* home_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_screen.png; sourceTree = "<group>"; };
-		C75E7B9F18BC3B3200160720 /* RecordingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordingScreen.png; sourceTree = "<group>"; };
-		C75E7BA118BC3B3200160720 /* ShareScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareScreen.png; sourceTree = "<group>"; };
-		C75E7BA218BC3B3200160720 /* TagPlayingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TagPlayingScreen.png; sourceTree = "<group>"; };
-		C75E7BA318BC3B3200160720 /* TagScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TagScreen.png; sourceTree = "<group>"; };
 		C75E7BAA18BC3C4D00160720 /* YapZapModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapModalViewController.h; path = UserInterface/YapZapModalViewController.h; sourceTree = "<group>"; };
 		C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapModalViewController.m; path = UserInterface/YapZapModalViewController.m; sourceTree = "<group>"; };
 		C75E7BAE18BF69DA00160720 /* TagPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagPageTableViewController.h; path = UserInterface/TagPageTableViewController.h; sourceTree = "<group>"; };
@@ -1393,18 +1383,6 @@
 			name = Zeus;
 			sourceTree = "<group>";
 		};
-		C75E7B9D18BC3B2600160720 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				C75E7B9E18BC3B3200160720 /* home_screen.png */,
-				C75E7B9F18BC3B3200160720 /* RecordingScreen.png */,
-				C75E7BA118BC3B3200160720 /* ShareScreen.png */,
-				C75E7BA218BC3B3200160720 /* TagPlayingScreen.png */,
-				C75E7BA318BC3B3200160720 /* TagScreen.png */,
-			);
-			name = Mocks;
-			sourceTree = "<group>";
-		};
 		C75E7BAD18BF692F00160720 /* Table Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1538,7 +1516,6 @@
 			isa = PBXGroup;
 			children = (
 				C74A6C9C18C245E40086F78D /* record_button_black.png */,
-				C75E7B9D18BC3B2600160720 /* Mocks */,
 				C75E7B8E18BC3B1300160720 /* Zeus */,
 				C75E7B4218BC3B0A00160720 /* sample_waveform.png */,
 				C75E7B4518BC3B0B00160720 /* pause_button.png */,
@@ -1760,14 +1737,12 @@
 			files = (
 				C701DBEA18C0190100FD407A /* RecordNewTableViewCell.xib in Resources */,
 				C75E7B9618BC3B2200160720 /* zeus elements-08.png in Resources */,
-				C75E7BA418BC3B3200160720 /* home_screen.png in Resources */,
 				C75E7B9818BC3B2200160720 /* zeus elements-10.png in Resources */,
 				C75E7BB218BF69DA00160720 /* TagPageTableViewController.xib in Resources */,
 				C75E7B7E18BC3B0B00160720 /* pause_button_small.png in Resources */,
 				C75E7B7B18BC3B0B00160720 /* cancel_small_button.png in Resources */,
 				C74A6CA818C249ED0086F78D /* SearchTableViewController.xib in Resources */,
 				C75E7B8C18BC3B0B00160720 /* bolt_white.png in Resources */,
-				C75E7BA918BC3B3200160720 /* TagScreen.png in Resources */,
 				C75E7B7918BC3B0B00160720 /* circle_icon.png in Resources */,
 				C75E7B6C18BC3B0B00160720 /* play_button_small.png in Resources */,
 				C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */,
@@ -1782,7 +1757,6 @@
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
 				C75E7B6E18BC3B0B00160720 /* comments_empty.png in Resources */,
 				C75E7B8818BC3B0B00160720 /* record_button.png in Resources */,
-				C75E7BA718BC3B3200160720 /* ShareScreen.png in Resources */,
 				C7371F4518A1DFEE007FB490 /* InfoPlist.strings in Resources */,
 				C75E7B9B18BC3B2200160720 /* zeus elements-13.png in Resources */,
 				C75E7B8918BC3B0B00160720 /* background.png in Resources */,
@@ -1797,7 +1771,6 @@
 				C75E7B8D18BC3B0B00160720 /* bolt_glow.png in Resources */,
 				C74A6CB218C255E10086F78D /* MyRecordingsCell.xib in Resources */,
 				C75E7B8618BC3B0B00160720 /* play_icon.png in Resources */,
-				C75E7BA818BC3B3200160720 /* TagPlayingScreen.png in Resources */,
 				C75E7B8418BC3B0B00160720 /* trash_button_small.png in Resources */,
 				C75E7B7D18BC3B0B00160720 /* smile_icon.png in Resources */,
 				C796203B18A6825E00D1BEAB /* LoadingViewController.xib in Resources */,
@@ -1816,7 +1789,6 @@
 				C706247E18B958DA00D1BEB0 /* TagCloudViewController.xib in Resources */,
 				C75E7B8A18BC3B0B00160720 /* color_wheel.png in Resources */,
 				C75E7B9C18BC3B2200160720 /* zeus elements-14.png in Resources */,
-				C75E7BA518BC3B3200160720 /* RecordingScreen.png in Resources */,
 				C74A6CB718C270690086F78D /* NotificationTableViewController.xib in Resources */,
 				C74A6CA318C249D80086F78D /* MyRecordingsTableViewController.xib in Resources */,
 			);

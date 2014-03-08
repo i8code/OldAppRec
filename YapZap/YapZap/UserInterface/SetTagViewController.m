@@ -43,6 +43,8 @@
         // TODO: Add fall-back code to set placeholder color.
     }
     
+    self.zeusFace.image = [UIImage imageNamed:@"zeus elements-11.png"];
+    
     self.tagTextField.hidden = self.sharingBundle.comment;
     self.tagTextField.delegate = self;
     self.tagTextField.text = self.sharingBundle.tagName;
@@ -158,6 +160,44 @@
     self.hasSelectedMood = YES;
     
     [[SharingBundle getCurrentSharingBundle] setMoodAndIntensity:color];
+    [self setAngle:[Util moodFromColor:color]];
+}
+-(void)setAngle:(CGFloat)angle{
+    
+    static NSArray* zeuesInOrder;
+    
+    if (!zeuesInOrder){
+        zeuesInOrder= [NSArray arrayWithObjects:
+                    @"zeus elements-13.png",
+                    @"zeus elements-12.png",
+                    @"zeus elements-14.png",
+                    @"zeus elements-10.png",
+                    @"zeus elements-09.png",
+                    @"zeus elements-08.png",
+                    nil
+                    ];
+    }
+    
+    static int last = -1;
+    
+    angle*=360.0;
+    angle=420-angle;
+    if (angle>360){
+        angle-=360;
+    }
+    int i=0;
+    for (i=60;i<360;i+=60){
+        if (angle<i){
+            break;
+        }
+    }
+    i/=60.1;
+    
+    if (i!=last){
+        last=i;
+        self.zeusFace.image = [UIImage imageNamed:zeuesInOrder[i]];
+    }
+    
 }
 -(void)searchTermSelected:(NSString *)term{
     self.tagTextField.text = term;

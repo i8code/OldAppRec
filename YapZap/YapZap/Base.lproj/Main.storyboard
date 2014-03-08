@@ -278,6 +278,7 @@
                         <outlet property="moodSelector" destination="HPI-gq-ptb" id="g8Z-bX-rLh"/>
                         <outlet property="tagTextField" destination="XZy-h0-yuD" id="D8y-Vv-J7W"/>
                         <outlet property="waveformImage" destination="ggC-FR-y0Q" id="guL-9L-rOT"/>
+                        <outlet property="zeusFace" destination="6VW-k6-mZF" id="xmZ-57-ugv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYH-X1-Ut3" userLabel="First Responder" sceneMemberID="firstResponder"/>
