@@ -9,10 +9,12 @@
 #import "SetTagViewController.h"
 #import "MoodSelectView.h"
 #import "SharingBundle.h"
+#import "SearchTableViewController.h"
 
 @interface SetTagViewController ()
 
 @property (nonatomic, strong) SharingBundle* sharingBundle;
+@property (nonatomic, strong) SearchTableViewController* searchTableView;
 @property (nonatomic) BOOL hasSelectedMood;
 @end
 
@@ -54,6 +56,21 @@
     [self.moodSelector setColorDelegate:self];
     
     
+    if (self.searchTableView){
+        [self.searchTableView.view removeFromSuperview];
+        [self.searchTableView removeFromParentViewController];
+    }
+    
+    self.searchTableView = [[SearchTableViewController alloc] initWithNibName:@"SearchTableViewController" bundle:nil];
+        self.searchTableView.delegate = self;
+        
+    [self addChildViewController:self.searchTableView];
+    [self.autoFillZone addSubview:self.searchTableView.view];
+    [self.searchTableView.view setFrame:self.autoFillZone.bounds];
+    
+    self.autoFillZone.hidden=YES;
+
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -71,7 +88,8 @@
 
 - (BOOL)textField:(UITextField *) textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-
+    NSString* newText = [textField.text stringByReplacingCharactersInRange:range
+                                                                withString:[string uppercaseString]];
     
     NSUInteger oldLength = [textField.text length];
     NSUInteger replacementLength = [string length];
@@ -89,12 +107,15 @@
             
             textField.text = [textField.text stringByReplacingCharactersInRange:range
                                                                      withString:[string uppercaseString]];
+            [self.searchTableView setSearchTerms:newText];
             return NO;
         }
+        [self.searchTableView setSearchTerms:newText];
         return YES;
     }
-    
     return NO;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
 }
 -(NSString*)fixTag{
     NSString* tagname = self.tagTextField.text;
@@ -117,12 +138,17 @@
         return false;
     }
     
-    
     return true;
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.autoFillZone.hidden=NO;
+    return YES;
 }
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
+    self.autoFillZone.hidden=YES;
     return YES;
 }
 -(void)setMoodColor:(UIColor *)color{
@@ -132,5 +158,10 @@
     self.hasSelectedMood = YES;
     
     [[SharingBundle getCurrentSharingBundle] setMoodAndIntensity:color];
+}
+-(void)searchTermSelected:(NSString *)term{
+    self.tagTextField.text = term;
+    [self.tagTextField resignFirstResponder];
+    self.autoFillZone.hidden=YES;
 }
 @end
