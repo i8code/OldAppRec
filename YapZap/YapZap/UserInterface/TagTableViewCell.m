@@ -98,19 +98,30 @@
     // Configure the view for the selected state
 }
 
--(void)setComment:(BOOL)comment{
-    _comment = comment;
-    self.backgroundColor = comment?[UIColor colorWithWhite:1 alpha:0.17]:[UIColor clearColor];
-    self.topBar.hidden=!comment;
-    self.bottomBar.hidden=!self.isSelected && !self.comment;
+
+-(void)updateBars{
+    self.topBar.hidden=!self.comment;
+    
+    self.bottomBar.hidden=(!self.comment || self.last) && !self.selected;
     self.commentButton.hidden=self.comment;
     self.commentLabel.hidden=self.comment;
     self.spacerView.hidden=!self.comment;
 }
 
+-(void)setLast:(BOOL)last{
+    _last = last;
+    [self updateBars];
+}
+
+-(void)setComment:(BOOL)comment{
+    _comment = comment;
+    self.backgroundColor = comment?[UIColor colorWithWhite:1 alpha:0.17]:[UIColor clearColor];
+    [self updateBars];
+}
+
 -(void)setIsSelected:(BOOL)isSelected{
     _isSelected = isSelected;
-    self.bottomBar.hidden=!self.isSelected && !self.comment;
+    [self updateBars];
 }
 
 -(void)setEnabled:(BOOL)enabled{

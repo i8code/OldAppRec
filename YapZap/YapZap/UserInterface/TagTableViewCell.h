@@ -36,6 +36,7 @@
 
 @property(nonatomic) BOOL comment;
 @property(nonatomic) BOOL isSelected;
+@property(nonatomic) BOOL last;
 
 -(void)setEnabled:(BOOL)enabled;
 - (IBAction)playClicked:(id)sender;
