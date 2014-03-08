@@ -34,7 +34,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
                 </textField>
                 <view opaque="NO" contentMode="scaleToFill" id="ZEY-6M-A9D">
-                    <rect key="frame" x="40" y="77" width="240" height="491"/>
+                    <rect key="frame" x="25" y="77" width="275" height="491"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

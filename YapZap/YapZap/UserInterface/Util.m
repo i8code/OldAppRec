@@ -148,7 +148,28 @@ static const int recentSearchesCount = 10;
     return mostRecent;
 }
 
++(void)clearSearchHistory{
+    for (int i=0;i<recentSearchesCount;i++){
+        NSString* key = [NSString stringWithFormat:@"YapZap_Recent_%u", i];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:key];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 +(void)addRecentSearch:(NSString*)term{
+    
+    term = [term lowercaseString];
+    for (int i=0;i<recentSearchesCount;i++){
+        NSString* key = [NSString stringWithFormat:@"YapZap_Recent_%u", i];
+        NSString* name = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        if ([name isEqualToString:term]){
+            return;
+        }
+    }
+
+    
     for (int i=recentSearchesCount-2;i>=0;i--){
         NSString* name;
         
@@ -165,6 +186,8 @@ static const int recentSearchesCount = 10;
         [[NSUserDefaults standardUserDefaults] setObject:name forKey:key];
         
     }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -174,6 +197,7 @@ static const int recentSearchesCount = 10;
 
 +(void)setShareOnFB:(BOOL)share{
     [[NSUserDefaults standardUserDefaults] setBool:share forKey:@"YapZap_share_fb"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(BOOL)shouldShareOnTW{
@@ -183,6 +207,7 @@ static const int recentSearchesCount = 10;
 
 +(void)setShareOnTW:(BOOL)share{
     [[NSUserDefaults standardUserDefaults] setBool:share forKey:@"YapZap_share_tw"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

@@ -264,7 +264,8 @@ exports.recordingsForUser = function(Models) {
         query.exec(function(err, recordings) {
 
             if (!recordings || recordings.length==0){
-                res.send(404);
+                res.status(200);
+                res.send([]);
                 return;
             }
 

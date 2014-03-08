@@ -69,6 +69,9 @@ static NSMutableArray* tagNames;
     if(_tags==nil){
        [self getPopularTags];
     }
+    if (!_tags || _tags.count==0){
+        return nil;
+    }
     currentTag=(currentTag+1)%_tags.count;
     return [_tags objectAtIndex:currentTag];
 }
@@ -136,7 +139,6 @@ static NSMutableArray* tagNames;
 +(NSArray*)getMyRecordings{
     NSString* path = [NSString stringWithFormat:@"/users/%@/recordings", [User getUser].qualifiedUsername];
     NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    
     NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     NSMutableArray* array = [[NSMutableArray alloc] init];

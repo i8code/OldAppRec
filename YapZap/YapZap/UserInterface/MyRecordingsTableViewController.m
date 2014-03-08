@@ -79,6 +79,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (!self.recordings){
+        return 0;
+    }
     return self.recordings.count;
 }
 

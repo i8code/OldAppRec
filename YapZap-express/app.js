@@ -115,8 +115,8 @@ n.save();
 */
 
 // Tag.remove({}, function(err) { 
-   // console.log('collection removed');
-   // console.log(err);
+//    console.log('collection removed');
+//    console.log(err);
 // });
 // Recording.remove({}, function(err) { 
 //    console.log('collection removed');
