@@ -58,7 +58,7 @@ exports.addNotificationForLike = function(Models, username_by, recording_id){
 }
 
 
-exports.addNotificationForComment = function(Models, username_by, recording_parent){
+exports.addNotificationForComment = function(Models, username_by, recording_parent, recording_id){
     //If it's a comment, then the parent must be a recording
     //Need to get the parent info
     console.log("Adding comment notification by "+username_by+" for "+recording_parent);
@@ -79,7 +79,7 @@ exports.addNotificationForComment = function(Models, username_by, recording_pare
             tag_name: tag_name,
             mood: parent.mood,
             intensity: parent.intensity,
-            recording_id : recording_parent,
+            recording_id : recording_id,
             type:"COMMENT"
         });
         notification.save();

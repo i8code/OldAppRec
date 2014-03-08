@@ -26,5 +26,6 @@
 -(IBAction)goHome:(id)sender;
 -(void)gotoTagWithName:(NSString*)tagName;
 -(void)gotoTagWithName:(NSString*)tagName andRecording:(NSString*)recordingId;
+-(void)dismissSearch;
 +(YapZapMainViewController*)getMe;
 @end

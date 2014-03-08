@@ -137,7 +137,7 @@ exports.create = function(Models) {
                     RecordingUpdater.updateTagPopularity(Models, name);
                 } else {
                     RecordingUpdater.updateRecordingPopularity(Models, name);
-                    NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name);
+                    NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name, recording._id);
                 }
 
                 res.status(201);

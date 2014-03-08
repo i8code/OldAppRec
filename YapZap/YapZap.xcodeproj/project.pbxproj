@@ -249,6 +249,7 @@
 		C70DB6E918C819DA000BED16 /* RecordingCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingCoreData.m; path = Models/RecordingCoreData.m; sourceTree = "<group>"; };
 		C70DB6EB18C93B81000BED16 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Communication/Player.h; sourceTree = "<group>"; };
 		C70DB6EC18C93B81000BED16 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = Communication/Player.m; sourceTree = "<group>"; };
+		C70DB80F18CB6C04000BED16 /* SearchDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchDelegate.h; sourceTree = "<group>"; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
 		C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
@@ -748,6 +749,7 @@
 				C796203718A6825E00D1BEAB /* LoadingViewController.h */,
 				C796203818A6825E00D1BEAB /* LoadingViewController.m */,
 				C796203918A6825E00D1BEAB /* LoadingViewController.xib */,
+				C70DB80F18CB6C04000BED16 /* SearchDelegate.h */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

@@ -35,6 +35,7 @@
     recording._id = [dictionary valueForKey:@"_id"];
     recording.username = [dictionary valueForKey:@"username"];
     recording.parentName = [dictionary valueForKey:@"parent_name"];
+    recording.tagName = [dictionary valueForKey:@"tag_name"];
     recording.parentType = [dictionary valueForKey:@"parent_type"];
     recording.popularity = [[dictionary valueForKey:@"popularity"] doubleValue];
     recording.likes = [[dictionary valueForKey:@"likes"] integerValue];

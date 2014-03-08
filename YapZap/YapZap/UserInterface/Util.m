@@ -132,4 +132,39 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
     return [username substringWithRange:NSMakeRange(underscore.location+1, username.length - underscore.location-1)];
 }
 
+static const int recentSearchesCount = 10;
++(NSArray*)mostRecentSearches{
+    NSMutableArray* mostRecent = [[NSMutableArray alloc] init];
+    
+    for (int i=0;i<recentSearchesCount;i++){
+        NSString* key = [NSString stringWithFormat:@"YapZap_Recent_%u", i];
+        NSString* name = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        if (!name){
+            break;
+        }
+        
+        [mostRecent addObject:name];
+    }
+    return mostRecent;
+}
+
++(void)addRecentSearch:(NSString*)term{
+    for (int i=recentSearchesCount-2;i>=0;i--){
+        NSString* name;
+        
+        if (i==0){
+            name = term;
+        }
+        else {
+            NSString* key = [NSString stringWithFormat:@"YapZap_Recent_%u", i-1];
+            name = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        }
+        
+        
+        NSString* key = [NSString stringWithFormat:@"YapZap_Recent_%u", i];
+        [[NSUserDefaults standardUserDefaults] setObject:name forKey:key];
+        
+    }
+}
+
 @end

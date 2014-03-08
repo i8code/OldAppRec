@@ -7,6 +7,7 @@
 //
 
 #import "SearchTableViewController.h"
+#import "SearchCell.h"
 #import "DataSource.h"
 
 @interface SearchTableViewController ()
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     self.tagNames = [DataSource getTagNames];
     self.activeLabels = [[NSMutableArray alloc] init];
+    [self searchAutocompleteEntriesWithSubstring:nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,10 +55,17 @@
 }
 
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    [self.activeLabels removeAllObjects];
+    
+    if (!substring || substring.length==0){
+        //use recent serach
+        [self.activeLabels addObjectsFromArray:[Util mostRecentSearches]];
+        [self.tableView reloadData];
+        return;
+    }
     
     // Put anything that starts with this substring into the autocompleteUrls array
     // The items in this array is what will show up in the table view
-    [self.activeLabels removeAllObjects];
     for(NSString *curString in self.tagNames) {
         NSRange substringRange = [[curString lowercaseString] rangeOfString:substring];
         if (substringRange.location == 0) {
@@ -74,14 +83,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"SearchCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SearchCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
     cell.textLabel.text = self.activeLabels[indexPath.row];
-    // Configure the cell...
+    cell.delegate = self.delegate;
     
     return cell;
 }

@@ -129,6 +129,9 @@ n.save();
 // Models.AudioMap.remove({}, function(err) { 
 //    console.log('collection removed');
 // });
+// Models.Notification.remove({}, function(err) { 
+//    console.log('collection removed');
+// });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -7,6 +7,7 @@
 //
 
 #import "SearchCell.h"
+#import "SearchTableViewController.h"
 
 @implementation SearchCell
 
@@ -24,6 +25,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    if (selected){
+        [self.delegate searchTermSelected:self.textLabel.text];
+        [Util addRecentSearch:self.textLabel.text];
+    }
 }
 
 @end

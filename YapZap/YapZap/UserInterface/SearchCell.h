@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchDelegate.h"
 
 @interface SearchCell : UITableViewCell
+@property(nonatomic, weak)id<SearchDelegate> delegate;
 
 @end

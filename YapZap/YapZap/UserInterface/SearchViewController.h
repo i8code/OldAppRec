@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchDelegate.h"
 
-@interface SearchViewController : YapZapViewController<UITextFieldDelegate>
+@interface SearchViewController : YapZapViewController<UITextFieldDelegate, SearchDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-
 @property (weak, nonatomic) IBOutlet UIView *autofillArea;
+-(void)searchTermSelected:(NSString *)term;
 @end

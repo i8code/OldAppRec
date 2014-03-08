@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchDelegate.h"
 
 @interface SearchTableViewController : UITableViewController
 @property(nonatomic, strong)NSString* searchTerms;
+@property(nonatomic, weak)id<SearchDelegate> delegate;
 
 @end

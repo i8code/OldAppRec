@@ -16,4 +16,6 @@
 +(CGFloat)intenstiyFromColor:(UIColor*)color;
 +(NSDateFormatter*)getDateFormatter;
 +(NSString*)trimUsername:(NSString*)username;
++(NSArray*)mostRecentSearches;
++(void)addRecentSearch:(NSString*)term;
 @end

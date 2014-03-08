@@ -19,7 +19,6 @@
 @property (nonatomic, strong) NSTimer* timer;
 @property (nonatomic) BOOL uploadComplete;
 @property (nonatomic, strong) Recording* uploadedRecording;
-@property (nonatomic, strong) NSString* tagName;
 
 @end
 
@@ -91,8 +90,7 @@
             recordingURL = [NSString stringWithFormat:@"/recordings/%@/recordings", recordingToCreate.parentName];
         }
         else {
-            self.tagName = [recordingToCreate.parentName lowercaseString];
-            recordingURL = [NSString stringWithFormat:@"/tags/%@/recordings", self.tagName];
+            recordingURL = [NSString stringWithFormat:@"/tags/%@/recordings", [recordingToCreate.parentName lowercaseString]];
         }
         NSString* recordingResponse = [RestHelper post:recordingURL withBody:jsonBody andQuery:nil];
         if (!recordingResponse){
@@ -131,7 +129,7 @@
         [SharingBundle clear];
         [self dismissViewControllerAnimated:YES completion:^{}];
         
-        [self.parent gotoTagWithName:self.tagName];
+        [self.parent gotoTagWithName:self.uploadedRecording.tagName andRecording:self.uploadedRecording._id];
     }
     else if (self.uploadComplete &&!self.uploadedTime){
         self.doneLabel.hidden = NO;

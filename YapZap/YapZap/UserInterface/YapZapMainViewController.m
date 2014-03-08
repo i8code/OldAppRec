@@ -230,6 +230,10 @@
     self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
 }
 
+-(void)dismissSearch{
+    [self.poc dismissPopoverAnimated:YES];
+}
+
 - (IBAction)recordingButtonPressed:(id)sender {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -284,6 +288,7 @@
     [self gotoTagWithName:tagName];
     [TagPageViewController requestDisplayRecording:recordingId];
 }
+
 
 static YapZapMainViewController* me;
 
