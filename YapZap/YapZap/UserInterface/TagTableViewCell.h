@@ -12,6 +12,7 @@
 @class FilteredImageView;
 //@class TagTableViewController;
 @class WaveformView;
+@class TagPageViewController;
 
 @interface TagTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *label;
@@ -30,14 +31,16 @@
 - (IBAction)likePressed:(id)sender;
 - (IBAction)commentSelected:(id)sender;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (weak, nonatomic) TagPageViewController* parentTagViewController;
 
 
 @property(nonatomic) BOOL comment;
-@property(nonatomic) BOOL selected;
+@property(nonatomic) BOOL isSelected;
 
 -(void)setEnabled:(BOOL)enabled;
 - (IBAction)playClicked:(id)sender;
-
+-(void)stopPlaying;
+-(void)startPlaying;
 -(void)updateImage;
 
 @end

@@ -17,11 +17,12 @@
 #import "CoreDataManager.h"
 #import "S3Helper.h"
 #import "Player.h"
+#import "TagPageViewController.h"
 
 @interface TagTableViewCell()
 @property  (nonatomic, strong) NSTimer* timer;
 @property  NSInteger timerCount;
-@property BOOL isPlaying;
+@property (nonatomic) BOOL isPlaying;
 @property (nonatomic) BOOL liked;
 @property (nonatomic) BOOL likeIncludedInCount;
 @property (nonatomic, strong) Player* player;
@@ -34,8 +35,15 @@
 @synthesize timer = _timer;
 @synthesize isPlaying = _isPlaying;
 @synthesize comment = _comment;
-@synthesize selected = _selected;
+@synthesize isSelected = _isSelected;
 @synthesize liked = _liked;
+
+-(void)setIsPlaying:(BOOL)isPlaying{
+    _isPlaying = isPlaying;
+    if (isPlaying){
+        [self.parentTagViewController setCurrentlyPlayingCell:self];
+    }
+}
 
 -(void)setLiked:(BOOL)liked{
     _liked = liked;
@@ -94,15 +102,15 @@
     _comment = comment;
     self.backgroundColor = comment?[UIColor colorWithWhite:1 alpha:0.17]:[UIColor clearColor];
     self.topBar.hidden=!comment;
-    self.bottomBar.hidden=!self.selected && !self.comment;
+    self.bottomBar.hidden=!self.isSelected && !self.comment;
     self.commentButton.hidden=self.comment;
     self.commentLabel.hidden=self.comment;
     self.spacerView.hidden=!self.comment;
 }
 
--(void)setSelected:(BOOL)selected{
-    _selected = selected;
-    self.bottomBar.hidden=!self.selected && !self.comment;
+-(void)setIsSelected:(BOOL)isSelected{
+    _isSelected = isSelected;
+    self.bottomBar.hidden=!self.isSelected && !self.comment;
 }
 
 -(void)setEnabled:(BOOL)enabled{

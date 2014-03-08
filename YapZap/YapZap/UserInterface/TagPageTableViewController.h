@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class TagPageViewController;
+
 @interface TagPageTableViewController : UITableViewController
 {
     NSMutableIndexSet *expandedSections;
 }
 @property (nonatomic, strong) NSString* tagName;
 @property (nonatomic, strong) NSArray* recordings;
+@property (weak, nonatomic) TagPageViewController* parentTagViewController;
 -(void)refresh;
 -(void)updateTable;
 -(void)commentPressed:(UITableViewCell*)cell;

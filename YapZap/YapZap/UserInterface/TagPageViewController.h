@@ -10,6 +10,7 @@
 
 @class Tag;
 @class Recording;
+@class TagTableViewCell;
 
 @interface TagPageViewController : YapZapViewController<YapZapMainControllerProtocol>
 
@@ -20,5 +21,6 @@
 @property (weak, nonatomic) YapZapMainViewController* parent;
 @property (weak, nonatomic) IBOutlet UIView *tableArea;
 @property (weak, nonatomic) IBOutlet UIView *colorBar;
+@property (nonatomic, strong) TagTableViewCell* currentlyPlayingCell;
 
 @end

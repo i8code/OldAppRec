@@ -124,6 +124,7 @@
             Recording* recording = [self.recordings objectAtIndex:indexPath.section];
             [((TagTableViewCell*)cell) setRecording:recording];
             [((TagTableViewCell*)cell) setComment:NO];
+            [((TagTableViewCell*)cell) setParentTagViewController:self.parentTagViewController];
 //            [((TagTableViewCell*)cell) setSelected:[expandedSections containsIndex:indexPath.section]];
             
            /* if ([expandedSections containsIndex:indexPath.section])
@@ -158,6 +159,7 @@
             Recording* comment = [recording.children objectAtIndex:indexPath.row-2];
             [((TagTableViewCell*)cell) setRecording:comment];
             [((TagTableViewCell*)cell) setComment:YES];
+            [((TagTableViewCell*)cell) setParentTagViewController:self.parentTagViewController];
         }
     }
     else
@@ -250,7 +252,7 @@
                 [tmpArray addObject:tmpIndexPath];
             }
             
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             
             if (currentlyExpanded)
             {

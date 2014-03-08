@@ -16,6 +16,7 @@
 #import "FilteredImageView.h"
 #import "TagPageTableViewController.h"
 #import "SharingBundle.h"
+#import "TagTableViewCell.h"
 
 @interface TagPageViewController ()
 
@@ -121,6 +122,7 @@
             [self.tableController setTagName:self.tag.name];
             [self.tableController setRecordings:self.recordings];
             self.tableController.delegate = self.parent;
+            self.tableController.parentTagViewController = self;
             
             [self addChildViewController:self.tableController];
             [self.tableArea addSubview:self.tableController.view];
@@ -135,8 +137,17 @@
 }
 
 
+-(void)setCurrentlyPlayingCell:(TagTableViewCell *)currentlyPlayingCell{
+    if (_currentlyPlayingCell){
+        [_currentlyPlayingCell stopPlaying];
+    }
+    _currentlyPlayingCell = currentlyPlayingCell;
+}
+
+
 -(void)swipedRight:(UIGestureRecognizer*)recognizer{
     //Go to Random Tag
+    [_currentlyPlayingCell stopPlaying];
     self.view.hidden=YES;
     TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
     [tagPageViewController setParent:self.parent];
@@ -146,6 +157,7 @@
 }
 -(void)swipedLeft:(UIGestureRecognizer*)recognizer{
     
+    [_currentlyPlayingCell stopPlaying];
     self.view.hidden=YES;
     //Go home
     [self.navigationController popToRootViewControllerAnimated:YES];

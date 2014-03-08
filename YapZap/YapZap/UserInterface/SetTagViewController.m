@@ -41,6 +41,7 @@
         // TODO: Add fall-back code to set placeholder color.
     }
     
+    self.tagTextField.hidden = self.sharingBundle.comment;
     self.tagTextField.delegate = self;
     self.tagTextField.text = self.sharingBundle.tagName;
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
