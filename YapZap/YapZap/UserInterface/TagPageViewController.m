@@ -78,6 +78,10 @@
     [self loadRecordingsForTag];
 }
 
+- (IBAction)playAll:(id)sender {
+    [self.tableController playAll];
+}
+
 -(Tag*)tag{
     return _tag;
 }
@@ -143,7 +147,7 @@
 
 
 -(void)setCurrentlyPlayingCell:(TagTableViewCell *)currentlyPlayingCell{
-    if (_currentlyPlayingCell){
+    if (_currentlyPlayingCell && _currentlyPlayingCell!=currentlyPlayingCell){
         [_currentlyPlayingCell stopPlaying];
     }
     _currentlyPlayingCell = currentlyPlayingCell;

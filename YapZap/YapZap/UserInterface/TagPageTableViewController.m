@@ -294,4 +294,26 @@
     }
 }
 
+
+-(void)playNext:(TagTableViewCell*)sender{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
+    if (sender.comment){
+        //cell is a comment, find next cell;
+        indexPath =  [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
+    }
+    else {
+        indexPath =  [NSIndexPath indexPathForRow:0 inSection:indexPath.section+1];
+    }
+    TagTableViewCell* cell = (TagTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    [cell playClicked:cell];
+}
+
+-(void)playAll{
+    if (!self.recordings || !self.recordings.count){
+        return;
+    }
+    NSIndexPath* indexPath =  [NSIndexPath indexPathForRow:0 inSection:0];
+    TagTableViewCell* cell = (TagTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    [cell playClicked:cell];
+}
 @end

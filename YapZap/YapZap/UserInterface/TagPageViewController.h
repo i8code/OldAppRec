@@ -14,6 +14,7 @@
 
 @interface TagPageViewController : YapZapViewController<YapZapMainControllerProtocol>
 
+- (IBAction)playAll:(id)sender;
 @property(nonatomic, strong) Tag* tag;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 -(void)swipedRight:(UIGestureRecognizer*)recognizer;

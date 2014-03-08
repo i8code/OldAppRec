@@ -133,6 +133,10 @@
 }
 
 -(void)stopPlaying{
+    
+    if (!self.isPlaying){
+        return;
+    }
     //[self.delegate setCell:self playing:NO];
     
     [self.player stop];
@@ -148,10 +152,12 @@
 }
 
 -(void)startPlaying{
-    
+    if (self.isPlaying){
+        return;
+    }
+    self.isPlaying = true;
     [self.player play];
     
-    self.isPlaying = true;
     //[self.delegate setCell:self playing:YES];
     [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
     
@@ -202,6 +208,11 @@
     [self.waveFormImage setNeedsDisplay];
     
     if (self.timerCount>=50*(self.recording.waveformData.count/430.f)){
+        
+        UITableView *tv = (UITableView *) self.superview.superview;
+        UITableViewController *vc = (UITableViewController *) tv.dataSource;
+        
+        [((TagPageTableViewController*)vc)playNext:self];
         [self stopPlaying];
     }
     

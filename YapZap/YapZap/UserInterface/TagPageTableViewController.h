@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class TagTableViewCell;
 @class TagPageViewController;
 
 @interface TagPageTableViewController : UITableViewController
@@ -18,4 +19,6 @@
 -(void)refresh;
 -(void)commentPressed:(UITableViewCell*)cell;
 @property (nonatomic, weak) YapZapMainViewController* delegate;
+-(void)playNext:(TagTableViewCell*)sender;
+-(void)playAll;
 @end
