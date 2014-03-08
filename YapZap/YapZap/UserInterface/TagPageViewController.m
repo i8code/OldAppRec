@@ -130,6 +130,11 @@
             [self.tableController.view setFrame:self.tableArea.bounds];
             self.activityIndicator.hidden=YES;
             
+            if (requestedRecording){
+                [self scrollToRecording:requestedRecording];
+                requestedRecording = nil;
+            }
+            
         });
         
     });
@@ -162,6 +167,53 @@
     //Go home
     [self.navigationController popToRootViewControllerAnimated:YES];
     
+}
+
+static NSString* requestedRecording;
++(void)requestDisplayRecording:(NSString*)recordingId{
+    requestedRecording = recordingId;
+}
+
+-(void)scrollToRecording:(NSString*)recordingId{
+    int i, j;
+    BOOL found=false;
+    BOOL comment=false;
+    for (i=0;i<self.recordings.count;i++){
+        Recording* parentRecording = self.recordings[i];
+        if ([parentRecording._id isEqualToString:recordingId]){
+            found = true;
+            comment = false;
+            break;
+        }
+        
+        for (j=0;j<parentRecording.childrenLength;j++){
+            Recording* recording = parentRecording.children[j];
+            if ([recording._id isEqualToString:recordingId]){
+                found = true;
+                comment = true;
+                break;
+            }
+        }
+        if (found){
+            break;
+        }
+    }
+    
+    if (found){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+        
+        if (comment){ //Make sure the cell is Expanded
+            NSIndexPath *parentIndexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+            UITableViewCell* cell = [self.tableController.tableView cellForRowAtIndexPath:parentIndexPath];
+            TagPageTableViewController* tagPageTableViewController = self.tableController;
+            if (![tagPageTableViewController.expandedSections containsIndex:parentIndexPath.section]){
+                [tagPageTableViewController commentPressed:cell];
+            }
+        }
+        
+        [self.tableController.tableView scrollToRowAtIndexPath:indexPath
+                                              atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 @end

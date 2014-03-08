@@ -23,4 +23,5 @@
 @property (weak, nonatomic) IBOutlet UIView *colorBar;
 @property (nonatomic, strong) TagTableViewCell* currentlyPlayingCell;
 -(void)loadRecordingsForTag;
++(void)requestDisplayRecording:(NSString*)recordingId;
 @end

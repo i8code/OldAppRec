@@ -34,9 +34,9 @@
 {
     [super viewDidLoad];
     
-    if (!expandedSections)
+    if (!self.expandedSections)
     {
-        expandedSections = [[NSMutableIndexSet alloc] init];
+        self.expandedSections = [[NSMutableIndexSet alloc] init];
     }
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
@@ -87,7 +87,7 @@
 {
     if ([self tableView:tableView canCollapseSection:section])
     {
-        if ([expandedSections containsIndex:section])
+        if ([self.expandedSections containsIndex:section])
         {
             Recording* recording = (Recording*)[self.recordings objectAtIndex:section];
             return recording.childrenLength+2; // return rows when expanded
@@ -229,7 +229,7 @@
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             NSInteger section = indexPath.section;
-            BOOL currentlyExpanded = [expandedSections containsIndex:section];
+            BOOL currentlyExpanded = [self.expandedSections containsIndex:section];
             NSInteger rows;
             
             NSMutableArray *tmpArray = [NSMutableArray array];
@@ -237,12 +237,12 @@
             if (currentlyExpanded)
             {
                 rows = [self tableView:tableView numberOfRowsInSection:section];
-                [expandedSections removeIndex:section];
+                [self.expandedSections removeIndex:section];
                 
             }
             else
             {
-                [expandedSections addIndex:section];
+                [self.expandedSections addIndex:section];
                 rows = [self tableView:tableView numberOfRowsInSection:section];
             }
             

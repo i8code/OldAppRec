@@ -11,14 +11,11 @@
 @class TagPageViewController;
 
 @interface TagPageTableViewController : UITableViewController
-{
-    NSMutableIndexSet *expandedSections;
-}
+@property (nonatomic, strong) NSMutableIndexSet *expandedSections;
 @property (nonatomic, strong) NSString* tagName;
 @property (nonatomic, strong) NSArray* recordings;
 @property (weak, nonatomic) TagPageViewController* parentTagViewController;
 -(void)refresh;
--(void)updateTable;
 -(void)commentPressed:(UITableViewCell*)cell;
 @property (nonatomic, weak) YapZapMainViewController* delegate;
 @end

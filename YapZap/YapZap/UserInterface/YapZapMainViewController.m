@@ -280,6 +280,11 @@
     [tagCloudViewController gotoTagWithName:tagName];
 }
 
+-(void)gotoTagWithName:(NSString*)tagName andRecording:(NSString*)recordingId{
+    [self gotoTagWithName:tagName];
+    [TagPageViewController requestDisplayRecording:recordingId];
+}
+
 static YapZapMainViewController* me;
 
 

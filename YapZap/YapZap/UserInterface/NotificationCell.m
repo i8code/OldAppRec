@@ -48,5 +48,7 @@
     }
 }
 - (IBAction)tagButtonPressed:(id)sender {
+    YapZapMainViewController* mainController = [YapZapMainViewController getMe];
+    [mainController gotoTagWithName:self.notification.tagName andRecording:self.notification.recordingId];
 }
 @end

@@ -25,5 +25,6 @@
 - (IBAction)recordingButtonPressed:(id)sender;
 -(IBAction)goHome:(id)sender;
 -(void)gotoTagWithName:(NSString*)tagName;
+-(void)gotoTagWithName:(NSString*)tagName andRecording:(NSString*)recordingId;
 +(YapZapMainViewController*)getMe;
 @end
