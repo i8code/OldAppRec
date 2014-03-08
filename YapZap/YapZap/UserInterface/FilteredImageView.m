@@ -81,10 +81,22 @@
     bounds = CGRectMake(0, 0, width, height);
     
     CGContextSetBlendMode(context, kCGBlendModeDestinationIn);
+    CGAffineTransform transform =CGAffineTransformMakeTranslation(0.0, height);
+    transform = CGAffineTransformScale(transform, 1.0, -1.0);
+    CGContextConcatCTM(context, transform);
+    
     CGContextDrawImage(context, bounds, self.originalImage.CGImage);
     
     
     CGContextRestoreGState(context);
+}
+
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    for (UIView *view in self.subviews) {
+        if (!view.hidden && view.alpha > 0 && view.userInteractionEnabled && [view pointInside:[self convertPoint:point toView:view] withEvent:event])
+            return YES;
+    }
+    return NO;
 }
 
 @end

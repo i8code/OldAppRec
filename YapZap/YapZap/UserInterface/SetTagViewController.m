@@ -57,6 +57,9 @@
     [self.waveformBorderY setImage:self.sharingBundle.waveformImage];
     [self.moodSelector setColorDelegate:self];
     
+    [self.glowBolt setImage:[UIImage imageNamed:@"bolt_glow.png"]];
+    self.glowBolt.filterColor = [UIColor whiteColor];
+    
     
     if (self.searchTableView){
         [self.searchTableView.view removeFromSuperview];
@@ -155,7 +158,7 @@
 }
 -(void)setMoodColor:(UIColor *)color{
     self.waveformImage.filterColor = color;
-    self.parent.background.filterColor = color;
+    self.glowBolt.filterColor = color;
     
     self.hasSelectedMood = YES;
     
