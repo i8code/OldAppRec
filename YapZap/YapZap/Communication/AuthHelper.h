@@ -10,5 +10,6 @@
 
 @interface AuthHelper : NSObject
 
++(void)setTimeOffset:(long)offset;
 +(NSDictionary*)getTokens;
 @end

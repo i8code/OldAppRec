@@ -13,6 +13,7 @@
 #import "RestHelper.h"
 #import "Notification.h"
 #import "User.h"
+#import "AuthHelper.h"
 
 @interface DataSource()
 
@@ -23,6 +24,13 @@
 
 static NSArray* _tags;
 static NSMutableArray* tagNames;
+
++(void)getTimezoneOffset{
+    NSString* timezoneOffsetStr = [RestHelper get:@"/time" withQuery:nil];
+    long response = [timezoneOffsetStr longLongValue];
+    long t = (long)[[NSDate date] timeIntervalSince1970];
+    [AuthHelper setTimeOffset:(response-t)];
+}
 
 +(NSArray*)getTagNames{
     

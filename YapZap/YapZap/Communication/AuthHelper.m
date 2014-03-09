@@ -15,6 +15,11 @@
 
 @implementation AuthHelper
 
+
+static long timeoffset=0;
++(void)setTimeOffset:(long)offset{
+    timeoffset = offset;
+}
 + (NSString *) createSHA512:(NSString *)source {
     
     const char *s = [source cStringUsingEncoding:NSASCIIStringEncoding];
@@ -33,7 +38,7 @@
 +(NSDictionary*)getTokens{
     NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] init];
     
-    long t = (long)[[NSDate date] timeIntervalSince1970];
+    long t = (long)[[NSDate date] timeIntervalSince1970]+timeoffset;
     
     NSString* prehash = [NSString stringWithFormat:@"%@%@%ld", secret, key, t];
     

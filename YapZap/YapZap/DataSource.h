@@ -14,6 +14,7 @@
 
 @interface DataSource : NSObject
 
++(void)getTimezoneOffset;
 +(NSArray*)getTagNames;
 +(NSArray*)refreshTagNames;
 +(NSArray*)getPopularTags;

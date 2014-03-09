@@ -23,7 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    [DataSource getTimezoneOffset];
 //    [FBLoginView class];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

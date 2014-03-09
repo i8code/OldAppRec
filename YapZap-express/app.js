@@ -92,6 +92,13 @@ app.get('/tokens', routes.tokens());
 app.get('/a/:id', routes.audio_proxy(Models));
 app.get('/audio_maps', routes.audio_maps(Models.AudioMap));
 
+
+//Time
+app.get('/time', function(req, res) {
+  var t = Math.round((new Date()).getTime()/1000);
+  res.send(""+t);
+});
+
 // var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
 // r.save();
 /*
