@@ -100,7 +100,7 @@
     self.recorder = [[Recorder alloc] initWithSeconds:10];
     [self.waveform removeFromSuperview];
     self.waveform = [[WaveformView alloc] init];
-    [self.waveform setFrame:CGRectMake(0, self.view.frame.size.height*0.4f, self.view.frame.size.width, 150)];
+    [self.waveform setFrame:CGRectMake(0, self.view.frame.size.height*0.45f, self.view.frame.size.width, 150)];
     [self.view addSubview:self.waveform];
     [self.waveform setData:self.recorder.waveformData withSize:[self.recorder blockLength]];
     
