@@ -77,7 +77,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.activeLabels.count;
+    return MAX(self.activeLabels.count, 1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,8 +89,17 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.textLabel.text = self.activeLabels[indexPath.row];
-    cell.delegate = self.delegate;
+    if (!self.activeLabels.count){
+        cell.textLabel.text = @"no results found";
+        cell.userInteractionEnabled = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else {
+        cell.textLabel.text = self.activeLabels[indexPath.row];
+        cell.delegate = self.delegate;
+        cell.userInteractionEnabled = YES;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
     
     return cell;
 }

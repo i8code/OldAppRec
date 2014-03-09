@@ -139,7 +139,7 @@
     
     
     float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
-    if (seconds<2){
+    if (seconds<0.5){
         [self trashButtonPressed:nil];
     }
     [self.recordActiveButton setHighlighted:NO];
