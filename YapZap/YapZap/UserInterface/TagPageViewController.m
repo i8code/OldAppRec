@@ -61,8 +61,6 @@
     }
     
     self.view.hidden=NO;
-    
-    [self.view bringSubviewToFront:self.playButton];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -109,6 +107,8 @@
 //    [self.titleLabel restartLabel];
     
     self.parent.background.filterColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
+    
+    [self.view bringSubviewToFront:self.playButton];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.recordings = [DataSource getRecordingsForTagName:self.tag.name];

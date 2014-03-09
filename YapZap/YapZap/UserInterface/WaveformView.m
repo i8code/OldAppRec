@@ -31,7 +31,7 @@
         self.opaque = false;
         self.highlightPercent=-1;
         self.mainColor = [UIColor whiteColor];
-        self.semiColor = [UIColor colorWithWhite:1 alpha:0.3];
+        self.semiColor = [UIColor colorWithWhite:1 alpha:0.25];
     }
     return self;
 }
@@ -41,7 +41,7 @@
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
     
     self.mainColor = color;
-    self.semiColor = [UIColor colorWithRed:red green:green blue:blue alpha:(alpha/2.0f)];
+    self.semiColor = [UIColor colorWithRed:red green:green blue:blue alpha:(alpha/4.0f)];
     [self setNeedsDisplay];
 }
 
