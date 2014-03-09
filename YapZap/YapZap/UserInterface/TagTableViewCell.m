@@ -84,14 +84,6 @@
     
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -261,7 +253,6 @@
 -(void)highlight{
     self.highlightPercent=1.0;
     self.highlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateHighlight) userInfo:nil repeats:YES];
-    
 }
 -(void)updateHighlight{
     CGFloat percent = self.highlightPercent;
@@ -269,7 +260,7 @@
         percent = percent*0.83+0.17;
     }
     self.backgroundColor = [UIColor colorWithWhite:1 alpha:percent];
-    self.highlightPercent*=0.9;
+    self.highlightPercent*=0.95;
     
     if (self.highlightPercent<0.01){
         [self.highlightTimer invalidate];

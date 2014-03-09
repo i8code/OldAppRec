@@ -207,7 +207,7 @@ static NSString* requestedRecording;
     }
     
     if (found){
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(j+2) inSection:i];
         
         if (comment){ //Make sure the cell is Expanded
             NSIndexPath *parentIndexPath = [NSIndexPath indexPathForRow:0 inSection:i];
@@ -220,8 +220,12 @@ static NSString* requestedRecording;
         
         [self.tableController.tableView scrollToRowAtIndexPath:indexPath
                                               atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        TagTableViewCell* cell = (TagTableViewCell*)[self.tableController.tableView cellForRowAtIndexPath:indexPath];
-        [cell highlight];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500*USEC_PER_SEC), dispatch_get_main_queue(), ^{
+            TagTableViewCell* cell = (TagTableViewCell*)[self.tableController.tableView cellForRowAtIndexPath:indexPath];
+            [cell highlight];
+        });
+        
         
     }
 }
