@@ -31,7 +31,7 @@
         self.opaque = false;
         self.highlightPercent=-1;
         self.mainColor = [UIColor whiteColor];
-        self.semiColor = [UIColor colorWithWhite:1 alpha:0.5];
+        self.semiColor = [UIColor colorWithWhite:1 alpha:0.3];
     }
     return self;
 }

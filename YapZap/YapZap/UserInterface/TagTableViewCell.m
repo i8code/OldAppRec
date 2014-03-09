@@ -150,7 +150,7 @@
     [self.timer invalidate];
     self.timer=nil;
     
-    [self.waveFormImage setHighlightPercent:0];
+//    [self.waveFormImage setHighlightPercent:0];
     [self.waveFormImage setNeedsDisplay];
     
     self.isPlaying = false;

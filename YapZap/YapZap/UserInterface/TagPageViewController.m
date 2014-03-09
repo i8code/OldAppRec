@@ -45,10 +45,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
     self.parent.homeButton.hidden = NO;
     
     if (!self.swipeRight){
@@ -65,8 +61,9 @@
     }
     
     self.view.hidden=NO;
+    
+    [self.view bringSubviewToFront:self.playButton];
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -207,9 +204,10 @@ static NSString* requestedRecording;
     }
     
     if (found){
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(j+2) inSection:i];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
         
         if (comment){ //Make sure the cell is Expanded
+            indexPath = [NSIndexPath indexPathForRow:(j+2) inSection:i];
             NSIndexPath *parentIndexPath = [NSIndexPath indexPathForRow:0 inSection:i];
             UITableViewCell* cell = [self.tableController.tableView cellForRowAtIndexPath:parentIndexPath];
             TagPageTableViewController* tagPageTableViewController = self.tableController;

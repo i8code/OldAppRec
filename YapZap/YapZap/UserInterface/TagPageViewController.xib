@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="Ety-eH-Lme" id="anV-xz-5Jg"/>
                 <outlet property="colorBar" destination="ol3-Mg-VBz" id="wm7-nx-eIV"/>
+                <outlet property="playButton" destination="1U1-x8-vcT" id="gwk-VB-bnC"/>
                 <outlet property="tableArea" destination="k9G-hS-Xga" id="qZh-cp-eOI"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -67,7 +68,7 @@
         </view>
     </objects>
     <resources>
-        <image name="TagPlayingScreen.png" width="161" height="283"/>
+        <image name="TagPlayingScreen.png" width="640" height="1136"/>
         <image name="play_icon_filled.png" width="256" height="256"/>
     </resources>
 </document>
