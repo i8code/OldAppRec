@@ -214,10 +214,10 @@
     
     self.timerCount++;
     
-    [self.waveFormImage setHighlightPercent:(((float)self.timerCount)/50.0f)];
+    [self.waveFormImage setHighlightPercent:(((float)self.timerCount)/100.0f)];
     [self.waveFormImage setNeedsDisplay];
     
-    if (self.timerCount>=50*(self.recording.waveformData.count/430.f)){
+    if (self.timerCount>=100*(self.recording.waveformData.count/430.f)){
         
         UITableView *tv = (UITableView *) self.superview.superview;
         UITableViewController *vc = (UITableViewController *) tv.dataSource;
