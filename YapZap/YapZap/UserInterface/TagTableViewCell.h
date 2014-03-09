@@ -44,4 +44,7 @@
 -(void)startPlaying;
 -(void)updateImage;
 
+
+-(void)highlight;
+
 @end

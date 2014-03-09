@@ -18,6 +18,7 @@
 #import "SharingBundle.h"
 #import "TagTableViewCell.h"
 
+
 @interface TagPageViewController ()
 
 @property(nonatomic, strong)NSArray* recordings;
@@ -219,6 +220,9 @@ static NSString* requestedRecording;
         
         [self.tableController.tableView scrollToRowAtIndexPath:indexPath
                                               atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        TagTableViewCell* cell = (TagTableViewCell*)[self.tableController.tableView cellForRowAtIndexPath:indexPath];
+        [cell highlight];
+        
     }
 }
 

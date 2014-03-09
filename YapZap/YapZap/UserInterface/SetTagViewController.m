@@ -146,8 +146,7 @@
     }
     return NO;
 }
--(void)textFieldDidEndEditing:(UITextField *)textField{
-}
+
 -(NSString*)fixTag{
     NSString* tagname = self.tagTextField.text;
     tagname = [[[tagname componentsSeparatedByCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]] componentsJoinedByString:@""] uppercaseString];
@@ -229,7 +228,7 @@
     
 }
 -(void)searchTermSelected:(NSString *)term{
-    self.tagTextField.text = term;
+    self.tagTextField.text = [term uppercaseString];
     [self.tagTextField resignFirstResponder];
     self.autoFillZone.hidden=YES;
 }

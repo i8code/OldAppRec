@@ -20,12 +20,14 @@
 #import "TagPageViewController.h"
 
 @interface TagTableViewCell()
-@property  (nonatomic, strong) NSTimer* timer;
-@property  NSInteger timerCount;
+@property (nonatomic, strong) NSTimer* timer;
+@property NSInteger timerCount;
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) BOOL liked;
 @property (nonatomic) BOOL likeIncludedInCount;
 @property (nonatomic, strong) Player* player;
+@property (nonatomic) CGFloat highlightPercent;
+@property (nonatomic, strong) NSTimer* highlightTimer;
 
 @end
 
@@ -253,5 +255,27 @@
     UITableViewController *vc = (UITableViewController *) tv.dataSource;
     
     [((TagPageTableViewController*)vc)commentPressed:self];
+}
+
+
+-(void)highlight{
+    self.highlightPercent=1.0;
+    self.highlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateHighlight) userInfo:nil repeats:YES];
+    
+}
+-(void)updateHighlight{
+    CGFloat percent = self.highlightPercent;
+    if (self.comment){
+        percent = percent*0.83+0.17;
+    }
+    self.backgroundColor = [UIColor colorWithWhite:1 alpha:percent];
+    self.highlightPercent*=0.9;
+    
+    if (self.highlightPercent<0.01){
+        [self.highlightTimer invalidate];
+        self.highlightTimer = nil;
+        self.backgroundColor = self.comment?[UIColor colorWithWhite:1 alpha:0.17]:[UIColor clearColor];
+    }
+    
 }
 @end

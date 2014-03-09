@@ -17,9 +17,11 @@
 -(Player*)initWithPath:(NSString*)path{
     self = [super init];
     if (self){
-        
         NSURL *soundFileURL = [NSURL fileURLWithPath:path];
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     }
     return self;
 }
