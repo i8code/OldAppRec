@@ -68,7 +68,7 @@
     }
     
     NSURL* url = [self getFullPath:path withQuery:query];
-//    NSLog(@"%@ %@", type, [url absoluteString]);
+    NSLog(@"%@ %@", type, [url absoluteString]);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:type];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -88,7 +88,10 @@
         return nil;
     }
     
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    NSString* response =[[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    NSLog(@"Response:\n%@\n", response);
+    
+    return response;
 }
 
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query{

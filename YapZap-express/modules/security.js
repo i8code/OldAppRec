@@ -43,7 +43,7 @@ exports.check = function(req, res){
         // console.log(t_in);
         // console.log("time "+(t_in_int<t && t_in_int+30000>t));
 
-        if (hash===token && key===user.key && t_in_int<t && t_in_int+30000>t){
+        if (hash===token && key===user.key && t_in_int-3e2<t && t_in_int+3e2>t){
             return true;
         }
         
