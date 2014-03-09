@@ -229,7 +229,9 @@
     CGRect bounds = CGRectMake(me.frame.origin.x, me.frame.origin.y, me.frame.size.width, me.frame.size.height);
     [self.poc presentPopoverFromRect:bounds inView:self.view  permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     self.poc.contentViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
-    self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+    if ([self.poc respondsToSelector:@selector(setBackgroundColor:)]){
+        self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+    }
 }
 
 -(void)dismissSearch{

@@ -104,9 +104,9 @@
             int numPlaced= 0;
             
             for (int i=0;i<cloudElements.count;){
-                if (numPlaced>numberOfFlows){
+                if (numPlaced>=numberOfFlows){
                     numPlaced=0;
-                    timestamp+=(arc4random()%50)+50;
+                    timestamp+=(arc4random()%50)+20;
                     continue;
                 }
                 

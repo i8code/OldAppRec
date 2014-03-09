@@ -36,12 +36,6 @@
 
 +(NSURL*)getFullPath:(NSString*)stub withQuery:(NSDictionary*)query{
     
-    NSURLComponents *components = [NSURLComponents new];
-    [components setScheme:PROTOCOL];
-    [components setHost:HOST];
-    [components setPort:[NSNumber numberWithInteger:PORT]];
-    
-    
     //Update Query
     query = [self addAuth:query];
     NSString* queryStr = @"";
@@ -49,10 +43,30 @@
     for (NSString* key in query){
         queryStr = [NSString stringWithFormat:@"%@&%@=%@", queryStr, [self urlEncode:key], [self urlEncode:query[key] ]];
     }
-    [components setQuery:queryStr];
-    [components setPath:stub];
     
-    return[components URL];
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        NSURLComponents *components = [NSURLComponents new];
+        [components setScheme:PROTOCOL];
+        [components setHost:HOST];
+        [components setPort:[NSNumber numberWithInteger:PORT]];
+        [components setQuery:queryStr];
+        [components setPath:stub];
+        
+        return[components URL];
+    }
+    else{
+        NSString* baseURLString = [NSString stringWithFormat:
+                                   @"%@://%@:%d%@?%@",
+                                   PROTOCOL,
+                                   HOST,
+                                   PORT,
+                                   stub,
+                                   queryStr];
+                                   
+        return [NSURL URLWithString:baseURLString];
+    }
+    
+   
 }
 
 +(NSString*)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body{
