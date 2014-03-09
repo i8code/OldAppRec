@@ -104,4 +104,32 @@ static UIManagedDocument* _database = nil;
     return !![self getLikeByRecordingId:recordingId];
 }
 
+
++(RecordingCoreData*)getRecordingData:(NSString*)recordingId{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"RecordingCoreData" inManagedObjectContext:self.database.managedObjectContext];
+    [request setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid=%@", recordingId];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *fetchResults = [self.database.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (!fetchResults || fetchResults.count==0){
+        return nil;
+    }
+    return [fetchResults objectAtIndex:0];
+}
++(void)setRecording:(NSString*)recordingId withPercentage:(CGFloat)percentage{
+    RecordingCoreData* recordingData = [self getRecordingData:recordingId];
+    if (!recordingData){
+        recordingData =[NSEntityDescription insertNewObjectForEntityForName:@"RecordingCoreData" inManagedObjectContext:[self database].managedObjectContext];
+        recordingData.uid = recordingId;
+    }
+    recordingData.percent_played = [NSNumber numberWithFloat:percentage];
+    [self.database.managedObjectContext save:nil];
+    
+}
+
 @end

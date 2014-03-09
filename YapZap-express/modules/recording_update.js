@@ -32,8 +32,6 @@ var updateCollection = function(Models, id, type){
                 }
                 parent.children = recordings;
                 parent.children_length=recordings.length||0;
-                moodSin/=intensity||1;
-                moodCos/=intensity||1;
                 intensity=Math.sqrt(moodSin*moodSin+moodCos*moodCos);
             }
 

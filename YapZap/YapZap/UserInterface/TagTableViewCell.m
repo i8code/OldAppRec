@@ -18,6 +18,8 @@
 #import "S3Helper.h"
 #import "Player.h"
 #import "TagPageViewController.h"
+#import "CoreDataManager.h"
+#import "RecordingCoreData.h"
 
 @interface TagTableViewCell()
 @property (nonatomic, strong) NSTimer* timer;
@@ -82,6 +84,13 @@
     [self.waveFormImage setColor:[Util colorFromMood:recording.mood andIntesity:recording.intensity]];
     [self.waveFormImage setNeedsDisplay];
     
+    
+    RecordingCoreData* recordingData = [CoreDataManager getRecordingData:self.recording._id];
+    if (recordingData){
+        [self.playButton setImage:[UIImage imageNamed:@"redo_button.png"] forState:UIControlStateNormal];
+        self.waveFormImage.highlightPercent = [recordingData.percent_played floatValue];
+    }
+    
 }
 
 
@@ -145,7 +154,7 @@
     //[self.delegate setCell:self playing:NO];
     
     [self.player stop];
-    [self.playButton setImage:[UIImage imageNamed:@"play_small_button.png"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"redo_button.png"] forState:UIControlStateNormal];
         
     [self.timer invalidate];
     self.timer=nil;
@@ -154,6 +163,8 @@
     [self.waveFormImage setNeedsDisplay];
     
     self.isPlaying = false;
+    
+    [CoreDataManager setRecording:self.recording._id withPercentage:self.waveFormImage.highlightPercent];
 }
 -(void)startPlaying{
     if (self.isPlaying){
@@ -167,6 +178,8 @@
     
     self.timerCount = 0;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
+    
+    
     
 }
 -(NSURL*)getFileURL{
