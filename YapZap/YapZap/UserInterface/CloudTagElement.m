@@ -74,19 +74,19 @@ static int lineHeight = 16;
 
 -(void)setTime:(CGFloat)time{
     _time = time;
-    CGRect buttonFrame =CGRectMake(self.position.x-10*time,
+    CGRect buttonFrame =CGRectMake(self.position.x-10*time+self.height,
                                    self.position.y,
                                    self.button.frame.size.width,
                                    self.button.frame.size.height);
-    CGRect circleFrame =CGRectMake(self.position.x-self.pop*lineHeight/2-5-10*time,
+    CGRect circleFrame =CGRectMake(self.position.x-self.pop*lineHeight/2-5-10*time+self.height,
                                    self.position.y+(5-self.pop)*lineHeight/5.0,
                                    self.circle.frame.size.width,
                                    self.circle.frame.size.height);
 
     
     while (buttonFrame.origin.x+buttonFrame.size.width<0) {
-        buttonFrame.origin.x+=self.canvasWidth+buttonFrame.size.width;
-        circleFrame.origin.x+=self.canvasWidth+circleFrame.size.width;
+        buttonFrame.origin.x+=self.canvasWidth+self.width;
+        circleFrame.origin.x+=self.canvasWidth+self.width;
     }
     
     [self.button setFrame:buttonFrame];

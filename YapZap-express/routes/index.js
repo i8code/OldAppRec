@@ -4,7 +4,7 @@
  */
 var Security = require('../modules/security');
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'YapZap' });
 };
 
 exports.tags = function(Tag) {

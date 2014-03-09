@@ -87,10 +87,10 @@
             
             NSArray* cloudElements = [self shuffleArray:buttons];
             
-            int numberOfFlows=4;
+            int numberOfFlows=1;
             self.canvasHeight = self.cloudView.frame.size.height;
             
-            CGFloat rowHeight = 17.0f;
+            CGFloat rowHeight = 25.0f;
             CGFloat nRows =(int)(self.canvasHeight/rowHeight-1);
             
             CGFloat* rowDepths = (CGFloat*)malloc(sizeof(CGFloat)*nRows);
@@ -117,7 +117,7 @@
                 NSMutableArray* slots = [[NSMutableArray alloc] init];
                 for (int j=0;j<nRows;j++){
                     if (j+elementSpan>nRows){
-                        continue;
+                        break;
                     }
                     BOOL works = true;
                     for (int k=0;k<elementSpan;k++){
@@ -135,21 +135,21 @@
                 
                 //Check to see if it can be placed
                 if (!slots.count){
-                    timestamp+=5;
+                    timestamp+=15;
                     continue;
                 }
                 
                 //Pick a random place to put it
                 int selection = (arc4random()%slots.count);
-                CGPoint position = CGPointMake(timestamp, [slots[selection] floatValue]*rowHeight+7);
+                NSInteger slot = [slots[selection] integerValue];
+                CGPoint position = CGPointMake(timestamp, slot*rowHeight+30);
                 [element setPosition:position];
                 numPlaced++;
                 
                 for (int k=0;k<elementSpan;k++){
-                    rowDepths[k+[slots[selection] intValue]]=timestamp+element.height;
+                    rowDepths[k+slot]=timestamp+element.width*1.25f;
                 }
-                rowDepths[selection+elementSpan/2]=timestamp+element.width;
-                
+//                rowDepths[slot+elementSpan/2]=timestamp+element.width;
                 
                 i++;
                 

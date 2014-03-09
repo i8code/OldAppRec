@@ -142,7 +142,7 @@
         self.timer = nil;
     }
     if (!self.uploadComplete){
-        [self.progressBar setProgress:self.count/100.0];
+        [self.progressBar setProgress:self.count/1000.0];
     }
     else {
         [self.progressBar setProgress:1];

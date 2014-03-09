@@ -30,8 +30,11 @@ static NSMutableArray* tagNames;
         return tagNames;
     }
     
-   NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
-//    NSData *jsonData = [[RestHelper get:@"/tag_names" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+//   NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[RestHelper get:@"/tag_names" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData){
+        return [[NSArray alloc] init];
+    }
     NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     tagNames = [[NSMutableArray alloc] init];
@@ -51,9 +54,12 @@ static NSMutableArray* tagNames;
 
 +(NSArray*)getPopularTags{
     
-    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
     
-//    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData){
+        return [[NSArray alloc] init];
+    }
     NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     NSMutableArray* array = [[NSMutableArray alloc] init];
@@ -80,6 +86,9 @@ static NSMutableArray* tagNames;
     
     NSString* path = [NSString stringWithFormat:@"/tags/%@", name];
     NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData){
+        return nil;
+    }
     NSDictionary* tagJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     return[Tag fromJSON:tagJson];
@@ -125,6 +134,9 @@ static NSMutableArray* tagNames;
     
     NSString* path = [NSString stringWithFormat:@"/tags/%@/recordings", tagName];
     NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData){
+        return [[NSArray alloc] init];
+    }
     
     NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
@@ -139,6 +151,9 @@ static NSMutableArray* tagNames;
 +(NSArray*)getMyRecordings{
     NSString* path = [NSString stringWithFormat:@"/users/%@/recordings", [User getUser].qualifiedUsername];
     NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData){
+        return [[NSArray alloc] init];
+    }
     NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     NSMutableArray* array = [[NSMutableArray alloc] init];
