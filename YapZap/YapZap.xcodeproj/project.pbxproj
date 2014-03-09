@@ -629,6 +629,7 @@
 		C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarqueeLabel.m; path = UserInterface/lib/MarqueeLabel.m; sourceTree = "<group>"; };
 		C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredImageView.h; path = UserInterface/FilteredImageView.h; sourceTree = "<group>"; };
 		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
+		C7A9B60C18CCDF1500A238DA /* StopPlaybackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopPlaybackDelegate.h; sourceTree = "<group>"; };
 		C7D764BA18B2B18D007B86B2 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Models/Tag.h; sourceTree = "<group>"; };
 		C7D764BB18B2B18D007B86B2 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Models/Tag.m; sourceTree = "<group>"; };
 		C7D81A7818C6AC1500FC3937 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = Models/Notification.h; sourceTree = "<group>"; };
@@ -686,6 +687,7 @@
 				C706248018B95EEE00D1BEB0 /* YapZapViewController.m */,
 				C75E7BAA18BC3C4D00160720 /* YapZapModalViewController.h */,
 				C75E7BAB18BC3C4D00160720 /* YapZapModalViewController.m */,
+				C7A9B60C18CCDF1500A238DA /* StopPlaybackDelegate.h */,
 			);
 			name = Parent;
 			sourceTree = "<group>";

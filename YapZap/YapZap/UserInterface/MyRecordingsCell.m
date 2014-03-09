@@ -12,6 +12,7 @@
 #import "S3Helper.h"
 #import "Player.h"
 #import "RestHelper.h"
+#import "SettingsViewController.h"
 
 @interface MyRecordingsCell()
 @property(nonatomic, strong)Player* player;
@@ -93,6 +94,7 @@
 
 -(void)startPlaying{
     
+    self.parent.delegate.currentlyPlayingCell = self;
     [self.player play];
     
     self.isPlaying = true;

@@ -7,12 +7,13 @@
 //
 
 #import "YapZapMainViewController.h"
+#import "StopPlaybackDelegate.h"
 
 @class Tag;
 @class Recording;
 @class TagTableViewCell;
 
-@interface TagPageViewController : YapZapViewController<YapZapMainControllerProtocol>
+@interface TagPageViewController : YapZapViewController<YapZapMainControllerProtocol, StopPlaybackDelegate>
 
 - (IBAction)playAll:(id)sender;
 @property(nonatomic, strong) Tag* tag;

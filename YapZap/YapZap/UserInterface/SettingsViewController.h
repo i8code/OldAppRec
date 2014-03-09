@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 @class MyRecordingsTableViewController;
+@class MyRecordingsCell;
 
 @interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate>
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *twitterSwitch;
 - (IBAction)facebookSwitched:(id)sender;
 - (IBAction)twitterSwitched:(id)sender;
+@property (nonatomic, strong) MyRecordingsCell* currentlyPlayingCell;
 
 @property (weak, nonatomic) IBOutlet UIButton *helpNeeded;
 @property (strong, nonatomic) NSArray* recordings;

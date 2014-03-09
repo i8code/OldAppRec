@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StopPlaybackDelegate.h"
 @class FilteredImageView;
 
 @interface YapZapMainViewController : YapZapViewController
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) UILabel* zapLabel;
 @property (nonatomic, strong) UIFont* font;
 @property (nonatomic, strong) UINavigationController* mainViewController;
+@property (nonatomic, strong) id<StopPlaybackDelegate> stopPlaybackDelegate;
 
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)recordingButtonPressed:(id)sender;

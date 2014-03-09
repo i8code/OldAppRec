@@ -27,5 +27,5 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 - (IBAction)trashPressed:(id)sender;
-
+-(void)stopPlaying;
 @end

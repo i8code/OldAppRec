@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import "MyRecordingsTableViewController.h"
+#import "MyRecordingsCell.h"
 #import "User.h"
 #import "Recording.h"
 
@@ -45,6 +46,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)savePressed:(id)sender {
+    [self.currentlyPlayingCell stopPlaying];
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 -(void)setRecordings:(NSArray *)recordings{
@@ -82,6 +84,14 @@
     }
     
     self.usernameLabel.text = [User getUser].displayName;
+}
+
+-(void)setCurrentlyPlayingCell:(MyRecordingsCell *)currentlyPlayingCell{
+    if (_currentlyPlayingCell && _currentlyPlayingCell!=currentlyPlayingCell){
+        [_currentlyPlayingCell stopPlaying];
+    }
+    _currentlyPlayingCell = currentlyPlayingCell;
+    
 }
 
 

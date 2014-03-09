@@ -147,10 +147,12 @@
 
 
 -(void)setCurrentlyPlayingCell:(TagTableViewCell *)currentlyPlayingCell{
+    [YapZapMainViewController getMe].stopPlaybackDelegate =self;
     if (_currentlyPlayingCell && _currentlyPlayingCell!=currentlyPlayingCell){
         [_currentlyPlayingCell stopPlaying];
     }
     _currentlyPlayingCell = currentlyPlayingCell;
+    
 }
 
 
@@ -218,6 +220,11 @@ static NSString* requestedRecording;
         [self.tableController.tableView scrollToRowAtIndexPath:indexPath
                                               atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
+}
+
+
+-(void)stopPlayback{
+    [_currentlyPlayingCell stopPlaying];
 }
 
 @end

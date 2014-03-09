@@ -221,6 +221,8 @@
 }
 
 - (IBAction)searchPressed:(id)sender {
+    
+    [self.stopPlaybackDelegate stopPlayback];
     UIButton* me = sender;
     UIViewController *detailsViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
     self.poc = [[UIPopoverController alloc] initWithContentViewController:detailsViewController];
@@ -236,6 +238,7 @@
 
 - (IBAction)recordingButtonPressed:(id)sender {
     
+    [self.stopPlaybackDelegate stopPlayback];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.recordNavigationViewController = [storyboard instantiateViewControllerWithIdentifier:@"recordNav"];
     ((YapZapModalViewController*)[self.recordNavigationViewController.childViewControllers objectAtIndex:0]).parent = self;
@@ -244,6 +247,7 @@
 }
 - (IBAction)showSettings:(id)sender {
     
+    [self.stopPlaybackDelegate stopPlayback];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if (self.settingsViewController==nil){
         self.settingsViewController =[storyboard instantiateViewControllerWithIdentifier:@"settings"];
@@ -252,6 +256,7 @@
 }
 
 -(IBAction)goHome:(id)sender{
+    [self.stopPlaybackDelegate stopPlayback];
     [((UINavigationController*)self.mainViewController) popViewControllerAnimated:YES];
     
 }
