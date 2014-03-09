@@ -13,6 +13,7 @@
 #import "CloudTagElement.h"
 #import "TagPageViewController.h"
 #import "NotificationTableViewController.h"
+#import "SharingBundle.h"
 
 @interface TagCloudViewController ()
 
@@ -42,7 +43,7 @@
 
 -(void)updateTagPositions{
     
-    self.tagPositions+=0.03;
+    self.tagPositions+=0.1;
     for (CloudTagElement* cloudEl in self.buttons){
         [cloudEl setTime:self.tagPositions];
     }
@@ -226,6 +227,7 @@
     self.view.hidden=NO;
     self.parent.homeButton.hidden=YES;
     self.parent.background.filterColor = nil;
+    [SharingBundle clear];
 }
 
 - (void)didReceiveMemoryWarning

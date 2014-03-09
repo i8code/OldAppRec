@@ -20,10 +20,6 @@
         
         NSURL *soundFileURL = [NSURL fileURLWithPath:path];
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-        
-        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
-        
     }
     return self;
 }
