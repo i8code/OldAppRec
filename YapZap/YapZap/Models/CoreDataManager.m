@@ -101,7 +101,7 @@ static UIManagedDocument* _database = nil;
     }
 }
 +(BOOL)liked:(NSString*)recordingId{
-    return [self getLikeByRecordingId:recordingId];
+    return !![self getLikeByRecordingId:recordingId];
 }
 
 @end

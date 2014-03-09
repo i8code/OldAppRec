@@ -197,13 +197,13 @@
 
     }
 }
--(void)setMainViewController:(UIViewController *)mainViewController{
+-(void)setMainViewController:(UINavigationController *)mainViewController{
     if (_mainViewController){
         [_mainViewController.view removeFromSuperview];
         [_mainViewController removeFromParentViewController];
     }
     
-    _mainViewController = mainViewController;
+    _mainViewController = (UINavigationController*)mainViewController;
     if ([[_mainViewController class] conformsToProtocol:@protocol(YapZapMainControllerProtocol)]){
         [((id<YapZapMainControllerProtocol>)_mainViewController) setParent:self];
     }

@@ -58,7 +58,7 @@
     else if (self.liked && !self.likeIncludedInCount){
         likes++;
     }
-    self.likesLabel.text = [NSString stringWithFormat:@"%ld", likes];
+    self.likesLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)likes];
 }
 
 -(void)setRecording:(Recording *)recording{
@@ -69,7 +69,7 @@
     self.liked = self.likeIncludedInCount;
     
     
-    self.commentLabel.text = [NSString stringWithFormat:@"%ld", recording.childrenLength];
+    self.commentLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.childrenLength];
     self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
     
     

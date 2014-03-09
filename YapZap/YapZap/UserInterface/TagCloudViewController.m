@@ -53,7 +53,7 @@
     NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:array];
     
     for(NSUInteger i = [array count]; i > 1; i--) {
-        NSUInteger j = arc4random_uniform(i);
+        NSUInteger j = arc4random()%i;
         [temp exchangeObjectAtIndex:i-1 withObjectAtIndex:j];
     }
     
@@ -167,6 +167,7 @@
                 max = MAX(max, rowDepths[i]);
             }
             
+            free(rowDepths);
             self.canvasWidth = MAX(self.cloudView.frame.size.width, max);
             self.buttons = buttons;
             

@@ -179,7 +179,7 @@ static NSString* requestedRecording;
 }
 
 -(void)scrollToRecording:(NSString*)recordingId{
-    int i, j;
+    int i=0, j=0;
     BOOL found=false;
     BOOL comment=false;
     for (i=0;i<self.recordings.count;i++){

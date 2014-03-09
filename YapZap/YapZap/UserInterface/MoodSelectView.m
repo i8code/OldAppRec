@@ -58,7 +58,7 @@
 
 -(UIColor*) colorFromX:(CGFloat)x andY:(CGFloat)y{
     
-    CGFloat size = MIN(self.bounds.size.width, self.bounds.size.height);
+    //CGFloat size = MIN(self.bounds.size.width, self.bounds.size.height);
     
     CGFloat centerX = self.bounds.size.width/2;
     CGFloat centerY = self.bounds.size.height/2;
@@ -81,10 +81,11 @@
         hue-=1;
     }
     
+    /*
     CGFloat intensity = sqrtf(dx*dx+dy*dy)/size;
     if (intensity>1){
         intensity=1;
-    }
+    }*/
     
     return [UIColor colorWithHue:hue saturation:0.5 brightness:1 alpha:1];
 }

@@ -58,8 +58,8 @@
         comments+=recording.childrenLength;
     }
     
-    self.commentCount.text = [NSString stringWithFormat:@"%lu", comments];
-    self.likeCount.text = [NSString stringWithFormat:@"%lu", likes];
+    self.commentCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)comments];
+    self.likeCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)likes];
     
 }
 
