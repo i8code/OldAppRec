@@ -16,6 +16,7 @@
 @property (nonatomic, strong) SharingBundle* sharingBundle;
 @property (nonatomic, strong) SearchTableViewController* searchTableView;
 @property (nonatomic) BOOL hasSelectedMood;
+@property (nonatomic) BOOL backPressedLast;
 @end
 
 @implementation SetTagViewController
@@ -82,6 +83,42 @@
     [super viewWillAppear:animated];
     self.backButton.hidden=NO;
     self.parent.homeButton.hidden = NO;
+}
+
+
+-(void)homePressed:(id)sender{
+    //There is an active recording
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                    message:@"Are you sure you want to delete this recording?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    self.backPressedLast=NO;
+    [alert show];
+}
+
+-(void)backPressed:(id)sender{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                    message:@"Are you sure you want to delete this recording?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    self.backPressedLast=YES;
+    [alert show];
+   
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        [SharingBundle getCurrentSharingBundle].recordingInfo = nil;
+        if (self.backPressedLast){
+            [super backPressed:self];
+        }else {
+            [super homePressed:nil];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

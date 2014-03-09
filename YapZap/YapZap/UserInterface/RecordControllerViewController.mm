@@ -225,6 +225,7 @@
     // the user clicked one of the OK/Cancel buttons
     if (buttonIndex == 1)
     {
+        [SharingBundle getCurrentSharingBundle].recordingInfo = nil;
         if (self.backPressedLast){
             [super backPressed:self];
             [self dismissViewControllerAnimated:YES completion:^{}];

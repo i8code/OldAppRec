@@ -13,7 +13,7 @@
 
 @class MoodSelectView;
 
-@interface SetTagViewController : YapZapModalViewController<YapZapMainControllerProtocol,UITextFieldDelegate, MoodProtocol, SearchDelegate>
+@interface SetTagViewController : YapZapModalViewController<YapZapMainControllerProtocol,UITextFieldDelegate, MoodProtocol, SearchDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *tagTextField;
 @property (weak, nonatomic) IBOutlet FilteredImageView *waveformImage;
 @property (weak, nonatomic) IBOutlet MoodSelectView *moodSelector;

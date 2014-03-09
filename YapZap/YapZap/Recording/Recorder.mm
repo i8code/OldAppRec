@@ -71,7 +71,7 @@
     [self resetData:self.blockLength];
     self.count = 0;
     self.currentPath = [[SharingBundle getCurrentSharingBundle] getRecordingPath];
-    NSLog(@"URL: %@", self.currentPath);
+//    NSLog(@"URL: %@", self.currentPath);
     
     __weak Recorder * wself = self;
     self.fileWriter = [[AudioFileWriter alloc]

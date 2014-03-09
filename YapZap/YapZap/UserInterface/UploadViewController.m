@@ -105,6 +105,9 @@
         //Now share on FB/Twitter
         
         
+        //Delete recording
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        
         self.uploadComplete = YES;
     });
     /*dispatch_async(dispatch_get_main_queue(), ^{

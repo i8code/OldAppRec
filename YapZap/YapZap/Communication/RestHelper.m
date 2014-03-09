@@ -68,7 +68,7 @@
     }
     
     NSURL* url = [self getFullPath:path withQuery:query];
-    NSLog(@"%@ %@", type, [url absoluteString]);
+//    NSLog(@"%@ %@", type, [url absoluteString]);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:type];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

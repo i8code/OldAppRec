@@ -152,12 +152,12 @@
 //                rowDepths[slot+elementSpan/2]=timestamp+element.width;
                 
                 i++;
-                
+                /*
                 NSLog(@"\nTimestamp:%d", timestamp);
                 for (int j=0;j<nRows;j++){
                     NSLog(@"%f", rowDepths[j]);
                 }
-                
+                */
                 
             }
             

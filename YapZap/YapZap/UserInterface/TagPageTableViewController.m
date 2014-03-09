@@ -159,8 +159,6 @@
             Recording* comment = [recording.children objectAtIndex:indexPath.row-2];
             [((TagTableViewCell*)cell) setRecording:comment];
             [((TagTableViewCell*)cell) setComment:YES];
-            NSLog(@"%lu", indexPath.row);
-            NSLog(@"%lu", recording.childrenLength+1);
             [((TagTableViewCell*)cell) setLast:(indexPath.row==recording.childrenLength+1)];
             [((TagTableViewCell*)cell) setParentTagViewController:self.parentTagViewController];
         }

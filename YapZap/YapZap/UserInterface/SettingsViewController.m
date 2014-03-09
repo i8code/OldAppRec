@@ -88,8 +88,8 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    NSLog(@"%@", user.id);
-    NSLog(@"%@", user.name);
+//    NSLog(@"%@", user.id);
+//    NSLog(@"%@", user.name);
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
