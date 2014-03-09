@@ -84,9 +84,9 @@ static int lineHeight = 16;
                                    self.circle.frame.size.height);
 
     
-    while (buttonFrame.origin.x+buttonFrame.size.width<0) {
-        buttonFrame.origin.x+=self.canvasWidth+self.width;
-        circleFrame.origin.x+=self.canvasWidth+self.width;
+    while (buttonFrame.origin.x+self.width<0) {
+        buttonFrame.origin.x+=self.canvasWidth;
+        circleFrame.origin.x+=self.canvasWidth;
     }
     
     [self.button setFrame:buttonFrame];

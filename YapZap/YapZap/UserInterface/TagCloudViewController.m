@@ -43,7 +43,7 @@
 
 -(void)updateTagPositions{
     
-    self.tagPositions+=0.1;
+    self.tagPositions+=0.06;
     for (CloudTagElement* cloudEl in self.buttons){
         [cloudEl setTime:self.tagPositions];
     }
@@ -69,7 +69,7 @@
         [cloudEl removeFromSuperView];
     }
     
-    self.tagPositions=16;
+    self.tagPositions=-10;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.popularTags = [DataSource getPopularTags];
         
@@ -106,7 +106,7 @@
             for (int i=0;i<cloudElements.count;){
                 if (numPlaced>numberOfFlows){
                     numPlaced=0;
-                    timestamp+=(arc4random()%20)+15;
+                    timestamp+=(arc4random()%50)+50;
                     continue;
                 }
                 
@@ -169,7 +169,7 @@
             }
             
             free(rowDepths);
-            self.canvasWidth = MAX(self.cloudView.frame.size.width, max);
+            self.canvasWidth = MAX(self.cloudView.frame.size.width+100, max);
             self.buttons = buttons;
             
             for (CloudTagElement* element in self.buttons){

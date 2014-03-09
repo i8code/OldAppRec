@@ -97,17 +97,6 @@
     [alert show];
 }
 
--(void)backPressed:(id)sender{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
-                                                    message:@"Are you sure you want to delete this recording?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"OK", nil];
-    self.backPressedLast=YES;
-    [alert show];
-   
-}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // the user clicked one of the OK/Cancel buttons
     if (buttonIndex == 1)
