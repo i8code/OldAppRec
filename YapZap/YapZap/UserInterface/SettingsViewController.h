@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h> 
 #import <FacebookSDK/FacebookSDK.h>
 
 @class MyRecordingsTableViewController;
 @class MyRecordingsCell;
 
-@interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate>
+@interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *manageArea;
 @property (strong, nonatomic) MyRecordingsTableViewController* myRecordingsViewController;
@@ -25,7 +26,7 @@
 - (IBAction)twitterSwitched:(id)sender;
 @property (nonatomic, strong) MyRecordingsCell* currentlyPlayingCell;
 
-@property (weak, nonatomic) IBOutlet UIButton *helpNeeded;
+- (IBAction)getHelp:(id)sender;
 @property (strong, nonatomic) NSArray* recordings;
 
 @end

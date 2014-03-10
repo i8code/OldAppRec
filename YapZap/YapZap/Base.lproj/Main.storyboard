@@ -420,6 +420,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getHelp:" destination="6UL-tv-reZ" eventType="touchUpInside" id="nnN-ce-HpM"/>
+                                </connections>
                             </button>
                             <view opaque="NO" contentMode="scaleToFill" id="5Gp-jk-XOJ">
                                 <rect key="frame" x="0.0" y="111" width="320" height="153"/>
@@ -433,7 +436,6 @@
                     <connections>
                         <outlet property="commentCount" destination="0co-zO-J0I" id="Dpt-ii-YVU"/>
                         <outlet property="facebookSwitch" destination="tFJ-10-90h" id="ge0-Cm-gIe"/>
-                        <outlet property="helpNeeded" destination="IKS-Y7-rDz" id="6Fk-65-m29"/>
                         <outlet property="likeCount" destination="NsE-24-uvf" id="ZNm-x3-4kQ"/>
                         <outlet property="loginButton" destination="1b6-ge-p4g" id="DpG-pk-hFX"/>
                         <outlet property="manageArea" destination="5Gp-jk-XOJ" id="N27-TX-Q4p"/>
