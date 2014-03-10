@@ -38,7 +38,7 @@ var updateCollection = function(Models, id, type){
             var created_date = new Date(parent.created_date);
             var now = new Date();
 
-            popularityCount/=(now.getTime()-created_date.getTime()+1e3);
+            popularityCount/=(now.getTime()-created_date.getTime()+1e5);
             parent.popularity = popularityCount*1e7;
 
             if (type==="TAG"){
