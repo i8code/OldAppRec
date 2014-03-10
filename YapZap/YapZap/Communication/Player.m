@@ -28,6 +28,13 @@
 
 -(void)play{
     
+    float volume = [[AVAudioSession sharedInstance] outputVolume];
+    
+    if (!volume){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"No Audio" message:@"Your volume is on mute." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+
     [self.player play];
 }
 -(void)pause{
