@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "User.h"
 
 @interface LoginViewController ()
 
@@ -45,6 +46,7 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [self userLoggedIn];
     [app goToHomeView];
 }
 
@@ -93,6 +95,23 @@
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
     }
+}
+
+- (void)userLoggedIn
+{
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSLog(@"%@",result);
+            // Success! Include your code to handle the results here
+            [User getUser].displayName = [result objectForKey:@"name"];
+            [User getUser].fbID = [result objectForKey:@"id"];
+            [User getUser].username = [result objectForKey:@"username"];
+        } else {
+            // An error occurred, we need to handle the error
+            // See: https://developers.facebook.com/docs/ios/errors
+        }
+    }];
+    
 }
 
 @end

@@ -140,6 +140,8 @@
     
     float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
     if (seconds<0.5){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Hold to Record" message:@"You must hold the record button down to record." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
         [self trashButtonPressed:nil];
     }
     [self.recordActiveButton setHighlighted:NO];
