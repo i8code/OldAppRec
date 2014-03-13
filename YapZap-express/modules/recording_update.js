@@ -32,7 +32,7 @@ var updateCollection = function(Models, id, type){
                 }
                 parent.children = recordings;
                 parent.children_length=recordings.length||0;
-                intensity=Math.sqrt(moodSin*moodSin+moodCos*moodCos);
+                intensity=0.5;//Math.sqrt(moodSin*moodSin+moodCos*moodCos);
             }
 
             var created_date = new Date(parent.created_date);

@@ -12,9 +12,10 @@
 
 @implementation RestHelper
 
-#define PORT 80
+#define PORT 3000
 #define PROTOCOL @"http"
-#define HOST @"54.84.179.166"
+#define HOST @"localhost"
+//@"54.84.179.166"
 
 
 +(NSDictionary*)addAuth:(NSDictionary*)query{

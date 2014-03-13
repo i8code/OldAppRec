@@ -99,6 +99,11 @@ app.get('/time', function(req, res) {
   res.send(""+t);
 });
 
+
+Recording.remove({username:"FB(null)_(null)"}, function(err){
+  
+});
+
 // var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
 // r.save();
 /*

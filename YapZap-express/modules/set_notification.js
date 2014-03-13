@@ -18,17 +18,22 @@ exports.addNotificationForLike = function(Models, username_by, recording_id){
         if (parent_recording.parent_type==="TAG"){
             //We have all the information we need
             var tag_name = parent_recording.parent_name;
+            var tag_query = Models.Tag.find({name:tag_name}).exec(function(err, tags){
+                if (!tags || !tags.length){
+                    return;
+                }
 
-            var notification = new Models.Notification({
-                username_for : username_for,
-                username_by : username_by,
-                tag_name: tag_name,
-                mood: parent_recording.mood,
-                intensity: parent_recording.intensity,
-                recording_id : recording_id,
-                type:"LIKE"
+                var notification = new Models.Notification({
+                    username_for : username_for,
+                    username_by : username_by,
+                    tag_name: tag_name,
+                    mood: tags[0].mood,
+                    intensity: tags[0].intensity,
+                    recording_id : recording_id,   
+                    type:"LIKE"
+                    });
+                notification.save();
             });
-            notification.save();
             return;
         }
 
@@ -42,17 +47,22 @@ exports.addNotificationForLike = function(Models, username_by, recording_id){
             }
             var tag_name = recordings[0].parent_name;
 
-            var notification = new Models.Notification({
-                username_for : username_for,
-                username_by : username_by,
-                tag_name: tag_name,
-                mood: recordings[0].mood,
-                intensity: recordings[0].intensity,
-                recording_id : recording_id,
-                type:"LIKE"
-            });
-            notification.save();
+            var tag_query = Models.Tag.find({name:tag_name}).exec(function(err, tags){
+                if (!tags || !tags.length){
+                    return;
+                }
+                var notification = new Models.Notification({
+                    username_for : username_for,
+                    username_by : username_by,
+                    tag_name: tag_name,
+                    mood: tags[0].mood,
+                    intensity: tags[0].intensity,
+                    recording_id : recording_id,
+                    type:"LIKE"
+                });
+                notification.save();
 
+            });
         });
     });
 }
@@ -73,17 +83,21 @@ exports.addNotificationForComment = function(Models, username_by, recording_pare
         var username_for = parent.username;
         var tag_name = parent.parent_name;
 
-        var notification = new Models.Notification({
-            username_for : username_for,
-            username_by : username_by,
-            tag_name: tag_name,
-            mood: parent.mood,
-            intensity: parent.intensity,
-            recording_id : recording_id,
-            type:"COMMENT"
+        var tag_query = Models.Tag.find({name:tag_name}).exec(function(err, tags){
+            if (!tags || !tags.length){
+                return;
+            }
+            var notification = new Models.Notification({
+                username_for : username_for,
+                username_by : username_by,
+                tag_name: tag_name,
+                mood: tags[0].mood,
+                intensity: tags[0].intensity,
+                recording_id : recording_id,
+                type:"COMMENT"
+            });
+            notification.save();
         });
-        notification.save();
-
     });
 }
 

@@ -44,7 +44,7 @@
         
         
         [self.commentedButton setTitle:notification.tagName forState:UIControlStateNormal];
-        [self.likedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
+        [self.commentedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
     }
 }
 - (IBAction)tagButtonPressed:(id)sender {
