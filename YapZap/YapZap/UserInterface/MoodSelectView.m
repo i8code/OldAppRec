@@ -12,7 +12,7 @@
 
 
 -(void)setup{
-    self.image = [UIImage imageNamed:@"color_wheel.png"];
+    self.image = [UIImage imageNamed:@"color_wheel_hole.png"];
     self.userInteractionEnabled = YES;
 }
 

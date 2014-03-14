@@ -225,7 +225,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD MOOD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M9Z-oI-En1">
-                                <rect key="frame" x="0.0" y="212" width="320" height="33"/>
+                                <rect key="frame" x="0.0" y="203" width="320" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="31"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -248,8 +248,8 @@
                                     <segue destination="IgB-Tu-pHB" kind="push" id="qhg-QP-vSn"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_wheel.png" id="HPI-gq-ptb" customClass="MoodSelectView">
-                                <rect key="frame" x="40" y="258" width="240" height="144"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_wheel_hole.png" id="HPI-gq-ptb" customClass="MoodSelectView">
+                                <rect key="frame" x="40" y="246" width="240" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="ggC-FR-y0Q" customClass="FilteredImageView">
@@ -266,21 +266,16 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
-                            <view opaque="NO" contentMode="scaleToFill" id="28C-UV-vbj" customClass="FilteredImageView">
-                                <rect key="frame" x="80" y="249" width="164" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bolt_white.png" id="amK-3j-eeG">
-                                <rect key="frame" x="80" y="250" width="162" height="160"/>
+                                <rect key="frame" x="131" y="299" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zeus elements-11.png" id="6VW-k6-mZF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6VW-k6-mZF">
                                 <rect key="frame" x="120" y="288" width="81" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" id="ha6-ng-n7d">
-                                <rect key="frame" x="20" y="154" width="280" height="240"/>
+                                <rect key="frame" x="20" y="154" width="280" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
                             </view>
@@ -290,7 +285,6 @@
                     <navigationItem key="navigationItem" id="kgb-A1-IWj"/>
                     <connections>
                         <outlet property="autoFillZone" destination="ha6-ng-n7d" id="X7z-c2-IZW"/>
-                        <outlet property="glowBolt" destination="28C-UV-vbj" id="tEK-i3-p8i"/>
                         <outlet property="moodSelector" destination="HPI-gq-ptb" id="g8Z-bX-rLh"/>
                         <outlet property="tagTextField" destination="XZy-h0-yuD" id="D8y-Vv-J7W"/>
                         <outlet property="waveformImage" destination="ggC-FR-y0Q" id="guL-9L-rOT"/>
@@ -521,7 +515,7 @@
     <resources>
         <image name="background.png" width="640" height="1136"/>
         <image name="bolt_white.png" width="707" height="698"/>
-        <image name="color_wheel.png" width="324" height="324"/>
+        <image name="color_wheel_hole.png" width="324" height="324"/>
         <image name="comments_full.png" width="80" height="64"/>
         <image name="heart_full.png" width="80" height="64"/>
         <image name="play_small_button.png" width="128" height="128"/>
@@ -529,7 +523,6 @@
         <image name="share_button_small.png" width="128" height="128"/>
         <image name="stop_button_small.png" width="128" height="128"/>
         <image name="trash_button_small.png" width="128" height="128"/>
-        <image name="zeus elements-11.png" width="500" height="600"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
