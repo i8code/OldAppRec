@@ -157,8 +157,13 @@
                                 <rect key="frame" x="0.0" y="336" width="320" height="144"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" id="ub5-yH-4LB" customClass="RecordingFill">
+                                        <rect key="frame" x="100" y="12" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="EFy-QJ-G1o">
-                                        <rect key="frame" x="101" y="12" width="118" height="120"/>
+                                        <rect key="frame" x="100" y="12" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" image="record_button.png">
@@ -196,6 +201,7 @@
                         <outlet property="backgroundColor" destination="KnY-UL-Y2w" id="1BY-gu-mll"/>
                         <outlet property="finishedPanel" destination="skz-BV-8rE" id="Gdx-t4-5JU"/>
                         <outlet property="recordActiveButton" destination="EFy-QJ-G1o" id="9o8-O8-Rvk"/>
+                        <outlet property="recordingFill" destination="ub5-yH-4LB" id="39N-ZB-QRu"/>
                         <outlet property="stopPanel" destination="f3j-KN-m3L" id="tgx-uW-jUd"/>
                     </connections>
                 </viewController>

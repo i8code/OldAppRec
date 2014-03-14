@@ -127,6 +127,7 @@
 		C796205718A7035400D1BEAB /* RecordControllerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C796205618A7035400D1BEAB /* RecordControllerViewController.mm */; };
 		C796205A18A703F600D1BEAB /* SetTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C796205918A703F600D1BEAB /* SetTagViewController.m */; };
 		C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206518A70BD200D1BEAB /* libz.dylib */; };
+		C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */ = {isa = PBXBuildFile; fileRef = C7965CE718D279760023B5B5 /* RecordingFill.m */; };
 		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
 		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
 		C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */; };
@@ -617,6 +618,8 @@
 		C796205818A703F600D1BEAB /* SetTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetTagViewController.h; path = UserInterface/SetTagViewController.h; sourceTree = "<group>"; };
 		C796205918A703F600D1BEAB /* SetTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetTagViewController.m; path = UserInterface/SetTagViewController.m; sourceTree = "<group>"; };
 		C796206518A70BD200D1BEAB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C7965CE618D279760023B5B5 /* RecordingFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordingFill.h; path = UserInterface/RecordingFill.h; sourceTree = "<group>"; };
+		C7965CE718D279760023B5B5 /* RecordingFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingFill.m; path = UserInterface/RecordingFill.m; sourceTree = "<group>"; };
 		C798E89218B4244400ED5890 /* TagCloudViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCloudViewController.h; path = UserInterface/TagCloudViewController.h; sourceTree = "<group>"; };
 		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
 		C798E89E18B4364B00ED5890 /* CloudTagElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudTagElement.h; path = UserInterface/CloudTagElement.h; sourceTree = "<group>"; };
@@ -1430,6 +1433,8 @@
 				C761D05218AD9C98003947C1 /* BorderedTextField.m */,
 				C798E89E18B4364B00ED5890 /* CloudTagElement.h */,
 				C798E89F18B4364B00ED5890 /* CloudTagElement.m */,
+				C7965CE618D279760023B5B5 /* RecordingFill.h */,
+				C7965CE718D279760023B5B5 /* RecordingFill.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1850,6 +1855,7 @@
 				C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
 				C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */,
+				C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */,
 				C74A6CB018C255800086F78D /* MyRecordingsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

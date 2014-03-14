@@ -14,6 +14,7 @@
 #import "SharingBundle.h"
 #import "FilteredImageView.h"
 #import "Player.h"
+#import "RecordingFill.h"
 
 @interface RecordControllerViewController ()
 
@@ -64,6 +65,10 @@
         [self stopRecording:nil];
     }
     self.timerCount++;
+    
+    
+    self.recordingFill.percent = self.timerCount/100.0;
+    [self.recordingFill setNeedsDisplay];
 
     
 }
@@ -137,6 +142,9 @@
     [self.recorder stop];
     self.recordingInfo = [self.recorder lastInfo];
     
+    self.recordingFill.percent = 0;
+    [self.recordingFill setNeedsDisplay];
+    
     
     float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
     if (seconds<0.5){
@@ -166,6 +174,9 @@
     self.stopPanel.hidden = YES;
     [self.waveform setHighlightPercent:0];
     [self.waveform setNeedsDisplay];
+    
+    self.recordingFill.percent = 0;
+    [self.recordingFill setNeedsDisplay];
     [self.playTimer invalidate];
     self.playTimer = nil;
     

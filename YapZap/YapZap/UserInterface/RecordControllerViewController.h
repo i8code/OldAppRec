@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class RecordingFill;
+
 @interface RecordControllerViewController : YapZapModalViewController
 -(void) updateBackgroundColor;
 -(void)updatePlayLocation;
@@ -23,5 +25,6 @@
 -(IBAction)stopRecording:(id)sender;
 -(void)homePressed:(id)sender;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+@property (weak, nonatomic) IBOutlet RecordingFill *recordingFill;
 
 @end
