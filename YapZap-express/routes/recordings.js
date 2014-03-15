@@ -260,7 +260,7 @@ exports.recordingsForUser = function(Models) {
             return;
         }
 
-        var query = Models.Recording.find({username:username}).sort({created_date: 1});
+        var query = Models.Recording.find({username:username}).sort({created_date: -1});
         query.exec(function(err, recordings) {
 
             if (!recordings || recordings.length==0){
