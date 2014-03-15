@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="7Mu-uj-cYs" id="hRc-pG-9Kx"/>
                 <outlet property="cloudView" destination="iJe-Ut-B4o" id="ogx-Bu-T8v"/>
+                <outlet property="displaySlider" destination="HRu-uO-Fp1" id="BMs-Il-Vzl"/>
                 <outlet property="historyView" destination="qgb-U9-Ftw" id="mqX-EF-2pe"/>
                 <outlet property="view" destination="Kbf-W1-v5V" id="5Pi-Im-Su7"/>
             </connections>
@@ -24,7 +25,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <view opaque="NO" contentMode="scaleToFill" id="iJe-Ut-B4o">
-                    <rect key="frame" x="0.0" y="213" width="320" height="355"/>
+                    <rect key="frame" x="0.0" y="213.00000003259629" width="320" height="320"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.0" colorSpace="calibratedRGB"/>
                 </view>
@@ -71,6 +72,13 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" id="HRu-uO-Fp1">
+                    <rect key="frame" x="84" y="530" width="153" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <action selector="onslide:" destination="-1" eventType="valueChanged" id="n7O-Rm-KFP"/>
+                    </connections>
+                </slider>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

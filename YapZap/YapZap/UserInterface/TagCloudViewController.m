@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSTimer* timer;
 @property (nonatomic, strong) NSDate* startTime;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeRight;
+@property(nonatomic)CGFloat speed;
 
 @property (nonatomic, strong) void (^gotoTagBlock)(Tag*);
 
@@ -37,14 +38,19 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
+        self.speed = 0.06;
     }
     return self;
 }
 
+- (IBAction)onslide:(id)sender {
+    CGFloat sliderValue = self.displaySlider.value;
+    self.speed = sliderValue*0.5;//powf(10, ABS(sliderValue))/10.0f*sliderValue;
+}
+
 -(void)updateTagPositions{
     
-    self.tagPositions+=0.06;
+    self.tagPositions+=self.speed;
     for (CloudTagElement* cloudEl in self.buttons){
         [cloudEl setTime:self.tagPositions];
     }

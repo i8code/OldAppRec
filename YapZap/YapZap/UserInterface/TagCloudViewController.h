@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *historyView;
 @property (weak, nonatomic) YapZapMainViewController* parent;
 @property (strong, nonatomic) NotificationTableViewController* notificationView;
+@property (weak, nonatomic) IBOutlet UISlider *displaySlider;
+- (IBAction)onslide:(id)sender;
 
 -(void)updateTagPositions;
 -(void)swipedRight:(UIGestureRecognizer*)recognizer;
