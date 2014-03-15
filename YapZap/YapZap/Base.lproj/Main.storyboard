@@ -40,7 +40,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="pnn-Ku-bT0" id="i8A-ZF-5OF"/>
+                        <outlet property="loginButtonPlaceholder" destination="pnn-Ku-bT0" id="fFh-AO-9wx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDV-V8-cro" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,6 +377,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8OE-Zh-DOk">
+                                <rect key="frame" x="11" y="73" width="39" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NsE-24-uvf">
                                 <rect key="frame" x="285" y="71" width="32" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -429,6 +436,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bolt_glow.png" id="Xcx-RU-b1g">
+                                <rect key="frame" x="4" y="74" width="17" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -437,8 +448,9 @@
                         <outlet property="commentCount" destination="0co-zO-J0I" id="Dpt-ii-YVU"/>
                         <outlet property="facebookSwitch" destination="tFJ-10-90h" id="ge0-Cm-gIe"/>
                         <outlet property="likeCount" destination="NsE-24-uvf" id="ZNm-x3-4kQ"/>
-                        <outlet property="loginButton" destination="1b6-ge-p4g" id="DpG-pk-hFX"/>
+                        <outlet property="loginButtonPlaceholder" destination="1b6-ge-p4g" id="rgb-dW-3v0"/>
                         <outlet property="manageArea" destination="5Gp-jk-XOJ" id="N27-TX-Q4p"/>
+                        <outlet property="totalNumberLabel" destination="8OE-Zh-DOk" id="OWS-yP-9PZ"/>
                         <outlet property="twitterSwitch" destination="uPI-WN-ssX" id="o74-jA-lPk"/>
                         <outlet property="usernameLabel" destination="OeP-DO-Yj8" id="sUM-eu-1dK"/>
                     </connections>
@@ -514,6 +526,7 @@
     </scenes>
     <resources>
         <image name="background.png" width="640" height="1136"/>
+        <image name="bolt_glow.png" width="707" height="698"/>
         <image name="bolt_white.png" width="707" height="698"/>
         <image name="color_wheel_hole.png" width="324" height="324"/>
         <image name="comments_full.png" width="80" height="64"/>

@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController : YapZapViewController <FBLoginViewDelegate>
-@property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
-
+@property (weak, nonatomic) IBOutlet FBLoginView *loginButtonPlaceholder;
+@property (strong, nonatomic) FBLoginView *loginButton;
 
 @end

@@ -14,7 +14,8 @@
 @class MyRecordingsCell;
 
 @interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate, MFMailComposeViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginButtonPlaceholder;
+@property (strong, nonatomic) FBLoginView *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *manageArea;
 @property (strong, nonatomic) MyRecordingsTableViewController* myRecordingsViewController;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -28,5 +29,6 @@
 
 - (IBAction)getHelp:(id)sender;
 @property (strong, nonatomic) NSArray* recordings;
+@property (weak, nonatomic) IBOutlet UILabel *totalNumberLabel;
 
 @end

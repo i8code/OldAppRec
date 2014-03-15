@@ -29,11 +29,21 @@
     return self;
 }
 
+-(void)setupFBButton{
+    CGRect frame = [self.loginButtonPlaceholder frame];
+    [self.loginButtonPlaceholder removeFromSuperview];
+    self.loginButton = [[FBLoginView alloc] initWithPublishPermissions:[Util getFBPermissions] defaultAudience:FBSessionDefaultAudienceEveryone];
+    [self.loginButton setFrame:frame];
+    [self.view addSubview:self.loginButton];
+    self.loginButton.delegate = self;
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.loginButton.delegate = self;
+    [self setupFBButton];
 	// Do any additional setup after loading the view.
     
     self.facebookSwitch.selected = [Util shouldShareOnFB];
@@ -62,6 +72,8 @@
     
     self.commentCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)comments];
     self.likeCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)likes];
+    
+    self.totalNumberLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.recordings.count];
     
 }
 
