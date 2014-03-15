@@ -45,11 +45,7 @@
     
     [self setupFBButton];
 	// Do any additional setup after loading the view.
-    
-    self.facebookSwitch.selected = [Util shouldShareOnFB];
-    self.twitterSwitch.selected = [Util shouldShareOnTW];
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -96,6 +92,8 @@
     }
     
     self.usernameLabel.text = [User getUser].displayName;
+    self.facebookSwitch.on = [Util shouldShareOnFB];
+    self.twitterSwitch.on = [Util shouldShareOnTW];
 }
 
 -(void)setCurrentlyPlayingCell:(MyRecordingsCell *)currentlyPlayingCell{
@@ -168,11 +166,45 @@
 }
 
 - (IBAction)facebookSwitched:(id)sender {
-    [Util setShareOnFB:self.facebookSwitch.selected];
+    [Util setShareOnFB:self.facebookSwitch.on];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self.twitterSwitch setOn:NO animated:YES];
 }
 
 - (IBAction)twitterSwitched:(id)sender {
-    [Util setShareOnTW:self.twitterSwitch.selected];
+    [Util setShareOnTW:self.twitterSwitch.on];
+    
+    if (self.twitterSwitch.on){
+        
+        // Create an account store object.
+        ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+        
+        // Create an account type that ensures Twitter accounts are retrieved.
+        ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        
+        // Request access from the user to use their Twitter accounts.
+        [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+            
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Enable Twitter" message:@"You must enable at least one Twitter account in iPhone Settings in order to share on twitter." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            if(!granted) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [alert show];
+
+                });
+            }
+            else {
+                NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
+                
+                if ([accountsArray count] < 1) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [alert show];
+                    });
+                }
+            }
+        }];
+    }
 }
 
 - (IBAction)getHelp:(id)sender {

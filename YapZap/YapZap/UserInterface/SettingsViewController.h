@@ -13,7 +13,7 @@
 @class MyRecordingsTableViewController;
 @class MyRecordingsCell;
 
-@interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate, MFMailComposeViewControllerDelegate>
+@interface SettingsViewController : YapZapModalViewController<FBLoginViewDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet FBLoginView *loginButtonPlaceholder;
 @property (strong, nonatomic) FBLoginView *loginButton;
 @property (weak, nonatomic) IBOutlet UIView *manageArea;

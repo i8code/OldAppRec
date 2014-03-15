@@ -196,10 +196,11 @@ static const int recentSearchesCount = 10;
                                           [NSNumber numberWithBool:YES], @"YapZap_share_tw",
                                           nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(BOOL)shouldShareOnFB{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_share_fb"];
+    return[[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_share_fb"];
 }
 
 +(void)setShareOnFB:(BOOL)share{

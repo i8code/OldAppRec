@@ -24,8 +24,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Util setDefaults];
-    
     [DataSource getTimezoneOffset];
 //    [FBLoginView class];
     
@@ -250,6 +248,19 @@
 -(void)askForTwitterAuth{
     ACAccountStore *store = [[ACAccountStore alloc] init]; // Long-lived
     ACAccountType *twitterType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [store requestAccessToAccountsWithType:twitterType options:nil completion:^(BOOL granted, NSError* err){}];
+    [store requestAccessToAccountsWithType:twitterType options:nil completion:^(BOOL granted, NSError* err){
+        
+        if(!granted) {
+            [Util setShareOnTW:NO];
+        }
+        else {
+            NSArray *accountsArray = [store accountsWithAccountType:twitterType];
+            
+            if ([accountsArray count] < 1) {
+                [Util setShareOnTW:NO];
+            }
+        }
+
+    }];
 }
 @end
