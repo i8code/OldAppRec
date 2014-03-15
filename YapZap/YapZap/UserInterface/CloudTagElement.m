@@ -96,6 +96,7 @@ static int lineHeight = 16;
 
 -(void)removeFromSuperView{
     [self.button removeFromSuperview];
+    [self.circle removeFromSuperview];
 }
 
 -(CGFloat)height{

@@ -23,6 +23,7 @@
 @property CGFloat canvasHeight;
 @property CGFloat tagPositions;
 @property (nonatomic, strong) NSTimer* timer;
+@property (nonatomic, strong) NSDate* startTime;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeRight;
 
 @property (nonatomic, strong) void (^gotoTagBlock)(Tag*);
@@ -193,6 +194,11 @@
     __block UINavigationController* nav = self.navigationController;
     __block UIView* __view = self.view;
     self.gotoTagBlock = ^(Tag* tag) {
+        if (!tag){
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"No such Tag" message:@"The tag does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
         __view.hidden = YES;
         TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
         [tagPageViewController setParent:__parent];
@@ -220,6 +226,8 @@
     
     self.parent.homeButton.hidden=YES;
     
+    self.startTime = [NSDate date];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -228,6 +236,14 @@
     self.parent.homeButton.hidden=YES;
     self.parent.background.filterColor = nil;
     [SharingBundle clear];
+    [DataSource refreshTagNames];
+    
+    NSTimeInterval time = ABS([self.startTime timeIntervalSinceNow]);
+    if (time>300){ //Greater than 5 minutes
+        [self fetchTags];
+        self.startTime = [NSDate date];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
