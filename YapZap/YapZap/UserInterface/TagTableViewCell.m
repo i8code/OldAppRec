@@ -20,6 +20,7 @@
 #import "TagPageViewController.h"
 #import "CoreDataManager.h"
 #import "RecordingCoreData.h"
+#import "Recording.h"
 
 @interface TagTableViewCell()
 @property (nonatomic, strong) NSTimer* timer;
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) Player* player;
 @property (nonatomic) CGFloat highlightPercent;
 @property (nonatomic, strong) NSTimer* highlightTimer;
+@property (nonatomic) BOOL cancelRequested;
 
 @end
 
@@ -65,6 +67,17 @@
     self.likesLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)likes];
 }
 
+-(BOOL)commentFilled{
+    NSString* username = [[User getUser] qualifiedUsername];
+    for (Recording* recording in self.recording.children){
+        if ([recording.username isEqualToString:username]){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
     self.label.text = recording.displayName;
@@ -74,10 +87,11 @@
     
     
     self.commentLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.childrenLength];
-    self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
+    BOOL commentFilled = [self commentFilled];
+    self.commentLabel.textColor = commentFilled?[UIColor blackColor]:[UIColor whiteColor];
     
     
-    UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
+    UIImage* commentImage = commentFilled?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
     [self.commentButton setImage:commentImage forState:UIControlStateNormal];
     
     [self.waveFormImage setData:recording.rawWaveformData withSize:(int)recording.waveformData.count];
@@ -148,6 +162,12 @@
 
 -(void)stopPlaying{
     
+    if (!self.loadingIndicator.hidden){
+        //we are trying to download the file
+        self.cancelRequested = YES;
+        self.playButton.hidden = NO;
+        self.loadingIndicator.hidden=YES;
+    }
     if (!self.isPlaying){
         return;
     }
@@ -159,7 +179,7 @@
     [self.timer invalidate];
     self.timer=nil;
     
-//    [self.waveFormImage setHighlightPercent:0];
+    [self.waveFormImage setHighlightPercent:0];
     [self.waveFormImage setNeedsDisplay];
     
     self.isPlaying = false;
@@ -194,8 +214,10 @@
         [self stopPlaying];
     }
     else {
+        [self.parentTagViewController setCurrentlyPlayingCell:self];
         self.playButton.hidden = YES;
         self.loadingIndicator.hidden = NO;
+        self.cancelRequested=NO;
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
@@ -208,6 +230,9 @@
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.cancelRequested){
+                    return;
+                }
                 self.player = [[Player alloc] initWithPath:[path path]];
                 self.loadingIndicator.hidden = YES;
                 self.playButton.hidden = NO;

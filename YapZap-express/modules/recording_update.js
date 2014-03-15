@@ -32,13 +32,13 @@ var updateCollection = function(Models, id, type){
                 }
                 parent.children = recordings;
                 parent.children_length=recordings.length||0;
-                intensity=Math.sqrt(moodSin*moodSin+moodCos*moodCos);
+                intensity=0.5;//Math.sqrt(moodSin*moodSin+moodCos*moodCos);
             }
 
             var created_date = new Date(parent.created_date);
             var now = new Date();
 
-            popularityCount/=(now.getTime()-created_date.getTime()+1e3);
+            popularityCount/=(now.getTime()-created_date.getTime()+1e5);
             parent.popularity = popularityCount*1e7;
 
             if (type==="TAG"){
@@ -52,6 +52,12 @@ var updateCollection = function(Models, id, type){
             parent.last_update = new Date();
 
             parent.save();
+
+            if (type==="TAG" && parent.children_length===0){
+                Models.Tag.remove({name:id}, function(err){
+
+                });
+            }
 
             if (parent.parent_name){
                 //Recurse

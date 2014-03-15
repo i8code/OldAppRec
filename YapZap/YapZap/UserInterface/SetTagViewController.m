@@ -54,12 +54,7 @@
     self.tagTextField.leftViewMode = UITextFieldViewModeAlways;
     self.waveformImage.filterColor = [UIColor whiteColor];
     [self.waveformImage setImage:self.sharingBundle.waveformImage];
-    [self.waveformBorderX setImage:self.sharingBundle.waveformImage];
-    [self.waveformBorderY setImage:self.sharingBundle.waveformImage];
     [self.moodSelector setColorDelegate:self];
-    
-    [self.glowBolt setImage:[UIImage imageNamed:@"bolt_glow.png"]];
-    self.glowBolt.filterColor = [UIColor whiteColor];
     
     
     if (self.searchTableView){
@@ -83,6 +78,7 @@
     [super viewWillAppear:animated];
     self.backButton.hidden=NO;
     self.parent.homeButton.hidden = NO;
+    self.zeusFace.image = nil;
 }
 
 
@@ -183,7 +179,6 @@
 }
 -(void)setMoodColor:(UIColor *)color{
     self.waveformImage.filterColor = color;
-    self.glowBolt.filterColor = color;
     
     self.hasSelectedMood = YES;
     

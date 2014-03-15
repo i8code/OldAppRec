@@ -88,7 +88,7 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
 }
 
 +(UIColor*)colorFromMood:(CGFloat)mood andIntesity:(CGFloat)intensity{
-    
+    intensity=0.5;
     float r = 0, g=0, b=0;
     HSVtoRGB(&r,&g,&b,mood*360, intensity, 1);
     

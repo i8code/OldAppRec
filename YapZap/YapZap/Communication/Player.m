@@ -14,6 +14,8 @@
 @end
 @implementation Player
 
+static AVAudioPlayer* lastPlayer;
+
 -(Player*)initWithPath:(NSString*)path{
     self = [super init];
     if (self){
@@ -22,12 +24,27 @@
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        
+        if (lastPlayer){
+            [lastPlayer stop];
+            lastPlayer = nil;
+        }
+        
+        lastPlayer = self.player;
+        
     }
     return self;
 }
 
 -(void)play{
     
+    float volume = [[AVAudioSession sharedInstance] outputVolume];
+    
+    if (!volume){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"No Audio" message:@"Your volume is on mute." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+
     [self.player play];
 }
 -(void)pause{

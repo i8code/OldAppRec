@@ -14,6 +14,7 @@
 #import "SharingBundle.h"
 #import "FilteredImageView.h"
 #import "Player.h"
+#import "RecordingFill.h"
 
 @interface RecordControllerViewController ()
 
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) WaveformView* waveform;
 @property (nonatomic, strong) Player *player;
 @property (nonatomic) BOOL backPressedLast;
+@property (nonatomic) BOOL trashPressedLast;
 @end
 
 @implementation RecordControllerViewController
@@ -64,6 +66,10 @@
         [self stopRecording:nil];
     }
     self.timerCount++;
+    
+    
+    self.recordingFill.percent = self.timerCount/100.0;
+    [self.recordingFill setNeedsDisplay];
 
     
 }
@@ -94,6 +100,8 @@
     SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
     self.finishedPanel.hidden = self.waveform.hidden = !bundle.recordingInfo;
     self.backButton.hidden=NO;
+    self.recordingFill.percent = 0;
+    [self.recordingFill setNeedsDisplay];
 }
 
 -(void)initialize{
@@ -138,9 +146,16 @@
     self.recordingInfo = [self.recorder lastInfo];
     
     
+    
     float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
     if (seconds<0.5){
-        [self trashButtonPressed:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Hold to Record" message:@"You must hold the record button down to record." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        self.waveform.hidden = YES;
+        self.finishedPanel.hidden = YES;
+        
+        self.recordingFill.percent = 0;
+        [self.recordingFill setNeedsDisplay];
     }
     [self.recordActiveButton setHighlighted:NO];
     
@@ -164,6 +179,9 @@
     self.stopPanel.hidden = YES;
     [self.waveform setHighlightPercent:0];
     [self.waveform setNeedsDisplay];
+    
+    self.recordingFill.percent = 0;
+    [self.recordingFill setNeedsDisplay];
     [self.playTimer invalidate];
     self.playTimer = nil;
     
@@ -178,8 +196,15 @@
 }
 
 - (IBAction)trashButtonPressed:(id)sender {
-    self.waveform.hidden = YES;
-    self.finishedPanel.hidden = YES;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                    message:@"Are you sure you want to delete this recording?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    self.backPressedLast=NO;
+    self.trashPressedLast=YES;
+    [alert show];
 }
 - (IBAction)playButtonPressed:(id)sender {
     [self startPlaying];
@@ -195,6 +220,7 @@
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
         self.backPressedLast=NO;
+        self.trashPressedLast=NO;
         [alert show];
     }
     else{
@@ -213,6 +239,7 @@
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
         self.backPressedLast=YES;
+        self.trashPressedLast=NO;
         [alert show];
     }
     else {
@@ -226,7 +253,14 @@
     if (buttonIndex == 1)
     {
         [SharingBundle getCurrentSharingBundle].recordingInfo = nil;
-        if (self.backPressedLast){
+        if (self.trashPressedLast){
+            self.waveform.hidden = YES;
+            self.finishedPanel.hidden = YES;
+            
+            self.recordingFill.percent = 0;
+            [self.recordingFill setNeedsDisplay];
+        }
+        else if (self.backPressedLast){
             [super backPressed:self];
             [self dismissViewControllerAnimated:YES completion:^{}];
         }else {

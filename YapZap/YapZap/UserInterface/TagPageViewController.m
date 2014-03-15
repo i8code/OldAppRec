@@ -215,11 +215,14 @@ static NSString* requestedRecording;
                 [tagPageTableViewController commentPressed:cell];
             }
         }
+        else {
+            indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+        }
         
-        [self.tableController.tableView scrollToRowAtIndexPath:indexPath
-                                              atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500*USEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.tableController.tableView scrollToRowAtIndexPath:indexPath
+                                                  atScrollPosition:UITableViewScrollPositionTop animated:YES];
             TagTableViewCell* cell = (TagTableViewCell*)[self.tableController.tableView cellForRowAtIndexPath:indexPath];
             [cell highlight];
         });

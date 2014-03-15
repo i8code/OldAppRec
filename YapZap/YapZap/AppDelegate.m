@@ -203,6 +203,7 @@
 {
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
+            NSLog(@"%@",result);
             // Success! Include your code to handle the results here
             [User getUser].displayName = [result objectForKey:@"name"];
             [User getUser].fbID = [result objectForKey:@"id"];
