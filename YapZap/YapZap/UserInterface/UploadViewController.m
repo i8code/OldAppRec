@@ -199,12 +199,19 @@
         
         if ([Util shouldShareOnFB]){
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[FBSession activeSession] requestNewPublishPermissions:[Util getFBWritePermissions]    defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:^(FBSession *session, NSError *error) {
-                    /* handle success + failure in block */
-                    if (!error){
-                        [self shareOnFB];
-                    }
-                }];
+                
+                if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+                    // permission does not exist
+                    [[FBSession activeSession] requestNewPublishPermissions:[Util getFBWritePermissions]    defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:^(FBSession *session, NSError *error) {
+                        /* handle success + failure in block */
+                        if (!error){
+                            [self shareOnFB];
+                        }
+                    }];
+                } else {
+                    [self shareOnFB];
+                }
+                
             });
         }
         

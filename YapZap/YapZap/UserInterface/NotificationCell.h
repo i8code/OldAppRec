@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentedButton;
 @property (weak, nonatomic) IBOutlet UIButton *likedButton;
 @property (weak, nonatomic) IBOutlet UIView *likePanel;
+@property (weak, nonatomic) IBOutlet UIButton *welcomeButton;
+@property (weak, nonatomic) IBOutlet UIView *welcomePanel;
 
 @end

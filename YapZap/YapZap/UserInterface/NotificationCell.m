@@ -38,13 +38,17 @@
         [self.likedButton setTitle:notification.tagName forState:UIControlStateNormal];
         [self.likedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
     }
-    else{
+    else if ([_notification.type isEqualToString:@"COMMENT"]){
         self.likePanel.hidden = YES;
         self.commentPanel.hidden = NO;
         
         
         [self.commentedButton setTitle:notification.tagName forState:UIControlStateNormal];
         [self.commentedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
+    }
+    else {
+        self.welcomePanel.hidden = NO;
+        [self.welcomeButton setTitle:notification.tagName forState:UIControlStateNormal];
     }
 }
 - (IBAction)tagButtonPressed:(id)sender {

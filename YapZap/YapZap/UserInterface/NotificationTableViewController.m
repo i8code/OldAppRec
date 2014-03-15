@@ -9,6 +9,7 @@
 #import "NotificationTableViewController.h"
 #import "NotificationCell.h"
 #import "DataSource.h"
+#import "Notification.h"
 
 @interface NotificationTableViewController ()
 
@@ -33,6 +34,27 @@
             [NSThread sleepForTimeInterval:1.0];
             self.data = [DataSource getNotifications];
             if (self.data){
+                
+                if (self.data.count==0){
+                    Notification* notification = [[Notification alloc] init];
+                    notification.usernameBy = @"_YapZap";
+                    notification.tagName = @"welcome2yapzap";
+                    notification.type = @"WELCOME";
+                    notification.recordingId = @"5321d5848740a611119ca3f0";
+                    /*notification.
+                     5321d5848740a611119ca3f0
+                    _id;
+                    @property (nonatomic, strong) NSString* usernameFor;
+                    @property (nonatomic, strong) NSString* usernameBy;
+                    @property (nonatomic, strong) NSString* tagName;
+                    @property (nonatomic, strong) NSString* recordingId;
+                    @property (nonatomic, strong) NSDate* createdDate;
+                    @property (nonatomic, strong) NSString* type;
+                    @property CGFloat mood;
+                    @property CGFloat intensity;*/
+
+                    self.data = [NSArray arrayWithObject:notification];
+                }
                 [self updateTable];
                 return;
             }

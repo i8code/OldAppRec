@@ -77,6 +77,27 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
+                    <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="GPD-4Q-ygc">
+                        <rect key="frame" x="106" y="0.0" width="121.99999748292508" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="abP-rZ-6tN">
+                                <rect key="frame" x="0.0" y="6" width="110" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.44783005118370056" green="1" blue="0.42601624131202698" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <state key="normal" title="gameofthrones">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tagButtonPressed:" destination="7Fh-eX-PqD" eventType="touchUpInside" id="ERg-MN-Hek"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             </tableViewCellContentView>
@@ -87,6 +108,8 @@
                 <outlet property="likePanel" destination="ui3-fj-ol7" id="GDu-n6-5Hk"/>
                 <outlet property="likedButton" destination="rYU-oC-r6m" id="rol-SH-bot"/>
                 <outlet property="userBy" destination="TVq-JE-VHF" id="rDl-6H-ll9"/>
+                <outlet property="welcomeButton" destination="abP-rZ-6tN" id="UKe-az-utw"/>
+                <outlet property="welcomePanel" destination="GPD-4Q-ygc" id="yxJ-VV-Eur"/>
             </connections>
         </tableViewCell>
     </objects>
