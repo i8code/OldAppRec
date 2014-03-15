@@ -129,6 +129,7 @@
 		C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C796206518A70BD200D1BEAB /* libz.dylib */; };
 		C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */ = {isa = PBXBuildFile; fileRef = C7965CE718D279760023B5B5 /* RecordingFill.m */; };
 		C7965CEA18D284940023B5B5 /* color_wheel_hole.png in Resources */ = {isa = PBXBuildFile; fileRef = C7965CE918D284940023B5B5 /* color_wheel_hole.png */; };
+		C7965CEC18D4A60C0023B5B5 /* bolt_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */; };
 		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
 		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
 		C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */; };
@@ -622,6 +623,7 @@
 		C7965CE618D279760023B5B5 /* RecordingFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordingFill.h; path = UserInterface/RecordingFill.h; sourceTree = "<group>"; };
 		C7965CE718D279760023B5B5 /* RecordingFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingFill.m; path = UserInterface/RecordingFill.m; sourceTree = "<group>"; };
 		C7965CE918D284940023B5B5 /* color_wheel_hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_wheel_hole.png; sourceTree = "<group>"; };
+		C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bolt_icon.png; sourceTree = "<group>"; };
 		C798E89218B4244400ED5890 /* TagCloudViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCloudViewController.h; path = UserInterface/TagCloudViewController.h; sourceTree = "<group>"; };
 		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
 		C798E89E18B4364B00ED5890 /* CloudTagElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudTagElement.h; path = UserInterface/CloudTagElement.h; sourceTree = "<group>"; };
@@ -1516,6 +1518,7 @@
 		C7CF287618A1F0F90053DB9C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */,
 				C75E7B8E18BC3B1300160720 /* Zeus */,
 				C74A6C9C18C245E40086F78D /* record_button_black.png */,
 				C75E7B4518BC3B0B00160720 /* pause_button.png */,
@@ -1748,6 +1751,7 @@
 				C74A6CAD18C255720086F78D /* SearchCell.xib in Resources */,
 				C75E7B7F18BC3B0B00160720 /* stop_button_small.png in Resources */,
 				C75E7B7018BC3B0B00160720 /* heart_empty.png in Resources */,
+				C7965CEC18D4A60C0023B5B5 /* bolt_icon.png in Resources */,
 				C75E7B7718BC3B0B00160720 /* plus_icon.png in Resources */,
 				C777172518C2D13000C9B1A6 /* release_notes.md in Resources */,
 				C75E7B9918BC3B2200160720 /* zeus elements-11.png in Resources */,
