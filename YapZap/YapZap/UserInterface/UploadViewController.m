@@ -79,13 +79,15 @@
     // can be against the Platform policies: https://developers.facebook.com/policy
     
     NSString* imageURL = [NSString stringWithFormat:@"%@://%@:%d/images/zeus.png", PROTOCOL, HOST, PORT];
-    NSString* caption = [NSString stringWithFormat:@"%@ just yapped about %@ with YapZap!", [User getUser].displayName, self.uploadedRecording.tagName];
+    NSString* caption = [NSString stringWithFormat:@"%@ yapped about #%@ on YapZap", [User getUser].displayName, self.uploadedRecording.tagName];
+    NSString* description = [NSString stringWithFormat:@"Hear what I think about #%@ on YapZap. Join the conversation on YapZap.", self.uploadedRecording.tagName];
     NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.audioHash];
     
     // Put together the dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"YapZap", @"name",
                                    caption, @"caption",
+                                   description, @"description",
                                    link, @"link",
                                    imageURL, @"picture",
                                    nil];
@@ -108,90 +110,52 @@
      });
 }
 
--(void)shareOnTW{
+-(void)shareOnTW
+{
     
-    ACAccountStore *account = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    NSString *message = @"Message";
-    //hear before posting u can allow user to select the account
-    NSArray *arrayOfAccons = [account accountsWithAccountType:accountType];
-    for(ACAccount *acc in arrayOfAccons)
-    {
-        NSLog(@"%@",acc.username); //in this u can get all accounts user names provide some UI for user to select,such as UITableview
-    }
+    // Create an account store object.
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
     
+    // Create an account type that ensures Twitter accounts are retrieved.
+    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
-    NSURL *url = [NSURL URLWithString:@"https://api.twitter.com"
-                  @"/1.1/statuses/user_timeline.json"];
-    NSDictionary *params = @{@"screen_name" : message,
-                             @"forKey":@"status",
-                             @"trim_user" : @"1",
-                             @"count" : @"1"};
-    // Request access from the user to access their Twitter account
-    
-    [account requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error)
-     
-     {
-         if (granted == YES)
-         {
-             // Populate array with all available Twitter accounts
-             NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
-             if ([arrayOfAccounts count] > 0)
-             {
-                 //use the first account available
-                 ACAccount *acct = [arrayOfAccounts objectAtIndex:0]; //hear this line replace with selected account. than post it :)
-                 
-                 
-                 
-                 
-                 SLRequest *request =
-                 [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                    requestMethod:SLRequestMethodPOST
-                                              URL:url
-                                       parameters:params];
-                 
-                 
-                 //Post the request
-                 [request setAccount:acct];
-                 
-                 //manage the response
-                 [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error)
-                  {
-                      if(error)
-                      {
-                          //if there is an error while posting the tweet
-                          UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Twitter" message:@"Error in posting" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                          [alert show];
-                          
-                      }
-                      else
-                      {
-                          // on successful posting the tweet
-                          NSLog(@"Twitter response, HTTP response: %lu", [urlResponse statusCode]);
-                          UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Twitter" message:@"Successfully posted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                          [alert show];
-                          
-                          
-                      }
-                  }];
-                 
-             }
-             else
-             {
-                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Twitter" message:@"You have no twitter account" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                 [alert show];
-                 
-             }
-         }
-         else
-         {
-             //suppose user not set any of the accounts
-             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Twitter" message:@"Permission not granted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-             [alert show];
-             
-         }
-     } ];
-    
+    // Request access from the user to use their Twitter accounts.
+    [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+        if(granted) {
+            // Get the list of Twitter accounts.
+            NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
+            
+            if ([accountsArray count] > 0) {
+                // Grab the initial Twitter account to tweet from.
+                ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
+                SLRequest *postRequest = nil;
+                
+                NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.audioHash];
+                NSString* messageBody = [NSString stringWithFormat:@"Hear what I think about #%@ on YapZap. Join the conversation on YapZap. %@", self.uploadedRecording.tagName, link];
+                
+                // Post Text
+                NSDictionary *message = @{@"status": messageBody};
+                
+                // URL
+                NSURL *requestURL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
+                
+                // Request
+                postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:requestURL parameters:message];
+                
+                // Set Account
+                postRequest.account = twitterAccount;
+                
+                // Post
+                [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                    NSString* response = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                    NSLog(@"Twitter response: %@", response);
+                    NSLog(@"Twitter HTTP response: %lu", [urlResponse statusCode]);
+                }];
+                
+            }
+        }
+    }];
+
 }
 
 -(void)upload{
