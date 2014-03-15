@@ -22,7 +22,8 @@
 -(void)swipedLeft:(UIGestureRecognizer*)recognizer;
 @property (weak, nonatomic) YapZapMainViewController* parent;
 @property (weak, nonatomic) IBOutlet UIView *tableArea;
-@property (weak, nonatomic) IBOutlet UIView *colorBar;
+@property (weak, nonatomic) IBOutlet UIView *colorBarLeft;
+@property (weak, nonatomic) IBOutlet UIView *colorBarRight;
 @property (nonatomic, strong) TagTableViewCell* currentlyPlayingCell;
 -(void)loadRecordingsForTag;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;

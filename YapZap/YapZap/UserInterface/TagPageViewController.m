@@ -24,7 +24,7 @@
 @property(nonatomic, strong)NSArray* recordings;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeLeft;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeRight;
-@property(nonatomic, strong)MarqueeLabel* titleLabel;
+@property(nonatomic, strong)UILabel* titleLabel;
 @property(nonatomic, strong)TagPageTableViewController* tableController;
 @end
 
@@ -88,22 +88,24 @@
     [[SharingBundle getCurrentSharingBundle] setTagName:[self.tag.name uppercaseString]];
     
     if (!self.titleLabel){
-        MarqueeLabel* marqueeLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(10,0,300,45) duration:4.0 andFadeLength:15.0f];
-        self.titleLabel = marqueeLabel;
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,45)];
         
-        [self.view addSubview:marqueeLabel];
+        [self.view addSubview:self.titleLabel];
     }
-    NSString* text = [NSString stringWithFormat:@"   %@", [self.tag.name uppercaseString] ];
+    NSString* text = [NSString stringWithFormat:@"%@", [self.tag.name uppercaseString] ];
     self.titleLabel.text = text;
     self.titleLabel.font = [UIFont fontWithName:@"Futura" size:18];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.autoresizesSubviews = NO;
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.backgroundColor = [UIColor blackColor];
-    self.titleLabel.opaque=YES;
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.opaque=NO;
     [self.titleLabel sizeToFit];
-    [self.titleLabel setFrame:CGRectMake((self.view.frame.size.width - self.titleLabel.frame.size.width)/2.0-10, 0, self.titleLabel.frame.size.width, 50)];
-    self.colorBar.backgroundColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
+    [self.titleLabel setFrame:CGRectMake((self.view.frame.size.width - self.titleLabel.frame.size.width)/2.0, 0, self.titleLabel.frame.size.width, 50)];
+    self.colorBarLeft.backgroundColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
+    self.colorBarRight.backgroundColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];
+    [self.colorBarLeft setFrame:CGRectMake(5, 22.5, self.titleLabel.frame.origin.x-10, 2)];
+    [self.colorBarRight setFrame:CGRectMake(5+self.titleLabel.frame.origin.x+self.titleLabel.frame.size.width, 22.5, self.view.frame.size.width-10-(self.titleLabel.frame.origin.x+self.titleLabel.frame.size.width), 2)];
 //    [self.titleLabel restartLabel];
     
     self.parent.background.filterColor =[Util colorFromMood:self.tag.mood andIntesity:self.tag.intensity];

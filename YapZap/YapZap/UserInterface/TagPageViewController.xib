@@ -8,7 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagPageViewController">
             <connections>
                 <outlet property="activityIndicator" destination="Ety-eH-Lme" id="anV-xz-5Jg"/>
-                <outlet property="colorBar" destination="ol3-Mg-VBz" id="wm7-nx-eIV"/>
+                <outlet property="colorBarLeft" destination="ol3-Mg-VBz" id="Kf0-iW-QYA"/>
+                <outlet property="colorBarRight" destination="Bzf-Ky-ndx" id="VWB-zn-2ul"/>
                 <outlet property="playButton" destination="1U1-x8-vcT" id="gwk-VB-bnC"/>
                 <outlet property="tableArea" destination="k9G-hS-Xga" id="qZh-cp-eOI"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -57,6 +58,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="ol3-Mg-VBz">
+                    <rect key="frame" x="8" y="21" width="304" height="3"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="Bzf-Ky-ndx">
                     <rect key="frame" x="8" y="21" width="304" height="3"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
