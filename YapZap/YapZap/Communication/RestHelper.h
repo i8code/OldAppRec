@@ -10,6 +10,10 @@
 
 @interface RestHelper : NSObject
 
+#define PORT 80
+#define PROTOCOL @"http"
+#define HOST @"yapzap.me"
+
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query;
 +(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query;
 +(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query;

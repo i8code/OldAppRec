@@ -13,6 +13,8 @@
 #import "RestHelper.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Social/Social.h>
+#import "RestHelper.h"
+#import "User.h"
 
 @interface UploadViewController ()
 
@@ -76,13 +78,16 @@
     // unless the user manually generated the content earlier in the workflow of your app,
     // can be against the Platform policies: https://developers.facebook.com/policy
     
+    NSString* imageURL = [NSString stringWithFormat:@"%@://%@:%d/images/zeus.png", PROTOCOL, HOST, PORT];
+    NSString* caption = [NSString stringWithFormat:@"%@ just yapped about %@ with YapZap!", [User getUser].displayName, self.uploadedRecording.tagName];
+    NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.audioHash];
+    
     // Put together the dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"Sharing Tutorial", @"name",
-                                   @"Build great social apps and get more installs.", @"caption",
-                                   @"Allow your users to share stories on Facebook from your app using the iOS SDK.", @"description",
-                                   @"https://developers.facebook.com/docs/ios/share/", @"link",
-                                   @"http://i.imgur.com/g3Qc1HN.png", @"picture",
+                                   @"YapZap", @"name",
+                                   caption, @"caption",
+                                   link, @"link",
+                                   imageURL, @"picture",
                                    nil];
     
     // Make the request
@@ -93,11 +98,11 @@
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               if (!error) {
                                   // Link posted successfully to Facebook
-                                  NSLog([NSString stringWithFormat:@"result: %@", result]);
+//                                  NSLog([NSString stringWithFormat:@"result: %@", result]);
                               } else {
                                   // An error occurred, we need to handle the error
                                   // See: https://developers.facebook.com/docs/ios/errors
-                                  NSLog([NSString stringWithFormat:@"%@", error.description]);
+//                                  NSLog([NSString stringWithFormat:@"%@", error.description]);
                               }
                           }];
      });

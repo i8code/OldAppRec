@@ -130,6 +130,7 @@
 		C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */ = {isa = PBXBuildFile; fileRef = C7965CE718D279760023B5B5 /* RecordingFill.m */; };
 		C7965CEA18D284940023B5B5 /* color_wheel_hole.png in Resources */ = {isa = PBXBuildFile; fileRef = C7965CE918D284940023B5B5 /* color_wheel_hole.png */; };
 		C7965CEC18D4A60C0023B5B5 /* bolt_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */; };
+		C7965CF018D4B9880023B5B5 /* AMP-SDK-2.23.0 in Resources */ = {isa = PBXBuildFile; fileRef = C7965CEF18D4B9880023B5B5 /* AMP-SDK-2.23.0 */; };
 		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
 		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
 		C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */; };
@@ -624,6 +625,7 @@
 		C7965CE718D279760023B5B5 /* RecordingFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingFill.m; path = UserInterface/RecordingFill.m; sourceTree = "<group>"; };
 		C7965CE918D284940023B5B5 /* color_wheel_hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_wheel_hole.png; sourceTree = "<group>"; };
 		C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bolt_icon.png; sourceTree = "<group>"; };
+		C7965CEF18D4B9880023B5B5 /* AMP-SDK-2.23.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "AMP-SDK-2.23.0"; sourceTree = "<group>"; };
 		C798E89218B4244400ED5890 /* TagCloudViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCloudViewController.h; path = UserInterface/TagCloudViewController.h; sourceTree = "<group>"; };
 		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
 		C798E89E18B4364B00ED5890 /* CloudTagElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudTagElement.h; path = UserInterface/CloudTagElement.h; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7965CEF18D4B9880023B5B5 /* AMP-SDK-2.23.0 */,
 				C70DB6E618C80F81000BED16 /* CoreData.framework */,
 				C79276EB18C39049000476D1 /* libcorecrypto.dylib */,
 				C79276E918C39034000476D1 /* libcommonCrypto.dylib */,
@@ -1758,6 +1761,7 @@
 				C74A6CBC18C270E80086F78D /* NotificationCell.xib in Resources */,
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
 				C75E7B6E18BC3B0B00160720 /* comments_empty.png in Resources */,
+				C7965CF018D4B9880023B5B5 /* AMP-SDK-2.23.0 in Resources */,
 				C75E7B8818BC3B0B00160720 /* record_button.png in Resources */,
 				C7371F4518A1DFEE007FB490 /* InfoPlist.strings in Resources */,
 				C75E7B9B18BC3B2200160720 /* zeus elements-13.png in Resources */,

@@ -12,10 +12,6 @@
 
 @implementation RestHelper
 
-#define PORT 80
-#define PROTOCOL @"http"
-#define HOST @"54.84.179.166"
-
 
 +(NSDictionary*)addAuth:(NSDictionary*)query{
     NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithCapacity:query.count+3];
