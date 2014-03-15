@@ -90,6 +90,7 @@ app.get('/tokens', routes.tokens());
 //Audio
 
 app.get('/a/:id', routes.audio_proxy(Models));
+app.get('/a/:tag_name/:id', routes.audio_proxy(Models));
 app.get('/audio_maps', routes.audio_maps(Models.AudioMap));
 
 
@@ -101,7 +102,7 @@ app.get('/time', function(req, res) {
 
 
 // Recording.remove({username:"FB(null)_(null)"}, function(err){
-  
+
 // });
 
 // var r = new Recording({username:"JaceLightning", parent_name: "gameofthrones", parent_type:"TAG"});
