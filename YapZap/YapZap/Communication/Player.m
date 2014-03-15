@@ -14,6 +14,8 @@
 @end
 @implementation Player
 
+static AVAudioPlayer* lastPlayer;
+
 -(Player*)initWithPath:(NSString*)path{
     self = [super init];
     if (self){
@@ -22,6 +24,14 @@
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        
+        if (lastPlayer){
+            [lastPlayer stop];
+            lastPlayer = nil;
+        }
+        
+        lastPlayer = self.player;
+        
     }
     return self;
 }

@@ -20,6 +20,7 @@
 #import "TagPageViewController.h"
 #import "CoreDataManager.h"
 #import "RecordingCoreData.h"
+#import "Recording.h"
 
 @interface TagTableViewCell()
 @property (nonatomic, strong) NSTimer* timer;
@@ -66,6 +67,17 @@
     self.likesLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)likes];
 }
 
+-(BOOL)commentFilled{
+    NSString* username = [[User getUser] qualifiedUsername];
+    for (Recording* recording in self.recording.children){
+        if ([recording.username isEqualToString:username]){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 -(void)setRecording:(Recording *)recording{
     _recording = recording;
     self.label.text = recording.displayName;
@@ -75,10 +87,11 @@
     
     
     self.commentLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.childrenLength];
-    self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
+    BOOL commentFilled = [self commentFilled];
+    self.commentLabel.textColor = commentFilled?[UIColor blackColor]:[UIColor whiteColor];
     
     
-    UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
+    UIImage* commentImage = commentFilled?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
     [self.commentButton setImage:commentImage forState:UIControlStateNormal];
     
     [self.waveFormImage setData:recording.rawWaveformData withSize:(int)recording.waveformData.count];
