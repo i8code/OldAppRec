@@ -80,8 +80,8 @@
     
     NSString* imageURL = [NSString stringWithFormat:@"%@://%@:%d/images/zeus.png", PROTOCOL, HOST, PORT];
     NSString* caption = [NSString stringWithFormat:@"%@ yapped about #%@ on YapZap", [User getUser].displayName, self.uploadedRecording.tagName];
-    NSString* description = [NSString stringWithFormat:@"Hear what I think about #%@ on YapZap. Join the conversation on YapZap.", self.uploadedRecording.tagName];
-    NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.audioHash];
+    NSString* description = [NSString stringWithFormat:@"Hear what I think about #%@. Join the conversation on YapZap.", self.uploadedRecording.tagName];
+    NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
     
     // Put together the dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -130,8 +130,8 @@
                 ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
                 SLRequest *postRequest = nil;
                 
-                NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.audioHash];
-                NSString* messageBody = [NSString stringWithFormat:@"Hear what I think about #%@ on YapZap. Join the conversation on YapZap. %@", self.uploadedRecording.tagName, link];
+                NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
+                NSString* messageBody = [NSString stringWithFormat:@"Hear what I think about #%@. Join the convo on YapZap. %@", self.uploadedRecording.tagName, link];
                 
                 // Post Text
                 NSDictionary *message = @{@"status": messageBody};

@@ -17,6 +17,7 @@
 #import "TagCloudViewController.h"
 #import "DataSource.h"
 #import "TagPageViewController.h"
+#import <sys/utsname.h>
 
 @interface YapZapMainViewController ()
 @property (nonatomic, retain) UIPopoverController *poc;
@@ -220,6 +221,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+NSString*
+machineName()
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
 - (IBAction)searchPressed:(id)sender {
     
     [self.stopPlaybackDelegate stopPlayback];
@@ -231,6 +242,10 @@
     self.poc.contentViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
     if ([self.poc respondsToSelector:@selector(setBackgroundColor:)]){
         self.poc.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+    }
+    if ([machineName() isEqualToString:@"iPhone3,1"]){
+        self.poc.backgroundColor = [UIColor blackColor];
+        self.poc.contentViewController.view.opaque = YES;
     }
 }
 
