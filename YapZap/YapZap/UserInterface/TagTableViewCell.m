@@ -30,6 +30,7 @@
 @property (nonatomic, strong) Player* player;
 @property (nonatomic) CGFloat highlightPercent;
 @property (nonatomic, strong) NSTimer* highlightTimer;
+@property (nonatomic) BOOL cancelRequested;
 
 @end
 
@@ -148,6 +149,12 @@
 
 -(void)stopPlaying{
     
+    if (!self.loadingIndicator.hidden){
+        //we are trying to download the file
+        self.cancelRequested = YES;
+        self.playButton.hidden = NO;
+        self.loadingIndicator.hidden=YES;
+    }
     if (!self.isPlaying){
         return;
     }
@@ -194,8 +201,10 @@
         [self stopPlaying];
     }
     else {
+        [self.parentTagViewController setCurrentlyPlayingCell:self];
         self.playButton.hidden = YES;
         self.loadingIndicator.hidden = NO;
+        self.cancelRequested=NO;
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
@@ -208,6 +217,9 @@
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.cancelRequested){
+                    return;
+                }
                 self.player = [[Player alloc] initWithPath:[path path]];
                 self.loadingIndicator.hidden = YES;
                 self.playButton.hidden = NO;
