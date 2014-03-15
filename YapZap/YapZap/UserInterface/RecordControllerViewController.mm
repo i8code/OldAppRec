@@ -30,6 +30,7 @@
 @property (nonatomic, strong) WaveformView* waveform;
 @property (nonatomic, strong) Player *player;
 @property (nonatomic) BOOL backPressedLast;
+@property (nonatomic) BOOL trashPressedLast;
 @end
 
 @implementation RecordControllerViewController
@@ -150,7 +151,11 @@
     if (seconds<0.5){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Hold to Record" message:@"You must hold the record button down to record." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [self trashButtonPressed:nil];
+        self.waveform.hidden = YES;
+        self.finishedPanel.hidden = YES;
+        
+        self.recordingFill.percent = 0;
+        [self.recordingFill setNeedsDisplay];
     }
     [self.recordActiveButton setHighlighted:NO];
     
@@ -191,11 +196,15 @@
 }
 
 - (IBAction)trashButtonPressed:(id)sender {
-    self.waveform.hidden = YES;
-    self.finishedPanel.hidden = YES;
     
-    self.recordingFill.percent = 0;
-    [self.recordingFill setNeedsDisplay]; 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Delete"
+                                                    message:@"Are you sure you want to delete this recording?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    self.backPressedLast=NO;
+    self.trashPressedLast=YES;
+    [alert show];
 }
 - (IBAction)playButtonPressed:(id)sender {
     [self startPlaying];
@@ -211,6 +220,7 @@
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
         self.backPressedLast=NO;
+        self.trashPressedLast=NO;
         [alert show];
     }
     else{
@@ -229,6 +239,7 @@
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
         self.backPressedLast=YES;
+        self.trashPressedLast=NO;
         [alert show];
     }
     else {
@@ -242,7 +253,14 @@
     if (buttonIndex == 1)
     {
         [SharingBundle getCurrentSharingBundle].recordingInfo = nil;
-        if (self.backPressedLast){
+        if (self.trashPressedLast){
+            self.waveform.hidden = YES;
+            self.finishedPanel.hidden = YES;
+            
+            self.recordingFill.percent = 0;
+            [self.recordingFill setNeedsDisplay];
+        }
+        else if (self.backPressedLast){
             [super backPressed:self];
             [self dismissViewControllerAnimated:YES completion:^{}];
         }else {
