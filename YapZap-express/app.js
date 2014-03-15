@@ -95,9 +95,15 @@ app.get('/audio_maps', routes.audio_maps(Models.AudioMap));
 
 
 //Time
+
 app.get('/time', function(req, res) {
   var t = Math.round((new Date()).getTime()/1000);
   res.send(""+t);
+});
+
+//Download link
+app.get('/app', function(req, res) {
+  res.redirect('http://apple.com');
 });
 
 
