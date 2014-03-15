@@ -19,6 +19,7 @@
 #import "DataSource.h"
 #import "CoreDataManager.h"
 #import <AVFoundation/AVFoundation.h>
+#import "LocalyticsSession.h"
 
 @implementation AppDelegate
 
@@ -85,6 +86,8 @@
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [[LocalyticsSession shared] close];
+    [[LocalyticsSession shared] upload];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -92,23 +95,24 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [[LocalyticsSession shared] close];
+    [[LocalyticsSession shared] upload];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [[LocalyticsSession shared] resume];
+    [[LocalyticsSession shared] upload];
 }
-
-//- (void)applicationDidBecomeActive:(UIApplication *)application
-//{
-//    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//}
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [[LocalyticsSession shared] close];
+    [[LocalyticsSession shared] upload];
 }
 
 #pragma Facebook
@@ -242,6 +246,9 @@
     // Handle the user leaving the app while the Facebook login dialog is being shown
     // For example: when the user presses the iOS "home" button while the login dialog is active
     [FBAppCall handleDidBecomeActive];
+    [[LocalyticsSession shared] LocalyticsSession:@"0cd3459f7fc0e11fcbfc7d2-8c4106bc-ac5f-11e3-4230-00a426b17dd8"];
+    [[LocalyticsSession shared] resume];
+    [[LocalyticsSession shared] upload];
 }
 
 

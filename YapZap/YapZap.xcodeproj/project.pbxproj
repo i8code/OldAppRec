@@ -130,7 +130,11 @@
 		C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */ = {isa = PBXBuildFile; fileRef = C7965CE718D279760023B5B5 /* RecordingFill.m */; };
 		C7965CEA18D284940023B5B5 /* color_wheel_hole.png in Resources */ = {isa = PBXBuildFile; fileRef = C7965CE918D284940023B5B5 /* color_wheel_hole.png */; };
 		C7965CEC18D4A60C0023B5B5 /* bolt_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */; };
-		C7965CF018D4B9880023B5B5 /* AMP-SDK-2.23.0 in Resources */ = {isa = PBXBuildFile; fileRef = C7965CEF18D4B9880023B5B5 /* AMP-SDK-2.23.0 */; };
+		C7965CF218D4D0130023B5B5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7965CF118D4D0130023B5B5 /* AdSupport.framework */; };
+		C7965CF418D4D0250023B5B5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7965CF318D4D0250023B5B5 /* libsqlite3.dylib */; };
+		C7965CFD18D4D0E10023B5B5 /* libLocalyticsAMP_x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7965CF818D4D0E10023B5B5 /* libLocalyticsAMP_x64.a */; };
+		C7965CFE18D4D0E10023B5B5 /* libLocalyticsAMP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7965CF918D4D0E10023B5B5 /* libLocalyticsAMP.a */; };
+		C7965CFF18D4D0E10023B5B5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C7965CFA18D4D0E10023B5B5 /* LICENSE */; };
 		C798E89418B4244400ED5890 /* TagCloudViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89318B4244400ED5890 /* TagCloudViewController.m */; };
 		C798E8A018B4364B00ED5890 /* CloudTagElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C798E89F18B4364B00ED5890 /* CloudTagElement.m */; };
 		C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79EF6DF18A65E5B00AA1BDE /* TagTableViewCell.xib */; };
@@ -625,7 +629,13 @@
 		C7965CE718D279760023B5B5 /* RecordingFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordingFill.m; path = UserInterface/RecordingFill.m; sourceTree = "<group>"; };
 		C7965CE918D284940023B5B5 /* color_wheel_hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_wheel_hole.png; sourceTree = "<group>"; };
 		C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bolt_icon.png; sourceTree = "<group>"; };
-		C7965CEF18D4B9880023B5B5 /* AMP-SDK-2.23.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "AMP-SDK-2.23.0"; sourceTree = "<group>"; };
+		C7965CF118D4D0130023B5B5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		C7965CF318D4D0250023B5B5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C7965CF818D4D0E10023B5B5 /* libLocalyticsAMP_x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLocalyticsAMP_x64.a; sourceTree = "<group>"; };
+		C7965CF918D4D0E10023B5B5 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLocalyticsAMP.a; sourceTree = "<group>"; };
+		C7965CFA18D4D0E10023B5B5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C7965CFB18D4D0E10023B5B5 /* LocalyticsAmpSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsAmpSession.h; sourceTree = "<group>"; };
+		C7965CFC18D4D0E10023B5B5 /* LocalyticsSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsSession.h; sourceTree = "<group>"; };
 		C798E89218B4244400ED5890 /* TagCloudViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagCloudViewController.h; path = UserInterface/TagCloudViewController.h; sourceTree = "<group>"; };
 		C798E89318B4244400ED5890 /* TagCloudViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagCloudViewController.m; path = UserInterface/TagCloudViewController.m; sourceTree = "<group>"; };
 		C798E89E18B4364B00ED5890 /* CloudTagElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudTagElement.h; path = UserInterface/CloudTagElement.h; sourceTree = "<group>"; };
@@ -650,20 +660,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72C1DBA18AAFB43006D136F /* SystemConfiguration.framework in Frameworks */,
+				C7965CF418D4D0250023B5B5 /* libsqlite3.dylib in Frameworks */,
+				C7965CFD18D4D0E10023B5B5 /* libLocalyticsAMP_x64.a in Frameworks */,
+				C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */,
+				C7965CF218D4D0130023B5B5 /* AdSupport.framework in Frameworks */,
 				C70DB6E718C80F81000BED16 /* CoreData.framework in Frameworks */,
 				C706246D18B6D25C00D1BEB0 /* Accounts.framework in Frameworks */,
 				C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */,
 				C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */,
 				C777172318C2D13000C9B1A6 /* libTestFlight.a in Frameworks */,
-				C72C1DBA18AAFB43006D136F /* SystemConfiguration.framework in Frameworks */,
 				C72C1DB218AAE9C8006D136F /* AVFoundation.framework in Frameworks */,
 				C72C1DB018AAE9C2006D136F /* Accelerate.framework in Frameworks */,
 				C72C1DBC18AAFFDE006D136F /* AWSRuntime.framework in Frameworks */,
 				C747FC1E18A7341C0083A533 /* FacebookSDK.framework in Frameworks */,
-				C796206618A70BD200D1BEAB /* libz.dylib in Frameworks */,
 				C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */,
 				C7371F3D18A1DFEE007FB490 /* CoreGraphics.framework in Frameworks */,
 				C7371F3F18A1DFEE007FB490 /* UIKit.framework in Frameworks */,
+				C7965CFE18D4D0E10023B5B5 /* libLocalyticsAMP.a in Frameworks */,
 				C7371F3B18A1DFEE007FB490 /* Foundation.framework in Frameworks */,
 				C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */,
 			);
@@ -798,7 +812,9 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7965CEF18D4B9880023B5B5 /* AMP-SDK-2.23.0 */,
+				C7965CF718D4D0D20023B5B5 /* Localytics */,
+				C7965CF318D4D0250023B5B5 /* libsqlite3.dylib */,
+				C7965CF118D4D0130023B5B5 /* AdSupport.framework */,
 				C70DB6E618C80F81000BED16 /* CoreData.framework */,
 				C79276EB18C39049000476D1 /* libcorecrypto.dylib */,
 				C79276E918C39034000476D1 /* libcommonCrypto.dylib */,
@@ -1489,6 +1505,18 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C7965CF718D4D0D20023B5B5 /* Localytics */ = {
+			isa = PBXGroup;
+			children = (
+				C7965CF818D4D0E10023B5B5 /* libLocalyticsAMP_x64.a */,
+				C7965CF918D4D0E10023B5B5 /* libLocalyticsAMP.a */,
+				C7965CFA18D4D0E10023B5B5 /* LICENSE */,
+				C7965CFB18D4D0E10023B5B5 /* LocalyticsAmpSession.h */,
+				C7965CFC18D4D0E10023B5B5 /* LocalyticsSession.h */,
+			);
+			name = Localytics;
+			sourceTree = "<group>";
+		};
 		C79EF6F818A66DA600AA1BDE /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1761,7 +1789,6 @@
 				C74A6CBC18C270E80086F78D /* NotificationCell.xib in Resources */,
 				C7371F5318A1DFEE007FB490 /* Images.xcassets in Resources */,
 				C75E7B6E18BC3B0B00160720 /* comments_empty.png in Resources */,
-				C7965CF018D4B9880023B5B5 /* AMP-SDK-2.23.0 in Resources */,
 				C75E7B8818BC3B0B00160720 /* record_button.png in Resources */,
 				C7371F4518A1DFEE007FB490 /* InfoPlist.strings in Resources */,
 				C75E7B9B18BC3B2200160720 /* zeus elements-13.png in Resources */,
@@ -1789,6 +1816,7 @@
 				C75E7B9A18BC3B2200160720 /* zeus elements-12.png in Resources */,
 				C74A6C9D18C245E40086F78D /* record_button_black.png in Resources */,
 				C75E7B8518BC3B0B00160720 /* share_button_small.png in Resources */,
+				C7965CFF18D4D0E10023B5B5 /* LICENSE in Resources */,
 				C706247E18B958DA00D1BEB0 /* TagCloudViewController.xib in Resources */,
 				C75E7B8A18BC3B0B00160720 /* color_wheel.png in Resources */,
 				C75E7B9C18BC3B2200160720 /* zeus elements-14.png in Resources */,

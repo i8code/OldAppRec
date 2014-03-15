@@ -8,6 +8,7 @@
 
 #import "YapZapModalViewController.h"
 #import "SettingsViewController.h"
+#import "LocalyticsSession.h"
 
 @interface YapZapModalViewController ()
 @property (nonatomic, retain) SettingsViewController *settingsViewController;
@@ -69,8 +70,6 @@
                                 action:@selector(showSettings:)
                       forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    
     
 }
 

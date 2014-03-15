@@ -7,6 +7,7 @@
 //
 
 #import "YapZapViewController.h"
+#import "LocalyticsSession.h"
 
 
 @implementation YapZapViewController
@@ -21,6 +22,10 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[LocalyticsSession shared] tagScreen:NSStringFromClass([self class])];
 }
 
 @end
