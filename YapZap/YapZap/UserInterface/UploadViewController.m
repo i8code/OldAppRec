@@ -163,6 +163,8 @@
     self.uploadComplete = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        [[LocalyticsSession shared] tagEvent:@"Started Upload"];
+        
         SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
         
         //Upload the recording first
@@ -204,6 +206,8 @@
         
         //Delete recording
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        
+        [[LocalyticsSession shared] tagEvent:@"Finished Upload"];
         
         self.uploadComplete = YES;
     });

@@ -154,11 +154,14 @@
     NSString* tagname = [self fixTag];
     [self.sharingBundle setTagName:tagname];
     if (!tagname || !tagname.length) {
+        
+        [[LocalyticsSession shared] tagEvent:@"User tried to upload without tag name"];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Tag Name" message:@"Please tag before continuing." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
         return false;
     }
     if (!self.hasSelectedMood){
+        [[LocalyticsSession shared] tagEvent:@"User tried to upload without mood"];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Select Mood" message:@"Please select a mood before continuing." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
         return false;

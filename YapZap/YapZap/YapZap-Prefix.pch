@@ -18,4 +18,5 @@
 #import "YapZapMainViewController.h"
 #import "YapZapModalViewController.h"
 #import "Util.h"
+#import "LocalyticsSession.h"
 #endif

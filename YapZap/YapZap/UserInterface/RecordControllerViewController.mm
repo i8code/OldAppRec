@@ -115,6 +115,7 @@
 }
 
 -(IBAction)startRecording:(id)sender{
+    [[LocalyticsSession shared] tagEvent:@"Started Recording"];
     
     if (self.playing)
     {
@@ -136,6 +137,7 @@
 }
 
 -(IBAction)stopRecording:(id)sender{
+    [[LocalyticsSession shared] tagEvent:@"Stopped Recording"];
     
     self.recording = false;
     self.backgroundColor.hidden = YES;
@@ -164,6 +166,7 @@
 }
 
 -(void)startPlaying{
+    [[LocalyticsSession shared] tagEvent:@"Started playing recording"];
     self.playTimerCount = 0;
     self.finishedPanel.hidden = YES;
     self.stopPanel.hidden = NO;
@@ -175,6 +178,7 @@
     self.playing = true;
 }
 -(void)stopPlaying{
+    [[LocalyticsSession shared] tagEvent:@"Stopped playing recording"];
     self.finishedPanel.hidden = NO;
     self.stopPanel.hidden = YES;
     [self.waveform setHighlightPercent:0];

@@ -166,6 +166,7 @@
 }
 
 - (IBAction)facebookSwitched:(id)sender {
+    [[LocalyticsSession shared] tagEvent:@"Toggled Sharing on Facebook"];
     [Util setShareOnFB:self.facebookSwitch.on];
 }
 
@@ -174,6 +175,7 @@
 }
 
 - (IBAction)twitterSwitched:(id)sender {
+    [[LocalyticsSession shared] tagEvent:@"Toggled Sharing on Twitter"];
     [Util setShareOnTW:self.twitterSwitch.on];
     
     if (self.twitterSwitch.on){

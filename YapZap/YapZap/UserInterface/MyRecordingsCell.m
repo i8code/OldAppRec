@@ -156,6 +156,7 @@
         NSString* path = [NSString stringWithFormat:@"/recordings/%@", self.recording._id];
         [RestHelper del:path withQuery:nil];
         [self.parent refresh];
+        [[LocalyticsSession shared] tagEvent:@"Deleted a recording"];
     }
 }
 
