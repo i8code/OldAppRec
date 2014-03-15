@@ -196,7 +196,14 @@
         //Now share on FB/Twitter
         
         if ([Util shouldShareOnFB]){
-            [self shareOnFB];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[FBSession activeSession] requestNewPublishPermissions:[Util getFBWritePermissions]    defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:^(FBSession *session, NSError *error) {
+                    /* handle success + failure in block */
+                    if (!error){
+                        [self shareOnFB];
+                    }
+                }];
+            });
         }
         
         if ([Util shouldShareOnTW]){

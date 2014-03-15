@@ -24,6 +24,7 @@
 +(void)setShareOnFB:(BOOL)share;
 +(BOOL)shouldShareOnTW;
 +(void)setShareOnTW:(BOOL)share;
-+(NSArray*)getFBPermissions;
++(NSArray*)getFBWritePermissions;
++(NSArray*)getFBReadPermissions;
 +(void)setDefaults;
 @end

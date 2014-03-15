@@ -32,7 +32,7 @@
 -(void)setupFBButton{
     CGRect frame = [self.loginButtonPlaceholder frame];
     [self.loginButtonPlaceholder removeFromSuperview];
-    self.loginButton = [[FBLoginView alloc] initWithPublishPermissions:[Util getFBPermissions] defaultAudience:FBSessionDefaultAudienceEveryone];
+    self.loginButton = [[FBLoginView alloc] initWithPublishPermissions:[Util getFBReadPermissions] defaultAudience:FBSessionDefaultAudienceEveryone];
     [self.loginButton setFrame:frame];
     [self.view addSubview:self.loginButton];
     self.loginButton.delegate = self;

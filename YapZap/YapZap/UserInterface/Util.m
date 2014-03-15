@@ -218,7 +218,10 @@ static const int recentSearchesCount = 10;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(NSArray*)getFBPermissions{
-    return @[@"basic_info", @"publish_actions", @"user_friends"];
++(NSArray*)getFBWritePermissions{
+    return @[@"publish_actions"];
+}
++(NSArray*)getFBReadPermissions{
+    return @[@"basic_info", @"user_friends"];
 }
 @end

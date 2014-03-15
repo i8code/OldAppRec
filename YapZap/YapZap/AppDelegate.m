@@ -121,7 +121,7 @@
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithPublishPermissions:[Util getFBPermissions] defaultAudience:FBSessionDefaultAudienceEveryone
+        [FBSession openActiveSessionWithPublishPermissions:[Util getFBWritePermissions] defaultAudience:FBSessionDefaultAudienceEveryone
                                               allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
