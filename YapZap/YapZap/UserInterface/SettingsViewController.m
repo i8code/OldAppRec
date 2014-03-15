@@ -178,7 +178,7 @@
 - (IBAction)getHelp:(id)sender {
     NSString *emailTitle = @"I'm in need of some assistance";
     NSString *messageBody = @"";
-    NSArray *toRecipents = [NSArray arrayWithObject:@"hiyapzap@gmail.com"];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"zeus@yapzap.me"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;

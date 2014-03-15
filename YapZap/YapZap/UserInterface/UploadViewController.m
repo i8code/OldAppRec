@@ -86,7 +86,8 @@
                                    nil];
     
     // Make the request
-    [FBRequestConnection startWithGraphPath:@"/me/feed"
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [FBRequestConnection startWithGraphPath:@"/me/feed"
                                  parameters:params
                                  HTTPMethod:@"POST"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -99,6 +100,7 @@
                                   NSLog([NSString stringWithFormat:@"%@", error.description]);
                               }
                           }];
+     });
 }
 
 -(void)shareOnTW{

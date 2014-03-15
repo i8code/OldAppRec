@@ -190,6 +190,13 @@ static const int recentSearchesCount = 10;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(void)setDefaults{
+    NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [NSNumber numberWithBool:YES], @"YapZap_share_fb",
+                                          [NSNumber numberWithBool:YES], @"YapZap_share_tw",
+                                          nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
+}
 
 +(BOOL)shouldShareOnFB{
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_share_fb"];

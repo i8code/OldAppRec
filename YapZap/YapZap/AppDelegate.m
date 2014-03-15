@@ -24,7 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    [Util setDefaults];
     
     [DataSource getTimezoneOffset];
 //    [FBLoginView class];

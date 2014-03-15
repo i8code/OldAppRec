@@ -35,6 +35,12 @@
       "idiom" : "iphone",
       "filename" : "icon_120.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "512x512",
+      "idiom" : "mac",
+      "filename" : "default_1024.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
