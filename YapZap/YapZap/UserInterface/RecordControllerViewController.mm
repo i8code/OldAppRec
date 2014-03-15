@@ -99,6 +99,8 @@
     SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
     self.finishedPanel.hidden = self.waveform.hidden = !bundle.recordingInfo;
     self.backButton.hidden=NO;
+    self.recordingFill.percent = 0;
+    [self.recordingFill setNeedsDisplay];
 }
 
 -(void)initialize{
@@ -142,8 +144,6 @@
     [self.recorder stop];
     self.recordingInfo = [self.recorder lastInfo];
     
-    self.recordingFill.percent = 0;
-    [self.recordingFill setNeedsDisplay];
     
     
     float seconds = self.recordingInfo.length / (float)self.recorder.blockLength*10;
@@ -193,6 +193,9 @@
 - (IBAction)trashButtonPressed:(id)sender {
     self.waveform.hidden = YES;
     self.finishedPanel.hidden = YES;
+    
+    self.recordingFill.percent = 0;
+    [self.recordingFill setNeedsDisplay]; 
 }
 - (IBAction)playButtonPressed:(id)sender {
     [self startPlaying];
