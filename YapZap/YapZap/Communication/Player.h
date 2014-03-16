@@ -10,6 +10,7 @@
 
 @interface Player : NSObject
 -(Player*)initWithPath:(NSString*)path;
+-(void)clearCurrent;
 -(void)play;
 -(void)stop;
 -(void)resume;
