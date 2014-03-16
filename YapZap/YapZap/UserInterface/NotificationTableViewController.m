@@ -10,6 +10,7 @@
 #import "NotificationCell.h"
 #import "DataSource.h"
 #import "Notification.h"
+#import "User.h"
 
 @interface NotificationTableViewController ()
 
@@ -31,6 +32,12 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         for (int i=0;i<10;i++){
+            if ([User getUser].displayName){
+                break;
+            }
+            [NSThread sleepForTimeInterval:1];
+        }
+        for (int i=0;i<10;i++){
             self.data = [DataSource getNotifications];
             if (self.data){
                 
@@ -40,17 +47,6 @@
                     notification.tagName = @"welcome2yapzap";
                     notification.type = @"WELCOME";
                     notification.recordingId = @"5321d5848740a611119ca3f0";
-                    /*notification.
-                     5321d5848740a611119ca3f0
-                    _id;
-                    @property (nonatomic, strong) NSString* usernameFor;
-                    @property (nonatomic, strong) NSString* usernameBy;
-                    @property (nonatomic, strong) NSString* tagName;
-                    @property (nonatomic, strong) NSString* recordingId;
-                    @property (nonatomic, strong) NSDate* createdDate;
-                    @property (nonatomic, strong) NSString* type;
-                    @property CGFloat mood;
-                    @property CGFloat intensity;*/
 
                     self.data = [NSArray arrayWithObject:notification];
                 }

@@ -61,9 +61,7 @@
 //    [Util clearSearchHistory];
 
      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         [NSThread sleepForTimeInterval:0.1];
          dispatch_async(dispatch_get_main_queue(), ^{
-             [NSThread sleepForTimeInterval:0.1];
              NSLog(@"Prompting for Twitter Auth login");
              [self askForTwitterAuth];
              NSLog(@"Prompting for Facebook login");
