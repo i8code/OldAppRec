@@ -243,6 +243,11 @@ exports.deleteById = function(Models) {
 
             });
 
+            //Remove notifications
+            Models.Notification.remove({}, function(err){
+
+            });
+
         });
     };
 };

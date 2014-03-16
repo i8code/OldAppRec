@@ -55,6 +55,7 @@ exports.tokens = function() {
 };
 
 var https = require('https');
+/*
 var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
 AWS.config.region = 'us-east-1';
@@ -73,6 +74,23 @@ exports.audio_proxy = function(Models) {
             var params = {Bucket: 'yap-zap-audio', Key: filename};
             res.setHeader('content-type', 'video/mp4');
             s3.getObject(params).createReadStream().pipe(res);
+        });
+    };
+};
+*/
+exports.audio_proxy = function(Models) {
+    return function(req, res) {
+
+        var id = req.params.id;
+        var query = Models.AudioMap.find({hash:id}, function(err, maps){
+
+            if (!maps || maps.length==0){
+                res.send(404);
+                return;
+            }
+            var filename = maps[0].filename;
+
+            res.redirect('https://s3.amazonaws.com/yap-zap-audio/'+filename);
         });
     };
 };
