@@ -13,6 +13,11 @@ exports.addNotificationForLike = function(Models, username_by, recording_id){
 
         var parent_recording = recordings[0];
         var username_for = parent_recording.username;
+
+        if (username_for===username_by){
+            //Same user; no notification
+            return;
+        }
         console.log("found target: "+username_for);
 
         if (parent_recording.parent_type==="TAG"){
@@ -81,6 +86,11 @@ exports.addNotificationForComment = function(Models, username_by, recording_pare
         }
         var parent =recordings[0];
         var username_for = parent.username;
+
+        if (username_for===username_by){
+            //Same user; no notification
+            return;
+        }
         var tag_name = parent.parent_name;
 
         var tag_query = Models.Tag.find({name:tag_name}).exec(function(err, tags){

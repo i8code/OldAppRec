@@ -29,6 +29,15 @@
 @implementation MasterAudioPlayer
 
 
++(MasterAudioPlayer*)instance{
+    static MasterAudioPlayer* me;
+    if (!me){
+        me = [[MasterAudioPlayer alloc] init];
+    }
+    return me;
+}
+
+
 -(void)play:(Recording*)recording fromTagSet:(NSArray*)recordings{
     
     self.recordingSet = nil;
@@ -69,13 +78,27 @@
     
 }
 
+
+-(void)playCurrent{
+    if (!self.recordingSet || self.recordingSet.count==0){
+        return;
+    }
+    [self play: self.currentRecording];
+}
+
 -(void)play:(NSInteger)i{
     if (i>=self.recordingSet.count || i<0){
+        self.state = MA_STOPPED;
         return;
     }
     self.currentRecording = i;
     self.state = MA_DOWNLOADING;
-    self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(tick) userInfo:nil repeats:YES];
+    if (!self.timer){
+        self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(tick) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop currentRunLoop] addTimer:self.timer
+                                     forMode:NSRunLoopCommonModes];
+    }
     if (![self recordingDownloaded:self.recordingSet[i]]){
         [self downloadRecording:self.recordingSet[i]];
     }
@@ -106,7 +129,7 @@
         self.percentPlayed = self.playTime/10.0f;
         Recording* recording =self.recordingSet[self.currentRecording];
         
-        if (self.playTime>=100*(recording.waveformData.count/430.f)){
+        if (self.playTime>=10*(recording.waveformData.count/430.f)){
             //Goto next
             [self.player stop];
             [self next];
@@ -126,6 +149,16 @@
     callbackData.state = self.state;
     
     [self.audioListener audioStateChanged:callbackData];
+}
+
+
+-(void)togglePlayback{
+    if (self.state==MA_PLAYING || self.state==MA_DOWNLOADING){
+        self.state = MA_STOPPED;
+    }
+    else {
+        [self playCurrent];
+    }
 }
 
 -(NSURL*)getFileURL:(Recording*) recording{

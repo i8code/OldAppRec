@@ -16,11 +16,16 @@
 #define MA_STOPPED 0
 #define MA_DOWNLOADING 1
 
++(MasterAudioPlayer*)instance;
+
 @property (nonatomic, weak) id<MasterPlayerListener> audioListener;
+-(void)playCurrent;
 -(void)play:(Recording*)recording fromTagSet:(NSArray*)recordings;
+-(void)togglePlayback;
 -(void)next;
 -(void)previous;
 -(void)stop;
+-(void)tick;
 
 
 @end

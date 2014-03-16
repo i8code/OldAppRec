@@ -21,9 +21,11 @@
 #import "LoadingViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "LocalyticsSession.h"
+#import "MasterAudioPlayer.h"
 
 @interface AppDelegate()
 @property (nonatomic, strong) UIImageView *splashScreen;
+@property (nonatomic, strong) MasterAudioPlayer* player;
 
 @end
 @implementation AppDelegate
@@ -42,6 +44,18 @@
     [self.window addSubview:self.splashScreen];
     [self.window makeKeyAndVisible];
     [self gotoLoadingView];
+    
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [self registerForAudioObjectNotifications];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    self.player = [MasterAudioPlayer instance];
+    
+    NSArray* recordings = [DataSource getRecordingsForTagName:@"familyguy"];
+    [self.player play:recordings[0] fromTagSet:recordings];
+    
+    return YES;
     
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
@@ -300,5 +314,49 @@
         }
 
     }];
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void) registerForAudioObjectNotifications {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter addObserver: self
+                           selector: @selector (remoteControlReceivedWithEvent:)
+                               name: @"MixerHostAudioObjectPlaybackStateDidChangeNotification"
+                             object: nil];
+}
+
+
+- (void) remoteControlReceivedWithEvent: (UIEvent *) receivedEvent {
+    
+    if (receivedEvent.type == UIEventTypeRemoteControl) {
+
+        switch (receivedEvent.subtype) {
+                
+            case UIEventSubtypeRemoteControlPlay:
+                [self.player playCurrent];
+                break;
+                
+            case UIEventSubtypeRemoteControlPause:
+            case UIEventSubtypeRemoteControlStop:
+                [self.player stop];
+                break;
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+                [self.player togglePlayback];
+                break;
+            case UIEventSubtypeRemoteControlNextTrack:
+                [self.player next];
+                break;
+            case UIEventSubtypeRemoteControlPreviousTrack:
+                [self.player previous];
+                break;
+            default:
+                break;
+        }
+    }
 }
 @end
