@@ -18,18 +18,32 @@
 #import "User.h"
 #import "DataSource.h"
 #import "CoreDataManager.h"
+#import "LoadingViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "LocalyticsSession.h"
 
+@interface AppDelegate()
+@property (nonatomic, strong) UIImageView *splashScreen;
+
+@end
 @implementation AppDelegate
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    self.splashScreen = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LaunchImage_IPhone5.png"]];
+    [self.splashScreen setContentMode:UIViewContentModeScaleAspectFit];
+    self.splashScreen.frame = self.window.bounds;
+    [self.window addSubview:self.splashScreen];
+    [self.window makeKeyAndVisible];
     [self gotoLoadingView];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
@@ -45,12 +59,17 @@
     //Check to see if the user is logged in
     
 //    [Util clearSearchHistory];
-    /*
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [NSThread sleepForTimeInterval:5.0];
-        [self loginFacebook];
-        [self askForTwitterAuth];
-    });*/
+
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+         [NSThread sleepForTimeInterval:0.1];
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [NSThread sleepForTimeInterval:0.1];
+             NSLog(@"Prompting for Twitter Auth login");
+             [self askForTwitterAuth];
+             NSLog(@"Prompting for Facebook login");
+             [self loginFacebook];
+         });
+    });
     
 //    
 //    {
@@ -67,15 +86,17 @@
 -(void)setActiveView:(UIViewController*)viewController{
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.splashScreen){
+            [self.splashScreen removeFromSuperview];
+            self.splashScreen = nil;
+        }
         [self.window setRootViewController:viewController];
         [self.window makeKeyAndVisible];
     });
 }
 
 -(void)gotoLoadingView{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController* viewController =[storyboard instantiateViewControllerWithIdentifier:@"loading"];
-    [self setActiveView:viewController];
+    [self setActiveView:[[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil]];
 }
 
 -(void)goToLoginView{
@@ -127,7 +148,7 @@
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithPublishPermissions:[Util getFBWritePermissions] defaultAudience:FBSessionDefaultAudienceEveryone
+        [FBSession openActiveSessionWithReadPermissions:[Util getFBReadPermissions] 
                                               allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
@@ -147,21 +168,21 @@
 {
     // If the session was opened successfully
     if (!error && state == FBSessionStateOpen){
-        NSLog(@"Session opened");
+        NSLog(@"Facebook Session opened");
         // Show the user the logged-in UI
         [self userLoggedIn];
         return;
     }
     if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
         // If the session is closed
-        NSLog(@"Session closed");
+        NSLog(@"Facebook Session closed");
         // Show the user the logged-out UI
         [self userLoggedOut];
     }
     
     // Handle errors
     if (error){
-        NSLog(@"Error");
+        NSLog(@"Facebook Error");
         NSString *alertText;
         NSString *alertTitle;
         // If the error requires people using an app to make an action outside of the app in order to recover
@@ -257,6 +278,10 @@
     [[LocalyticsSession shared] upload];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [FBSession.activeSession handleOpenURL:url];
+}
 
 -(void)askForTwitterAuth{
     ACAccountStore *store = [[ACAccountStore alloc] init]; // Long-lived
