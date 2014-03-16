@@ -69,7 +69,7 @@ exports.audio_proxy = function(Models) {
             var filename = maps[0].filename;
             https.get('https://s3.amazonaws.com/yap-zap-audio/'+filename, function(proxyRes) {
                 res.setHeader('content-type', 'video/mp4');
-                proxyRes.pipe(res);
+                proxyRes.pipe(res, {end:true});
             });
         });
 

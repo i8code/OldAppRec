@@ -10,7 +10,7 @@
 
 @interface RestHelper : NSObject
 
-#define PORT 3000
+#define PORT 80
 #define PROTOCOL @"http"
 #define HOST @"yapzap.me"
 
