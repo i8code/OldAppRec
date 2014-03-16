@@ -52,10 +52,10 @@
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     self.player = [MasterAudioPlayer instance];
     
-    NSArray* recordings = [DataSource getRecordingsForTagName:@"familyguy"];
+    /*NSArray* recordings = [DataSource getRecordingsForTagName:@"familyguy"];
     [self.player play:recordings[0] fromTagSet:recordings];
     
-    return YES;
+    return YES;*/
     
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];

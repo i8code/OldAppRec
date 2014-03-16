@@ -100,7 +100,9 @@
                                      forMode:NSRunLoopCommonModes];
     }
     if (![self recordingDownloaded:self.recordingSet[i]]){
-        [self downloadRecording:self.recordingSet[i]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self downloadRecording:self.recordingSet[i]];
+        });
     }
 }
 

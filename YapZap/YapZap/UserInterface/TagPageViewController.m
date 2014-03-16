@@ -17,6 +17,9 @@
 #import "TagPageTableViewController.h"
 #import "SharingBundle.h"
 #import "TagTableViewCell.h"
+#import "MasterAudioPlayer.h"
+#import "MasterAudioPlayerCallbackData.h"
+#import "TagTableViewCell.h"
 
 
 @interface TagPageViewController ()
@@ -61,6 +64,12 @@
     }
     
     self.view.hidden=NO;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [YapZapMainViewController getMe].stopPlaybackDelegate = self;
+    [MasterAudioPlayer instance].audioListener = self;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -146,14 +155,6 @@
 }
 
 
--(void)setCurrentlyPlayingCell:(TagTableViewCell *)currentlyPlayingCell{
-    [YapZapMainViewController getMe].stopPlaybackDelegate =self;
-    if (_currentlyPlayingCell && _currentlyPlayingCell!=currentlyPlayingCell){
-        [_currentlyPlayingCell stopPlaying];
-    }
-    _currentlyPlayingCell = currentlyPlayingCell;
-    
-}
 
 
 -(void)swipedRight:(UIGestureRecognizer*)recognizer{
@@ -178,6 +179,60 @@
 static NSString* requestedRecording;
 +(void)requestDisplayRecording:(NSString*)recordingId{
     requestedRecording = recordingId;
+}
+
+-(TagTableViewCell*)cellForRecordingId:(NSString*)string{
+    for (UIView *view in self.tableController.tableView.subviews) {
+        for (UIView *subview in view.subviews) {
+            if ([subview isKindOfClass:[TagTableViewCell class]]){
+                TagTableViewCell* cell = (TagTableViewCell*)subview;
+                if ([cell.recording._id isEqualToString:string]){
+                    return cell;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+-(NSIndexPath*)indexPathForRecordingWithID:(NSString*)recordingId{
+    int i=0, j=0;
+    BOOL found=false;
+    BOOL comment=false;
+    for (i=0;i<self.recordings.count;i++){
+        Recording* parentRecording = self.recordings[i];
+        if ([parentRecording._id isEqualToString:recordingId]){
+            found = true;
+            comment = false;
+            break;
+        }
+        
+        for (j=0;j<parentRecording.childrenLength;j++){
+            Recording* recording = parentRecording.children[j];
+            if ([recording._id isEqualToString:recordingId]){
+                found = true;
+                comment = true;
+                break;
+            }
+        }
+        if (found){
+            break;
+        }
+    }
+    
+    if (found){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+        
+        if (comment){ //Make sure the cell is Expanded
+            indexPath = [NSIndexPath indexPathForRow:(j+2) inSection:i];
+            return indexPath;
+        }
+        else {
+            indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+            return  indexPath;
+        }
+    }
+    return nil;
 }
 
 -(void)scrollToRecording:(NSString*)recordingId{
@@ -232,6 +287,46 @@ static NSString* requestedRecording;
         
     }
 }
+
+
+
+#pragma Audio playback
+
+-(void)setCurrentlyPlayingCell:(TagTableViewCell *)currentlyPlayingCell{
+    
+    if (_currentlyPlayingCell && ![_currentlyPlayingCell.recording._id isEqualToString:currentlyPlayingCell.recording._id]){
+        [currentlyPlayingCell stopPlaying];
+        _currentlyPlayingCell = currentlyPlayingCell;
+    }
+    else if (!_currentlyPlayingCell){
+        _currentlyPlayingCell = currentlyPlayingCell;
+    }
+}
+
+-(void)playAudioAtCell:(TagTableViewCell*)currentlyPlayingCell{
+    self.currentlyPlayingCell = currentlyPlayingCell;
+    [[MasterAudioPlayer instance] play:currentlyPlayingCell.recording fromTagSet:self.recordings];
+}
+-(void)stopAudioAtCell:(TagTableViewCell*)currentlyPlayingCell{
+    if (self.currentlyPlayingCell!=currentlyPlayingCell){
+        return;
+    }
+    self.currentlyPlayingCell = nil;
+    [[MasterAudioPlayer instance] stop];
+}
+-(void)audioStateChanged:(MasterAudioPlayerCallbackData *)data{
+    if (![data.recording.tagName isEqualToString:self.tag.name]){
+        //User changed windows
+        return;
+    }
+    NSIndexPath* indexPath = [self indexPathForRecordingWithID:data.recording._id];
+    if (!indexPath){
+        return;
+    }
+    self.currentlyPlayingCell = [self cellForRecordingId:data.recording._id];
+    [self.currentlyPlayingCell setState:data];
+}
+
 
 
 -(void)stopPlayback{

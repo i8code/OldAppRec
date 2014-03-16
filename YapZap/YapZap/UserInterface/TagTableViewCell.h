@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasterAudioPlayerCallbackData.h"
 
 @class Recording;
 @class FilteredImageView;
@@ -38,11 +39,9 @@
 @property(nonatomic) BOOL isSelected;
 @property(nonatomic) BOOL last;
 
--(void)setEnabled:(BOOL)enabled;
 - (IBAction)playClicked:(id)sender;
 -(void)stopPlaying;
--(void)startPlaying;
--(void)updateImage;
+-(void)setState:(MasterAudioPlayerCallbackData*)data;
 
 
 -(void)highlight;

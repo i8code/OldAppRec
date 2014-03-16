@@ -21,14 +21,12 @@
 #import "CoreDataManager.h"
 #import "RecordingCoreData.h"
 #import "Recording.h"
+#import "MasterAudioPlayer.h"
 
 @interface TagTableViewCell()
-@property (nonatomic, strong) NSTimer* timer;
-@property NSInteger timerCount;
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) BOOL liked;
 @property (nonatomic) BOOL likeIncludedInCount;
-@property (nonatomic, strong) Player* player;
 @property (nonatomic) CGFloat highlightPercent;
 @property (nonatomic, strong) NSTimer* highlightTimer;
 @property (nonatomic) BOOL cancelRequested;
@@ -38,18 +36,10 @@
 @implementation TagTableViewCell
 
 @synthesize recording = _recording;
-@synthesize timer = _timer;
-@synthesize isPlaying = _isPlaying;
 @synthesize comment = _comment;
 @synthesize isSelected = _isSelected;
 @synthesize liked = _liked;
-
--(void)setIsPlaying:(BOOL)isPlaying{
-    _isPlaying = isPlaying;
-    if (isPlaying){
-        [self.parentTagViewController setCurrentlyPlayingCell:self];
-    }
-}
+@synthesize isPlaying = _isPlaying;
 
 -(void)setLiked:(BOOL)liked{
     _liked = liked;
@@ -98,6 +88,8 @@
     [self.waveFormImage setColor:[Util colorFromMood:recording.mood andIntesity:recording.intensity]];
     [self.waveFormImage setNeedsDisplay];
     
+    self.isPlaying = NO;
+    
     
     RecordingCoreData* recordingData = [CoreDataManager getRecordingData:self.recording._id];
     if (recordingData){
@@ -141,124 +133,72 @@
     [self updateBars];
 }
 
--(void)setEnabled:(BOOL)enabled{
-    
-    self.playButton.hidden = !enabled;
-    if (enabled){
-        [self.waveFormImage setAlpha:1];
-        
-        [self.timer invalidate];
-        self.timer=nil;
-        [self.waveFormImage setHighlightPercent:1];
-        [self.label setAlpha:1];
-        [self.waveFormImage setNeedsDisplay];
-        self.playButton.hidden = NO;
-    }
-    else{
-        [self.waveFormImage setAlpha:0.1];
-        [self.label setAlpha:0.1];
-    }
-}
+
+
+#pragma playing arguments
 
 -(void)stopPlaying{
-    
-    if (!self.loadingIndicator.hidden){
-        //we are trying to download the file
-        self.cancelRequested = YES;
-        self.playButton.hidden = NO;
-        self.loadingIndicator.hidden=YES;
-    }
     if (!self.isPlaying){
         return;
     }
-    //[self.delegate setCell:self playing:NO];
     
-    [self.player stop];
+//    [self.parentTagViewController stopAudioAtCell:self];
+    self.isPlaying = false;
     [self.playButton setImage:[UIImage imageNamed:@"redo_button.png"] forState:UIControlStateNormal];
-        
-    [self.timer invalidate];
-    self.timer=nil;
-    
     [self.waveFormImage setHighlightPercent:0];
     [self.waveFormImage setNeedsDisplay];
     
-    self.isPlaying = false;
     
     [CoreDataManager setRecording:self.recording._id withPercentage:self.waveFormImage.highlightPercent];
 }
--(void)startPlaying{
-    if (self.isPlaying){
-        return;
-    }
-    self.isPlaying = true;
-    [self.player play];
-    
-    //[self.delegate setCell:self playing:YES];
-    [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
-    
-    self.timerCount = 0;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
-    
-    
-    
-}
--(NSURL*)getFileURL{
-    NSURL *furl = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:self.recording.audioUrl]];
-    
-    return furl;
-}
-
 
 - (IBAction)playClicked:(id)sender {
     if (self.isPlaying){
-        [self stopPlaying];
+        [self.parentTagViewController stopAudioAtCell:self];
     }
     else {
-        [self.parentTagViewController setCurrentlyPlayingCell:self];
-        self.playButton.hidden = YES;
-        self.loadingIndicator.hidden = NO;
-        self.cancelRequested=NO;
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            NSURL* path = [self getFileURL];
-            
-            if (![[NSFileManager defaultManager] fileExistsAtPath:[path path]]){
-                //Download
-                NSData* data = [S3Helper fileFromS3WithName:self.recording.audioUrl];
-                [data writeToFile:[path path] atomically:YES];
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.cancelRequested){
-                    return;
-                }
-                self.player = [[Player alloc] initWithPath:[path path]];
-                self.loadingIndicator.hidden = YES;
-                self.playButton.hidden = NO;
-                [self startPlaying];
-            });
-        });
+        [self.parentTagViewController playAudioAtCell:self];
     }
 }
 
--(void)updateImage{
-    
-    self.timerCount++;
-    
-    [self.waveFormImage setHighlightPercent:(((float)self.timerCount)/100.0f)];
-    [self.waveFormImage setNeedsDisplay];
-    
-    if (self.timerCount>=100*(self.recording.waveformData.count/430.f)){
-        
-        UITableView *tv = (UITableView *) self.superview.superview;
-        UITableViewController *vc = (UITableViewController *) tv.dataSource;
-        
-        [((TagPageTableViewController*)vc)playNext:self];
-        [self stopPlaying];
+
+-(void)setState:(MasterAudioPlayerCallbackData*)data{
+    if (![self.recording._id isEqualToString:data.recording._id]){
+        return;
+    }
+
+    NSLog(@"playing?%@", self.isPlaying?@"YES":@"NO");
+
+    switch (data.state) {
+        case MA_DOWNLOADING:
+            self.playButton.hidden=YES;
+            self.isPlaying = true;
+            self.loadingIndicator.hidden = NO;
+            break;
+            
+        case MA_PLAYING:
+            self.playButton.hidden=NO;
+            self.isPlaying = true;
+            self.loadingIndicator.hidden = YES;
+            [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
+            break;
+            
+//        case MA_STOPPED:
+//            [self.playButton setImage:[UIImage imageNamed:@"redo_button.png"] forState:UIControlStateNormal];
+//            break;
+            
+        default:
+            break;
     }
     
+    if (self.isPlaying){
+        [self.waveFormImage setHighlightPercent:data.percentPlayed];
+        [self.waveFormImage setNeedsDisplay];
+        NSLog(@"Setting waveform: %f", data.percentPlayed);
+    }
+
 }
+
 
 - (IBAction)likePressed:(id)sender {
     self.liked = !self.liked;
