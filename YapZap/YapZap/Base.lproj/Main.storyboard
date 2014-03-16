@@ -266,8 +266,8 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_icon.png" id="amK-3j-eeG">
-                                <rect key="frame" x="115" y="298" width="90" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white.png" id="amK-3j-eeG">
+                                <rect key="frame" x="120" y="278" width="80" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6VW-k6-mZF">
@@ -285,6 +285,7 @@
                     <navigationItem key="navigationItem" id="kgb-A1-IWj"/>
                     <connections>
                         <outlet property="autoFillZone" destination="ha6-ng-n7d" id="X7z-c2-IZW"/>
+                        <outlet property="logoImage" destination="amK-3j-eeG" id="ln8-7H-ZEy"/>
                         <outlet property="moodSelector" destination="HPI-gq-ptb" id="g8Z-bX-rLh"/>
                         <outlet property="tagTextField" destination="XZy-h0-yuD" id="D8y-Vv-J7W"/>
                         <outlet property="waveformImage" destination="ggC-FR-y0Q" id="guL-9L-rOT"/>
@@ -542,7 +543,7 @@
         <image name="color_wheel_hole.png" width="324" height="324"/>
         <image name="comments_full.png" width="80" height="64"/>
         <image name="heart_full.png" width="80" height="64"/>
-        <image name="home_icon.png" width="100" height="80"/>
+        <image name="logo-white.png" width="430" height="400"/>
         <image name="play_small_button.png" width="128" height="128"/>
         <image name="record_button.png" width="512" height="512"/>
         <image name="share_button_small.png" width="128" height="128"/>

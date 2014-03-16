@@ -78,6 +78,7 @@
     [super viewWillAppear:animated];
     self.backButton.hidden=NO;
     self.parent.homeButton.hidden = NO;
+    self.logoImage.hidden=NO;
     self.zeusFace.image = nil;
 }
 
@@ -203,6 +204,7 @@
                     nil
                     ];
     }
+    self.logoImage.hidden=YES;
     
     static int last = -1;
     

@@ -38,6 +38,7 @@
 		C72C1DBC18AAFFDE006D136F /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1DBB18AAFFDE006D136F /* AWSRuntime.framework */; };
 		C732664F18D5F6080027AE96 /* MasterAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C732664E18D5F6080027AE96 /* MasterAudioPlayer.m */; };
 		C732665B18D5F61A0027AE96 /* MasterAudioPlayerCallbackData.m in Sources */ = {isa = PBXBuildFile; fileRef = C732665A18D5F61A0027AE96 /* MasterAudioPlayerCallbackData.m */; };
+		C732665E18D65EDB0027AE96 /* logo-white.png in Resources */ = {isa = PBXBuildFile; fileRef = C732665D18D65EDB0027AE96 /* logo-white.png */; };
 		C7371F3B18A1DFEE007FB490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7371F3A18A1DFEE007FB490 /* Foundation.framework */; };
 		C7371F3D18A1DFEE007FB490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7371F3C18A1DFEE007FB490 /* CoreGraphics.framework */; };
 		C7371F3F18A1DFEE007FB490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7371F3E18A1DFEE007FB490 /* UIKit.framework */; };
@@ -275,6 +276,7 @@
 		C732665918D5F61A0027AE96 /* MasterAudioPlayerCallbackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterAudioPlayerCallbackData.h; sourceTree = "<group>"; };
 		C732665A18D5F61A0027AE96 /* MasterAudioPlayerCallbackData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterAudioPlayerCallbackData.m; sourceTree = "<group>"; };
 		C732665C18D5F6270027AE96 /* MasterPlayerListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterPlayerListener.h; sourceTree = "<group>"; };
+		C732665D18D65EDB0027AE96 /* logo-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-white.png"; sourceTree = "<group>"; };
 		C7371F3718A1DFEE007FB490 /* YapZap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapZap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7371F3A18A1DFEE007FB490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C7371F3C18A1DFEE007FB490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1563,6 +1565,7 @@
 		C7CF287618A1F0F90053DB9C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C732665D18D65EDB0027AE96 /* logo-white.png */,
 				C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */,
 				C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */,
 				C75E7B8E18BC3B1300160720 /* Zeus */,
@@ -1788,6 +1791,7 @@
 				C75E7BB218BF69DA00160720 /* TagPageTableViewController.xib in Resources */,
 				C75E7B7E18BC3B0B00160720 /* pause_button_small.png in Resources */,
 				C75E7B7B18BC3B0B00160720 /* cancel_small_button.png in Resources */,
+				C732665E18D65EDB0027AE96 /* logo-white.png in Resources */,
 				C74A6CA818C249ED0086F78D /* SearchTableViewController.xib in Resources */,
 				C75E7B8C18BC3B0B00160720 /* bolt_white.png in Resources */,
 				C75E7B6C18BC3B0B00160720 /* play_button_small.png in Resources */,

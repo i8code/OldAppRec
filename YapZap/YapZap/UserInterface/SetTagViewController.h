@@ -20,5 +20,6 @@
 @property (weak, nonatomic) YapZapMainViewController* parent;
 @property (weak, nonatomic) IBOutlet UIView *autoFillZone;
 @property (weak, nonatomic) IBOutlet UIImageView *zeusFace;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImage;
 
 @end
