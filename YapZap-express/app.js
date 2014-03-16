@@ -5,6 +5,7 @@
 
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 
 //Models
@@ -111,6 +112,17 @@ app.get('/app', function(req, res) {
 });
 
 
+var fs = require('fs');
+var privateKey  = fs.readFileSync('../certs/yapzap.me.key', 'utf8');
+var certificate = fs.readFileSync('../certs/yapzap.me.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+
+https.createServer(credentials, app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+
 // Recording.remove({username:"FB(null)_(null)"}, function(err){
 
 // });
@@ -156,6 +168,4 @@ n.save();
 //    console.log('collection removed');
 // });
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+
