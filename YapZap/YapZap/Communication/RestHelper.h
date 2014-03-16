@@ -12,7 +12,7 @@
 
 #define PORT 3000
 #define PROTOCOL @"http"
-#define HOST @"10.0.0.10"
+#define HOST @"yapzap.me"
 
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query;
 +(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query;

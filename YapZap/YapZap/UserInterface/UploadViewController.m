@@ -78,11 +78,11 @@
     // unless the user manually generated the content earlier in the workflow of your app,
     // can be against the Platform policies: https://developers.facebook.com/policy
     
-    NSString* imageURL = [NSString stringWithFormat:@"%@://%@:%d/images/zeus.png", PROTOCOL, HOST, PORT];
+    NSString* imageURL = [NSString stringWithFormat:@"%@://%@/images/zeus.png", PROTOCOL, HOST];
     NSString* caption = [NSString stringWithFormat:@"%@ yapped about #%@ on YapZap", [User getUser].displayName, self.uploadedRecording.tagName];
-    NSString* downloadLink = [NSString stringWithFormat:@"%@://%@:%d/app", PROTOCOL, HOST, PORT];
+    NSString* downloadLink = [NSString stringWithFormat:@"%@://%@/app", PROTOCOL, HOST];
     NSString* description = [NSString stringWithFormat:@"Hear what I think about #%@. Join the convo on YapZap %@", self.uploadedRecording.tagName, downloadLink];
-    NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
+    NSString* link = [NSString stringWithFormat:@"%@://%@/a/%@/%@", PROTOCOL, HOST, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
     
     // Put together the dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -131,8 +131,8 @@
                 ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
                 SLRequest *postRequest = nil;
                 
-                NSString* link = [NSString stringWithFormat:@"%@://%@:%d/a/%@/%@", PROTOCOL, HOST, PORT, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
-                NSString* downloadLink = [NSString stringWithFormat:@"%@://%@:%d/app", PROTOCOL, HOST, PORT];
+                NSString* link = [NSString stringWithFormat:@"%@://%@/a/%@/%@", PROTOCOL, HOST, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
+                NSString* downloadLink = [NSString stringWithFormat:@"%@://%@/app", PROTOCOL, HOST];
                 NSString* messageBody = [NSString stringWithFormat:@"Hear what I think about #%@ %@. Join the convo on YapZap %@", self.uploadedRecording.tagName, link, downloadLink];
                 
                 // Post Text
