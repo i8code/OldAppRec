@@ -30,7 +30,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.activityView.frame = CGRectMake(self.view.frame.size.width/2-18.5, self.view.frame.size.height/2-18.5, 37, 37);
+//    self.activityView.frame = CGRectMake(self.view.frame.size.width/2-18.5, self.view.frame.size.height/2-18.5, 37, 37);
 }
 
 - (void)didReceiveMemoryWarning

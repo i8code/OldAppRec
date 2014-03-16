@@ -25,24 +25,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DataSource getTimezoneOffset];
-//    [FBLoginView class];
-    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    //Load Tag names
-    [DataSource getTagNames];
-    [CoreDataManager database];
+    [self gotoLoadingView];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        
+        [DataSource getTimezoneOffset];
+        
+        
+        //Load Tag names
+        [DataSource getTagNames];
+        [CoreDataManager database];
+    });
     
     
     //Check to see if the user is logged in
     
-    [self gotoLoadingView];
 //    [Util clearSearchHistory];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{        
+    /*
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSThread sleepForTimeInterval:5.0];
         [self loginFacebook];
         [self askForTwitterAuth];
-    });
+    });*/
     
 //    
 //    {
@@ -52,8 +60,6 @@
 //        
 //    }
     // Override point for customization after application launch.
-    [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }
@@ -63,13 +69,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.window setRootViewController:viewController];
         [self.window makeKeyAndVisible];
-        
     });
 }
 
 -(void)gotoLoadingView{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self setActiveView:[storyboard instantiateViewControllerWithIdentifier:@"loading"]];
+    UIViewController* viewController =[storyboard instantiateViewControllerWithIdentifier:@"loading"];
+    [self setActiveView:viewController];
 }
 
 -(void)goToLoginView{
