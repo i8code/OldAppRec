@@ -140,6 +140,7 @@ exports.create = function(Models) {
                     NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name, recording._id);
                 }
 
+                NotificationManager.notifyFriends(Models, recording);
                 res.status(201);
                 res.send(recording);
             });

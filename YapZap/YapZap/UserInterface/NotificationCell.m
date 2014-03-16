@@ -38,7 +38,7 @@
         [self.likedButton setTitle:notification.tagName forState:UIControlStateNormal];
         [self.likedButton setBackgroundColor:[Util colorFromMood:notification.mood andIntesity:notification.intensity]];
     }
-    else if ([_notification.type isEqualToString:@"COMMENT"]){
+    else if ([_notification.type isEqualToString:@"COMMENT"] || [_notification.type isEqualToString:@"FRIEND"]){
         self.likePanel.hidden = YES;
         self.commentPanel.hidden = NO;
         

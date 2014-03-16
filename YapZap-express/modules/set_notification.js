@@ -101,3 +101,34 @@ exports.addNotificationForComment = function(Models, username_by, recording_pare
     });
 }
 
+
+exports.notifyFriends = function(Models, newRecording){
+    console.log("Notifying friends...");
+
+    var query = Models.Friend.find({friend_of:newRecording.username});
+    query.exec(function(err, friends) {
+
+        if (!friends || friends.length===0){
+            return;
+        }
+        var i=0;
+        for (i=0;i<friends.length;i++){
+
+            var notification = new Models.Notification({
+                username_for : friends[i].friend_id,
+                username_by : newRecording.username,
+                tag_name: newRecording.tag_name,
+                mood: newRecording.mood,
+                intensity: newRecording.intensity,
+                recording_id : newRecording._id,
+                type:"FRIEND"
+            });
+
+            notification.save();
+
+            console.log("creating new notification for friend");
+            console.log(notification);
+
+        }
+    });
+}
