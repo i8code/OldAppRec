@@ -34,6 +34,7 @@
     }
     @catch ( AmazonServiceException *exception ) {
         NSLog( @"Upload Failed, Reason: %@", exception );
+        return nil;
     }
     
 }

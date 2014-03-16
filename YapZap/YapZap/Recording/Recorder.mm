@@ -68,6 +68,7 @@
 
 
 -(void)start{
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [self resetData:self.blockLength];
     self.count = 0;
     self.currentPath = [[SharingBundle getCurrentSharingBundle] getRecordingPath];
