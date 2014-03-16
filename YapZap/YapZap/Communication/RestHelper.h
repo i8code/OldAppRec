@@ -10,8 +10,8 @@
 
 @interface RestHelper : NSObject
 
-#define PORT 80
-#define PROTOCOL @"http"
+#define PORT 443
+#define PROTOCOL @"https"
 #define HOST @"yapzap.me"
 
 +(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query;
