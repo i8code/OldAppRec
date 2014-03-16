@@ -30,5 +30,6 @@
 - (IBAction)getHelp:(id)sender;
 @property (strong, nonatomic) NSArray* recordings;
 @property (weak, nonatomic) IBOutlet UILabel *totalNumberLabel;
+- (IBAction)termsOfUseClicked:(id)sender;
 
 @end

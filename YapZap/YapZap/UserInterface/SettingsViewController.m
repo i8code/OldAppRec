@@ -247,4 +247,8 @@
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+- (IBAction)termsOfUseClicked:(id)sender {
+    NSURL* url = [NSURL URLWithString:@"http://goo.gl/zb7Qia"];
+    [[UIApplication sharedApplication] openURL:url];
+}
 @end
