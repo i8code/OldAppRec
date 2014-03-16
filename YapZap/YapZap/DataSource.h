@@ -23,5 +23,6 @@
 +(NSArray*)getNotifications;
 +(NSArray*)getRecordingsForTagName:(NSString*)tagName;
 +(NSArray*)getMyRecordings;
++(void)updateFacebookFriends;
 
 @end

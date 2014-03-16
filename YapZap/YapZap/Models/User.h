@@ -17,5 +17,6 @@
 -(NSString*)qualifiedUsername;
 
 +(User*)getUser;
++(User*)fromFBUser:(NSDictionary<FBGraphUser>*)user;
 
 @end

@@ -172,4 +172,41 @@ static NSMutableArray* tagNames;
     return array;
 }
 
++(void)updateFacebookFriends{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (int i=0;i<100;i++){
+            if ([User getUser].displayName){
+                break;
+            }
+            [NSThread sleepForTimeInterval:1];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+            [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                          NSDictionary* result,
+                                                          NSError *error) {
+                NSArray* friends = [result objectForKey:@"data"];
+                NSString* friendsJson = @"[";
+                for (NSDictionary<FBGraphUser> *friend in friends){
+                    User* user = [User fromFBUser:friend];
+                    friendsJson = [NSString stringWithFormat:@"%@\"%@\",", friendsJson, user.qualifiedUsername];
+                }
+                
+                NSRange lastComma = [friendsJson rangeOfString:@"," options:NSBackwardsSearch];
+                
+                if(lastComma.location != NSNotFound) {
+                    friendsJson = [friendsJson stringByReplacingCharactersInRange:lastComma
+                                                       withString: @"]"];
+                }
+                NSData* jsonData = [friendsJson dataUsingEncoding:NSUTF8StringEncoding];
+                NSString* path = [NSString stringWithFormat:@"/friends/%@", [User getUser].qualifiedUsername];
+                [RestHelper post:path withBody:jsonData andQuery:nil];
+                
+                NSLog(@"Found: %i facebook friends", friends.count);
+            }];
+        });
+        
+    });
+}
+
 @end

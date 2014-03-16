@@ -52,6 +52,7 @@
         
         //Load Tag names
         [DataSource getTagNames];
+        [DataSource updateFacebookFriends];
         [CoreDataManager database];
     });
     
@@ -69,6 +70,7 @@
          });
     });
     
+        
 //    
 //    {
 //        

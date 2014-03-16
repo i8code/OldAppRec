@@ -24,4 +24,13 @@
     return user;
 }
 
++(User*)fromFBUser:(NSDictionary<FBGraphUser>*)user{
+    User* toReturn = [[User alloc] init];
+    toReturn.username = user.username;
+    toReturn.displayName = user.name;
+    toReturn.fbID = user.id;
+
+    return toReturn;
+}
+
 @end

@@ -14,6 +14,7 @@ var Tag = Models.Tag;
 var Recording = Models.Recording;
 var Like = Models.Like;
 var Notification = Models.Notification;
+var Friend = Models.Friend;
 
 var app = express();
 
@@ -43,6 +44,7 @@ var tag_routes = require('./routes/tags');
 var recording_routes = require('./routes/recordings');
 var like_routes = require('./routes/likes');
 var notification_routes = require('./routes/notifications');
+var friend_routes = require('./routes/friends');
 
 app.get('/', routes.index);
 
@@ -88,10 +90,12 @@ app.get("/notifications/:username", notification_routes.getByUser(Models));
 app.get('/tokens', routes.tokens());
 
 //Audio
-
 app.get('/a/:id', routes.audio_proxy(Models));
 app.get('/a/:tag_name/:id', routes.audio_proxy(Models));
 app.get('/audio_maps', routes.audio_maps(Models.AudioMap));
+
+//Friends
+app.post('/friends/:name', friend_routes.submitFriends(Models));
 
 
 //Time
@@ -103,7 +107,7 @@ app.get('/time', function(req, res) {
 
 //Download link
 app.get('/app', function(req, res) {
-  res.redirect('http://apple.com');
+  res.redirect('https://itunes.apple.com/us/');
 });
 
 

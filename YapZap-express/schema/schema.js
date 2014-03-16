@@ -128,10 +128,20 @@ var audioMapSchema = new mongoose.Schema({
     }
 });
 
+var friendSchema = new mongoose.Schema({
+    friend_id : {
+        type: String,
+    },
+    friend_of :{
+        type:String
+    }
+});
+
 module.exports.Recording = mongoose.model('Recordings', recordingSchema);
 module.exports.Tag = mongoose.model('Tags', tagSchema);
 module.exports.Like = mongoose.model('Likes', likeSchema);
 module.exports.Notification = mongoose.model('Notification', notificationSchema);
 module.exports.AudioMap = mongoose.model('AudioMap', audioMapSchema);
+module.exports.Friend = mongoose.model('Friend', friendSchema);
 
 module.exports.mongoose = mongoose;
