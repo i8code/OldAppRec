@@ -28,7 +28,7 @@ static int lineHeight = 16;
     self = [super init];
     if (self){
         self.tag = tag;
-        self.time = 0;
+        _time = 1000;
         self.onclickBlock = onclick;
         self.pop = pop;
         
