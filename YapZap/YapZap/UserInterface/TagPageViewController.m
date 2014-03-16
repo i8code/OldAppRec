@@ -295,7 +295,7 @@ static NSString* requestedRecording;
 -(void)setCurrentlyPlayingCell:(TagTableViewCell *)currentlyPlayingCell{
     
     if (_currentlyPlayingCell && ![_currentlyPlayingCell.recording._id isEqualToString:currentlyPlayingCell.recording._id]){
-        [currentlyPlayingCell stopPlaying];
+        [_currentlyPlayingCell stopPlaying];
         _currentlyPlayingCell = currentlyPlayingCell;
     }
     else if (!_currentlyPlayingCell){
@@ -330,7 +330,10 @@ static NSString* requestedRecording;
 
 
 -(void)stopPlayback{
-    [_currentlyPlayingCell stopPlaying];
+    if (self.currentlyPlayingCell){
+        [self.currentlyPlayingCell stopPlaying];
+        [[MasterAudioPlayer instance] stop];
+    }
 }
 
 @end

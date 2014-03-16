@@ -108,7 +108,7 @@
 
 -(void)tick{
     if (self.state==MA_DOWNLOADING){
-        NSLog(@"Downloading");
+//        NSLog(@"Downloading");
         //Check to see if we've downloaded
         if ([self recordingDownloaded:self.recordingSet[self.currentRecording]]){
             self.state=MA_PLAYING;
@@ -126,7 +126,7 @@
         }
     }
     else if (self.state==MA_PLAYING){
-        NSLog(@"Playing");
+//        NSLog(@"Playing");
         self.playTime+=0.1;
         self.percentPlayed = self.playTime/10.0f;
         Recording* recording =self.recordingSet[self.currentRecording];
@@ -139,7 +139,7 @@
         
     }
     else if (self.state==MA_STOPPED){
-        NSLog(@"Stopped");
+//        NSLog(@"Stopped");
         [self.player stop];
         [self.timer invalidate];
         self.timer = nil;

@@ -167,8 +167,6 @@
         return;
     }
 
-    NSLog(@"playing?%@", self.isPlaying?@"YES":@"NO");
-
     switch (data.state) {
         case MA_DOWNLOADING:
             self.playButton.hidden=YES;
@@ -194,7 +192,6 @@
     if (self.isPlaying){
         [self.waveFormImage setHighlightPercent:data.percentPlayed];
         [self.waveFormImage setNeedsDisplay];
-        NSLog(@"Setting waveform: %f", data.percentPlayed);
     }
 
 }
