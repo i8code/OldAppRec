@@ -55,7 +55,7 @@
         }
         
         for (int j=0;j<parentRecording.childrenLength;j++){
-            Recording* childRecording = parentRecording.children[i];
+            Recording* childRecording = parentRecording.children[j];
             
             if ([childRecording._id isEqualToString:recording._id]){
                 //comment set
