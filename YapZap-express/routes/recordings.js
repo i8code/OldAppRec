@@ -244,9 +244,7 @@ exports.deleteById = function(Models) {
             });
 
             //Remove notifications
-            Models.Notification.remove({}, function(err){
-
-            });
+            Models.Notification.remove({recording_id:recording._id}, function(err){});
 
         });
     };

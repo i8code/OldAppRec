@@ -54,9 +54,8 @@ var updateCollection = function(Models, id, type){
             parent.save();
 
             if (type==="TAG" && parent.children_length===0){
-                Models.Tag.remove({name:id}, function(err){
-
-                });
+                Models.Tag.remove({name:id}, function(err){});
+                Models.Notification.remove({tag_name:id}, function(err){});
             }
 
             if (parent.parent_name){
