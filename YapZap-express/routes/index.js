@@ -55,6 +55,9 @@ exports.tokens = function() {
 };
 
 var https = require('https');
+var AWS = require('aws-sdk');
+var s3 = new AWS.S3();
+AWS.config.region = 'us-east-1';
 
 exports.audio_proxy = function(Models) {
     return function(req, res) {
@@ -67,12 +70,9 @@ exports.audio_proxy = function(Models) {
                 return;
             }
             var filename = maps[0].filename;
-            https.get('https://s3.amazonaws.com/yap-zap-audio/'+filename, function(proxyRes) {
-                res.setHeader('content-type', 'video/mp4');
-                proxyRes.pipe(res, {end:true});
-            });
+            var params = {Bucket: 'yap-zap-audio', Key: filename};
+            res.setHeader('content-type', 'video/mp4');
+            s3.getObject(params).createReadStream().pipe(res);
         });
-
-        
     };
 };
