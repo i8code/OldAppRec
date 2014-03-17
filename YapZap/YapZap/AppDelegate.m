@@ -46,7 +46,7 @@
     [self gotoLoadingView];
     
     
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
     [self registerForAudioObjectNotifications];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];

@@ -118,7 +118,7 @@
             NSURL* path = [self getFileURL:self.recordingSet[self.currentRecording]];
             
             self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:nil];
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
             [[AVAudioSession sharedInstance] setActive: YES error: nil];
             [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
             
