@@ -103,12 +103,11 @@ exports.audio_proxy = function(Models) {
         var tag_name = req.params.tag_name;
         var query = Models.AudioMap.find({hash:id}, function(err, maps){
 
-            /*if (!maps || maps.length==0){
+            if (!maps || maps.length==0){
                 res.send(404);
                 return;
             }
-            var filename = maps[0].filename;*/
-            filename = '2014-03-09T16:44:43.364-0400_FBrachel.steinberg.773_Rachel Steinberg.mp4';
+            var filename = maps[0].filename;
             var path = 'https://s3.amazonaws.com/yap-zap-audio/'+filename;
             var title = tag_name || 'YapZap';
             console.log(path);
