@@ -73,42 +73,27 @@
     [alert show];
 }
 
--(void)shareOnFB{
-    // NOTE: pre-filling fields associated with Facebook posts,
-    // unless the user manually generated the content earlier in the workflow of your app,
-    // can be against the Platform policies: https://developers.facebook.com/policy
-    
-    NSString* imageURL = [NSString stringWithFormat:@"%@://%@/images/zeus.png", PROTOCOL, HOST];
-    NSString* caption = [NSString stringWithFormat:@"%@ yapped about #%@ on YapZap", [User getUser].displayName, self.uploadedRecording.tagName];
-    NSString* downloadLink = [NSString stringWithFormat:@"%@://%@/app", PROTOCOL, HOST];
-    NSString* description = [NSString stringWithFormat:@"Hear what I think about #%@. Join the convo on YapZap %@", self.uploadedRecording.tagName, downloadLink];
+-(NSString*)getTwitterMessage{
     NSString* link = [NSString stringWithFormat:@"%@://%@/a/%@/%@", PROTOCOL, HOST, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
+    NSString* downloadLink = [NSString stringWithFormat:@"%@://%@/app", PROTOCOL, HOST];
+    NSString* messageBody = [NSString stringWithFormat:@"Hear what I think about #%@ %@. Join the convo on YapZap %@", self.uploadedRecording.tagName, link, downloadLink];
     
-    // Put together the dialog parameters
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"YapZap", @"name",
-                                   caption, @"caption",
-                                   description, @"description",
-                                   link, @"link",
-                                   imageURL, @"picture",
-                                   nil];
+    return messageBody;
+}
+
+-(void)shareOnFB{
     
-    // Make the request
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [FBRequestConnection startWithGraphPath:@"/me/feed"
-                                 parameters:params
-                                 HTTPMethod:@"POST"
-                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                              if (!error) {
-                                  // Link posted successfully to Facebook
-//                                  NSLog([NSString stringWithFormat:@"result: %@", result]);
-                              } else {
-                                  // An error occurred, we need to handle the error
-                                  // See: https://developers.facebook.com/docs/ios/errors
-//                                  NSLog([NSString stringWithFormat:@"%@", error.description]);
-                              }
-                          }];
-     });
+    [FBRequestConnection startForPostStatusUpdate:[self getTwitterMessage]
+                                completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                    if (!error) {
+                                        // Status update posted successfully to Facebook
+                                        NSLog([NSString stringWithFormat:@"result: %@", result]);
+                                    } else {
+                                        // An error occurred, we need to handle the error
+                                        // See: https://developers.facebook.com/docs/ios/errors
+                                        NSLog([NSString stringWithFormat:@"%@", error.description]);
+                                    }
+                                }];
 }
 
 -(void)shareOnTW
@@ -131,10 +116,7 @@
                 ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
                 SLRequest *postRequest = nil;
                 
-                NSString* link = [NSString stringWithFormat:@"%@://%@/a/%@/%@", PROTOCOL, HOST, self.uploadedRecording.tagName, self.uploadedRecording.audioHash];
-                NSString* downloadLink = [NSString stringWithFormat:@"%@://%@/app", PROTOCOL, HOST];
-                NSString* messageBody = [NSString stringWithFormat:@"Hear what I think about #%@ %@. Join the convo on YapZap %@", self.uploadedRecording.tagName, link, downloadLink];
-                
+                NSString* messageBody = [self getTwitterMessage];
                 // Post Text
                 NSDictionary *message = @{@"status": messageBody};
                 
