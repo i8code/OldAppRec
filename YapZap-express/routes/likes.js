@@ -106,6 +106,18 @@ exports.create = function(Models) {
             res.send(like);
 
             NotificationManager.addNotificationForLike(Models, username, id);
+
+            Models.Recording.find({_id:id}).exec(function(err, recordings){
+
+                if (!recordings || recordings.length===0){
+                    return;
+                }
+
+                recordings[0].username = username;
+
+                NotificationManager.notifyFriends(Models, recordings[0], "LIKE");
+            });
+            
         });
     };
 };

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -53,7 +53,7 @@
                         <rect key="frame" x="106" y="0.0" width="214" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="commented on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oOM-8z-TCA">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commented on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oOM-8z-TCA">
                                 <rect key="frame" x="0.0" y="4" width="107" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
@@ -77,8 +77,36 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
+                    <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="Ucu-3s-usB">
+                        <rect key="frame" x="105" y="0.0" width="214.00000001141959" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yapped about" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mGq-O7-tRm">
+                                <rect key="frame" x="0.0" y="4" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="8Wn-yI-L2s">
+                                <rect key="frame" x="99" y="6" width="110" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <state key="normal" title="gameofthrones">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tagButtonPressed:" destination="7Fh-eX-PqD" eventType="touchUpInside" id="taY-p7-pZb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    </view>
                     <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="GPD-4Q-ygc">
-                        <rect key="frame" x="106" y="0.0" width="121.99999748292508" height="40"/>
+                        <rect key="frame" x="105.99999584831046" y="0.0" width="122" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="abP-rZ-6tN">
@@ -107,9 +135,13 @@
                 <outlet property="commentedButton" destination="Dqx-3Y-z2F" id="uBf-xC-THI"/>
                 <outlet property="likePanel" destination="ui3-fj-ol7" id="GDu-n6-5Hk"/>
                 <outlet property="likedButton" destination="rYU-oC-r6m" id="rol-SH-bot"/>
+                <outlet property="likedLabel" destination="DY9-Qh-R51" id="pkz-qc-VBK"/>
                 <outlet property="userBy" destination="TVq-JE-VHF" id="rDl-6H-ll9"/>
                 <outlet property="welcomeButton" destination="abP-rZ-6tN" id="UKe-az-utw"/>
-                <outlet property="welcomePanel" destination="GPD-4Q-ygc" id="yxJ-VV-Eur"/>
+                <outlet property="welcomePanel" destination="GPD-4Q-ygc" id="ot3-1L-5FQ"/>
+                <outlet property="yappedButton" destination="8Wn-yI-L2s" id="Mkf-XZ-Wg3"/>
+                <outlet property="yappedLabel" destination="mGq-O7-tRm" id="UWr-5B-qcn"/>
+                <outlet property="yappedPanel" destination="Ucu-3s-usB" id="9dd-Bm-Ym1"/>
             </connections>
         </tableViewCell>
     </objects>

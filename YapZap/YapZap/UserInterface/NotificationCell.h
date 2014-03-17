@@ -21,5 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *likePanel;
 @property (weak, nonatomic) IBOutlet UIButton *welcomeButton;
 @property (weak, nonatomic) IBOutlet UIView *welcomePanel;
+@property (weak, nonatomic) IBOutlet UIView *yappedPanel;
+@property (weak, nonatomic) IBOutlet UILabel *yappedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *yappedButton;
+@property (weak, nonatomic) IBOutlet UILabel *likedLabel;
 
 @end
