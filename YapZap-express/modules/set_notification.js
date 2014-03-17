@@ -111,7 +111,6 @@ exports.addNotificationForComment = function(Models, username_by, recording_pare
     });
 }
 
-
 exports.notifyFriends = function(Models, newRecording, type){
     console.log("Notifying friends...");
 
@@ -123,28 +122,46 @@ exports.notifyFriends = function(Models, newRecording, type){
         }
         var i=0;
         for (i=0;i<friends.length;i++){
-
+            var friend = friends[i];
+            console.log("notifying friend: "+friend.friend_id);
             Models.Notification.find({
-                username_for:friends[i].friend_id,
-                username_by : newRecording.username
+                username_for: friend.friend_id,
+                username_by : newRecording.username,
+                recording_id : newRecording._id
             }).exec(function(err, notifications){
+                console.log("found these notifications: "+notifications);
                 if (!notifications || notifications.length===0){
-                    var notification = new Models.Notification({
-                        username_for : friends[i].friend_id,
-                        username_by : newRecording.username,
-                        tag_name: newRecording.tag_name,
-                        mood: newRecording.mood,
-                        intensity: newRecording.intensity,
-                        recording_id : newRecording._id,
-                        type:"FRIEND_"+type
+                    console.log("found no notifications for this recording and friend id");
+                    console.log("Looking for tag with name "+newRecording.tag_name);
+
+                    //get tag information
+                    Models.Tag.find({
+                        name:newRecording.tag_name
+                    }).exec(function(err, tags){
+
+                        if (!tags || tags.length===0){
+                            return;
+                        }
+                        var tag = tags[0];
+                        console.log("found tag with name "+tag.name);
+
+                        var notification = new Models.Notification({
+                            username_for : friend.friend_id,
+                            username_by : newRecording.username,
+                            tag_name: tag.name,
+                            mood: tag.mood,
+                            intensity: tag.intensity,
+                            recording_id : newRecording._id,
+                            type:"FRIEND_"+type
+                        });
+
+                        notification.save();
+
+                        console.log("creating new notification for friend");
+                        console.log(notification);
                     });
-
-                    notification.save();
-
-                    console.log("creating new notification for friend");
-                    console.log(notification);
                 }
-            })
+            });
         }
     });
 }
