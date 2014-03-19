@@ -39,7 +39,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.splashScreen = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LaunchImage_IPhone5.png"]];
-    [self.splashScreen setContentMode:UIViewContentModeScaleAspectFit];
+    [self.splashScreen setContentMode:UIViewContentModeScaleAspectFill];
     self.splashScreen.frame = self.window.bounds;
     [self.window addSubview:self.splashScreen];
     [self.window makeKeyAndVisible];

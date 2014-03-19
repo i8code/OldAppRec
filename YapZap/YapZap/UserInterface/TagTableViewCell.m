@@ -181,9 +181,9 @@
             [self.playButton setImage:[UIImage imageNamed:@"stop_button_small.png"] forState:UIControlStateNormal];
             break;
             
-//        case MA_STOPPED:
-//            [self.playButton setImage:[UIImage imageNamed:@"redo_button.png"] forState:UIControlStateNormal];
-//            break;
+        case MA_STOPPED:
+            [self stopPlaying];
+            break;
             
         default:
             break;
