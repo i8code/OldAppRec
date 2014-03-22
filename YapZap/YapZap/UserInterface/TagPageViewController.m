@@ -221,7 +221,7 @@ static NSString* requestedRecording;
     }
     
     if (found){
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+        NSIndexPath *indexPath;// = [NSIndexPath indexPathForRow:j inSection:i];
         
         if (comment){ //Make sure the cell is Expanded
             indexPath = [NSIndexPath indexPathForRow:(j+2) inSection:i];
@@ -261,7 +261,7 @@ static NSString* requestedRecording;
     }
     
     if (found){
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+        NSIndexPath *indexPath;// = [NSIndexPath indexPathForRow:j inSection:i];
         
         if (comment){ //Make sure the cell is Expanded
             indexPath = [NSIndexPath indexPathForRow:(j+2) inSection:i];

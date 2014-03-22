@@ -51,6 +51,7 @@
     [self registerForAudioObjectNotifications];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     self.player = [MasterAudioPlayer instance];
+    [self.player setUpHeadsetListener];
     
     /*NSArray* recordings = [DataSource getRecordingsForTagName:@"familyguy"];
     [self.player play:recordings[0] fromTagSet:recordings];
@@ -58,7 +59,7 @@
     return YES;*/
     
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [TestFlight takeOff:@"0b2d5b64-2406-45ef-8532-50cb4c43d8b5"];
+        [TestFlight takeOff:@"e1a305e1-e4eb-47d7-9c7c-108accb8f261"];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         [DataSource getTimezoneOffset];

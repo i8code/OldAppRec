@@ -146,6 +146,7 @@
 		C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79EF6F618A66D8B00AA1BDE /* QuartzCore.framework */; };
 		C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */; };
 		C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */; };
+		C7C0CCA218DE4213001CDBF6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C0CCA118DE4213001CDBF6 /* MediaPlayer.framework */; };
 		C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D764BB18B2B18D007B86B2 /* Tag.m */; };
 		C7D81A7A18C6AC1500FC3937 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D81A7918C6AC1500FC3937 /* Notification.m */; };
 /* End PBXBuildFile section */
@@ -660,6 +661,7 @@
 		C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredImageView.h; path = UserInterface/FilteredImageView.h; sourceTree = "<group>"; };
 		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
 		C7A9B60C18CCDF1500A238DA /* StopPlaybackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopPlaybackDelegate.h; sourceTree = "<group>"; };
+		C7C0CCA118DE4213001CDBF6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C7D764BA18B2B18D007B86B2 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Models/Tag.h; sourceTree = "<group>"; };
 		C7D764BB18B2B18D007B86B2 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Models/Tag.m; sourceTree = "<group>"; };
 		C7D81A7818C6AC1500FC3937 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = Models/Notification.h; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C0CCA218DE4213001CDBF6 /* MediaPlayer.framework in Frameworks */,
 				C72C1DBA18AAFB43006D136F /* SystemConfiguration.framework in Frameworks */,
 				C7965CF418D4D0250023B5B5 /* libsqlite3.dylib in Frameworks */,
 				C7965CFD18D4D0E10023B5B5 /* libLocalyticsAMP_x64.a in Frameworks */,
@@ -823,6 +826,7 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7C0CCA118DE4213001CDBF6 /* MediaPlayer.framework */,
 				C7965CF718D4D0D20023B5B5 /* Localytics */,
 				C7965CF318D4D0250023B5B5 /* libsqlite3.dylib */,
 				C7965CF118D4D0130023B5B5 /* AdSupport.framework */,
@@ -2263,7 +2267,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jrboggess/dev/FacebookSDK,
@@ -2280,7 +2284,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33460977-3B0C-4710-8EC9-DF60E2FF9E60";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2291,7 +2295,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rachel Steinberg (D3B9Z79FQN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jrboggess/dev/FacebookSDK,
@@ -2308,7 +2312,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33460977-3B0C-4710-8EC9-DF60E2FF9E60";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

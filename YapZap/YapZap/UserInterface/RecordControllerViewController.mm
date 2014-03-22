@@ -146,6 +146,7 @@
     self.timer = nil;
     [self.recorder stop];
     self.recordingInfo = [self.recorder lastInfo];
+    [[SharingBundle getCurrentSharingBundle] setRecordingInfo:self.recordingInfo];
     
     
     
