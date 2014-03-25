@@ -119,10 +119,11 @@ app.get('/app', function(req, res) {
 
 
 var fs = require('fs');
+var ca  = fs.readFileSync('../certs/RapidSSL_CA_bundle.pem', 'utf8');
 var privateKey  = fs.readFileSync('../certs/yapzap.me.key', 'utf8');
 var certificate = fs.readFileSync('../certs/yapzap.me.crt', 'utf8');
 
-var credentials = {key: privateKey, cert: certificate};
+var credentials = {ca:ca, key: privateKey, cert: certificate};
 
 https.createServer(credentials, app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
