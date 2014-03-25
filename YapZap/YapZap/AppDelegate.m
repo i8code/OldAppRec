@@ -178,6 +178,12 @@
     }
 }
 
+#ifdef DEBUG
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
+    
+}
+#endif
+
 // This method will handle ALL the session state changes in the app
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
@@ -360,4 +366,17 @@
         }
     }
 }
+
 @end
+
+
+#ifdef DEBUG
+
+@implementation NSURLRequest(DataController)
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
+{
+    return YES;
+}
+@end
+
+#endif

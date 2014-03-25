@@ -9,6 +9,25 @@
 #import "RestHelper.h"
 #import "AuthHelper.h"
 #import "Reachability.h"
+#import "UIAlertView+Blocks.h"
+
+
+#ifdef DEBUG
+@interface SSLIgnorer : NSObject <NSURLConnectionDelegate>
+-(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+@end
+
+@implementation SSLIgnorer
+
+-(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
+    SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+    return [[challenge sender] useCredential:[NSURLCredential credentialForTrust:serverTrust]
+                  forAuthenticationChallenge:challenge];
+}
+
+@end
+
+#endif
 
 @implementation RestHelper
 
@@ -69,13 +88,16 @@
     
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet to use this app."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"Connection Error" message:@"You must be connected to the internet to use this app." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
+                exit(EXIT_FAILURE);
+            }];
+            
+        });
         return nil;
+
     }
     
     NSURL* url = [self getFullPath:path withQuery:query];
@@ -95,15 +117,19 @@
     NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
     if([responseCode statusCode] >= 400){
-        NSLog(@"Error getting %@, HTTP status code %li", url, (long)[responseCode statusCode]);
+        NSString* error = [NSString stringWithFormat:@"Error getting %@. HTTP status code %li", url, (long)[responseCode statusCode]];
+        NSLog(@"%@", error);
+        [[LocalyticsSession shared] tagEvent:error];
         return nil;
     }
-    else if (!oResponseData){
-        NSLog(@"Server data was nil: %@", url);
+    else if (!oResponseData && [type isEqualToString:@"GET"]){
+        NSString* error = [NSString stringWithFormat:@"Server data was nil from %@. HTTP status code %li", url, (long)[responseCode statusCode]];
+        NSLog(@"%@", error);
+        [[LocalyticsSession shared] tagEvent:error];
         return nil;
     }
     
-    NSString* response =[[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    NSString* response = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
     NSLog(@"Response:\n%@\n", response);
     
     return response;
