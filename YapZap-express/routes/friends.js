@@ -12,7 +12,6 @@ exports.submitFriends = function(Models) {
         if (!Security.check(req, res)) return;
 
         var name = req.params.name;
-        debugger;
 
         if (!name){
             res.send(404);
@@ -39,7 +38,7 @@ exports.submitFriends = function(Models) {
                     }
                 );
                 friend.save();
-                console.log(friend);
+                // console.log(friend);
             }
 
         });
