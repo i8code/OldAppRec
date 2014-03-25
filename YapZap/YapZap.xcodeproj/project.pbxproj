@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */; };
 		C701DBEA18C0190100FD407A /* RecordNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */; };
+		C703586718E1167700136370 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C703586618E1167700136370 /* UIAlertView+Blocks.m */; };
 		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
 		C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245A18B6CD6E00D1BEB0 /* Social.framework */; };
 		C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245C18B6CD7400D1BEB0 /* Twitter.framework */; };
@@ -229,6 +230,8 @@
 		C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordNewTableViewCell.m; path = UserInterface/RecordNewTableViewCell.m; sourceTree = "<group>"; };
 		C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordNewTableViewCell.xib; path = UserInterface/RecordNewTableViewCell.xib; sourceTree = "<group>"; };
 		C701DBEC18C1508400FD407A /* RecordingData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RecordingData.h; path = Communication/RecordingData.h; sourceTree = "<group>"; };
+		C703586518E1167700136370 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "UserInterface/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		C703586618E1167700136370 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "UserInterface/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
 		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
 		C706245A18B6CD6E00D1BEB0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -1542,6 +1545,8 @@
 			children = (
 				C79EF6F918A66DCF00AA1BDE /* MarqueeLabel.h */,
 				C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */,
+				C703586518E1167700136370 /* UIAlertView+Blocks.h */,
+				C703586618E1167700136370 /* UIAlertView+Blocks.m */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -1921,6 +1926,7 @@
 				C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
 				C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */,
+				C703586718E1167700136370 /* UIAlertView+Blocks.m in Sources */,
 				C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */,
 				C74A6CB018C255800086F78D /* MyRecordingsCell.m in Sources */,
 			);

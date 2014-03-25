@@ -98,6 +98,10 @@
         NSLog(@"Error getting %@, HTTP status code %li", url, (long)[responseCode statusCode]);
         return nil;
     }
+    else if (!oResponseData){
+        NSLog(@"Server data was nil: %@", url);
+        return nil;
+    }
     
     NSString* response =[[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
     NSLog(@"Response:\n%@\n", response);
