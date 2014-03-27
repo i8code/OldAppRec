@@ -94,7 +94,7 @@
     RecordingCoreData* recordingData = [CoreDataManager getRecordingData:self.recording._id];
     if (recordingData){
         [self.playButton setImage:[UIImage imageNamed:@"redo_button.png"] forState:UIControlStateNormal];
-        self.waveFormImage.highlightPercent = [recordingData.percent_played floatValue];
+        self.waveFormImage.highlightPercent = 0;
     }
     
 }

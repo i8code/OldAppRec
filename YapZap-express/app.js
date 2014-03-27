@@ -8,6 +8,9 @@ var http = require('http');
 var https = require('https');
 var path = require('path');
 
+http.globalAgent.maxSockets = 10000;
+https.globalAgent.maxSockets = 10000;
+
 //Models
 
 var Models = require('./schema/schema.js');
@@ -16,6 +19,7 @@ var Recording = Models.Recording;
 var Like = Models.Like;
 var Notification = Models.Notification;
 var Friend = Models.Friend;
+
 
 var app = express();
 
