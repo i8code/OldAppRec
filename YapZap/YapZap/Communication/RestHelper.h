@@ -18,5 +18,4 @@
 +(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query;
 +(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query;
 +(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query;
-
 @end

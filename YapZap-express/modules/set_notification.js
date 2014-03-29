@@ -120,9 +120,8 @@ exports.notifyFriends = function(Models, newRecording, type){
         if (!friends || friends.length===0){
             return;
         }
-        var i=0;
-        for (i=0;i<friends.length;i++){
-            var friend = friends[i];
+        friends.forEach(function(friend){
+
             console.log("notifying friend: "+friend.friend_id);
             Models.Notification.find({
                 username_for: friend.friend_id,
@@ -162,6 +161,6 @@ exports.notifyFriends = function(Models, newRecording, type){
                     });
                 }
             });
-        }
+        });
     });
 }

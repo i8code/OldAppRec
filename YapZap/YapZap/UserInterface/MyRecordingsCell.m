@@ -154,7 +154,9 @@
     if (buttonIndex == 1){
         //Delete me
         NSString* path = [NSString stringWithFormat:@"/recordings/%@", self.recording._id];
-        [RestHelper del:path withQuery:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [RestHelper del:path withQuery:nil];
+        });
         [self.parent refresh];
         [[LocalyticsSession shared] tagEvent:@"Deleted a recording"];
     }

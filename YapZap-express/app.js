@@ -8,6 +8,9 @@ var http = require('http');
 var https = require('https');
 var path = require('path');
 
+http.globalAgent.maxSockets = 10000;
+https.globalAgent.maxSockets = 10000;
+
 //Models
 
 var Models = require('./schema/schema.js');
@@ -17,6 +20,7 @@ var Like = Models.Like;
 var Notification = Models.Notification;
 var Friend = Models.Friend;
 
+
 var app = express();
 
 // all environments
@@ -24,12 +28,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
-app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
@@ -53,7 +53,7 @@ var like_routes = require('./routes/likes');
 var notification_routes = require('./routes/notifications');
 var friend_routes = require('./routes/friends');
 
-app.get('/', routes.index);
+app.get('/', express.static(__dirname + '/public'));
 
 //Tags
 app.get('/tags', tag_routes.getAll(Models));
@@ -119,15 +119,30 @@ app.get('/app', function(req, res) {
 
 
 var fs = require('fs');
+var ca  = fs.readFileSync('../certs/RapidSSL_CA_bundle.pem', 'utf8');
 var privateKey  = fs.readFileSync('../certs/yapzap.me.key', 'utf8');
 var certificate = fs.readFileSync('../certs/yapzap.me.crt', 'utf8');
 
-var credentials = {key: privateKey, cert: certificate};
+var credentials = {ca:ca, key: privateKey, cert: certificate};
 
 https.createServer(credentials, app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+
+//Read the blacklist
+var lazy = require("lazy");
+var fs = require("fs");
+
+Models.BlackList.remove();
+
+new lazy(fs.createReadStream('./blacklist'))
+     .lines
+     .forEach(function(line){
+        var b = new Models.BlackList({username:line});
+        b.save();
+     }
+ );
 
 // Recording.remove({username:"FB(null)_(null)"}, function(err){
 

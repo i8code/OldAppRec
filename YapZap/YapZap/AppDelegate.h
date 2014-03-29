@@ -15,5 +15,6 @@
 -(void)goToLoginView;
 -(void)goToHomeView;
 -(void)gotoLoadingView;
-
+- (void)connection:(NSURLConnection *)connection
+didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
 @end

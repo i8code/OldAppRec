@@ -9,6 +9,25 @@
 #import "RestHelper.h"
 #import "AuthHelper.h"
 #import "Reachability.h"
+#import "UIAlertView+Blocks.h"
+
+
+#ifdef DEBUG
+@interface SSLIgnorer : NSObject <NSURLConnectionDelegate>
+-(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+@end
+
+@implementation SSLIgnorer
+
+-(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
+    SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+    return [[challenge sender] useCredential:[NSURLCredential credentialForTrust:serverTrust]
+                  forAuthenticationChallenge:challenge];
+}
+
+@end
+
+#endif
 
 @implementation RestHelper
 
@@ -69,13 +88,16 @@
     
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet to use this app."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"Connection Error" message:@"You must be connected to the internet to use this app." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
+                exit(EXIT_FAILURE);
+            }];
+            
+        });
         return nil;
+
     }
     
     NSURL* url = [self getFullPath:path withQuery:query];
@@ -94,12 +116,30 @@
     
     NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
-    if([responseCode statusCode] >= 400){
-        NSLog(@"Error getting %@, HTTP status code %li", url, (long)[responseCode statusCode]);
+    if ([responseCode statusCode] == 403){
+        //user has been blacklisted
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"Account Banned" message:@"We're sorry, but you have been banned from this app for inappropriate behavior. If you believe you have been banned in error, please contact admin@yapzap.me." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [[LocalyticsSession shared] tagEvent:@"User banned"];
+                exit(EXIT_FAILURE);
+            }];
+            
+        });
+    }
+    else if([responseCode statusCode] >= 400){
+        NSString* error = [NSString stringWithFormat:@"Error getting %@. HTTP status code %li", url, (long)[responseCode statusCode]];
+        NSLog(@"%@", error);
+        [[LocalyticsSession shared] tagEvent:error];
+        return nil;
+    }
+    else if (!oResponseData && [type isEqualToString:@"GET"]){
+        NSString* error = [NSString stringWithFormat:@"Server data was nil from %@. HTTP status code %li", url, (long)[responseCode statusCode]];
+        NSLog(@"%@", error);
+        [[LocalyticsSession shared] tagEvent:error];
         return nil;
     }
     
-    NSString* response =[[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    NSString* response = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
     NSLog(@"Response:\n%@\n", response);
     
     return response;

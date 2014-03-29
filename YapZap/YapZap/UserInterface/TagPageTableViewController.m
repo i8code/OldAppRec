@@ -12,6 +12,7 @@
 #import "TagTableViewCell.h"
 #import "DataSource.h"
 #import "RecordNewTableViewCell.h"
+#import "MasterAudioPlayer.h"
 
 @interface TagPageTableViewController ()
 
@@ -45,9 +46,13 @@
 
 - (void)refresh
 {
-    [self setRecordings:[DataSource getRecordingsForTagName:self.tagName]];
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self setRecordings:[DataSource getRecordingsForTagName:self.tagName]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 //- (void)updateTable
 //{
@@ -295,7 +300,7 @@
     }
 }
 
-
+/*
 -(void)playNext:(TagTableViewCell*)sender{
     NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
     if (sender.comment){
@@ -308,13 +313,11 @@
     TagTableViewCell* cell = (TagTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     [cell playClicked:cell];
 }
-
+*/
 -(void)playAll{
     if (!self.recordings || !self.recordings.count){
         return;
     }
-    NSIndexPath* indexPath =  [NSIndexPath indexPathForRow:0 inSection:0];
-    TagTableViewCell* cell = (TagTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    [cell playClicked:cell];
+    [[MasterAudioPlayer instance] play:(Recording*)self.recordings[0] fromTagSet:self.recordings ];
 }
 @end

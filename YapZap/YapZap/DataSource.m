@@ -14,6 +14,8 @@
 #import "Notification.h"
 #import "User.h"
 #import "AuthHelper.h"
+#import "UIAlertView+Blocks.h"
+#import "LocalyticsSession.h"
 
 @interface DataSource()
 
@@ -27,6 +29,17 @@ static NSMutableArray* tagNames;
 
 +(void)getTimezoneOffset{
     NSString* timezoneOffsetStr = [RestHelper get:@"/time" withQuery:nil];
+    if (!timezoneOffsetStr ){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"Connection Error" message:@"Could not connect to the YapZap server. Please try again later." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
+                exit(EXIT_FAILURE);
+            }];
+            
+        });
+        return;
+    }
+    [[LocalyticsSession shared] tagEvent:@"Connected to server"];
     long response = [timezoneOffsetStr longLongValue];
     long t = (long)[[NSDate date] timeIntervalSince1970];
     [AuthHelper setTimeOffset:(response-t)];

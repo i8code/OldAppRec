@@ -18,28 +18,40 @@ exports.submitFriends = function(Models) {
             return;
         }
 
-        res.send(201);
+        var id = name.split('_')[0];
 
-        //remove existing friends list
-        Models.Friend.remove({friend_of:name}, function(err){
-            if (err){
-                console.log(err);
+        Models.BlackList.find({username:id}, function(err, blacklist){
+
+            if (blacklist && blacklist.length){
+                //User on the blacklist
+                res.send(403);
                 return;
             }
-            var friends = req.body;
-            var i=0;
-            var friend;
-            for (i=0;i<friends.length;i++){
-               friend = friends[i];
-               var friend = new Models.Friend(
-                    {
-                        friend_id:friend,
-                        friend_of:name
-                    }
-                );
-                friend.save();
-                // console.log(friend);
-            }
+
+            res.send(201);
+
+            //remove existing friends list
+            Models.Friend.remove({friend_of:name}, function(err){
+                if (err){
+                    console.log(err);
+                    return;
+                }
+                var friends = req.body;
+                var i=0;
+                var friend;
+                for (i=0;i<friends.length;i++){
+                   friend = friends[i];
+                   var friend = new Models.Friend(
+                        {
+                            friend_id:friend,
+                            friend_of:name
+                        }
+                    );
+                    friend.save();
+                    // console.log(friend);
+                }
+
+            });
 
         });
 

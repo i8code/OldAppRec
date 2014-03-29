@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C701DBE818C018EB00FD407A /* RecordNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */; };
 		C701DBEA18C0190100FD407A /* RecordNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */; };
+		C703586718E1167700136370 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C703586618E1167700136370 /* UIAlertView+Blocks.m */; };
 		C706245018B5763A00D1BEB0 /* YapZapMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */; };
 		C706245B18B6CD6E00D1BEB0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245A18B6CD6E00D1BEB0 /* Social.framework */; };
 		C706245D18B6CD7400D1BEB0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C706245C18B6CD7400D1BEB0 /* Twitter.framework */; };
@@ -24,6 +25,7 @@
 		C70DB6E718C80F81000BED16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70DB6E618C80F81000BED16 /* CoreData.framework */; };
 		C70DB6EA18C819DA000BED16 /* RecordingCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = C70DB6E918C819DA000BED16 /* RecordingCoreData.m */; };
 		C70DB6ED18C93B81000BED16 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = C70DB6EC18C93B81000BED16 /* Player.m */; };
+		C715B48218E6FF5E00C0630D /* flag_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C715B48118E6FF5E00C0630D /* flag_icon.png */; };
 		C7273A5118D52A220003A930 /* LaunchImage_IPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */; };
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
@@ -146,6 +148,7 @@
 		C79EF6F718A66D8B00AA1BDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79EF6F618A66D8B00AA1BDE /* QuartzCore.framework */; };
 		C79EF6FB18A66DCF00AA1BDE /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */; };
 		C79EF6FE18A67D2400AA1BDE /* FilteredImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */; };
+		C7C0CCA218DE4213001CDBF6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C0CCA118DE4213001CDBF6 /* MediaPlayer.framework */; };
 		C7D764BC18B2B18D007B86B2 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D764BB18B2B18D007B86B2 /* Tag.m */; };
 		C7D81A7A18C6AC1500FC3937 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D81A7918C6AC1500FC3937 /* Notification.m */; };
 /* End PBXBuildFile section */
@@ -228,6 +231,8 @@
 		C701DBE718C018EB00FD407A /* RecordNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordNewTableViewCell.m; path = UserInterface/RecordNewTableViewCell.m; sourceTree = "<group>"; };
 		C701DBE918C0190100FD407A /* RecordNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordNewTableViewCell.xib; path = UserInterface/RecordNewTableViewCell.xib; sourceTree = "<group>"; };
 		C701DBEC18C1508400FD407A /* RecordingData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RecordingData.h; path = Communication/RecordingData.h; sourceTree = "<group>"; };
+		C703586518E1167700136370 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "UserInterface/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		C703586618E1167700136370 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "UserInterface/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		C706244E18B5763A00D1BEB0 /* YapZapMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YapZapMainViewController.h; path = UserInterface/YapZapMainViewController.h; sourceTree = "<group>"; };
 		C706244F18B5763A00D1BEB0 /* YapZapMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YapZapMainViewController.m; path = UserInterface/YapZapMainViewController.m; sourceTree = "<group>"; };
 		C706245A18B6CD6E00D1BEB0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -253,6 +258,7 @@
 		C70DB6EB18C93B81000BED16 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Communication/Player.h; sourceTree = "<group>"; };
 		C70DB6EC18C93B81000BED16 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = Communication/Player.m; sourceTree = "<group>"; };
 		C70DB80F18CB6C04000BED16 /* SearchDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchDelegate.h; sourceTree = "<group>"; };
+		C715B48118E6FF5E00C0630D /* flag_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag_icon.png; sourceTree = "<group>"; };
 		C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage_IPhone5.png; sourceTree = "<group>"; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
@@ -660,6 +666,7 @@
 		C79EF6FC18A67D2400AA1BDE /* FilteredImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredImageView.h; path = UserInterface/FilteredImageView.h; sourceTree = "<group>"; };
 		C79EF6FD18A67D2400AA1BDE /* FilteredImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredImageView.m; path = UserInterface/FilteredImageView.m; sourceTree = "<group>"; };
 		C7A9B60C18CCDF1500A238DA /* StopPlaybackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopPlaybackDelegate.h; sourceTree = "<group>"; };
+		C7C0CCA118DE4213001CDBF6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C7D764BA18B2B18D007B86B2 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Models/Tag.h; sourceTree = "<group>"; };
 		C7D764BB18B2B18D007B86B2 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Models/Tag.m; sourceTree = "<group>"; };
 		C7D81A7818C6AC1500FC3937 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = Models/Notification.h; sourceTree = "<group>"; };
@@ -671,6 +678,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C0CCA218DE4213001CDBF6 /* MediaPlayer.framework in Frameworks */,
 				C72C1DBA18AAFB43006D136F /* SystemConfiguration.framework in Frameworks */,
 				C7965CF418D4D0250023B5B5 /* libsqlite3.dylib in Frameworks */,
 				C7965CFD18D4D0E10023B5B5 /* libLocalyticsAMP_x64.a in Frameworks */,
@@ -823,6 +831,7 @@
 		C7371F3918A1DFEE007FB490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7C0CCA118DE4213001CDBF6 /* MediaPlayer.framework */,
 				C7965CF718D4D0D20023B5B5 /* Localytics */,
 				C7965CF318D4D0250023B5B5 /* libsqlite3.dylib */,
 				C7965CF118D4D0130023B5B5 /* AdSupport.framework */,
@@ -1538,6 +1547,8 @@
 			children = (
 				C79EF6F918A66DCF00AA1BDE /* MarqueeLabel.h */,
 				C79EF6FA18A66DCF00AA1BDE /* MarqueeLabel.m */,
+				C703586518E1167700136370 /* UIAlertView+Blocks.h */,
+				C703586618E1167700136370 /* UIAlertView+Blocks.m */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -1565,6 +1576,7 @@
 		C7CF287618A1F0F90053DB9C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C715B48118E6FF5E00C0630D /* flag_icon.png */,
 				C732665D18D65EDB0027AE96 /* logo-white.png */,
 				C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */,
 				C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */,
@@ -1813,6 +1825,7 @@
 				C75E7B9B18BC3B2200160720 /* zeus elements-13.png in Resources */,
 				C75E7B8918BC3B0B00160720 /* background.png in Resources */,
 				C706247818B9371000D1BEB0 /* TagPageViewController.xib in Resources */,
+				C715B48218E6FF5E00C0630D /* flag_icon.png in Resources */,
 				C75E7B8718BC3B0B00160720 /* home_icon.png in Resources */,
 				C75E7B8318BC3B0B00160720 /* play_icon_filled.png in Resources */,
 				C747FC4B18A816660083A533 /* SearchViewController.xib in Resources */,
@@ -1917,6 +1930,7 @@
 				C75E7BB118BF69DA00160720 /* TagPageTableViewController.m in Sources */,
 				C72C1DA918AAE8B2006D136F /* AudioFileWriter.m in Sources */,
 				C75E7BAC18BC3C4D00160720 /* YapZapModalViewController.m in Sources */,
+				C703586718E1167700136370 /* UIAlertView+Blocks.m in Sources */,
 				C7965CE818D279760023B5B5 /* RecordingFill.m in Sources */,
 				C74A6CB018C255800086F78D /* MyRecordingsCell.m in Sources */,
 			);
@@ -2263,7 +2277,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jrboggess/dev/FacebookSDK,
@@ -2280,7 +2294,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33460977-3B0C-4710-8EC9-DF60E2FF9E60";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2291,7 +2305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rachel Steinberg (D3B9Z79FQN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jrboggess/dev/FacebookSDK,
@@ -2308,7 +2322,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33460977-3B0C-4710-8EC9-DF60E2FF9E60";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

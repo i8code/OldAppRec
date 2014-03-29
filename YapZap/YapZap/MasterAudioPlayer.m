@@ -7,12 +7,12 @@
 //
 
 #import "MasterAudioPlayer.h"
-#import "DataSource.h"
 #import "Recording.h"
 #import "S3Helper.h"
 #import "MasterAudioPlayerCallbackData.h"
 #import "MasterPlayerListener.h"
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MasterAudioPlayer()
 @property (nonatomic, strong) NSArray* recordingSet;
@@ -78,6 +78,23 @@
     
 }
 
+-(void)setMediaInformation{
+    Class playingInfoCenter = NSClassFromString(@"MPNowPlayingInfoCenter");
+    
+    Recording* rec = self.recordingSet[self.currentRecording];
+
+    if (playingInfoCenter) {
+        MPNowPlayingInfoCenter *center = [MPNowPlayingInfoCenter defaultCenter];
+        NSDictionary *songInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  rec.tagName, MPMediaItemPropertyTitle,
+                                  [Util trimUsername:rec.username ], MPMediaItemPropertyArtist,
+                                  [NSNumber numberWithLong:(self.currentRecording+1)], MPMediaItemPropertyAlbumTrackNumber,
+                                  [NSNumber numberWithLong:self.recordingSet.count], MPMediaItemPropertyAlbumTrackCount,
+                                  @"YapZap", MPMediaItemPropertyAlbumTitle,
+                                  nil];
+        center.nowPlayingInfo = songInfo;
+    }
+}
 
 -(void)playCurrent{
     if (!self.recordingSet || self.recordingSet.count==0){
@@ -93,6 +110,7 @@
     }
     self.currentRecording = i;
     self.state = MA_DOWNLOADING;
+    [self setMediaInformation];
     if (!self.timer){
         self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(tick) userInfo:nil repeats:YES];
         
@@ -202,4 +220,35 @@
     self.state = MA_STOPPED;
 }
 
+-(void)setUpHeadsetListener{
+    AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, audioSessionPropertyListener, nil);
+}
+
+BOOL isHeadsetPluggedIn()
+{
+    UInt32 routeSize = sizeof (CFStringRef);
+    CFStringRef route;
+    
+    OSStatus error = AudioSessionGetProperty (kAudioSessionProperty_AudioRoute,
+                                              &routeSize,
+                                              &route
+                                              );
+    NSLog(@"%@", route);
+    return (!error && (route != NULL) && ([(__bridge  NSString*)route rangeOfString:@"Head"].location != NSNotFound));
+}
+
+void audioSessionPropertyListener(void* inClientData, AudioSessionPropertyID inID,UInt32 inDataSize, const void* inData)
+{
+    if (!isHeadsetPluggedIn())
+    {
+        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    }
+    else
+    {
+        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_None;
+        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
+    }
+    
+}
 @end

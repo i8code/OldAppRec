@@ -242,7 +242,11 @@
     self.parent.homeButton.hidden=YES;
     self.parent.background.filterColor = nil;
     [SharingBundle clear];
-    [DataSource refreshTagNames];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [DataSource refreshTagNames];
+    });
+    
     
     NSTimeInterval time = ABS([self.startTime timeIntervalSinceNow]);
     if (time>300){ //Greater than 5 minutes
@@ -258,8 +262,13 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)gotoTagWithName:(NSString*)name{
-    Tag* tag = [DataSource getTagByName:name];
-    self.gotoTagBlock(tag);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        Tag* tag = [DataSource getTagByName:name];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.gotoTagBlock(tag);
+        });
+        
+    });
 }
 - (void)swipedRight:(UIGestureRecognizer*)recognizer {
     self.gotoTagBlock([DataSource getNextPopularTag]);
