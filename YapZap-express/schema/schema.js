@@ -137,11 +137,18 @@ var friendSchema = new mongoose.Schema({
     }
 });
 
+var blackListSchema = new mongoose.Schema({
+    username : {
+        type: String,
+    }
+});
+
 module.exports.Recording = mongoose.model('Recordings', recordingSchema);
 module.exports.Tag = mongoose.model('Tags', tagSchema);
 module.exports.Like = mongoose.model('Likes', likeSchema);
 module.exports.Notification = mongoose.model('Notification', notificationSchema);
 module.exports.AudioMap = mongoose.model('AudioMap', audioMapSchema);
 module.exports.Friend = mongoose.model('Friend', friendSchema);
+module.exports.BlackList = mongoose.model('BlackList', blackListSchema);
 
 module.exports.mongoose = mongoose;

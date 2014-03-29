@@ -130,6 +130,20 @@ https.createServer(credentials, app).listen(app.get('port'), function(){
 });
 
 
+//Read the blacklist
+var lazy = require("lazy");
+var fs = require("fs");
+
+Models.BlackList.remove();
+
+new lazy(fs.createReadStream('./blacklist'))
+     .lines
+     .forEach(function(line){
+        var b = new Models.BlackList({username:line});
+        b.save();
+     }
+ );
+
 // Recording.remove({username:"FB(null)_(null)"}, function(err){
 
 // });

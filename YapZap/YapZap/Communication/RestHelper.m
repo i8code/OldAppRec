@@ -116,7 +116,17 @@
     
     NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
-    if([responseCode statusCode] >= 400){
+    if ([responseCode statusCode] == 403){
+        //user has been blacklisted
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"Account Banned" message:@"We're sorry, but you have been banned from this app for inappropriate behavior. If you believe you have been banned in error, please contact admin@yapzap.me." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [[LocalyticsSession shared] tagEvent:@"User banned"];
+                exit(EXIT_FAILURE);
+            }];
+            
+        });
+    }
+    else if([responseCode statusCode] >= 400){
         NSString* error = [NSString stringWithFormat:@"Error getting %@. HTTP status code %li", url, (long)[responseCode statusCode]];
         NSLog(@"%@", error);
         [[LocalyticsSession shared] tagEvent:error];

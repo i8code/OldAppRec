@@ -22,6 +22,7 @@
 #import "RecordingCoreData.h"
 #import "Recording.h"
 #import "MasterAudioPlayer.h"
+#import <MessageUI/MessageUI.h>
 
 @interface TagTableViewCell()
 @property (nonatomic) BOOL isPlaying;
@@ -194,6 +195,36 @@
         [self.waveFormImage setNeedsDisplay];
     }
 
+}
+
+- (IBAction)flagPressed:(id)sender {
+    
+/*Subj: Report item <tag>, <item ID>
+Body: Whose yap are you reporting? _________________________
+    Is it a yap or a comment? _________________________
+    Reason for report: _________________________
+        Anything else we should know?: _________________________*/
+    NSString *emailTitle = [NSString stringWithFormat:@"Report %@ - %@", self.recording.tagName, [Util trimUsername:self.recording.username ]];
+    NSString *uuid = [NSString stringWithFormat:@"%@+%@", self.recording.audioHash, self.recording._id];
+    NSString *messageBody =   [NSString stringWithFormat:@" \
+                                <p>Let us know why you chose to flag this post and we'll respond to your concern within 24 hours.</p> \
+                                <h4>Reason for report:</h4><p><ul><li></li></ul></p> \
+                                <h4>Comments:</h4><p><ul><li></li></ul></p><p></p><hr/>%@", uuid];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"admin@yapzap.me"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:YES];
+    [mc setToRecipients:toRecipents];
+    
+    // Present mail view controller on screen
+    [self.parentTagViewController presentViewController:mc animated:YES completion:nil];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    [self.parentTagViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

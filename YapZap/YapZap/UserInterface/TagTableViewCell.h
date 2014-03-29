@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterAudioPlayerCallbackData.h"
+#import <MessageUI/MessageUI.h>
 
 @class Recording;
 @class FilteredImageView;
@@ -15,7 +16,7 @@
 @class WaveformView;
 @class TagPageViewController;
 
-@interface TagTableViewCell : UITableViewCell
+@interface TagTableViewCell : UITableViewCell<MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @property (strong, nonatomic) Recording* recording;
@@ -42,6 +43,7 @@
 - (IBAction)playClicked:(id)sender;
 -(void)stopPlaying;
 -(void)setState:(MasterAudioPlayerCallbackData*)data;
+- (IBAction)flagPressed:(id)sender;
 
 
 -(void)highlight;
