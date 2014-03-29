@@ -1,2 +1,9 @@
 .DS_STORE
 YapZap-express/node_modules/*
+Builds/
+Builds/*
+YapZap/YapZap.xcodeproj/
+YapZap/YapZap.xcodeproj/*
+certs/
+express.zip
+yapzap.me.csr

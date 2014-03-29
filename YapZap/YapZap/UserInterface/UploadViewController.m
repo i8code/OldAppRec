@@ -13,7 +13,6 @@
 #import "RestHelper.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Social/Social.h>
-#import "RestHelper.h"
 #import "User.h"
 
 @interface UploadViewController ()
@@ -179,7 +178,7 @@
         
         //Now share on FB/Twitter
         
-        if ([Util shouldShareOnFB]){
+        if ([Util shouldShareOnFB] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
@@ -197,7 +196,7 @@
             });
         }
         
-        if ([Util shouldShareOnTW]){
+        if ([Util shouldShareOnTW]&& [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
             [self shareOnTW];
         }
         

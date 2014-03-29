@@ -208,12 +208,17 @@
         NSData* bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
         NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes", self.recording._id];
         
-        [RestHelper post:path withBody:bodyData andQuery:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [RestHelper post:path withBody:bodyData andQuery:nil];
+        });
     }
     else {
         [CoreDataManager unlike:self.recording._id];
         NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes/%@", self.recording._id, user.qualifiedUsername];
-        [RestHelper del:path withQuery:nil];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [RestHelper del:path withQuery:nil];
+        });
     }
 }
 

@@ -45,9 +45,13 @@
 
 - (void)refresh
 {
-    [self setRecordings:[DataSource getRecordingsForTagName:self.tagName]];
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self setRecordings:[DataSource getRecordingsForTagName:self.tagName]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 //- (void)updateTable
 //{
