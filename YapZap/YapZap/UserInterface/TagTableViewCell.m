@@ -213,13 +213,19 @@ Body: Whose yap are you reporting? _________________________
     NSArray *toRecipents = [NSArray arrayWithObject:@"admin@yapzap.me"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:YES];
-    [mc setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self.parentTagViewController presentViewController:mc animated:YES completion:nil];
+    if (mc==nil){
+        NSString* path = [NSString stringWithFormat:@"mailto:admin@yapzap.me?subject=%@&body=%@", emailTitle, messageBody];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:path]];
+    }
+    else {
+        mc.mailComposeDelegate = self;
+        [mc setSubject:emailTitle];
+        [mc setMessageBody:messageBody isHTML:YES];
+        [mc setToRecipients:toRecipents];
+        
+        // Present mail view controller on screen
+        [self.parentTagViewController presentViewController:mc animated:YES completion:nil];
+    }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{

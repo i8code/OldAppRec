@@ -80,6 +80,8 @@
 -(void)setTag:(Tag *)tag
 {
     _tag = tag;
+    
+    self.parent.recordButton.enabled = ![tag.name isEqualToString:@"welcome2yapzap"];
     [self loadRecordingsForTag];
 }
 

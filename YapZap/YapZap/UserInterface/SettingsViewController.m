@@ -215,13 +215,19 @@
     NSArray *toRecipents = [NSArray arrayWithObject:@"zeus@yapzap.me"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:YES];
-    [mc setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self presentViewController:mc animated:YES completion:NULL];
+    if (!mc){
+        NSString* path = [NSString stringWithFormat:@"mailto:admin@yapzap.me?subject=%@&body=%@", emailTitle, messageBody];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:path]];
+    }
+    else {
+        mc.mailComposeDelegate = self;
+        [mc setSubject:emailTitle];
+        [mc setMessageBody:messageBody isHTML:YES];
+        [mc setToRecipients:toRecipents];
+        
+        // Present mail view controller on screen
+        [self presentViewController:mc animated:YES completion:NULL];
+    }
 }
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -248,7 +254,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 - (IBAction)termsOfUseClicked:(id)sender {
-    NSURL* url = [NSURL URLWithString:@"http://goo.gl/zb7Qia"];
+    NSURL* url = [NSURL URLWithString:@"https://yapzap.me/terms"];
     [[UIApplication sharedApplication] openURL:url];
 }
 @end

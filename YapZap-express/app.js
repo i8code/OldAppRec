@@ -117,6 +117,10 @@ app.get('/app', function(req, res) {
   res.redirect('https://docs.google.com/forms/d/1QtgLdRske-o1vGzE06AbO_EGfBheouYr5-gEpcUXP3w/viewform');
 });
 
+app.get('/terms', function(req, res) {
+  res.redirect('https://docs.google.com/file/d/0Bx2vwtV2MNvMUUtYYmQyeTV6OU0/preview');
+});
+
 
 var fs = require('fs');
 var ca  = fs.readFileSync('../certs/RapidSSL_CA_bundle.pem', 'utf8');
@@ -134,15 +138,15 @@ https.createServer(credentials, app).listen(app.get('port'), function(){
 var lazy = require("lazy");
 var fs = require("fs");
 
-Models.BlackList.remove();
-
-new lazy(fs.createReadStream('./blacklist'))
-     .lines
-     .forEach(function(line){
-        var b = new Models.BlackList({username:line});
-        b.save();
-     }
- );
+Models.BlackList.remove({}, function(err) { 
+  new lazy(fs.createReadStream('./blacklist'))
+       .lines
+       .forEach(function(line){
+          var b = new Models.BlackList({username:line});
+          b.save();
+       }
+   );
+});
 
 // Recording.remove({username:"FB(null)_(null)"}, function(err){
 

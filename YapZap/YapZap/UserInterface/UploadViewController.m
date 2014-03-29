@@ -196,7 +196,7 @@
             });
         }
         
-        if ([Util shouldShareOnTW]&& [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
+        if ([Util shouldShareOnTW] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
             [self shareOnTW];
         }
         
@@ -207,6 +207,7 @@
         [[LocalyticsSession shared] tagEvent:@"Finished Upload"];
         
         self.uploadComplete = YES;
+        [Util setHasYapped];
     });
     /*dispatch_async(dispatch_get_main_queue(), ^{
         for (int i=0;i<1000;i++){

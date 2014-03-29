@@ -26,5 +26,14 @@
 +(void)setShareOnTW:(BOOL)share;
 +(NSArray*)getFBWritePermissions;
 +(NSArray*)getFBReadPermissions;
+
++(BOOL)hasYapped;
++(void)setHasYapped;
+
+
++(BOOL)hasAgreedToTerms;
++(void)setAgreedToTerms;
+
+
 +(void)setDefaults;
 @end

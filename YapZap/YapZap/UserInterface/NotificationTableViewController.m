@@ -41,15 +41,20 @@
             self.data = [DataSource getNotifications];
             if (self.data){
                 
-                if (self.data.count==0){
+                if (![Util hasYapped]){
+                    NSMutableArray* mData = [[NSMutableArray alloc] initWithCapacity:self.data.count+1];
+                    
                     Notification* notification = [[Notification alloc] init];
                     notification.usernameBy = @"_YapZap";
                     notification.tagName = @"welcome2yapzap";
                     notification.type = @"WELCOME";
                     notification.recordingId = @"5321d5848740a611119ca3f0";
 
-                    self.data = [NSArray arrayWithObject:notification];
+                    [mData addObject:notification];
+                    [mData addObjectsFromArray:self.data];
+                    self.data = mData;
                 }
+                
                 [self updateTable];
                 return;
             }

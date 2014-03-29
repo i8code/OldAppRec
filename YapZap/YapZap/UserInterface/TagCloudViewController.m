@@ -14,6 +14,7 @@
 #import "TagPageViewController.h"
 #import "NotificationTableViewController.h"
 #import "SharingBundle.h"
+#import "UIAlertView+Blocks.h"
 
 @interface TagCloudViewController ()
 
@@ -254,6 +255,24 @@
         self.startTime = [NSDate date];
     }
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    if (![Util hasAgreedToTerms]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"EULA" message:@"By using this app, you agree to the terms and conditions stated here https://yapzap.me/terms." cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex==0){
+                    exit(EXIT_SUCCESS);
+                }
+                else {
+                    [Util setAgreedToTerms];
+                }
+                
+            }];
+            
+        });
+    }
 }
 
 - (void)didReceiveMemoryWarning

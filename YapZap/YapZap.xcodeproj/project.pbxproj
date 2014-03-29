@@ -25,7 +25,8 @@
 		C70DB6E718C80F81000BED16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70DB6E618C80F81000BED16 /* CoreData.framework */; };
 		C70DB6EA18C819DA000BED16 /* RecordingCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = C70DB6E918C819DA000BED16 /* RecordingCoreData.m */; };
 		C70DB6ED18C93B81000BED16 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = C70DB6EC18C93B81000BED16 /* Player.m */; };
-		C715B48218E6FF5E00C0630D /* flag_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C715B48118E6FF5E00C0630D /* flag_icon.png */; };
+		C715B48518E71A2900C0630D /* flag_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = C715B48318E71A2900C0630D /* flag_empty.png */; };
+		C715B48618E71A2900C0630D /* flag_full.png in Resources */ = {isa = PBXBuildFile; fileRef = C715B48418E71A2900C0630D /* flag_full.png */; };
 		C7273A5118D52A220003A930 /* LaunchImage_IPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */; };
 		C72C1D9018AA5AAA006D136F /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72C1D8318AA5AAA006D136F /* AWSS3.framework */; };
 		C72C1DA818AAE8B2006D136F /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72C1DA118AAE8B2006D136F /* AudioFileReader.mm */; };
@@ -258,7 +259,8 @@
 		C70DB6EB18C93B81000BED16 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Communication/Player.h; sourceTree = "<group>"; };
 		C70DB6EC18C93B81000BED16 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = Communication/Player.m; sourceTree = "<group>"; };
 		C70DB80F18CB6C04000BED16 /* SearchDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchDelegate.h; sourceTree = "<group>"; };
-		C715B48118E6FF5E00C0630D /* flag_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag_icon.png; sourceTree = "<group>"; };
+		C715B48318E71A2900C0630D /* flag_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag_empty.png; sourceTree = "<group>"; };
+		C715B48418E71A2900C0630D /* flag_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag_full.png; sourceTree = "<group>"; };
 		C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage_IPhone5.png; sourceTree = "<group>"; };
 		C72C1D8318AA5AAA006D136F /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		C72C1DA018AAE8B2006D136F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
@@ -1576,7 +1578,8 @@
 		C7CF287618A1F0F90053DB9C /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C715B48118E6FF5E00C0630D /* flag_icon.png */,
+				C715B48318E71A2900C0630D /* flag_empty.png */,
+				C715B48418E71A2900C0630D /* flag_full.png */,
 				C732665D18D65EDB0027AE96 /* logo-white.png */,
 				C7273A5018D52A220003A930 /* LaunchImage_IPhone5.png */,
 				C7965CEB18D4A60C0023B5B5 /* bolt_icon.png */,
@@ -1809,6 +1812,7 @@
 				C75E7B6C18BC3B0B00160720 /* play_button_small.png in Resources */,
 				C79EF6E018A65E5B00AA1BDE /* TagTableViewCell.xib in Resources */,
 				C7965CEA18D284940023B5B5 /* color_wheel_hole.png in Resources */,
+				C715B48618E71A2900C0630D /* flag_full.png in Resources */,
 				C75E7B6B18BC3B0B00160720 /* pause_button.png in Resources */,
 				C74A6CAD18C255720086F78D /* SearchCell.xib in Resources */,
 				C75E7B7F18BC3B0B00160720 /* stop_button_small.png in Resources */,
@@ -1825,7 +1829,6 @@
 				C75E7B9B18BC3B2200160720 /* zeus elements-13.png in Resources */,
 				C75E7B8918BC3B0B00160720 /* background.png in Resources */,
 				C706247818B9371000D1BEB0 /* TagPageViewController.xib in Resources */,
-				C715B48218E6FF5E00C0630D /* flag_icon.png in Resources */,
 				C75E7B8718BC3B0B00160720 /* home_icon.png in Resources */,
 				C75E7B8318BC3B0B00160720 /* play_icon_filled.png in Resources */,
 				C747FC4B18A816660083A533 /* SearchViewController.xib in Resources */,
@@ -1845,6 +1848,7 @@
 				C7371F4E18A1DFEE007FB490 /* Main.storyboard in Resources */,
 				C75E7B7A18BC3B0B00160720 /* search_icon.png in Resources */,
 				C75E7B8118BC3B0B00160720 /* play_small_button.png in Resources */,
+				C715B48518E71A2900C0630D /* flag_empty.png in Resources */,
 				C75E7B9A18BC3B2200160720 /* zeus elements-12.png in Resources */,
 				C7273A5118D52A220003A930 /* LaunchImage_IPhone5.png in Resources */,
 				C74A6C9D18C245E40086F78D /* record_button_black.png in Resources */,

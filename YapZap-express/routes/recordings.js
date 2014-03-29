@@ -23,13 +23,15 @@ exports.getAll = function(Models) {
 
         var type;
 
+        var query;
         if (req.url.substring(0,5)==="/tags"){
             type = "TAG";
+            query = Models.Recording.find({parent_name:name, parent_type:type}).sort({created_date: -1});
         } else {
             type = "REC";
+            query = Models.Recording.find({parent_name:name, parent_type:type}).sort({created_date: 1});
         }
-
-        var query = Models.Recording.find({parent_name:name, parent_type:type}).sort({created_date: 1});
+        
         query.exec(function(err, recordings) {
 
             if (!recordings || recordings.length==0){

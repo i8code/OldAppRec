@@ -218,10 +218,33 @@ static const int recentSearchesCount = 10;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+
++(BOOL)hasYapped{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_has_yapped"];
+}
+
++(void)setHasYapped{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"YapZap_has_yapped"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+
++(BOOL)hasAgreedToTerms{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"YapZap_has_agreed"];
+}
+
++(void)setAgreedToTerms{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"YapZap_has_agreed"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+}
+
 +(NSArray*)getFBWritePermissions{
     return @[@"publish_actions"];
 }
 +(NSArray*)getFBReadPermissions{
     return @[@"basic_info", @"user_friends"];
 }
+
 @end
