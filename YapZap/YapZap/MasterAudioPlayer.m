@@ -110,6 +110,7 @@
     }
     self.currentRecording = i;
     self.state = MA_DOWNLOADING;
+    self.percentPlayed = 0;
     [self setMediaInformation];
     if (!self.timer){
         self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(tick) userInfo:nil repeats:YES];
@@ -125,6 +126,7 @@
 }
 
 -(void)tick{
+    self.percentPlayed = 0;
     if (self.state==MA_DOWNLOADING){
 //        NSLog(@"Downloading");
         //Check to see if we've downloaded

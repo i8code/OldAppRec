@@ -110,8 +110,6 @@ exports.audio_proxy = function(Models) {
             var filename = maps[0].filename;
             var path = 'https://s3.amazonaws.com/yap-zap-audio/'+filename;
             var title = tag_name || 'YapZap';
-            console.log(path);
-            console.log(title);
             res.render('audio', {
                 title: title,
                 src:path

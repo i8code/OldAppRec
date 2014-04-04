@@ -73,7 +73,9 @@ var updateLikes = function(Models, recording_id, delta){
         recording.save();
     });
 
-    RecordingUpdater.updateRecordingPopularity(Models, recording_id);
+    setTimeout(function(){
+        RecordingUpdater.updateRecordingPopularity(Models, recording_id);
+    },1);
 }
 
 /*
@@ -105,7 +107,9 @@ exports.create = function(Models) {
             res.status(201);
             res.send(like);
 
-            NotificationManager.addNotificationForLike(Models, username, id);
+            setTimeout(function(){
+                NotificationManager.addNotificationForLike(Models, username, id);
+            },1);
 
             Models.Recording.find({_id:id}).exec(function(err, recordings){
 
@@ -114,8 +118,9 @@ exports.create = function(Models) {
                 }
 
                 recordings[0].username = username;
-
-                NotificationManager.notifyFriends(Models, recordings[0], "LIKE");
+                setTimeout(function(){
+                    NotificationManager.notifyFriends(Models, recordings[0], "LIKE");
+                },1);
             });
             
         });

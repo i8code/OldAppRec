@@ -19,4 +19,6 @@
 #import "YapZapModalViewController.h"
 #import "Util.h"
 #import "LocalyticsSession.h"
+#import "TestFlight.h"
+#define NSLog TFLog
 #endif

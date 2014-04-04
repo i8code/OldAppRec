@@ -146,6 +146,7 @@
     self.uploadComplete = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        NSLog(@"Starting upload");
         [[LocalyticsSession shared] tagEvent:@"Started Upload"];
         
         SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
@@ -159,6 +160,8 @@
         NSData* jsonBody = [NSJSONSerialization dataWithJSONObject:recordingToCreate.toJSON options:0 error:nil];
 //        NSString *jsonString = [[NSString alloc] initWithData:jsonBody encoding:NSUTF8StringEncoding];
 //        NSLog(@"%@", jsonString);
+        
+        NSLog(@"Uploading %@\n to \n", jsonBody);
         NSString* recordingURL;
         if ([bundle comment]){
             recordingURL = [NSString stringWithFormat:@"/recordings/%@/recordings", recordingToCreate.parentName];
@@ -166,8 +169,11 @@
         else {
             recordingURL = [NSString stringWithFormat:@"/tags/%@/recordings", [recordingToCreate.parentName lowercaseString]];
         }
+        
+        NSLog(@"Uploading %@\n to \n%@", jsonBody,recordingURL);
         NSString* recordingResponse = [RestHelper post:recordingURL withBody:jsonBody andQuery:nil];
         if (!recordingResponse){
+            NSLog(@"There was an error during upload");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showError];
             });
@@ -175,6 +181,8 @@
         }
         NSDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:[recordingResponse dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         self.uploadedRecording = [Recording fromJSON:jsonResponse];
+        
+        NSLog(@"Uploaded recording: \n%@", [recordingResponse dataUsingEncoding:NSUTF8StringEncoding]);
         
         //Now share on FB/Twitter
         
@@ -186,10 +194,15 @@
                     [[FBSession activeSession] requestNewPublishPermissions:[Util getFBWritePermissions]    defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:^(FBSession *session, NSError *error) {
                         /* handle success + failure in block */
                         if (!error){
+                            NSLog(@"Sharing on Facebook");
                             [self shareOnFB];
+                        }else {
+                            
+                            NSLog(@"Error getting permission to share on Facebook");
                         }
                     }];
                 } else {
+                    NSLog(@"Sharing on Facebook");
                     [self shareOnFB];
                 }
                 
@@ -197,6 +210,7 @@
         }
         
         if ([Util shouldShareOnTW] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
+            NSLog(@"Sharing on Twitter");
             [self shareOnTW];
         }
         
@@ -205,6 +219,7 @@
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         
         [[LocalyticsSession shared] tagEvent:@"Finished Upload"];
+        NSLog(@"Finished upload");
         
         self.uploadComplete = YES;
         [Util setHasYapped];

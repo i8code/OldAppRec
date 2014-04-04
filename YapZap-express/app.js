@@ -11,6 +11,12 @@ var path = require('path');
 http.globalAgent.maxSockets = 10000;
 https.globalAgent.maxSockets = 10000;
 
+var mtrace = require('mtrace');
+var filename = mtrace.mtrace();
+console.log('Saving mtrace to ' + filename);
+
+mtrace.mtrace();
+
 //Models
 
 var Models = require('./schema/schema.js');
@@ -27,10 +33,13 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(function(req, res, next) {
+    req.start = Date.now();
+    next();
+});
 app.use(express.favicon());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   if(!req.secure) {
@@ -44,6 +53,35 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.use(function(req, res, next) {
+    var start = Date.now();
+
+    res.on('header', function() {
+        var duration = Date.now() - start;
+
+        var time = Date.now() - req.start;
+        var method = req.method;
+        var pathParts = req.url.split("?")[0].split("/");
+        var url = req.url;
+
+        switch(pathParts.length){
+          case 2:
+          case 3:
+            url = pathParts[1];
+            break;
+          case 4:
+            url = pathParts[1]+"_"+pathParts[3];
+            break;
+        }
+
+        url = "../times/"+method+"_"+url+".csv";
+
+        fs.appendFile(url, time+"\n", function (err) {});
+
+    });
+    next();
+});
+app.use(app.router);
 
 
 var routes = require('./routes');
@@ -129,6 +167,7 @@ var certificate = fs.readFileSync('../certs/yapzap.me.crt', 'utf8');
 
 var credentials = {ca:ca, key: privateKey, cert: certificate};
 
+
 https.createServer(credentials, app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
@@ -147,6 +186,8 @@ Models.BlackList.remove({}, function(err) {
        }
    );
 });
+
+
 
 // Recording.remove({username:"FB(null)_(null)"}, function(err){
 

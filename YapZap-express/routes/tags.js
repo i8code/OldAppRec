@@ -54,10 +54,6 @@ exports.getById = function(Models) {
 exports.create = function(Models) {
     return function(req, res) {
         if (!Security.check(req, res)) return;
-
-        console.log(req);
-        console.log(req.body);
-
         var Tag = Models.Tag;
 
         var tag = new Tag({name : req.body.name});

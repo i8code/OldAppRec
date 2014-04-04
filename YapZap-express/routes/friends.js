@@ -33,23 +33,23 @@ exports.submitFriends = function(Models) {
             //remove existing friends list
             Models.Friend.remove({friend_of:name}, function(err){
                 if (err){
-                    console.log(err);
+                    // console.log(err);
                     return;
                 }
                 var friends = req.body;
                 var i=0;
                 var friend;
-                for (i=0;i<friends.length;i++){
-                   friend = friends[i];
-                   var friend = new Models.Friend(
-                        {
-                            friend_id:friend,
-                            friend_of:name
-                        }
-                    );
-                    friend.save();
-                    // console.log(friend);
-                }
+                friends.forEach(function(friend){
+                    setTimeout(function(){
+                        var friend = new Models.Friend(
+                            {
+                                friend_id:friend,
+                                friend_of:name
+                            }
+                        );
+                        friend.save();
+                    },1);
+                });
 
             });
 

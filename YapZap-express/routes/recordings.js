@@ -100,7 +100,6 @@ exports.create = function(Models) {
             Models.Tag.find({name:name}).exec(function(err, tags) {
                 if (!tags || tags.length===0){
                     //Create the tag
-                    console.log("creating new tag");
                     var tag = new Models.Tag({name:name});
                     tag.save();
                 }
@@ -118,17 +117,17 @@ exports.create = function(Models) {
         recording.popularity=1;
         recording.save();
 
-        //update tag name
-        if (type==="REC"){
-            Models.Recording.find({_id:name}).exec(function(err, recordings) {
-                if (!recordings || recordings.length===0){
-                    //Create the tag
-                    return;
-                }
-                recording.tag_name = recordings[0].tag_name;
-                recording.save();
-            });
-        }
+        setTimeout(function(){
+            if (type==="REC"){
+                Models.Recording.find({_id:name}).exec(function(err, recordings) {
+                    if (!recordings || recordings.length===0){
+                        return;
+                    }
+                    recording.tag_name = recordings[0].tag_name;
+                    recording.save();
+                });
+            }
+        }, 1);
 
         //Update hash
         var audioCallback = function(hash){
@@ -136,18 +135,28 @@ exports.create = function(Models) {
             recording.save(function(err){ 
 
                 if (type==="TAG"){
-                    RecordingUpdater.updateTagPopularity(Models, name);
+                    setTimeout(function(){
+                        RecordingUpdater.updateTagPopularity(Models, name);
+                    }, 1);
                 } else {
-                    RecordingUpdater.updateRecordingPopularity(Models, name);
-                    NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name, recording._id);
+                    setTimeout(function(){
+                        RecordingUpdater.updateRecordingPopularity(Models, name);
+                    }, 1);
+                    setTimeout(function(){
+                        NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name, recording._id);
+                    }, 1);
                 }
 
-                NotificationManager.notifyFriends(Models, recording, type);
+                setTimeout(function(){
+                    NotificationManager.notifyFriends(Models, recording, type);
+                },1);
                 res.status(201);
                 res.send(recording);
             });
          };
-         AudioMapper.getOrCreateHash(Models, recording.audio_url, audioCallback);
+        setTimeout(function(){
+            AudioMapper.getOrCreateHash(Models, recording.audio_url, audioCallback);
+        }, 1);
 
     };
 };
@@ -157,7 +166,6 @@ exports.create = function(Models) {
  */
 exports.updateById = function(Models) {
     return function(req, res) {
-        console.log("here");
         if (!Security.check(req, res)) return;
 
         var id = req.params.id;
@@ -180,9 +188,13 @@ exports.updateById = function(Models) {
             recording[0].save();
 
             if (recording.parent_type==="TAG"){
-                RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
+                setTimeout(function(){
+                    RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
+                },1);
             } else {
-                RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
+                setTimeout(function(){
+                    RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
+                },1);
             }
 
             res.status(200);
@@ -198,11 +210,15 @@ var deleteAllChildren = function(Models, recording_name){
             return;
         }
         for (var i=0;i<recordings.length;i++){
-            var recording = recordings[i];
+            setTimeout(function(){
+                var recording = recordings[i];
 
-            Models.Recording.remove({_id:recording._id}, function(err){
-                deleteAllChildren(Models, recording._id);
-            });
+                Models.Recording.remove({_id:recording._id}, function(err){
+                    setTimeout(function(){
+                        deleteAllChildren(Models, recording._id);
+                    },1);
+                });
+            },1);
         }
 
     });
@@ -232,12 +248,18 @@ exports.deleteById = function(Models) {
             var recording = recordings[0];
 
             Models.Recording.remove({_id:id}, function(err){
-                deleteAllChildren(Models, recording._id);
+                setTimeout(function(){
+                    deleteAllChildren(Models, recording._id);
+                },1);
 
                 if (recording.parent_type==="TAG"){
-                    RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
+                    setTimeout(function(){
+                        RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
+                    },1);
                 } else {
-                    RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
+                    setTimeout(function(){
+                        RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
+                    },1);
                 }
 
                 res.status(200);
@@ -246,7 +268,9 @@ exports.deleteById = function(Models) {
             });
 
             //Remove notifications
-            Models.Notification.remove({recording_id:recording._id}, function(err){});
+            setTimeout(function(){
+                Models.Notification.remove({recording_id:recording._id}, function(err){});
+            },1);
 
         });
     };

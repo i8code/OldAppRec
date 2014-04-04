@@ -260,9 +260,13 @@
 -(void)viewDidAppear:(BOOL)animated{
     if (![Util hasAgreedToTerms]){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [UIAlertView showWithTitle:@"EULA" message:@"By using this app, you agree to the terms and conditions stated here https://yapzap.me/terms." cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            [UIAlertView showWithTitle:@"Terms and Conditions" message:@"By using this app, you agree to the following terms and conditions" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Terms and Conditions", @"I Agree"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex==0){
+                    exit(EXIT_SUCCESS);
+                }
+                else if (buttonIndex==1){
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://yapzap.me/terms"]];
                     exit(EXIT_SUCCESS);
                 }
                 else {

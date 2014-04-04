@@ -20,48 +20,50 @@ var updateCollection = function(Models, id, type){
 
         var childrenQuery = Models.Recording.find({parent_name:id, parent_type:type});
         childrenQuery.exec(function(err, recordings) {
-            if (recordings){
-                for (var i=0;i<recordings.length;i++){
-                    popularityCount+=recordings[i].popularity || 0;
-                    popularityCount+=recordings[i].likes || 0;
-                    intensity+=recordings[i].intensity || 0;
+            setTimeout(function(){
+                if (recordings){
+                    for (var i=0;i<recordings.length;i++){
+                        popularityCount+=recordings[i].popularity || 0;
+                        popularityCount+=recordings[i].likes || 0;
+                        intensity+=recordings[i].intensity || 0;
 
-                    var mood = recordings[i].mood*Math.PI*2;
-                    moodSin+= Math.sin(mood)*recordings[i].intensity;
-                    moodCos+= Math.cos(mood)*recordings[i].intensity;
+                        var mood = recordings[i].mood*Math.PI*2;
+                        moodSin+= Math.sin(mood)*recordings[i].intensity;
+                        moodCos+= Math.cos(mood)*recordings[i].intensity;
+                    }
+                    parent.children = recordings;
+                    parent.children_length=recordings.length||0;
+                    intensity=0.5;//Math.sqrt(moodSin*moodSin+moodCos*moodCos);
                 }
-                parent.children = recordings;
-                parent.children_length=recordings.length||0;
-                intensity=0.5;//Math.sqrt(moodSin*moodSin+moodCos*moodCos);
-            }
 
-            var created_date = new Date(parent.created_date);
-            var now = new Date();
+                var created_date = new Date(parent.created_date);
+                var now = new Date();
 
-            popularityCount/=(now.getTime()-created_date.getTime()+1e5);
-            parent.popularity = popularityCount*1e7;
+                popularityCount/=(now.getTime()-created_date.getTime()+1e5);
+                parent.popularity = popularityCount*1e7;
 
-            if (type==="TAG"){
-                parent.intensity = intensity;
-                var mood = Math.atan2(moodSin, moodCos);
-                if (mood<0){
-                    mood+=Math.PI*2;
+                if (type==="TAG"){
+                    parent.intensity = intensity;
+                    var mood = Math.atan2(moodSin, moodCos);
+                    if (mood<0){
+                        mood+=Math.PI*2;
+                    }
+                    parent.mood = mood/Math.PI/2.0;
                 }
-                parent.mood = mood/Math.PI/2.0;
-            }
-            parent.last_update = new Date();
+                parent.last_update = new Date();
 
-            parent.save();
+                parent.save();
 
-            if (type==="TAG" && parent.children_length===0){
-                Models.Tag.remove({name:id}, function(err){});
-                Models.Notification.remove({tag_name:id}, function(err){});
-            }
+                if (type==="TAG" && parent.children_length===0){
+                    Models.Tag.remove({name:id}, function(err){});
+                    Models.Notification.remove({tag_name:id}, function(err){});
+                }
 
-            if (parent.parent_name){
-                //Recurse
-                updateCollection(Models, parent.parent_name, parent.parent_type);
-            }
+                if (parent.parent_name){
+                    //Recurse
+                    updateCollection(Models, parent.parent_name, parent.parent_type);
+                }
+            },1);
         });
 
     });

@@ -47,6 +47,7 @@
     UIImage* likeImage = _liked?[UIImage imageNamed:@"heart_full.png"]:[UIImage imageNamed:@"heart_empty.png"];
     [self.likeButton setImage:likeImage forState:UIControlStateNormal];
     
+    
     self.likesLabel.textColor = _liked?[UIColor blackColor]:[UIColor whiteColor];
     NSUInteger likes = self.recording.likes;
     if (!self.liked && self.likeIncludedInCount){
@@ -70,6 +71,7 @@
 }
 
 -(void)setRecording:(Recording *)recording{
+    self.highlightPercent=0;
     _recording = recording;
     self.label.text = recording.displayName;
     
