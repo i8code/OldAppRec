@@ -125,6 +125,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [DataSource getRecordingsForTagName:self.tag.name completion:^(NSArray *recordings) {
+            self.recordings = recordings;
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (self.tableController){
