@@ -79,7 +79,7 @@
     self.backButton.hidden=NO;
     self.parent.homeButton.hidden = NO;
     self.logoImage.hidden=NO;
-    self.zeusFace.image = nil;
+    self.zeusFace.image = [UIImage imageNamed:@"zeus elements-11.png"];
 }
 
 
@@ -195,12 +195,12 @@
     
     if (!zeuesInOrder){
         zeuesInOrder= [NSArray arrayWithObjects:
-                    @"zeus elements-13.png",
-                    @"zeus elements-12.png",
-                    @"zeus elements-14.png",
-                    @"zeus elements-10.png",
-                    @"zeus elements-09.png",
-                    @"zeus elements-08.png",
+                    [UIImage imageNamed:@"zeus elements-13.png"],
+                    [UIImage imageNamed:@"zeus elements-12.png"],
+                    [UIImage imageNamed:@"zeus elements-14.png"],
+                    [UIImage imageNamed:@"zeus elements-10.png"],
+                    [UIImage imageNamed:@"zeus elements-09.png"],
+                    [UIImage imageNamed:@"zeus elements-08.png"],
                     nil
                     ];
     }
@@ -223,7 +223,7 @@
     
     if (i!=last){
         last=i;
-        self.zeusFace.image = [UIImage imageNamed:zeuesInOrder[i]];
+        self.zeusFace.image = zeuesInOrder[i];
     }
     
 }

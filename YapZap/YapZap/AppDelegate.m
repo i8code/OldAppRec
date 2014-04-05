@@ -258,13 +258,16 @@
             [User getUser].displayName = [result objectForKey:@"name"];
             [User getUser].fbID = [result objectForKey:@"id"];
             [User getUser].username = [result objectForKey:@"username"];
+            
+            [self goToHomeView];
         } else {
+            NSLog(@"Error connecting to Facebook to retrieve user info: %ld", error.code);
             // An error occurred, we need to handle the error
             // See: https://developers.facebook.com/docs/ios/errors
+            [NSThread sleepForTimeInterval:1.5];
+            [self userLoggedIn];
         }
     }];
-    
-    [self goToHomeView];
 }
 
 // Show an alert message
