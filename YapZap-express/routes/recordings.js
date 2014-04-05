@@ -209,7 +209,7 @@ var deleteAllChildren = function(Models, recording_name){
         if (!recordings || recordings.length==0){
             return;
         }
-        for (var i=0;i<recordings.length;i++){
+        recordings.forEach(function(recording){
             setTimeout(function(){
                 var recording = recordings[i];
 
@@ -219,8 +219,7 @@ var deleteAllChildren = function(Models, recording_name){
                     },1);
                 });
             },1);
-        }
-
+        });
     });
 }
 
