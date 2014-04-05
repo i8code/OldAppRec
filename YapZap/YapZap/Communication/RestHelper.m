@@ -84,7 +84,7 @@
    
 }
 
-+(void)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body completion:(void(^)(NSString*))completion{
++(void)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body retryCount:(NSInteger)retryCount completion:(void(^)(NSString*))completion{
     
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]){
@@ -111,9 +111,28 @@
         [request setHTTPBody:body];
     }
     [request setURL:url];
+    [request setTimeoutInterval:30];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (connectionError){
+            if (retryCount<0){
+                completion(nil);
+                return;
+            }
+            
+            NSLog(@"Connection error: %ld", connectionError.code);
+            if(connectionError.code == NSURLErrorTimedOut){
+                NSLog(@"Connection time out");
+            }
+            
+            [NSThread sleepForTimeInterval:1];
+            [self getDataFromRequestPath:path withQuery:query withHttpType:type andBody:body retryCount:(retryCount-1) completion:completion];
+            
+            return;
+        }
+        
         NSHTTPURLResponse* responseCode = (NSHTTPURLResponse*)response;
         
         if ([responseCode statusCode] == 403){
@@ -149,16 +168,16 @@
 }
 
 +(void)get:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
-    [self getDataFromRequestPath:url withQuery:query withHttpType:@"GET" andBody:nil completion:completion];
+    [self getDataFromRequestPath:url withQuery:query withHttpType:@"GET" andBody:nil retryCount:10 completion:completion];
 }
 +(void)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
-    [self getDataFromRequestPath:url withQuery:query withHttpType:@"POST" andBody:body completion:completion];
+    [self getDataFromRequestPath:url withQuery:query withHttpType:@"POST" andBody:body retryCount:10 completion:completion];
 }
 +(void)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
-    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"PUT" andBody:body completion:completion];
+    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"PUT" andBody:body retryCount:10 completion:completion];
 }
 +(void)del:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
-    [self getDataFromRequestPath:url withQuery:query withHttpType:@"DELETE" andBody:nil completion:completion];
+    [self getDataFromRequestPath:url withQuery:query withHttpType:@"DELETE" andBody:nil retryCount:10 completion:completion];
 }
 
 @end
