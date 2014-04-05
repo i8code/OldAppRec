@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RestHelper : NSObject
+@interface RestHelper : NSObject<NSURLConnectionDataDelegate>
 
 #define PORT 443
 #define PROTOCOL @"https"
 #define HOST @"yapzap.me"
 
-+(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query;
-+(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query;
-+(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query;
-+(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query;
++(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
 @end

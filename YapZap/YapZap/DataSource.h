@@ -15,14 +15,14 @@
 @interface DataSource : NSObject
 
 +(void)getTimezoneOffset;
-+(NSArray*)getTagNames;
-+(NSArray*)refreshTagNames;
-+(NSArray*)getPopularTags;
-+(Tag*)getTagByName:(NSString*)name;
-+(Tag*)getNextPopularTag;
-+(NSArray*)getNotifications;
-+(NSArray*)getRecordingsForTagName:(NSString*)tagName;
-+(NSArray*)getMyRecordings;
++(void)getTagNames:(void(^)(NSArray* tagNames))completion;
++(void)refreshTagNames:(void(^)(NSArray* tagNames))completion;
++(void)getPopularTags:(void(^)(NSArray* popularTags))completion;
++(void)getNextPopularTag:(void(^)(Tag* tag))completion;
++(void)getTagByName:(NSString*)name completion:(void(^)(Tag* tag))completion;
++(void)getNotifications:(void(^)(NSArray* notifications))completion;
++(void)getRecordingsForTagName:(NSString*)tagName completion:(void(^)(NSArray* recordings))completion;
++(void)getMyRecordings:(void(^)(NSArray* myRecordings))completion;
 +(void)updateFacebookFriends;
 
 @end

@@ -84,7 +84,7 @@
    
 }
 
-+(NSString*)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body{
++(void)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body completion:(void(^)(NSString*))completion{
     
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]){
@@ -96,7 +96,8 @@
             }];
             
         });
-        return nil;
+        completion(nil);
+        return;
 
     }
     
@@ -111,51 +112,53 @@
     }
     [request setURL:url];
     
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
-    
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-    if ([responseCode statusCode] == 403){
-        //user has been blacklisted
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIAlertView showWithTitle:@"Account Banned" message:@"We're sorry, but you have been banned from this app for inappropriate behavior. If you believe you have been banned in error, please contact admin@yapzap.me." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                [[LocalyticsSession shared] tagEvent:@"User banned"];
-                exit(EXIT_FAILURE);
-            }];
-            
-        });
-    }
-    else if([responseCode statusCode] >= 400){
-        NSString* error = [NSString stringWithFormat:@"Error getting %@. HTTP status code %li", url, (long)[responseCode statusCode]];
-        NSLog(@"%@", error);
-        [[LocalyticsSession shared] tagEvent:error];
-        return nil;
-    }
-    else if (!oResponseData && [type isEqualToString:@"GET"]){
-        NSString* error = [NSString stringWithFormat:@"Server data was nil from %@. HTTP status code %li", url, (long)[responseCode statusCode]];
-        NSLog(@"%@", error);
-        [[LocalyticsSession shared] tagEvent:error];
-        return nil;
-    }
-    
-    NSString* response = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
-    NSLog(@"Response:\n%@\n", response);
-    
-    return response;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSHTTPURLResponse* responseCode = (NSHTTPURLResponse*)response;
+        
+        if ([responseCode statusCode] == 403){
+            //user has been blacklisted
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIAlertView showWithTitle:@"Account Banned" message:@"We're sorry, but you have been banned from this app for inappropriate behavior. If you believe you have been banned in error, please contact admin@yapzap.me." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [[LocalyticsSession shared] tagEvent:@"User banned"];
+                    exit(EXIT_FAILURE);
+                }];
+                
+            });
+        }
+        else if([responseCode statusCode] >= 400){
+            NSString* error = [NSString stringWithFormat:@"Error getting %@. HTTP status code %li", url, (long)[responseCode statusCode]];
+            NSLog(@"%@", error);
+            [[LocalyticsSession shared] tagEvent:error];
+            completion(nil);
+            return;
+        }
+        else if (!data && [type isEqualToString:@"GET"]){
+            NSString* error = [NSString stringWithFormat:@"Server data was nil from %@. HTTP status code %li", url, (long)[responseCode statusCode]];
+            NSLog(@"%@", error);
+            [[LocalyticsSession shared] tagEvent:error];
+            completion(nil);
+            return;
+        }
+        
+        NSString* responseStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Response:\n%@\n", responseStr);
+        
+        completion(responseStr);
+    }];
 }
 
-+(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query{
-    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"GET" andBody:nil];
++(void)get:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
+    [self getDataFromRequestPath:url withQuery:query withHttpType:@"GET" andBody:nil completion:completion];
 }
-+(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query{
-    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"POST" andBody:body];
++(void)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
+    [self getDataFromRequestPath:url withQuery:query withHttpType:@"POST" andBody:body completion:completion];
 }
-+(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query{
-    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"PUT" andBody:body];
++(void)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
+    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"PUT" andBody:body completion:completion];
 }
-+(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query{
-    return[self getDataFromRequestPath:url withQuery:query withHttpType:@"DELETE" andBody:nil];
++(void)del:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString*))completion{
+    [self getDataFromRequestPath:url withQuery:query withHttpType:@"DELETE" andBody:nil completion:completion];
 }
 
 @end

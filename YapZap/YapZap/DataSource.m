@@ -28,161 +28,169 @@ static NSArray* _tags;
 static NSMutableArray* tagNames;
 
 +(void)getTimezoneOffset{
-    NSString* timezoneOffsetStr = [RestHelper get:@"/time" withQuery:nil];
-    if (!timezoneOffsetStr ){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIAlertView showWithTitle:@"Connection Error" message:@"Could not connect to the YapZap server. Please try again later." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
-                exit(EXIT_FAILURE);
-            }];
-            
-        });
-        return;
-    }
-    [[LocalyticsSession shared] tagEvent:@"Connected to server"];
-    long response = [timezoneOffsetStr longLongValue];
-    long t = (long)[[NSDate date] timeIntervalSince1970];
-    [AuthHelper setTimeOffset:(response-t)];
+    [RestHelper get:@"/time" withQuery:nil completion:^(NSString *timezoneOffsetStr) {
+        if (!timezoneOffsetStr ){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIAlertView showWithTitle:@"Connection Error" message:@"Could not connect to the YapZap server. Please try again later." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
+                    exit(EXIT_FAILURE);
+                }];
+                
+            });
+            return;
+        }
+        [[LocalyticsSession shared] tagEvent:@"Connected to server"];
+        long response = [timezoneOffsetStr longLongValue];
+        long t = (long)[[NSDate date] timeIntervalSince1970];
+        [AuthHelper setTimeOffset:(response-t)];
+    }];
+                                   
 }
 
-+(NSArray*)getTagNames{
++(void)getTagNames:(void(^)(NSArray*))completion{
     
     if (tagNames){
-        return tagNames;
+        completion(tagNames);
+        return;
     }
     
-//   NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *jsonData = [[RestHelper get:@"/tag_names" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData){
-        return [[NSArray alloc] init];
-    }
-    NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    tagNames = [[NSMutableArray alloc] init];
-    for (NSString* tagName in tagNamesJson){
-        [tagNames addObject:tagName];
-    }
-    
-    return tagNames;
+    //   NSData *jsonData = [[SampleData getTagNameJson] dataUsingEncoding:NSUTF8StringEncoding];
+    [RestHelper get:@"/tag_names" withQuery:nil completion:^(NSString* stringData) {
+        
+        NSData *jsonData = [stringData dataUsingEncoding:NSUTF8StringEncoding];
+        
+        if (!jsonData){
+            completion([[NSArray alloc] init]);
+            return;
+        }
+        NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        
+        tagNames = [[NSMutableArray alloc] init];
+        for (NSString* tagName in tagNamesJson){
+            [tagNames addObject:tagName];
+        }
+        
+        completion(tagNames);
 
-    
+    }];
 }
-
-+(NSArray*)refreshTagNames{
++(void)refreshTagNames:(void(^)(NSArray* tagNames))completion{
     tagNames = nil;
-    return  [self getTagNames];
+    [self getTagNames:completion];
 }
 
-+(NSArray*)getPopularTags{
++(void)getPopularTags:(void(^)(NSArray* popularTags))completion{
     
-//    NSData *jsonData = [[SampleData getPopularTags] dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData *jsonData = [[RestHelper get:@"/tags" withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData){
-        return [[NSArray alloc] init];
-    }
-    NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for (NSDictionary* tagDic in tagsJson){
-        [array addObject:[Tag fromJSON:tagDic]];
-    }
-    _tags = array;
-    return array;
-}
+    [RestHelper get:@"/tags" withQuery:nil completion:^(NSString *responseStr) {
+        NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+        if (!jsonData){
+            completion([[NSArray alloc] init]);
+            return;
+        }
+        NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        for (NSDictionary* tagDic in tagsJson){
+            [array addObject:[Tag fromJSON:tagDic]];
+        }
+        _tags = array;
+        completion(array);
 
-+(Tag*)getNextPopularTag{
+    }];
+}
++(void)getNextPopularTag:(void(^)(Tag* tag))completion{
     static int currentTag =-1;
     if(_tags==nil){
-       [self getPopularTags];
+        [self getPopularTags:^(NSArray *popularTags) {
+            [self getNextPopularTag:completion];
+        }];
+        return;
     }
     if (!_tags || _tags.count==0){
-        return nil;
+        completion(nil);
+        return;
     }
     currentTag=(currentTag+1)%_tags.count;
-    return [_tags objectAtIndex:currentTag];
+    completion([_tags objectAtIndex:currentTag]);
 }
 
-+(Tag*)getTagByName:(NSString*)name{
-    
++(void)getTagByName:(NSString*)name completion:(void(^)(Tag* tag))completion{
     NSString* path = [NSString stringWithFormat:@"/tags/%@", name];
-    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData){
-        return nil;
-    }
-    NSDictionary* tagJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    return[Tag fromJSON:tagJson];
+    [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
+        NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+        if (!jsonData){
+            completion(nil);
+            return;
+        }
+        NSDictionary* tagJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        
+        completion([Tag fromJSON:tagJson]);
+    }];
 }
 
 #define NOTIFICATION_KEY @"last_notification_update"
 
-+(NSArray*)getNotifications{
++(void)getNotifications:(void(^)(NSArray* notifications))completion{
     if (![User getUser].username){
-        return nil;
+        completion(nil);
+        return;
     }
-    NSDate* lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:NOTIFICATION_KEY];
-    if (!lastUpdate) {
-        lastUpdate = [[NSDate alloc] initWithTimeIntervalSince1970:0];
-    }
-    
-    NSMutableDictionary* query = [[NSMutableDictionary alloc] init];
-    NSString* dateStr = [[Util getDateFormatter] stringFromDate:lastUpdate];
-    [query setObject:dateStr forKey:@"after"];
     
     NSString* path = [NSString stringWithFormat:@"/notifications/%@", [User getUser].qualifiedUsername];
-    
-    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData){
-        return nil;
-    }
-    
-    NSArray* notificiationsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for (NSDictionary* note in notificiationsDic){
-        [array addObject:[Notification fromJSON:note]];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[[NSDate alloc] initWithTimeIntervalSinceNow:0] forKey:NOTIFICATION_KEY];
-    
-    return array;
-
+    [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
+        NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+        if (!jsonData){
+            completion(nil);
+            return;
+        }
+        
+        NSArray* notificiationsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        for (NSDictionary* note in notificiationsDic){
+            [array addObject:[Notification fromJSON:note]];
+        }
+        
+        completion(array);
+    }];
 }
-+(NSArray*)getRecordingsForTagName:(NSString*)tagName{
-    
-//    NSData *jsonData = [[SampleData getRecordingsForTagName:tag Name] dataUsingEncoding:NSUTF8StringEncoding];
+
++(void)getRecordingsForTagName:(NSString*)tagName completion:(void(^)(NSArray* recordings))completion{
     
     NSString* path = [NSString stringWithFormat:@"/tags/%@/recordings", tagName];
-    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData){
-        return [[NSArray alloc] init];
-    }
-    
-    NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for (NSDictionary* recDic in recordingsDic){
-        [array addObject:[Recording fromJSON:recDic]];
-    }
-    
-    return array;
+    [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
+        NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+        if (!jsonData){
+            completion([[NSArray alloc] init]);
+        }
+        
+        NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        for (NSDictionary* recDic in recordingsDic){
+            [array addObject:[Recording fromJSON:recDic]];
+        }
+        
+        completion(array);
+    }];
 }
-
-+(NSArray*)getMyRecordings{
++(void)getMyRecordings:(void(^)(NSArray* myRecordings))completion{
     NSString* path = [NSString stringWithFormat:@"/users/%@/recordings", [User getUser].qualifiedUsername];
-    NSData *jsonData = [[RestHelper get:path withQuery:nil] dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData){
-        return [[NSArray alloc] init];
-    }
-    NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for (NSDictionary* recDic in recordingsDic){
-        [array addObject:[Recording fromJSON:recDic]];
-    }
-    
-    return array;
+    [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
+        NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+        if (!jsonData){
+            completion([[NSArray alloc] init]);
+        }
+        NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        for (NSDictionary* recDic in recordingsDic){
+            [array addObject:[Recording fromJSON:recDic]];
+        }
+        
+        completion(array);
+    }];
 }
 
 +(void)updateFacebookFriends{
@@ -201,7 +209,7 @@ static NSMutableArray* tagNames;
                 NSArray* friends = [result objectForKey:@"data"];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     
-
+                    
                     NSString* friendsJson = @"[";
                     for (NSDictionary<FBGraphUser> *friend in friends){
                         User* user = [User fromFBUser:friend];
@@ -213,14 +221,12 @@ static NSMutableArray* tagNames;
                     
                     if(lastComma.location != NSNotFound) {
                         friendsJson = [friendsJson stringByReplacingCharactersInRange:lastComma
-                                                           withString: @"]"];
+                                                                           withString: @"]"];
                     }
                     
                     NSData* jsonData = [friendsJson dataUsingEncoding:NSUTF8StringEncoding];
                     NSString* path = [NSString stringWithFormat:@"/friends/%@", [User getUser].qualifiedUsername];
-                    [RestHelper post:path withBody:jsonData andQuery:nil];
-                    
-                    NSLog(@"Found: %i facebook friends", friends.count);
+                    [RestHelper post:path withBody:jsonData andQuery:nil completion:nil];
                 });
             }];
         });
