@@ -28,6 +28,43 @@
     }
     return self;
 }
+
+-(void)refreshWithTimeout:(NSInteger)timeout{
+    if (timeout<0){
+        self.data = nil;
+        [self updateTable];
+        return;
+    }
+    [DataSource getNotifications:^(NSArray *notifications) {
+        self.data = notifications;
+        
+        if (self.data){
+            
+            if (![Util hasYapped]){
+                NSMutableArray* mData = [[NSMutableArray alloc] initWithCapacity:self.data.count+1];
+                
+                Notification* notification = [[Notification alloc] init];
+                notification.usernameBy = @"_YapZap";
+                notification.tagName = @"welcome2yapzap";
+                notification.type = @"WELCOME";
+                notification.recordingId = @"5321d5848740a611119ca3f0";
+                
+                [mData addObject:notification];
+                [mData addObjectsFromArray:self.data];
+                self.data = mData;
+            }
+            
+            [self updateTable];
+            return;
+        }
+        else {
+            [self refreshWithTimeout:timeout-1];
+        }
+
+    }];
+    
+    
+}
 - (void)refresh
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -37,30 +74,7 @@
             }
             [NSThread sleepForTimeInterval:1];
         }
-        for (int i=0;i<10;i++){
-            self.data = [DataSource getNotifications];
-            if (self.data){
-                
-                if (![Util hasYapped]){
-                    NSMutableArray* mData = [[NSMutableArray alloc] initWithCapacity:self.data.count+1];
-                    
-                    Notification* notification = [[Notification alloc] init];
-                    notification.usernameBy = @"_YapZap";
-                    notification.tagName = @"welcome2yapzap";
-                    notification.type = @"WELCOME";
-                    notification.recordingId = @"5321d5848740a611119ca3f0";
-
-                    [mData addObject:notification];
-                    [mData addObjectsFromArray:self.data];
-                    self.data = mData;
-                }
-                
-                [self updateTable];
-                return;
-            }
-        }
-        [self updateTable];
-        
+        [self refreshWithTimeout:10];
     });
 }
 - (void)updateTable

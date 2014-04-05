@@ -248,7 +248,7 @@ Body: Whose yap are you reporting? _________________________
         NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes", self.recording._id];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [RestHelper post:path withBody:bodyData andQuery:nil];
+            [RestHelper post:path withBody:bodyData andQuery:nil completion:nil];
         });
     }
     else {
@@ -256,7 +256,7 @@ Body: Whose yap are you reporting? _________________________
         NSString* path = [NSString stringWithFormat:@"/recordings/%@/likes/%@", self.recording._id, user.qualifiedUsername];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [RestHelper del:path withQuery:nil];
+            [RestHelper del:path withQuery:nil completion:nil];
         });
     }
 }

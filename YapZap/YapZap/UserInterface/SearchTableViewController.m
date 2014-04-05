@@ -25,7 +25,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tagNames = [DataSource getTagNames];
+    [DataSource getTagNames:^(NSArray *tagNames) {
+        self.tagNames = tagNames;
+        [self.tableView reloadData];
+    }];
     self.activeLabels = [[NSMutableArray alloc] init];
     [self searchAutocompleteEntriesWithSubstring:nil];
 

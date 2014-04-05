@@ -26,6 +26,7 @@
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)recordingButtonPressed:(id)sender;
 -(IBAction)goHome:(id)sender;
+-(void)gotoTagWithName:(NSString*)tagName withRetryCount:(NSUInteger)retryCount;
 -(void)gotoTagWithName:(NSString*)tagName;
 -(void)gotoTagWithName:(NSString*)tagName andRecording:(NSString*)recordingId;
 -(void)dismissSearch;

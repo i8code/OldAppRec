@@ -124,33 +124,33 @@
     [self.view bringSubviewToFront:self.playButton];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.recordings = [DataSource getRecordingsForTagName:self.tag.name];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (self.tableController){
-                [self.tableController removeFromParentViewController];
-                [self.tableController.view removeFromSuperview];
-            }
-            
-            self.tableController = [[TagPageTableViewController alloc] initWithNibName:@"TagPageTableViewController" bundle:nil];
-            [self.tableController setTagName:self.tag.name];
-            [self.tableController setRecordings:self.recordings];
-            self.tableController.delegate = self.parent;
-            self.tableController.parentTagViewController = self;
-            
-            [self addChildViewController:self.tableController];
-            [self.tableArea addSubview:self.tableController.view];
-            [self.tableController didMoveToParentViewController:self];
-            [self.tableController.view setFrame:self.tableArea.bounds];
-            self.activityIndicator.hidden=YES;
-            
-            if (requestedRecording){
-                [self scrollToRecording:requestedRecording];
-                requestedRecording = nil;
-            }
-            
-        });
+        [DataSource getRecordingsForTagName:self.tag.name completion:^(NSArray *recordings) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.tableController){
+                    [self.tableController removeFromParentViewController];
+                    [self.tableController.view removeFromSuperview];
+                }
+                
+                self.tableController = [[TagPageTableViewController alloc] initWithNibName:@"TagPageTableViewController" bundle:nil];
+                [self.tableController setTagName:self.tag.name];
+                [self.tableController setRecordings:self.recordings];
+                self.tableController.delegate = self.parent;
+                self.tableController.parentTagViewController = self;
+                
+                [self addChildViewController:self.tableController];
+                [self.tableArea addSubview:self.tableController.view];
+                [self.tableController didMoveToParentViewController:self];
+                [self.tableController.view setFrame:self.tableArea.bounds];
+                self.activityIndicator.hidden=YES;
+                
+                if (requestedRecording){
+                    [self scrollToRecording:requestedRecording];
+                    requestedRecording = nil;
+                }
+                
+            });
+        }];
         
     });
     
@@ -165,7 +165,9 @@
     self.view.hidden=YES;
     TagPageViewController* tagPageViewController = [[TagPageViewController alloc] initWithNibName:@"TagPageViewController" bundle:nil];
     [tagPageViewController setParent:self.parent];
-    [tagPageViewController setTag:[DataSource getNextPopularTag]];
+    [DataSource getNextPopularTag:^(Tag *tag) {
+        [tagPageViewController setTag:tag];
+    }];
     [self.navigationController pushViewController:tagPageViewController animated:YES];
     [self removeFromParentViewController];
 }

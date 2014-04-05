@@ -79,118 +79,119 @@
     
     self.tagPositions=-10;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.popularTags = [DataSource getPopularTags];
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSMutableArray* buttons = [[NSMutableArray alloc] init];
-            
-            NSInteger third = self.popularTags.count/3+1;
-            //First create all tag elements
-            for (int i=0;i<self.popularTags.count;i++){
-                Tag* tag = self.popularTags[i];
-                int pop = ((2-i/third)*2)+1;
-                CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag withPopularity:pop inView:self.cloudView andOnclick:self.gotoTagBlock];
-                [buttons addObject:element];
-            }
-            
-            NSArray* cloudElements = [self shuffleArray:buttons];
-            
-            int numberOfFlows=1;
-            self.canvasHeight = self.cloudView.frame.size.height;
-            
-            CGFloat rowHeight = 25.0f;
-            CGFloat nRows =(int)(self.canvasHeight/rowHeight-1);
-            
-            CGFloat* rowDepths = (CGFloat*)malloc(sizeof(CGFloat)*nRows);
-            
-            for (int i=0;i<nRows;i++){
-                rowDepths[i]=0;
-            }
-            
-            int timestamp = 0;
-            int numPlaced= 0;
-            
-            for (int i=0;i<cloudElements.count;){
-                if (numPlaced>=numberOfFlows){
-                    numPlaced=0;
-                    timestamp+=(arc4random()%50)+20;
-                    continue;
+        [DataSource getPopularTags:^(NSArray *popularTags) {
+            self.popularTags = popularTags;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableArray* buttons = [[NSMutableArray alloc] init];
+                
+                NSInteger third = self.popularTags.count/3+1;
+                //First create all tag elements
+                for (int i=0;i<self.popularTags.count;i++){
+                    Tag* tag = self.popularTags[i];
+                    int pop = ((2-i/third)*2)+1;
+                    CloudTagElement* element = [[CloudTagElement alloc] initWithTag:tag withPopularity:pop inView:self.cloudView andOnclick:self.gotoTagBlock];
+                    [buttons addObject:element];
                 }
                 
-                //Try to place this element
-                CloudTagElement* element = cloudElements[i];
+                NSArray* cloudElements = [self shuffleArray:buttons];
                 
-                //Find all the places it can fit
-                int elementSpan = element.height/rowHeight+1;
-                NSMutableArray* slots = [[NSMutableArray alloc] init];
-                for (int j=0;j<nRows;j++){
-                    if (j+elementSpan>nRows){
-                        break;
+                int numberOfFlows=1;
+                self.canvasHeight = self.cloudView.frame.size.height;
+                
+                CGFloat rowHeight = 25.0f;
+                CGFloat nRows =(int)(self.canvasHeight/rowHeight-1);
+                
+                CGFloat* rowDepths = (CGFloat*)malloc(sizeof(CGFloat)*nRows);
+                
+                for (int i=0;i<nRows;i++){
+                    rowDepths[i]=0;
+                }
+                
+                int timestamp = 0;
+                int numPlaced= 0;
+                
+                for (int i=0;i<cloudElements.count;){
+                    if (numPlaced>=numberOfFlows){
+                        numPlaced=0;
+                        timestamp+=(arc4random()%50)+20;
+                        continue;
                     }
-                    BOOL works = true;
-                    for (int k=0;k<elementSpan;k++){
-                        if (rowDepths[k+j]>=timestamp){
-                            works=false;
+                    
+                    //Try to place this element
+                    CloudTagElement* element = cloudElements[i];
+                    
+                    //Find all the places it can fit
+                    int elementSpan = element.height/rowHeight+1;
+                    NSMutableArray* slots = [[NSMutableArray alloc] init];
+                    for (int j=0;j<nRows;j++){
+                        if (j+elementSpan>nRows){
                             break;
+                        }
+                        BOOL works = true;
+                        for (int k=0;k<elementSpan;k++){
+                            if (rowDepths[k+j]>=timestamp){
+                                works=false;
+                                break;
+                            }
+                        }
+                        
+                        if (works){
+                            [slots addObject:[NSNumber numberWithInt:j]];
+                            
                         }
                     }
                     
-                    if (works){
-                        [slots addObject:[NSNumber numberWithInt:j]];
-
+                    //Check to see if it can be placed
+                    if (!slots.count){
+                        timestamp+=15;
+                        continue;
                     }
+                    
+                    //Pick a random place to put it
+                    int selection = (arc4random()%slots.count);
+                    NSInteger slot = [slots[selection] integerValue];
+                    CGPoint position = CGPointMake(timestamp, slot*rowHeight+30);
+                    [element setPosition:position];
+                    numPlaced++;
+                    
+                    for (int k=0;k<elementSpan;k++){
+                        rowDepths[k+slot]=timestamp+element.width*1.25f;
+                    }
+                    //                rowDepths[slot+elementSpan/2]=timestamp+element.width;
+                    
+                    i++;
+                    /*
+                     NSLog(@"\nTimestamp:%d", timestamp);
+                     for (int j=0;j<nRows;j++){
+                     NSLog(@"%f", rowDepths[j]);
+                     }
+                     */
+                    
                 }
                 
-                //Check to see if it can be placed
-                if (!slots.count){
-                    timestamp+=15;
-                    continue;
+                self.buttons = cloudElements;
+                CGFloat max=0;
+                for (int i=0;i<nRows;i++){
+                    max = MAX(max, rowDepths[i]);
                 }
                 
-                //Pick a random place to put it
-                int selection = (arc4random()%slots.count);
-                NSInteger slot = [slots[selection] integerValue];
-                CGPoint position = CGPointMake(timestamp, slot*rowHeight+30);
-                [element setPosition:position];
-                numPlaced++;
+                free(rowDepths);
+                self.canvasWidth = MAX(self.cloudView.frame.size.width+100, max);
+                self.buttons = buttons;
                 
-                for (int k=0;k<elementSpan;k++){
-                    rowDepths[k+slot]=timestamp+element.width*1.25f;
+                for (CloudTagElement* element in self.buttons){
+                    [element setCanvasWidth:self.canvasWidth];
                 }
-//                rowDepths[slot+elementSpan/2]=timestamp+element.width;
                 
-                i++;
-                /*
-                NSLog(@"\nTimestamp:%d", timestamp);
-                for (int j=0;j<nRows;j++){
-                    NSLog(@"%f", rowDepths[j]);
-                }
-                */
+                self.activityIndicator.hidden = YES;
                 
-            }
-            
-            self.buttons = cloudElements;
-            CGFloat max=0;
-            for (int i=0;i<nRows;i++){
-                max = MAX(max, rowDepths[i]);
-            }
-            
-            free(rowDepths);
-            self.canvasWidth = MAX(self.cloudView.frame.size.width+100, max);
-            self.buttons = buttons;
-            
-            for (CloudTagElement* element in self.buttons){
-                [element setCanvasWidth:self.canvasWidth];
-            }
-            
-            self.activityIndicator.hidden = YES;
-            
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateTagPositions) userInfo:nil repeats:YES];
-            [[NSRunLoop currentRunLoop] addTimer:self.timer
-                                         forMode:NSRunLoopCommonModes];
-            
-        });
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateTagPositions) userInfo:nil repeats:YES];
+                [[NSRunLoop currentRunLoop] addTimer:self.timer
+                                             forMode:NSRunLoopCommonModes];
+                
+            });
+        }];
+        
     });
 }
 
@@ -245,7 +246,7 @@
     [SharingBundle clear];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [DataSource refreshTagNames];
+        [DataSource refreshTagNames:nil];
     });
     
     
@@ -286,14 +287,16 @@
 }
 -(void)gotoTagWithName:(NSString*)name{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        Tag* tag = [DataSource getTagByName:name];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.gotoTagBlock(tag);
-        });
-        
+        [DataSource getTagByName:name completion:^(Tag *tag) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.gotoTagBlock(tag);
+            });
+        }];
     });
 }
 - (void)swipedRight:(UIGestureRecognizer*)recognizer {
-    self.gotoTagBlock([DataSource getNextPopularTag]);
+    [DataSource getNextPopularTag:^(Tag *tag) {
+        self.gotoTagBlock(tag);
+    }];
 }
 @end

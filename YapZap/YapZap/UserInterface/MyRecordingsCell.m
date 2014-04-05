@@ -155,8 +155,12 @@
         //Delete me
         NSString* path = [NSString stringWithFormat:@"/recordings/%@", self.recording._id];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [RestHelper del:path withQuery:nil];
-            [self.parent refresh];
+            [RestHelper del:path withQuery:nil completion:^(NSString *responseStr) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.parent refresh];
+                });
+            }];
+            
         });
         [[LocalyticsSession shared] tagEvent:@"Deleted a recording"];
     }

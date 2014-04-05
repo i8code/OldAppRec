@@ -279,31 +279,39 @@ machineName()
 }
 
 
--(void)gotoTagWithName:(NSString*)tagName{
-    //Lots of logic
-    //Check to see if we have that tag name
-    NSArray* tagNames = [DataSource getTagNames];
-    if (![tagNames containsObject:tagName]){
-        //If we don't, maybe it's a new tag, refresh names
-        tagNames = [DataSource refreshTagNames];
-        if (![tagNames containsObject:tagName]){
-            return;
-        }
-    }
+-(void)gotoTagWithName:(NSString*)tagName withRetryCount:(NSUInteger)retryCount{
     
-    //Now see what's visible.
-    NSUInteger pages = [[self.mainViewController childViewControllers] count];
-    if (pages>1){
-        TagPageViewController* visiblePage = [[self.mainViewController childViewControllers] objectAtIndex:pages-1];
-        Tag* tag = visiblePage.tag;
-        if ([tag.name isEqualToString:tagName]){
-            //We good. just refresh
-            [visiblePage loadRecordingsForTag];
-            return;
+    [DataSource getTagNames:^(NSArray* tagNames){
+         if (![tagNames containsObject:tagName]){
+             if (retryCount<1){
+                 return;
+             }
+             
+             [DataSource refreshTagNames:^(NSArray *tagNames) {
+                 [self gotoTagWithName:tagName withRetryCount:retryCount-1];
+             }];
+             return;
+         }
+        
+        //Now see what's visible.
+        NSUInteger pages = [[self.mainViewController childViewControllers] count];
+        if (pages>1){
+            TagPageViewController* visiblePage = [[self.mainViewController childViewControllers] objectAtIndex:pages-1];
+            Tag* tag = visiblePage.tag;
+            if ([tag.name isEqualToString:tagName]){
+                //We good. just refresh
+                [visiblePage loadRecordingsForTag];
+                return;
+            }
         }
-    }
-    TagCloudViewController* tagCloudViewController = [[self.mainViewController childViewControllers] objectAtIndex:0];
-    [tagCloudViewController gotoTagWithName:tagName];
+        TagCloudViewController* tagCloudViewController = [[self.mainViewController childViewControllers] objectAtIndex:0];
+        [tagCloudViewController gotoTagWithName:tagName];
+        
+    }];
+   
+}
+-(void)gotoTagWithName:(NSString*)tagName{
+    [self gotoTagWithName:tagName withRetryCount:10];
 }
 
 -(void)gotoTagWithName:(NSString*)tagName andRecording:(NSString*)recordingId{

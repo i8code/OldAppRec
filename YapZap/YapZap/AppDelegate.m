@@ -66,7 +66,7 @@
         
         
         //Load Tag names
-        [DataSource getTagNames];
+        [DataSource getTagNames:nil];
         [DataSource updateFacebookFriends];
         [CoreDataManager database];
     });

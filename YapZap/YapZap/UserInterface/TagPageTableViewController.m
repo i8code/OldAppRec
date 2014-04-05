@@ -47,11 +47,14 @@
 - (void)refresh
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self setRecordings:[DataSource getRecordingsForTagName:self.tagName]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        });
+        
+        [DataSource getRecordingsForTagName:self.tagName completion:^(NSArray *recordings) {
+            self.recordings = recordings;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            });
+        }];
     });
 }
 //- (void)updateTable

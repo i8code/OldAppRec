@@ -49,14 +49,14 @@
 - (void)refresh
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray* recordings =[DataSource getMyRecordings];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self setRecordings:recordings];
-            [self.delegate setRecordings:self.recordings];
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        });
+        [DataSource getMyRecordings:^(NSArray *recordings) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setRecordings:recordings];
+                [self.delegate setRecordings:self.recordings];
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            });
+        }];
     });
 }
 //- (void)updateTable
