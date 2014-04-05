@@ -96,7 +96,7 @@
             }];
             
         });
-        completion(nil);
+        if (completion) completion(nil);
         return;
 
     }
@@ -130,21 +130,21 @@
             NSString* error = [NSString stringWithFormat:@"Error getting %@. HTTP status code %li", url, (long)[responseCode statusCode]];
             NSLog(@"%@", error);
             [[LocalyticsSession shared] tagEvent:error];
-            completion(nil);
+            if (completion) completion(nil);
             return;
         }
         else if (!data && [type isEqualToString:@"GET"]){
             NSString* error = [NSString stringWithFormat:@"Server data was nil from %@. HTTP status code %li", url, (long)[responseCode statusCode]];
             NSLog(@"%@", error);
             [[LocalyticsSession shared] tagEvent:error];
-            completion(nil);
+            if (completion) completion(nil);
             return;
         }
         
         NSString* responseStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"Response:\n%@\n", responseStr);
         
-        completion(responseStr);
+        if (completion) completion(responseStr);
     }];
 }
 

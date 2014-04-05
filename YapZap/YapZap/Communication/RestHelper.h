@@ -14,8 +14,8 @@
 #define PROTOCOL @"https"
 #define HOST @"yapzap.me"
 
-+(NSString*)get:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
-+(NSString*)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
-+(NSString*)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
-+(NSString*)del:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(void)get:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(void)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(void)put:(NSString*)url  withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
++(void)del:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
 @end

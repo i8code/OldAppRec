@@ -50,7 +50,7 @@ static NSMutableArray* tagNames;
 +(void)getTagNames:(void(^)(NSArray*))completion{
     
     if (tagNames){
-        completion(tagNames);
+        if (completion) completion(tagNames);
         return;
     }
     
@@ -60,7 +60,7 @@ static NSMutableArray* tagNames;
         NSData *jsonData = [stringData dataUsingEncoding:NSUTF8StringEncoding];
         
         if (!jsonData){
-            completion([[NSArray alloc] init]);
+            if (completion) completion([[NSArray alloc] init]);
             return;
         }
         NSArray* tagNamesJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
@@ -69,8 +69,7 @@ static NSMutableArray* tagNames;
         for (NSString* tagName in tagNamesJson){
             [tagNames addObject:tagName];
         }
-        
-        completion(tagNames);
+        if (completion) completion(tagNames);
 
     }];
 }
@@ -84,7 +83,7 @@ static NSMutableArray* tagNames;
     [RestHelper get:@"/tags" withQuery:nil completion:^(NSString *responseStr) {
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
-            completion([[NSArray alloc] init]);
+            if (completion) completion([[NSArray alloc] init]);
             return;
         }
         NSArray* tagsJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
@@ -94,7 +93,7 @@ static NSMutableArray* tagNames;
             [array addObject:[Tag fromJSON:tagDic]];
         }
         _tags = array;
-        completion(array);
+        if (completion) completion(array);
 
     }];
 }
@@ -107,11 +106,11 @@ static NSMutableArray* tagNames;
         return;
     }
     if (!_tags || _tags.count==0){
-        completion(nil);
+        if (completion) completion(nil);
         return;
     }
     currentTag=(currentTag+1)%_tags.count;
-    completion([_tags objectAtIndex:currentTag]);
+    if (completion) completion([_tags objectAtIndex:currentTag]);
 }
 
 +(void)getTagByName:(NSString*)name completion:(void(^)(Tag* tag))completion{
@@ -119,12 +118,12 @@ static NSMutableArray* tagNames;
     [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
-            completion(nil);
+            if (completion) completion(nil);
             return;
         }
         NSDictionary* tagJson = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         
-        completion([Tag fromJSON:tagJson]);
+        if (completion) completion([Tag fromJSON:tagJson]);
     }];
 }
 
@@ -132,7 +131,7 @@ static NSMutableArray* tagNames;
 
 +(void)getNotifications:(void(^)(NSArray* notifications))completion{
     if (![User getUser].username){
-        completion(nil);
+        if (completion) completion(nil);
         return;
     }
     
@@ -140,7 +139,7 @@ static NSMutableArray* tagNames;
     [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
-            completion(nil);
+            if (completion) completion(nil);
             return;
         }
         
@@ -151,7 +150,7 @@ static NSMutableArray* tagNames;
             [array addObject:[Notification fromJSON:note]];
         }
         
-        completion(array);
+        if (completion) completion(array);
     }];
 }
 
@@ -161,7 +160,7 @@ static NSMutableArray* tagNames;
     [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
-            completion([[NSArray alloc] init]);
+            if (completion) completion([[NSArray alloc] init]);
         }
         
         NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
@@ -171,7 +170,7 @@ static NSMutableArray* tagNames;
             [array addObject:[Recording fromJSON:recDic]];
         }
         
-        completion(array);
+        if (completion) completion(array);
     }];
 }
 +(void)getMyRecordings:(void(^)(NSArray* myRecordings))completion{
@@ -180,7 +179,7 @@ static NSMutableArray* tagNames;
     [RestHelper get:path withQuery:nil completion:^(NSString *responseStr) {
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
-            completion([[NSArray alloc] init]);
+            if (completion) completion([[NSArray alloc] init]);
         }
         NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         
@@ -189,7 +188,7 @@ static NSMutableArray* tagNames;
             [array addObject:[Recording fromJSON:recDic]];
         }
         
-        completion(array);
+        if (completion) completion(array);
     }];
 }
 

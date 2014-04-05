@@ -178,52 +178,53 @@
                     [self showError];
                 });
                 return;
-                
-                NSDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:[recordingResponse dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-                self.uploadedRecording = [Recording fromJSON:jsonResponse];
-                
-                NSLog(@"Uploaded recording: \n%@", [recordingResponse dataUsingEncoding:NSUTF8StringEncoding]);
-                
-                //Now share on FB/Twitter
-                
-                if ([Util shouldShareOnFB] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
-                            // permission does not exist
-                            [[FBSession activeSession] requestNewPublishPermissions:[Util getFBWritePermissions]    defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:^(FBSession *session, NSError *error) {
-                                /* handle success + failure in block */
-                                if (!error){
-                                    NSLog(@"Sharing on Facebook");
-                                    [self shareOnFB];
-                                }else {
-                                    
-                                    NSLog(@"Error getting permission to share on Facebook");
-                                }
-                            }];
-                        } else {
-                            NSLog(@"Sharing on Facebook");
-                            [self shareOnFB];
-                        }
-                        
-                    });
-                }
-                
-                if ([Util shouldShareOnTW] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
-                    NSLog(@"Sharing on Twitter");
-                    [self shareOnTW];
-                }
-                
-                
-                //Delete recording
-                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-                
-                [[LocalyticsSession shared] tagEvent:@"Finished Upload"];
-                NSLog(@"Finished upload");
-                
-                self.uploadComplete = YES;
-                [Util setHasYapped];
             }
+            
+            NSDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:[recordingResponse dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+            self.uploadedRecording = [Recording fromJSON:jsonResponse];
+            
+            NSLog(@"Uploaded recording: \n%@", [recordingResponse dataUsingEncoding:NSUTF8StringEncoding]);
+            
+            //Now share on FB/Twitter
+            
+            if ([Util shouldShareOnFB] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+                        // permission does not exist
+                        [[FBSession activeSession] requestNewPublishPermissions:[Util getFBWritePermissions]    defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:^(FBSession *session, NSError *error) {
+                            /* handle success + failure in block */
+                            if (!error){
+                                NSLog(@"Sharing on Facebook");
+                                [self shareOnFB];
+                            }else {
+                                
+                                NSLog(@"Error getting permission to share on Facebook");
+                            }
+                        }];
+                    } else {
+                        NSLog(@"Sharing on Facebook");
+                        [self shareOnFB];
+                    }
+                    
+                });
+            }
+            
+            if ([Util shouldShareOnTW] && [self.uploadedRecording.parentType isEqualToString:@"TAG"]){
+                NSLog(@"Sharing on Twitter");
+                [self shareOnTW];
+            }
+            
+            
+            //Delete recording
+            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            
+            [[LocalyticsSession shared] tagEvent:@"Finished Upload"];
+            NSLog(@"Finished upload");
+            
+            self.uploadComplete = YES;
+            [Util setHasYapped];
+        
 
         }];
         
