@@ -7,10 +7,10 @@
 #sudo -u ubuntu /usr/bin/npm start /home/ubuntu/YapZap-express/
 USER="ubuntu"
  
-DAEMON="/usr/bin/node"
+DAEMON="forever"
 ROOT_DIR="/home/ubuntu/YapZap-express/"
 APP_LOC="$ROOT_DIR/app.js" 
-LOG_FILE="$ROOT_DIR/app.js.log"
+LOG_FILE="/home/ubuntu/yapzap.log"
 LOCK_FILE="/var/lock/subsys/node-server"
 
  
@@ -18,9 +18,8 @@ do_start()
 {
         if [ ! -f "$LOCK_FILE" ] ; then
                 echo -n $"Starting $SERVER: "
-                printenv
                 cd $ROOT_DIR
-		sudo -u $USER NODE_ENV=production $DAEMON $APP_LOC  >> $LOG_FILE & 
+		sudo -u $USER $DAEMON start $APP_LOC  >> $LOG_FILE & 
                 RETVAL=$?
                 echo
                 [ $RETVAL -eq 0 ] && touch $LOCK_FILE
@@ -32,9 +31,13 @@ do_start()
 do_stop()
 {
         echo -n $"Stopping $SERVER: "
-        pid=`netstat -lpn | grep 'node' | awk '{print $7}' | awk -F '/' '{print $1}'`
-        echo "killing " & $pid        
-        kill -9 $pid > /dev/null 2>&1 && echo_success || echo_failure
+        #pid=`netstat -lpn | grep 'nodejs' | awk '{print $9}' | awk -F '/' '{print $1}'`
+        pid=`ps axl | grep node | grep forever | awk '{print $3}'`
+        echo "killing " & $pid
+        kill -9 $pid > /dev/null 2>&1 && echo 'Process killed succesfully' || echo 'error killing process'
+        pid=`ps axl | grep node | grep ubuntu | awk '{print $3}'`        
+        echo "killing " & $pid
+        kill -9 $pid > /dev/null 2>&1 && echo 'Process killed succesfully' || echo 'error killing process'
         RETVAL=$?
         echo
         [ $RETVAL -eq 0 ] && rm -f $LOCK_FILE

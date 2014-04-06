@@ -152,7 +152,7 @@ app.get('/time', function(req, res) {
 
 //Download link
 app.get('/app', function(req, res) {
-  res.redirect('https://docs.google.com/forms/d/1QtgLdRske-o1vGzE06AbO_EGfBheouYr5-gEpcUXP3w/viewform');
+  res.redirect('https://itunes.apple.com/US/app/id844625372?mt=8');
 });
 
 app.get('/terms', function(req, res) {
