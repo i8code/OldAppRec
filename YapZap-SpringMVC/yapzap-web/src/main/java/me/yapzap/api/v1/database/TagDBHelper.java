@@ -26,7 +26,7 @@ public class TagDBHelper extends DBHelper {
         "intensity FLOAT DEFAULT 0, "+
         "children_length INT DEFAULT 0, "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
-        "last_update TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
+        "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
         "PRIMARY KEY (name));";
 
     @PostConstruct
@@ -34,27 +34,201 @@ public class TagDBHelper extends DBHelper {
         execute(createTagTableSQL);
     }
     
-    public Tag getTagFromResultsSet(ResultSet set){
-        return null;
+    public Tag getTagFromResultsSet(ResultSet set) throws SQLException{
+        Tag tag = new Tag();
+        
+        tag.setName(set.getString("name"));
+        tag.set_id(set.getString("_id"));
+        tag.setPopularity(set.getFloat("popularity"));
+        tag.setMood(set.getFloat("mood"));
+        tag.setIntensity(set.getFloat("intensity"));
+        tag.setChildrenLength(set.getInt("children_length"));
+        tag.setCreatedDate(convertDate(set.getTimestamp("created_date")));
+        tag.setLastUpdate(convertDate(set.getTimestamp("last_update")));
+        
+        return tag;
     }
     
-    
     public List<Tag> getMostPopularTags() {
-        return null;
+        List<Tag> tags = new ArrayList<>();
+        String selectAllNamesStatement = "select * from TAGS order by popularity desc limit 200;";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllNamesStatement);
+            ResultSet results = queryStatement.executeQuery();
+            
+            while(results.next()){
+                tags.add(getTagFromResultsSet(results));
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        return tags;
     }
     
     public Tag getById(int id){
+        String selectAllNamesStatement = "select * from TAGS where id='"+id+"';";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllNamesStatement);
+            ResultSet results = queryStatement.executeQuery();
+            
+            while(results.next()){
+                return getTagFromResultsSet(results);
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
         return null;
     }
     
     public Tag getByName(String name){
+        String selectAllNamesStatement = "select * from TAGS where name='"+name+"';";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllNamesStatement);
+            ResultSet results = queryStatement.executeQuery();
+            
+            while(results.next()){
+                return getTagFromResultsSet(results);
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        return null;
+    }
+    
+    public Tag createTag(Tag tag){
         
+        String insertStatement = "insert into TAGS(_id, name, popularity, mood, intensity, children_length) values(?,?,?,?,?,?);";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(insertStatement);
+
+            queryStatement.setString(1, tag.get_id());
+            queryStatement.setString(2, tag.getName());
+            queryStatement.setFloat(3, tag.getPopularity());
+            queryStatement.setFloat(4, tag.getMood());
+            queryStatement.setFloat(5, tag.getIntensity());
+            queryStatement.setInt(6, tag.getChildrenLength());
+            
+            queryStatement.execute();
+            
+            return getByName(tag.getName());
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
         
         return null;
     }
     
-    public void createTag(Tag tag){
+    public Tag updateTag(Tag tag){
         
+        String insertStatement = "update TAGS set popularity=?, mood=?, intensity=?, children_length=? where name=?";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(insertStatement);
+
+            queryStatement.setFloat(1, tag.getPopularity());
+            queryStatement.setFloat(2, tag.getMood());
+            queryStatement.setFloat(3, tag.getIntensity());
+            queryStatement.setInt(4, tag.getChildrenLength());
+            queryStatement.setString(5, tag.getName());
+            
+            queryStatement.execute();
+            
+            return getByName(tag.getName());
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        
+        return null;
     }
     
     public List<String> getAllTagNames(){

@@ -1,10 +1,10 @@
 package me.yapzap.api.v1.database;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import me.yapzap.api.util.Logger;
 
@@ -45,6 +45,14 @@ public class DBHelper {
             catch (Exception e) {
             }
         }
+    }
+    
+    protected Date convertDate(Timestamp timestamp){
+        return new Date(timestamp.getTime());
+    }
+    
+    protected Timestamp convertDate(Date date){
+        return new Timestamp(date.getTime());
     }
 
 }

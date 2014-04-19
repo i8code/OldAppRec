@@ -19,7 +19,7 @@ public class NotificationDBHelper extends DBHelper {
         "mood FLOAT DEFAULT 0 ,"+
         "intensity FLOAT DEFAULT 0, "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
-        "last_update TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
+        "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
         "PRIMARY KEY (id));";
 
     @Autowired

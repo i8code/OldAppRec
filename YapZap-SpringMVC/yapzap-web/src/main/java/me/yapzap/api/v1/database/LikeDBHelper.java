@@ -14,7 +14,7 @@ public class LikeDBHelper extends DBHelper {
         "username varchar(255), "+
         "recording_id varchar(255), "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
-        "last_update TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
+        "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
         "PRIMARY KEY (id));";
 
     @Autowired
