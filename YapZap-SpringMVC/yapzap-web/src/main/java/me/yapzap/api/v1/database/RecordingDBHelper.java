@@ -29,7 +29,7 @@ public class RecordingDBHelper {
         "likes INT DEFAULT 0, "+
         "audio_url varchar(255), "+
         "audio_hash varchar(255), "+
-        "waveform_data varchar(21845), "+
+        "waveform_data varchar(16384), "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
         "last_update TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
         "PRIMARY KEY (id));";

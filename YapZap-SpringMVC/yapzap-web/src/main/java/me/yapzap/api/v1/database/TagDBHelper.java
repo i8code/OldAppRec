@@ -18,8 +18,7 @@ import org.springframework.stereotype.Component;
 public class TagDBHelper {
     
     public static final String createTagTableSQL = "create table if not exists "+
-        "TAGS(id INT NOT NULL AUTO_INCREMENT, "+
-        "_id varchar(255), "+
+        "TAGS(_id varchar(255), "+
         "name varchar(255), "+
         "popularity FLOAT DEFAULT 0, "+
         "mood FLOAT DEFAULT 0 ,"+
@@ -27,7 +26,7 @@ public class TagDBHelper {
         "children_length INT DEFAULT 0, "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
         "last_update TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
-        "PRIMARY KEY (id));";
+        "PRIMARY KEY (name));";
 
     @Autowired
     private DataSourceFactory dataSourceFactory;
