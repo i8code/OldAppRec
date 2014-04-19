@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class BlackListDBHelper extends DBHelper {
     
     public static final String createBlackListTable = "create table if not exists "+
-        "BLACKLIST(_id varchar(255), "+
+        "BLACKLIST("+
         "username varchar(255), "+
         "PRIMARY KEY (username));";
 

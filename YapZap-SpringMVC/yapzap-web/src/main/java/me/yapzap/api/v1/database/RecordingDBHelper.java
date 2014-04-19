@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class RecordingDBHelper extends DBHelper {
     
     public static final String createRecordingTable = "create table if not exists "+
-        "RECORDINGS(id INT NOT NULL AUTO_INCREMENT, "+
-        "_id varchar(255), "+
+        "RECORDINGS("+
+        "_id varchar(255) NOT NULL , "+
         "username varchar(255), "+
         "parent_name varchar(255), "+
         "parent_type varchar(255), "+
@@ -25,7 +25,7 @@ public class RecordingDBHelper extends DBHelper {
         "waveform_data varchar(16384), "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
         "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
-        "PRIMARY KEY (id));";
+        "PRIMARY KEY (_id));";
 
     @Autowired
     private DataSourceFactory dataSourceFactory;

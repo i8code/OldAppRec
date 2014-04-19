@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 public class FriendDBHelper extends DBHelper {
     
     public static final String createFriendTable = "create table if not exists "+
-        "FRIENDS(id INT NOT NULL AUTO_INCREMENT, "+
-        "_id varchar(255), "+
+        "FRIENDS("+
+        "_id varchar(255)  NOT NULL , "+
         "friend_id varchar(255), "+
         "friend_of varchar(255), "+
-        "PRIMARY KEY (id));";
+        "PRIMARY KEY (_id));";
 
     @Autowired
     private DataSourceFactory dataSourceFactory;

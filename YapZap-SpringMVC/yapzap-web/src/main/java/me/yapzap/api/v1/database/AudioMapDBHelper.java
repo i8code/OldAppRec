@@ -10,7 +10,6 @@ public class AudioMapDBHelper extends DBHelper{
     
     public static final String createAudioMapTable = "create table if not exists "+
         "AUDIO_MAP("+
-        "_id varchar(255), "+
         "filename varchar(4096), "+
         "hash varchar(255), "+
         "PRIMARY KEY (hash));";

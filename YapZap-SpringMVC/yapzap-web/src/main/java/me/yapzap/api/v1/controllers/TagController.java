@@ -52,6 +52,7 @@ public class TagController {
         Tag tagCreated = tagDBHelper.createTag(tag);
         if (tagCreated==null){
             response.sendError(422);
+            
             return null;
         }
         return tagCreated;

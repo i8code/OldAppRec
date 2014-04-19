@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class NotificationDBHelper extends DBHelper {
     
     public static final String createNotificationsTable = "create table if not exists "+
-        "NOTIFICATIONS(id INT NOT NULL AUTO_INCREMENT, "+
-        "_id varchar(255), "+
+        "NOTIFICATIONS("+
+        "_id varchar(255) NOT NULL , "+
         "username_for varchar(255), "+
         "username_by varchar(255), "+
         "tag_name varchar(255), "+
@@ -20,7 +20,7 @@ public class NotificationDBHelper extends DBHelper {
         "intensity FLOAT DEFAULT 0, "+
         "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
         "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
-        "PRIMARY KEY (id));";
+        "PRIMARY KEY (_id));";
 
     @Autowired
     private DataSourceFactory dataSourceFactory;

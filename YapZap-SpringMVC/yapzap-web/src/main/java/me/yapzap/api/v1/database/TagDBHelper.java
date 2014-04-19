@@ -84,15 +84,16 @@ public class TagDBHelper extends DBHelper {
         return tags;
     }
     
-    public Tag getById(int id){
-        String selectAllNamesStatement = "select * from TAGS where id='"+id+"';";
+    public Tag getById(String id){
+        String selectByIdStatement = "select * from TAGS where _id=?;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
         try {
             connection = dataSourceFactory.getMySQLDataSource().getConnection();
 
-            queryStatement = connection.prepareStatement(selectAllNamesStatement);
+            queryStatement = connection.prepareStatement(selectByIdStatement);
+            queryStatement.setString(1, id);
             ResultSet results = queryStatement.executeQuery();
             
             while(results.next()){

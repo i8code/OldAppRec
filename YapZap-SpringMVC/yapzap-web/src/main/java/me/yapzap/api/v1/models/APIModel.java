@@ -13,24 +13,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public abstract class APIModel implements Serializable {
     
-    private long id;
     private String _id;
     
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    /**
-     * @return the id
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
 
     /**
      * @return the _id
