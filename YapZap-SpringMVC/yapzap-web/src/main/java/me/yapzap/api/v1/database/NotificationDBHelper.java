@@ -43,8 +43,6 @@ public class NotificationDBHelper extends DBHelper {
         execute(createNotificationsTable);
     }
     
-
-
     public Notification getNotificationFrom(ResultSet set) throws SQLException{
         Notification notification = new Notification();
         notification.set_id(set.getString("_id"));
@@ -170,7 +168,7 @@ public class NotificationDBHelper extends DBHelper {
     public Notification createNotification(Notification notification){
         notification.set_id(UUID.randomUUID().toString());
         String insertStatement = "insert into NOTIFICATIONS(_id, username_for, username_by, mood, intensity, tag_name, recording_id, type)"
-                        + " values(?,?,?,?,?,?,?,?,?,?,?);";
+                        + " values(?,?,?,?,?,?,?,?);";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
