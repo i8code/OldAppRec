@@ -9,7 +9,46 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 @SuppressWarnings("serial")
 public abstract class APIModel implements Serializable {
+    
+    private long id;
+    private String _id;
+    
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the _id
+     */
+    public String get_id() {
+        return _id;
+    }
+
+    /**
+     * @param _id the _id to set
+     */
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    /**
+     * @param additionalProperties the additionalProperties to set
+     */
+    public void setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
+    }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
