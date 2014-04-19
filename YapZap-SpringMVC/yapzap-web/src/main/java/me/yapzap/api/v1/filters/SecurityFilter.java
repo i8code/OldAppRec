@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import me.yapzap.api.util.Logger;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
@@ -37,6 +38,7 @@ public class SecurityFilter extends DelegatingFilterProxy {
     @SuppressWarnings("serial")
     private static final Set<String> authorizedPaths = new HashSet<String>() {
         {
+            add("/");
             add("/ping");
             add("/time");
             add("/app");
@@ -65,17 +67,14 @@ public class SecurityFilter extends DelegatingFilterProxy {
         String token = secret + key + t;
         md.update(token.getBytes());
 
-        return new String(md.digest());
+        return new String(Hex.encodeHex(md.digest()));
     }
 
     private boolean passesAuth(HttpServletRequest request) {
-        
-        if (true){
-            return true;
-        }
-        
-        String path = request.getPathInfo();
-        if (authorizedPaths.contains(path) || path.substring(0, 2).equals("/a/")) {
+        String path = request.getRequestURI();
+        if (authorizedPaths.contains(path) || 
+                        (path!=null && path.length()>2 && path.substring(0, 3).equals("/a/"))||
+                         (path!=null && path.length()>10 && path.substring(0, 11).equals("/resources/"))) {
             return true;
         }
         

@@ -45,7 +45,7 @@ public class FriendDBHelper extends DBHelper {
         return  friend;
     }
     
-    public List<FriendRelation> getAllForFriend(String userId) {
+    public List<FriendRelation> getAllForUser(String userId) {
         List<FriendRelation> friends = new ArrayList<>();
         
         String selectAllStatement = "select * from FRIENDS where friend_of=?;";
