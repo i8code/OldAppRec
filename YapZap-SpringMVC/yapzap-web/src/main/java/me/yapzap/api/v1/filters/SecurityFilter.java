@@ -64,7 +64,7 @@ public class SecurityFilter extends DelegatingFilterProxy {
         
         //Check for authed session
         HttpSession session = request.getSession();
-        boolean isAuthed = session.getAttribute(authkey).equals(authvalue);
+        boolean isAuthed = session.getAttribute(authkey)!=null;
         if (isAuthed){
             return true;
         }
@@ -76,11 +76,19 @@ public class SecurityFilter extends DelegatingFilterProxy {
         String key = request.getParameter("key");
         String token = request.getParameter("token");
         
+        if (timeIn==null || key==null || token==null){
+            return false;
+        }
+        
         for (AuthUser user : authorizedUsers){
             String hash = getHash(user.secret, user.key, timeIn);
 
             long t = (new Date()).getTime()/1000l;
             long timeInLong = Long.parseLong(timeIn);
+            
+            if (timeInLong!=timeInLong){
+                return false;
+            }
 
             if (hash.equals(token) && key.equals(user.key) && timeInLong-3e2<t && timeInLong+3e2>t){
                 session.setAttribute(authkey, authvalue);
@@ -93,8 +101,17 @@ public class SecurityFilter extends DelegatingFilterProxy {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) {
+        
+        boolean passesAuth = false;
+        
+        try {
+            passesAuth = passesAuth((HttpServletRequest) request);
+        }
+        catch(Throwable t){
+            passesAuth = false;
+        }
 
-        if (passesAuth((HttpServletRequest) request)) {
+        if (passesAuth) {
             try {
                 filterChain.doFilter(request, response);
             }
