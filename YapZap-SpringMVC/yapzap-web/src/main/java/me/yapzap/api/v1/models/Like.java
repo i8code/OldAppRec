@@ -2,6 +2,7 @@ package me.yapzap.api.v1.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
@@ -14,8 +15,10 @@ public class Like extends APIModel {
     private String recordingId;
 
     @JsonProperty("created_date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
     private Date createdDate;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
     @JsonProperty("last_update")
     private Date lastUpdate;
 

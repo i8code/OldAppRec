@@ -2,6 +2,7 @@ package me.yapzap.api.v1.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -33,6 +34,7 @@ public class Notification extends APIModel{
     private NotificationType type;
 
     @JsonProperty("created_date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
     private Date createdDate;
 
     /**
