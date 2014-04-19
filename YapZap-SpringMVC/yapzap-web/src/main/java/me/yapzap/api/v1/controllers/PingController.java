@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("hello")
-public class HelloWorldController {
+@RequestMapping("ping")
+public class PingController {
     
-	@RequestMapping(value="", method=RequestMethod.GET)
-	@ResponseBody
-	public String getHello(){
-		return "hello";
-	}
+    @RequestMapping(method=RequestMethod.GET)
+    @ResponseBody
+    public String ping(){
+        return "pong";
+    }
 
 }
