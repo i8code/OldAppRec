@@ -20,25 +20,10 @@ import org.springframework.stereotype.Component;
 
 @Component("recording_db_helper")
 public class RecordingDBHelper extends DBHelper {
-    
-    public static final String createRecordingTable = "create table if not exists "+
-        "RECORDINGS("+
-        "_id varchar(255) NOT NULL , "+
-        "username varchar(255), "+
-        "parent_name varchar(255), "+
-        "parent_type varchar(255), "+
-        "tag_name varchar(255), "+
-        "popularity FLOAT DEFAULT 0, "+
-        "mood FLOAT DEFAULT 0 ,"+
-        "intensity FLOAT DEFAULT 0, "+
-        "children_length INT DEFAULT 0, "+
-        "likes INT DEFAULT 0, "+
-        "audio_url varchar(255), "+
-        "audio_hash varchar(255), "+
-        "waveform_data varchar(16384), "+
-        "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "+
-        "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
-        "PRIMARY KEY (_id));";
+
+    public static final String createRecordingTable = "create table if not exists " + "RECORDINGS(" + "_id varchar(255) NOT NULL , " + "username varchar(255), " + "parent_name varchar(255), " + "parent_type varchar(255), "
+                    + "tag_name varchar(255), " + "popularity FLOAT DEFAULT 0, " + "mood FLOAT DEFAULT 0 ," + "intensity FLOAT DEFAULT 0, " + "children_length INT DEFAULT 0, " + "likes INT DEFAULT 0, " + "audio_url varchar(255), "
+                    + "audio_hash varchar(255), " + "waveform_data varchar(16384), " + "created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " + "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, " + "PRIMARY KEY (_id));";
 
     @Autowired
     private DataSourceFactory dataSourceFactory;
@@ -47,9 +32,8 @@ public class RecordingDBHelper extends DBHelper {
     public void init() {
         execute(createRecordingTable);
     }
-    
 
-    public Recording getRecordingFromResultSet(ResultSet set) throws SQLException{
+    public Recording getRecordingFromResultSet(ResultSet set) throws SQLException {
         Recording recording = new Recording();
 
         recording.set_id(set.getString("_id"));
@@ -67,10 +51,10 @@ public class RecordingDBHelper extends DBHelper {
         recording.setWaveformData(set.getString("waveform_data"));
         recording.setCreatedDate(convertDate(set.getTimestamp("created_date")));
         recording.setLastUpdate(convertDate(set.getTimestamp("last_update")));
-        
+
         return recording;
     }
-    
+
     public List<Recording> getAllRecordings() {
         List<Recording> recordings = new ArrayList<>();
         String selectAllStatement = "select * from RECORDINGS;";
@@ -82,8 +66,8 @@ public class RecordingDBHelper extends DBHelper {
 
             queryStatement = connection.prepareStatement(selectAllStatement);
             ResultSet results = queryStatement.executeQuery();
-            
-            while(results.next()){
+
+            while (results.next()) {
                 recordings.add(getRecordingFromResultSet(results));
             }
 
@@ -105,10 +89,10 @@ public class RecordingDBHelper extends DBHelper {
         }
         return recordings;
     }
-    
-    public List<Recording> getAllForTagName(String name){
+
+    public List<Recording> getAllForParentName(String name, boolean sortAsc) {
         List<Recording> recordings = new ArrayList<>();
-        String selectAllStatement = "select * from RECORDINGS where tag_name=?;";
+        String selectAllStatement = "select * from RECORDINGS where parent_name=? order by last_update ?;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -117,9 +101,10 @@ public class RecordingDBHelper extends DBHelper {
 
             queryStatement = connection.prepareStatement(selectAllStatement);
             queryStatement.setString(1, name);
+            queryStatement.setString(2, sortAsc ? "asc" : "desc");
             ResultSet results = queryStatement.executeQuery();
-            
-            while(results.next()){
+
+            while (results.next()) {
                 recordings.add(getRecordingFromResultSet(results));
             }
 
@@ -141,8 +126,44 @@ public class RecordingDBHelper extends DBHelper {
         }
         return recordings;
     }
-    
-    public Recording getById(String id){
+
+    public List<Recording> getAllRecordingsForUser(String username) {
+        List<Recording> recordings = new ArrayList<>();
+        String selectAllStatement = "select * from RECORDINGS where username=?;";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllStatement);
+            queryStatement.setString(1, username);
+            ResultSet results = queryStatement.executeQuery();
+
+            while (results.next()) {
+                recordings.add(getRecordingFromResultSet(results));
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        return recordings;
+    }
+
+    public Recording getById(String id) {
         String selectByIdStatement = "select * from RECORDINGS where _id=?;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
@@ -153,8 +174,8 @@ public class RecordingDBHelper extends DBHelper {
             queryStatement = connection.prepareStatement(selectByIdStatement);
             queryStatement.setString(1, id);
             ResultSet results = queryStatement.executeQuery();
-            
-            while(results.next()){
+
+            while (results.next()) {
                 return getRecordingFromResultSet(results);
             }
 
@@ -176,11 +197,10 @@ public class RecordingDBHelper extends DBHelper {
         }
         return null;
     }
-    
-    public Recording createRecording(Recording recording){
+
+    public Recording createRecording(Recording recording) {
         recording.set_id(UUID.randomUUID().toString());
-        String insertStatement = "insert into RECORDINGS(_id, username, parent_name, parent_type, tag_name, mood, intensity, popularity, audio_url, audio_hash, waveform_data)"
-                        + " values(?,?,?,?,?,?,?,?,?,?,?);";
+        String insertStatement = "insert into RECORDINGS(_id, username, parent_name, parent_type, tag_name, mood, intensity, popularity, audio_url, audio_hash, waveform_data)" + " values(?,?,?,?,?,?,?,?,?,?,?);";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -188,7 +208,7 @@ public class RecordingDBHelper extends DBHelper {
             connection = dataSourceFactory.getMySQLDataSource().getConnection();
             queryStatement = connection.prepareStatement(insertStatement);
 
-            int i=1;
+            int i = 1;
             queryStatement.setString(i++, recording.get_id());
             queryStatement.setString(i++, recording.getUsername());
             queryStatement.setString(i++, recording.getParentName());
@@ -200,9 +220,9 @@ public class RecordingDBHelper extends DBHelper {
             queryStatement.setString(i++, recording.getAudioUrl());
             queryStatement.setString(i++, recording.getAudioHash());
             queryStatement.setString(i++, recording.getWaveformDataAsString());
-            
+
             queryStatement.execute();
-            
+
             return getById(recording.get_id());
         }
         catch (SQLException e) {
@@ -220,12 +240,12 @@ public class RecordingDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-        
+
         return null;
     }
-    
-    public Recording updateRecording(Recording recording){
-        
+
+    public Recording updateRecording(Recording recording) {
+
         String insertStatement = "update RECORDING set popularity=?,children_length=? where _id=?";
         Connection connection = null;
         PreparedStatement queryStatement = null;
@@ -237,9 +257,9 @@ public class RecordingDBHelper extends DBHelper {
             queryStatement.setFloat(1, recording.getPopularity());
             queryStatement.setInt(2, recording.getChildrenLength());
             queryStatement.setString(3, recording.get_id());
-            
+
             queryStatement.execute();
-            
+
             return getById(recording.get_id());
         }
         catch (SQLException e) {
@@ -257,18 +277,13 @@ public class RecordingDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-        
+
         return null;
     }
-    
-    public Recording deleteById(String _id){
-        Recording toUpdate = getById(_id);
-        
-        if (toUpdate==null){
-            return null;
-        }
-        
-        String deleteStatement = "delete from RECORDING where _id=?";
+
+    public void deleteAllWithParentId(String parentId) {
+
+        String deleteStatement = "delete from RECORDINGS where parent_id=?";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -276,9 +291,44 @@ public class RecordingDBHelper extends DBHelper {
             connection = dataSourceFactory.getMySQLDataSource().getConnection();
             queryStatement = connection.prepareStatement(deleteStatement);
 
-            queryStatement.setString(1,_id);
+            queryStatement.setString(1, parentId);
             queryStatement.execute();
-            
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+    }
+
+    public Recording deleteById(String _id) {
+        Recording toUpdate = getById(_id);
+
+        if (toUpdate == null) {
+            return null;
+        }
+
+        String deleteStatement = "delete from RECORDINGS where _id=?";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(deleteStatement);
+
+            queryStatement.setString(1, _id);
+            queryStatement.execute();
+
             return toUpdate;
         }
         catch (SQLException e) {
@@ -296,7 +346,7 @@ public class RecordingDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-        
+
         return null;
     }
 

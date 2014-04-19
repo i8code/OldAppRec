@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
@@ -154,7 +155,7 @@ public class TagDBHelper extends DBHelper {
     }
     
     public Tag createTag(Tag tag){
-        
+        tag.set_id(UUID.randomUUID().toString());
         String insertStatement = "insert into TAGS(_id, name, popularity, mood, intensity, children_length) values(?,?,?,?,?,?);";
         Connection connection = null;
         PreparedStatement queryStatement = null;
@@ -189,8 +190,8 @@ public class TagDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-        
-        return null;
+
+        return getByName(tag.getName());
     }
     
     public Tag updateTag(Tag tag){
@@ -234,7 +235,7 @@ public class TagDBHelper extends DBHelper {
     
     public List<String> getAllTagNames(){
         List<String> tagNames = new ArrayList<>();
-        String selectAllNamesStatement = "select name from TAGS;";
+        String selectAllNamesStatement = "select name from TAGS order by name asc;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 

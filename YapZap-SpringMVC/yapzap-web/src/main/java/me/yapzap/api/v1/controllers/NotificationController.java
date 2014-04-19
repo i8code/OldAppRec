@@ -1,6 +1,13 @@
 package me.yapzap.api.v1.controllers;
 
+import java.util.List;
+
+import me.yapzap.api.v1.database.NotificationDBHelper;
+import me.yapzap.api.v1.models.Notification;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,10 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("notifications")
 public class NotificationController {
     
-    @RequestMapping(method=RequestMethod.GET)
+    @Autowired
+    private NotificationDBHelper notificationDBHelper;
+    
+    @RequestMapping(value="/{username}", method=RequestMethod.GET)
     @ResponseBody
-    public String getTime(){
-        return Long.toString(System.currentTimeMillis());
+    public List<Notification> getAllForUser(@PathVariable("username") String username){
+        return notificationDBHelper.getAllForUser(username);
     }
 
 }

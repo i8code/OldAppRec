@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class LikeDBHelper extends DBHelper {
     
     public static final String createLikeTable = "create table if not exists "+
-        "RECORDINGS("+
+        "LIKES("+
         "_id varchar(255) NOT NULL, "+
         "username varchar(255), "+
         "recording_id varchar(255), "+
@@ -120,6 +120,15 @@ public class LikeDBHelper extends DBHelper {
             }
         }
         return null;
+    }
+    
+
+    public Like createLike(String recordingId, String username){
+        Like like = new Like();
+        like.setRecordingId(recordingId);
+        like.setUsername(username);
+        
+        return createLike(like);
     }
     
     public Like createLike(Like like){
