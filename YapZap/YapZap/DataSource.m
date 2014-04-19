@@ -161,6 +161,7 @@ static NSMutableArray* tagNames;
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
             if (completion) completion([[NSArray alloc] init]);
+            return;
         }
         
         NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
@@ -180,6 +181,7 @@ static NSMutableArray* tagNames;
         NSData *jsonData = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         if (!jsonData){
             if (completion) completion([[NSArray alloc] init]);
+            return;
         }
         NSArray* recordingsDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         
@@ -194,7 +196,7 @@ static NSMutableArray* tagNames;
 
 +(void)updateFacebookFriends{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (int i=0;i<100;i++){
+        for (int i=0;i<10000;i++){
             if ([User getUser].displayName){
                 break;
             }
