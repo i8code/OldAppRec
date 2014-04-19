@@ -9,6 +9,27 @@ import java.sql.Statement;
 public class DatabasePopulator {
     
     
+    public static void createTables(Connection connection) throws SQLException{
+
+        String[] createStatements = {
+                        TagDBHelper.createTagTableSQL,
+                        RecordingDBHelper.createRecordingTable,
+                        NotificationDBHelper.createNotificationsTable,
+                        FriendDBHelper.createFriendTable,
+                        LikeDBHelper.createLikeTable,
+                        BlackListDBHelper.createBlackListTable,
+                        AudioMapDBHelper.createAudioMapTable
+        };
+
+        for (String createStatement : createStatements){
+
+            Statement statement = connection.createStatement();
+            statement.execute(createStatement);
+            statement.closeOnCompletion();
+        }
+    }
+    
+    
     public static void clearTables(Connection connection) throws SQLException{
 
         String dropFormat = "drop table if exists %s;";
@@ -29,22 +50,6 @@ public class DatabasePopulator {
             statement.closeOnCompletion();
         }
         
-        String[] createStatements = {
-                        TagDBHelper.createTagTableSQL,
-                        RecordingDBHelper.createRecordingTable,
-                        NotificationDBHelper.createNotificationsTable,
-                        FriendDBHelper.createFriendTable,
-                        LikeDBHelper.createLikeTable,
-                        BlackListDBHelper.createBlackListTable,
-                        AudioMapDBHelper.createAudioMapTable
-        };
-
-        for (String createStatement : createStatements){
-
-            Statement statement = connection.createStatement();
-            statement.execute(createStatement);
-            statement.closeOnCompletion();
-        }
     }
     
     public static void main(String[] args) throws ClassNotFoundException, SQLException{

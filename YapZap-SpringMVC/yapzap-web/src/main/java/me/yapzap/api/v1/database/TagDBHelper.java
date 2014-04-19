@@ -1,8 +1,10 @@
 package me.yapzap.api.v1.database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,11 +13,10 @@ import me.yapzap.api.util.Logger;
 import me.yapzap.api.v1.models.Tag;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("tag_db_helper")
-public class TagDBHelper {
+public class TagDBHelper extends DBHelper {
     
     public static final String createTagTableSQL = "create table if not exists "+
         "TAGS(_id varchar(255), "+
@@ -28,27 +29,59 @@ public class TagDBHelper {
         "last_update TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "+
         "PRIMARY KEY (name));";
 
-    @Autowired
-    private DataSourceFactory dataSourceFactory;
-
     @PostConstruct
     public void init() {
+        execute(createTagTableSQL);
+    }
+    
+    public Tag getTagFromResultsSet(ResultSet set){
+        return null;
+    }
+    
+    
+    public List<Tag> getMostPopularTags() {
+        return null;
+    }
+    
+    public Tag getById(int id){
+        return null;
+    }
+    
+    public Tag getByName(String name){
+        
+        
+        return null;
+    }
+    
+    public void createTag(Tag tag){
+        
+    }
+    
+    public List<String> getAllTagNames(){
+        List<String> tagNames = new ArrayList<>();
+        String selectAllNamesStatement = "select name from TAGS;";
         Connection connection = null;
-        Statement createTableStatement = null;
+        PreparedStatement queryStatement = null;
+
         try {
             connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllNamesStatement);
+            ResultSet results = queryStatement.executeQuery();
             
-            createTableStatement = connection.createStatement();
-            createTableStatement.execute(createTagTableSQL);
+            while(results.next()){
+                String name = results.getString("name");
+                tagNames.add(name);
+            }
 
         }
         catch (SQLException e) {
-            Logger.log(ExceptionUtils.getStackTrace(e)); 
+            Logger.log(ExceptionUtils.getStackTrace(e));
         }
         finally {
             try {
-                if (createTableStatement != null) {
-                    createTableStatement.close();
+                if (queryStatement != null) {
+                    queryStatement.close();
                 }
                 if (connection != null) {
                     connection.close();
@@ -57,11 +90,8 @@ public class TagDBHelper {
             catch (Exception e) {
             }
         }
-
-    }
-
-    public List<Tag> getMostPopularTags() {
-        return null;
+        return tagNames;
+        
     }
 
 }
