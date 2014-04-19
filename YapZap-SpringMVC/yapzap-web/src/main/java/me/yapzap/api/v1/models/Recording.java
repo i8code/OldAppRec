@@ -1,9 +1,14 @@
 package me.yapzap.api.v1.models;
 
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @SuppressWarnings("serial")
 public class Recording extends APIModel {
@@ -15,7 +20,9 @@ public class Recording extends APIModel {
     private String parentName;
 
     @JsonProperty("parent_type")
-    private String parentType;
+    @JsonSerialize(using=ParentTypeSerializer.class)
+    @JsonDeserialize(using=ParentTypeDeserializer.class)
+    private ParentType parentType;
 
     @JsonProperty("tag_name")
     private String tagName;
@@ -49,9 +56,11 @@ public class Recording extends APIModel {
     private List<Float> waveformData;
 
     @JsonProperty("created_date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
     private Date createdDate;
 
     @JsonProperty("last_update")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
     private Date lastUpdate;
 
     /**
@@ -85,14 +94,14 @@ public class Recording extends APIModel {
     /**
      * @return the parentType
      */
-    public String getParentType() {
+    public ParentType getParentType() {
         return parentType;
     }
 
     /**
      * @param parentType the parentType to set
      */
-    public void setParentType(String parentType) {
+    public void setParentType(ParentType parentType) {
         this.parentType = parentType;
     }
 
@@ -262,6 +271,26 @@ public class Recording extends APIModel {
      */
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public void setWaveformData(String string) {
+        ByteBuffer buffer = ByteBuffer.wrap(string.getBytes());
+        
+        this.waveformData = new ArrayList<Float>();
+        
+        while(buffer.hasRemaining()){
+            this.waveformData.add(buffer.getFloat());
+        }
+    }
+    
+    public String getWaveformDataAsString() {
+        ByteBuffer buffer = ByteBuffer.allocate(this.waveformData.size()*4);
+        
+        for (Float f : waveformData){
+            buffer.putFloat(f);
+        }
+        
+        return new String(buffer.array());
     }
     
     

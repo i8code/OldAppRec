@@ -2,9 +2,13 @@ package me.yapzap.api.v1.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class Notification {
+@SuppressWarnings("serial")
+public class Notification extends APIModel{
 
     @JsonProperty("username_for")
     private String usernameFor;
@@ -25,9 +29,12 @@ public class Notification {
     private String recordingId;
 
     @JsonProperty("type")
-    private String type;
+    @JsonSerialize(using=NotificationTypeSerializer.class)
+    @JsonDeserialize(using=NotificationTypeDeserializer.class)
+    private NotificationType type;
 
     @JsonProperty("created_date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
     private Date createdDate;
 
     /**
@@ -123,7 +130,7 @@ public class Notification {
     /**
      * @return the type
      */
-    public String getType() {
+    public NotificationType getType() {
         return type;
     }
 
@@ -131,7 +138,7 @@ public class Notification {
      * @param type
      *            the type to set
      */
-    public void setType(String type) {
+    public void setType(NotificationType type) {
         this.type = type;
     }
 
