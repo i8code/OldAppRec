@@ -7,3 +7,6 @@ YapZap/YapZap.xcodeproj/*
 certs/
 express.zip
 yapzap.me.csr
+Thumbs.db
+.metadata
+.settings
