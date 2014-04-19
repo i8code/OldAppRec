@@ -1,0 +1,25 @@
+body {
+    width:100%;
+    height:100%;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color:white;
+    background-color: black;
+}
+
+.main{
+    text-align: center;
+    padding: 50px;
+}
+
+.zeus{
+    width:200px;
+    height:200px;
+    background-repeat: no-repeat;
+    background: url('/resources/images/zeus.png');
+    background-size: 100%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+a {
+  color: #00B7FF;
+}
