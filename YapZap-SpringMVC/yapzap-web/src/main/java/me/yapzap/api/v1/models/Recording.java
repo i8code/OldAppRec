@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -212,7 +213,9 @@ public class Recording extends MoodyModel {
         this.waveformData = new ArrayList<Float>();
         
         while(buffer.hasRemaining()){
-            this.waveformData.add(buffer.getFloat());
+            Float f = buffer.getFloat();
+            Logger.log(f);
+            this.waveformData.add(f);
         }
     }
     @JsonIgnore
