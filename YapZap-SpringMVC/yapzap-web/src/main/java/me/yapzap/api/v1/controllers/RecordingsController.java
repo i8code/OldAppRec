@@ -106,10 +106,13 @@ public class RecordingsController {
                 
         Thread updatePopularity = null;
         
+        NotificationType notificationType;
         if (recording.getParentType()==ParentType.TAG){
+            notificationType = NotificationType.FRIEND_TAG;
             updatePopularity =  new Thread(new CollectionManager.UpdateTagPopularity(recording.getTagName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
         }
         else {
+            notificationType = NotificationType.FRIEND_REC;
             updatePopularity =  new Thread(new CollectionManager.UpdateRecordingPopularity(recording.getParentName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
             
             //This must be a comment
@@ -120,7 +123,7 @@ public class RecordingsController {
         }
         
         Thread notifyFriends = new Thread(new 
-                        NotificationManager.NotifyFriends(recording, NotificationType.FRIEND_COMMENT,  tagDBHelper, notificationDBHelper, friendDBHelper));
+                        NotificationManager.NotifyFriends(recording, notificationType,  tagDBHelper, notificationDBHelper, friendDBHelper));
         
         updatePopularity.start();
         notifyFriends.start();

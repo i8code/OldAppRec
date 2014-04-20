@@ -130,6 +130,9 @@ public class Notification extends APIModel{
     /**
      * @return the type
      */
+    @JsonProperty("type")
+    @JsonSerialize(using=NotificationTypeSerializer.class)
+    @JsonDeserialize(using=NotificationTypeDeserializer.class)
     public NotificationType getType() {
         return type;
     }

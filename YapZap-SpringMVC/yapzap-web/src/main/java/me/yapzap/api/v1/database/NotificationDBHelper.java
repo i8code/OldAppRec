@@ -60,7 +60,7 @@ public class NotificationDBHelper extends DBHelper {
     
     public List<Notification> getAllForUser(String username) {
         List<Notification> notifications = new ArrayList<>();
-        String selectAllStatement = "select * from NOTIFICATIONS where username_for=?;";
+        String selectAllStatement = "select * from NOTIFICATIONS where username_for=? order by created_date desc;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
