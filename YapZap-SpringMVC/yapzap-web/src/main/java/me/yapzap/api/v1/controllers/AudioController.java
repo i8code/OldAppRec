@@ -2,6 +2,9 @@ package me.yapzap.api.v1.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
+import me.yapzap.api.v1.database.AudioMapDBHelper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("a")
 public class AudioController {
     
+    
+    @Autowired
+    private AudioMapDBHelper audioMapDBHelper;
     
     @RequestMapping(value={"/**"}, method=RequestMethod.GET)
     public ModelAndView getAudioPage(HttpServletRequest request){
@@ -33,9 +39,10 @@ public class AudioController {
                 break;
         }
         
+        String filename = audioMapDBHelper.getFilenameForHash(hash);
+        
         ModelAndView modelAndView = new ModelAndView("audio");
-      //TODO: get correct filename
-        modelAndView.addObject("path", "https://s3.amazonaws.com/yap-zap-audio/2014-03-16T13:51:58.099-0400_FBrachel.steinberg.773_Rachel Steinberg.mp4");
+        modelAndView.addObject("path", "https://s3.amazonaws.com/yap-zap-audio/"+filename);
         modelAndView.addObject("title", title);
         
         return modelAndView;
