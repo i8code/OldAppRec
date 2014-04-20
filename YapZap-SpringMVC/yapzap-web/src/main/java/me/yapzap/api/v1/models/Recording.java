@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import me.yapzap.api.util.Logger;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -210,9 +212,12 @@ public class Recording extends MoodyModel {
     @JsonIgnore
     public void setWaveformData(String string) {
         Logger.log("Input string: "+string);
-        ByteBuffer buffer = ByteBuffer.wrap(string.getBytes());
-        
         this.waveformData = new ArrayList<Float>();
+        
+        if (StringUtils.isBlank(string)){
+            return;
+        }
+        ByteBuffer buffer = ByteBuffer.wrap(string.getBytes());
         
         while(buffer.hasRemaining()){
             Float f = buffer.getFloat();
