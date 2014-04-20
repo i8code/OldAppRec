@@ -1,14 +1,9 @@
 package me.yapzap.api.v1.models;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
-import me.yapzap.api.util.Logger;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -212,27 +207,41 @@ public class Recording extends MoodyModel {
     }
     @JsonIgnore
     public void setWaveformData(String string) {
-        Logger.log("Input string: "+string);
         this.waveformData = new ArrayList<Float>();
         
-        if (StringUtils.isBlank(string)){
-            return;
-        }
         ByteBuffer buffer;
-        try {
-            buffer = ByteBuffer.wrap(string.getBytes("UTF-8"));
+        buffer = ByteBuffer.wrap(stringToByteArray(string));
 
-            while(buffer.hasRemaining()){
-                Float f = buffer.getFloat();
-                Logger.log(Float.toString(f));
-                this.waveformData.add(f);
-            }
+        while(buffer.hasRemaining()){
+            Float f = buffer.getFloat();
+            this.waveformData.add(f);
         }
-        catch (UnsupportedEncodingException e) {
-            return;
+    }
+
+    public static String byteArrayToString(byte[] bytes){
+        int n = bytes.length;
+        char[] chars = new char[n];
+        
+        for (int i=0;i<n;i+=1){
+            chars[i] = (char)bytes[i];
         }
         
+        return new String(chars);
     }
+    
+    public static byte[] stringToByteArray(String string){
+        
+        char[] chars = string.toCharArray();
+        int n = chars.length;
+        byte[] bytes = new byte[n];
+        
+        for (int i=0;i<n;i+=1){
+            bytes[i] = (byte) (chars[i] & 0xFF);
+        }
+        
+        return bytes;
+    }
+    
     @JsonIgnore
     public String getWaveformDataAsString() {
         ByteBuffer buffer = ByteBuffer.allocate(this.waveformData.size()*4);
@@ -241,12 +250,27 @@ public class Recording extends MoodyModel {
             buffer.putFloat(f);
         }
         
+        String waveformString = byteArrayToString(buffer.array());
+        
+        assert(waveformString.length()==this.waveformData.size()*4);
+        
+        return waveformString;
+        /*
+        
         try {
-            return new String(buffer.array(), "UTF-8");
+            String waveformDataStr = new String(buffer.array(), "UTF-16");
+            System.out.println("A: "+(this.waveformData.size()*4));
+            System.out.println("B: "+waveformDataStr.length());
+            System.out.println();
+            
+            int length = this.waveformData.size();
+            setWaveformData(waveformDataStr);
+            assert(this.waveformData.size()==length);
+            return waveformDataStr;
         }
         catch (UnsupportedEncodingException e) {
             return null;
-        }
+        }*/
     }
     
     
