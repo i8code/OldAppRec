@@ -264,8 +264,8 @@ public class DatabasePopulator {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, IOException{
         Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost/yapzap?"
-                + "user=sqluser&password=sqluserpw");
+            //.getConnection("jdbc:mysql://localhost/yapzap?user=sqluser&password=sqluserpw");
+                        .getConnection("jdbc:mysql://yapzap-production.cg4lhdbq8fnd.us-east-1.rds.amazonaws.com/yapzap?user=yapzapapp&password=sNM4I8oCDYCK6El");
         
         clearTables(connection);
         createTables(connection);
