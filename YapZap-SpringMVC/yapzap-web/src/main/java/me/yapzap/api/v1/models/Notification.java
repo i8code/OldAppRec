@@ -159,5 +159,7 @@ public class Notification extends APIModel{
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
+    
+    
 
 }

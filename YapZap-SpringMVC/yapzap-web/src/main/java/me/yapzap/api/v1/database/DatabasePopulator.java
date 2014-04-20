@@ -10,10 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import me.yapzap.api.v1.models.AudioMap;
 import me.yapzap.api.v1.models.Like;
+import me.yapzap.api.v1.models.Notification;
 import me.yapzap.api.v1.models.Recording;
+import me.yapzap.api.v1.models.Tag;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -95,7 +100,10 @@ public class DatabasePopulator {
     }
     
 
+
+    private static Set<String> usernames = new HashSet<String>();
     public static void insertIntoTable(Recording recording, Connection connection) throws SQLException{
+        usernames.add(recording.getUsername());
         String insertStatement = "insert into RECORDINGS(_id, username, parent_name, parent_type, tag_name, mood, intensity, popularity, children_length, likes, audio_url, audio_hash, waveform_data, created_date, last_update) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement statement = connection.prepareStatement(insertStatement);
         int i=1;
@@ -119,8 +127,77 @@ public class DatabasePopulator {
         statement.closeOnCompletion();
     }
     
+    public static void insertIntoTable(Notification notification, Connection connection) throws SQLException{
+
+        String insertStatement = "insert into NOTIFICATIONS(_id, username_for, username_by, tag_name, recording_id, type, mood, intensity, created_date) values(?,?,?,?,?,?,?,?,?);";
+        PreparedStatement statement = connection.prepareStatement(insertStatement);
+        int i=1;
+        statement.setString(i++, notification.get_id());
+        statement.setString(i++, notification.getUsernameFor());
+        statement.setString(i++, notification.getUsernameBy());
+        statement.setString(i++, notification.getTagName());
+        statement.setString(i++, notification.getRecordingId());
+        statement.setString(i++, notification.getType().getValue());
+        statement.setFloat(i++, notification.getMood());
+        statement.setFloat(i++, notification.getIntensity());
+        statement.setTimestamp(i++, new Timestamp(notification.getCreatedDate().getTime()));
+        
+        statement.execute();
+        statement.closeOnCompletion();
+    }
+    
+    
+    
+    private static Set<String> tagNames = new HashSet<String>();
+
+    public static void insertIntoTable(Tag tag, Connection connection) throws SQLException{
+        
+        if (tagNames.contains(tag.getName())){
+            return;
+        }
+        tagNames.add(tag.getName());
+        String insertStatement = "insert into TAGS(_id, name, mood, intensity, popularity, children_length, created_date, last_update) values(?,?,?,?,?,?,?,?);";
+        PreparedStatement statement = connection.prepareStatement(insertStatement);
+        int i=1;
+        statement.setString(i++, tag.get_id());
+        statement.setString(i++, tag.getName());
+        statement.setFloat(i++, tag.getMood());
+        statement.setFloat(i++, tag.getIntensity());
+        statement.setFloat(i++, tag.getPopularity());
+        statement.setInt(i++, tag.getChildrenLength());
+        statement.setTimestamp(i++, new Timestamp(tag.getCreatedDate().getTime()));
+        statement.setTimestamp(i++, new Timestamp(tag.getLastUpdate().getTime()));
+        
+        statement.execute();
+        statement.closeOnCompletion();
+    }
+    
+    public static void insertIntoTable(AudioMap map, Connection connection) throws SQLException{
+
+        String insertStatement = "insert into AUDIO_MAP(hash, filename) values(?,?);";
+        PreparedStatement statement = connection.prepareStatement(insertStatement);
+        int i=1;
+        statement.setString(i++, map.getHash());
+        statement.setString(i++, map.getFilename());
+        
+        statement.execute();
+        statement.closeOnCompletion();
+    }
+    
     public static void downloadData(Connection connection) throws IOException, SQLException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
         ObjectMapper mapper = new ObjectMapper();
+        
+        ///TAGS
+        
+        String tagsJson = getURL("https://yapzap.me/tags");
+        
+        JavaType tagsType = mapper.getTypeFactory().constructCollectionType(List.class, Tag.class);
+        
+        List<Tag> tags = mapper.readValue(tagsJson, tagsType);
+        
+        for (Tag tag : tags){
+            insertIntoTable(tag, connection);
+        }
         
         ///RECORDINGS
         
@@ -133,6 +210,7 @@ public class DatabasePopulator {
         for (Recording recording : recordings){
             insertIntoTable(recording, connection);
         }
+        
 
         ///LIKES
         
@@ -145,6 +223,39 @@ public class DatabasePopulator {
         for (Like like : likes){
             insertIntoTable(like, connection);
         }
+        
+
+
+        ///AUDIO_MAPS
+        
+        String audioMapsJson = getURL("https://yapzap.me/audio_maps");
+        
+        JavaType audioMapType = mapper.getTypeFactory().constructCollectionType(List.class, AudioMap.class);
+        
+        List<AudioMap> maps = mapper.readValue(audioMapsJson, audioMapType);
+        
+        for (AudioMap map : maps){
+            insertIntoTable(map, connection);
+        }
+        
+
+        ///NOTIFICATIONS
+        
+        for (String username : usernames){
+            username = username.replace(" ", "%20");
+            String notificationJson = getURL("https://yapzap.me/notifications/"+username);
+            
+            JavaType notificationsType = mapper.getTypeFactory().constructCollectionType(List.class, Notification.class);
+            
+            List<Notification> notifictaions = mapper.readValue(notificationJson, notificationsType);
+            
+            for (Notification notifictaion : notifictaions){
+                insertIntoTable(notifictaion, connection);
+            }
+            
+        }
+        
+       
         
         
         

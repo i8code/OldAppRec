@@ -2,7 +2,7 @@ package me.yapzap.api.v1.models;
 
 
 public enum NotificationType {
-    LIKE("LIKE"), COMMENT("COMMENT"), FRIEND_LIKE("FRIEND_LIKE"), FRIEND_REC("FRIEND_REC"), FRIEND_TAG("FRIEND_TAG");
+    LIKE("LIKE"), COMMENT("COMMENT"), FRIEND("FRIEND"), FRIEND_LIKE("FRIEND_LIKE"), FRIEND_REC("FRIEND_REC"), FRIEND_TAG("FRIEND_TAG");
     
     private String value;
     
