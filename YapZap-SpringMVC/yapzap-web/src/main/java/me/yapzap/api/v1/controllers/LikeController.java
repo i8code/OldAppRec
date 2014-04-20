@@ -1,18 +1,23 @@
 package me.yapzap.api.v1.controllers;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.yapzap.api.v1.database.FriendDBHelper;
 import me.yapzap.api.v1.database.LikeDBHelper;
 import me.yapzap.api.v1.database.NotificationDBHelper;
 import me.yapzap.api.v1.database.RecordingDBHelper;
 import me.yapzap.api.v1.database.TagDBHelper;
 import me.yapzap.api.v1.models.Like;
+import me.yapzap.api.v1.models.NotificationType;
 import me.yapzap.api.v1.models.ParentType;
 import me.yapzap.api.v1.models.Recording;
 import me.yapzap.api.v1.updaters.CollectionManager;
+import me.yapzap.api.v1.updaters.NotificationManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +36,9 @@ public class LikeController {
 
     @Autowired
     private RecordingDBHelper recordingDBHelper;
+    
+    @Autowired
+    private FriendDBHelper friendDBHelper;
 
     @Autowired
     private TagDBHelper tagDBHelper;
@@ -46,13 +54,18 @@ public class LikeController {
 
     @RequestMapping(value = "recordings/{id}/likes/{username}", method = RequestMethod.GET)
     @ResponseBody
-    public Like getLikesForRecording(@PathVariable(value = "id") String id, @PathVariable(value = "username") String username, HttpServletResponse response) throws IOException {
-        Like like = likeDBHelper.getById(id, username);
+    public Like getLikesForRecording(@PathVariable(value = "id") String id, @PathVariable(value = "username") String username, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        String url = request.getRequestURI();
+        int indexOfLikes = url.indexOf("/likes/");
+        final String betterUsername = URLDecoder.decode(url.substring(indexOfLikes+7), "UTF-8");
+        
+        Like like = likeDBHelper.getById(id, betterUsername);
         if (like == null) {
             response.sendError(404);
             return null;
         }
-        return likeDBHelper.getById(id, username);
+        return likeDBHelper.getById(id, betterUsername);
     }
 
     public void updateLikes(final String recordingId, final int delta) {
@@ -95,13 +108,17 @@ public class LikeController {
         }
         
         updateLikes(id, 1);
+        
+        
+        //Notify of likes
+        Thread commentNotification = new Thread( new
+                        NotificationManager.AddNotification(username, like.getRecordingId(), NotificationType.LIKE, tagDBHelper, recordingDBHelper, notificationDBHelper));
 
-        // TODO:
-        /**
-         * updateLikes(Models, id, 1);
-         * NotificationManager.addNotificationForLike(Models, username, id);
-         * NotificationManager.notifyFriends(Models, recordings[0], "LIKE");
-         */
+        Thread notifyFriends = new Thread(new 
+                        NotificationManager.NotifyFriends(recordingDBHelper.getById(like.getRecordingId()), NotificationType.FRIEND_LIKE,  tagDBHelper, notificationDBHelper, friendDBHelper));
+        
+        commentNotification.start();
+        notifyFriends.start();
 
         response.setStatus(201);
         return like;
@@ -109,9 +126,13 @@ public class LikeController {
 
     @RequestMapping(value = "recordings/{id}/likes/{username}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Like deleteLike(final @PathVariable(value = "id") String id, final @RequestBody String username, HttpServletResponse response) throws IOException {
+    public Like deleteLike(final @PathVariable(value = "id") String id, final @RequestBody String username, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        Like like = likeDBHelper.deleteById(id, username);
+        String url = request.getRequestURI();
+        int indexOfLikes = url.indexOf("/likes/");
+        final String betterUsername = URLDecoder.decode(url.substring(indexOfLikes+7), "UTF-8");
+        
+        Like like = likeDBHelper.deleteById(id, betterUsername);
         updateLikes(id, -1);
         
         response.setStatus(201);

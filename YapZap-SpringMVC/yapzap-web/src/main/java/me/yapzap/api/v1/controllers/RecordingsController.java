@@ -1,6 +1,7 @@
 package me.yapzap.api.v1.controllers;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,12 +46,8 @@ public class RecordingsController {
     @Autowired
     private AudioMapDBHelper audioMapDBHelper;
     
-    public String sanitizeUsername(String username){
-        return username.split("_")[0];
-    }
-
-    @RequestMapping(value = { "recordings/{name}/recordings", "tags/{name}/recordings" }, method = RequestMethod.GET)
     @ResponseBody
+    @RequestMapping(value = { "recordings/{name}/recordings", "tags/{name}/recordings" }, method = RequestMethod.GET)
     public List<Recording> getRecordings(HttpServletRequest request, @PathVariable("name") String name) {
         String path = request.getRequestURI();
         boolean sortAsc = !path.subSequence(0, 5).equals("/tags");
@@ -78,8 +75,6 @@ public class RecordingsController {
     @RequestMapping(value = { "recordings/{name}/recordings", "tags/{name}/recordings" }, method = RequestMethod.POST)
     @ResponseBody
     public Recording createRecording(@PathVariable("name") String name, @RequestBody Recording recording, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        recording.setUsername(sanitizeUsername(recording.getUsername()));
-        
         String path = request.getRequestURI();
         boolean tag = path.subSequence(0, 5).equals("/tags");
         
@@ -108,8 +103,7 @@ public class RecordingsController {
         
         recording = recordingDBHelper.createRecording(recording);
         recording.setChildren(new ArrayList<Recording>());
-        
-        
+                
         Thread updatePopularity = null;
         
         if (recording.getParentType()==ParentType.TAG){
@@ -129,7 +123,7 @@ public class RecordingsController {
                         NotificationManager.NotifyFriends(recording, NotificationType.FRIEND_COMMENT,  tagDBHelper, notificationDBHelper, friendDBHelper));
         
         updatePopularity.start();
-//        notifyFriends.start();
+        notifyFriends.start();
         
         return recording;
     }
@@ -198,9 +192,11 @@ public class RecordingsController {
     @RequestMapping(value = { "users/{username}/recordings" }, method = RequestMethod.GET)
     @ResponseBody
     public List<Recording> recordingsForUser(@PathVariable("username") String username, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        username = sanitizeUsername(username);
+        String url = request.getRequestURI();
+        String betterUsername = url.substring(7).split("/")[0];
+        betterUsername = URLDecoder.decode(betterUsername, "UTF-8");
         
-        List<Recording> recordings = recordingDBHelper.getAllRecordingsForUser(username);
+        List<Recording> recordings = recordingDBHelper.getAllRecordingsForUser(betterUsername);
         for (Recording recording : recordings){
             recording.setChildren(new ArrayList<Recording>());
         }

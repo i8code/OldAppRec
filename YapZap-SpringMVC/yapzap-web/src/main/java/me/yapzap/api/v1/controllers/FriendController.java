@@ -1,10 +1,12 @@
 package me.yapzap.api.v1.controllers;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.yapzap.api.v1.database.BlackListDBHelper;
@@ -33,9 +35,12 @@ public class FriendController {
     
     @RequestMapping(value={"/{username}"}, method=RequestMethod.POST)
     @ResponseBody
-    public String submitFriends(final @PathVariable("username") String username, final @RequestBody List<String> friends, HttpServletResponse response) throws IOException{
+    public String submitFriends(@PathVariable("username") String username, final @RequestBody List<String> friends, HttpServletRequest request, HttpServletResponse response) throws IOException{
         
-        if (blackListDBHelper.blackListHasUser(username)){
+        String url = request.getRequestURI();
+        final String betterUsername = URLDecoder.decode(url.substring(9), "UTF-8");
+        
+        if (blackListDBHelper.blackListHasUser(username.split("_")[0])){
             response.sendError(403);
             return null;
         }
@@ -50,15 +55,12 @@ public class FriendController {
                 @Override
                 public void run() {
 
-                    String id = username.split("_")[0];
+                    String id = betterUsername;
                     List<FriendRelation> existingFriends = friendDBHelper.getAllForUser(id);
                     
                     Set<String> friendsToAdd = new HashSet<>();
                     
-                    //Add the new ones
-                    for (String friend : friends){
-                        friendsToAdd.add(friend.split("_")[0]);
-                    }
+                    friendsToAdd.addAll(friends);
                     
                     //Remove the existing ones
                     for (FriendRelation existingFriend: existingFriends){

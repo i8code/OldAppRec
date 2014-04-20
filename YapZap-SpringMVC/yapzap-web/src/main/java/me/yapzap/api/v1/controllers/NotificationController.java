@@ -1,6 +1,10 @@
 package me.yapzap.api.v1.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import me.yapzap.api.v1.database.NotificationDBHelper;
 import me.yapzap.api.v1.models.Notification;
@@ -21,8 +25,11 @@ public class NotificationController {
     
     @RequestMapping(value="/{username}", method=RequestMethod.GET)
     @ResponseBody
-    public List<Notification> getAllForUser(@PathVariable("username") String username){
-        return notificationDBHelper.getAllForUser(username);
+    public List<Notification> getAllForUser(HttpServletRequest request, @PathVariable("username") String username) throws UnsupportedEncodingException{
+        String url = request.getRequestURI();
+        final String betterUsername = URLDecoder.decode(url.substring(15), "UTF-8");
+        
+        return notificationDBHelper.getAllForUser(betterUsername);
     }
 
 }
