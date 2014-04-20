@@ -99,6 +99,7 @@ static SharingBundle* _sharingBundle;
     recording.children = nil;
     recording.childrenLength = 0;
     recording.audioUrl = self.filename;
+    recording.tagName = self.tagName;
     
     //Set by server :recording.audioHash
     NSMutableArray* waveformData = [[NSMutableArray alloc] initWithCapacity:self.recordingInfo.length];
