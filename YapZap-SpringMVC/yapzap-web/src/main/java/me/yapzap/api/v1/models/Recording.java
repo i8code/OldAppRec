@@ -209,6 +209,7 @@ public class Recording extends MoodyModel {
     }
     @JsonIgnore
     public void setWaveformData(String string) {
+        Logger.log("Input string: "+string);
         ByteBuffer buffer = ByteBuffer.wrap(string.getBytes());
         
         this.waveformData = new ArrayList<Float>();
