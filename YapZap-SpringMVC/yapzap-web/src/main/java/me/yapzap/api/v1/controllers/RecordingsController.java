@@ -1,6 +1,7 @@
 package me.yapzap.api.v1.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,11 @@ public class RecordingsController {
     public List<Recording> getRecordings(HttpServletRequest request, @PathVariable("name") String name) {
         String path = request.getRequestURI();
         boolean sortAsc = !path.subSequence(0, 5).equals("/tags");
+        List<Recording> recordings = recordingDBHelper.getAllForParentName(name, sortAsc);
+        for (Recording recording : recordings){
+            recording.setChildren(recordingDBHelper.getAllForParentName(recording.getParentName(), recording.getParentType()==ParentType.TAG?false:true));
+        }
+
         return recordingDBHelper.getAllForParentName(name, sortAsc);
     }
 
@@ -49,6 +55,8 @@ public class RecordingsController {
             response.sendError(404);
             return null;
         }
+
+        recording.setChildren(recordingDBHelper.getAllForParentName(recording.getParentName(), recording.getParentType()==ParentType.TAG?false:true));
         return recording;
     }
     
@@ -82,6 +90,7 @@ public class RecordingsController {
         recording.setAudioHash(audioMapDBHelper.getOrCreateHash(recording.getAudioUrl()));
         
         recording = recordingDBHelper.createRecording(recording);
+        recording.setChildren(new ArrayList<Recording>());
         
         /*
          *  RecordingUpdater.updateTagPopularity(Models, name);
@@ -108,6 +117,7 @@ public class RecordingsController {
     public Recording updateRecording(@PathVariable("id") String id, @RequestBody Recording recording, HttpServletRequest request, HttpServletResponse response) throws IOException {
         recording.set_id(id);
         recording = recordingDBHelper.updateRecording(recording);
+        recording.setChildren(recordingDBHelper.getAllForParentName(recording.getParentName(), recording.getParentType()==ParentType.TAG?false:true));
         
         /*
          *   RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
@@ -122,13 +132,24 @@ public class RecordingsController {
     
     @RequestMapping(value = { "recordings/{id}" }, method = RequestMethod.DELETE)
     @ResponseBody
-    public Recording deleteRecording(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Recording deleteRecording(@PathVariable("id") String id) throws IOException {
         final Recording recording = recordingDBHelper.deleteById(id);
         
         Thread t = new Thread(new Runnable() {
+            
+            private void deleteRecording(Recording recording){
+                List<Recording> children = recordingDBHelper.getAllForParentName(recording.get_id(), true);
+                recordingDBHelper.deleteById(recording.get_id());
+                
+                for(Recording child : children){
+                    deleteRecording(child);
+                }
+            }
+            
             @Override
             public void run() {
-                recordingDBHelper.deleteAllWithParentId(recording.getParentName());
+                
+                deleteRecording(recording);
                 
                 /*if (recording.parent_type==="TAG"){
                     setTimeout(function(){
@@ -150,7 +171,11 @@ public class RecordingsController {
     @RequestMapping(value = { "users/{username}/recordings" }, method = RequestMethod.DELETE)
     @ResponseBody
     public List<Recording> recordingsForUser(@PathVariable("username") String username, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        return recordingDBHelper.getAllRecordingsForUser(username);
+        List<Recording> recordings = recordingDBHelper.getAllRecordingsForUser(username);
+        for (Recording recording : recordings){
+            recording.setChildren(new ArrayList<Recording>());
+        }
+        return recordings;
     }
 
 }

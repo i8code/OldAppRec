@@ -74,6 +74,41 @@ public class BlackListDBHelper extends DBHelper {
         return blackListed;
     }
     
+    public boolean blackListHasUser(String username) {
+        String selectAllStatement = "select * from BLACKLIST where username=?;";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllStatement);
+            queryStatement.setString(1, username);
+            ResultSet results = queryStatement.executeQuery();
+            
+            while(results.next()){
+                return true;
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        return false;
+    }
+    
     public void addToBlacklist(String user){
         String _id = UUID.randomUUID().toString();
         String insertStatement = "insert into FRIENDS(_id, username)"

@@ -156,7 +156,7 @@ public class TagDBHelper extends DBHelper {
     
     public Tag createTag(Tag tag){
         tag.set_id(UUID.randomUUID().toString());
-        String insertStatement = "insert into TAGS(_id, name, popularity, mood, intensity, children_length) values(?,?,?,?,?,?);";
+        String insertStatement = "insert into TAGS(_id, name) values(?,?);";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -166,10 +166,6 @@ public class TagDBHelper extends DBHelper {
 
             queryStatement.setString(1, tag.get_id());
             queryStatement.setString(2, tag.getName());
-            queryStatement.setFloat(3, tag.getPopularity());
-            queryStatement.setFloat(4, tag.getMood());
-            queryStatement.setFloat(5, tag.getIntensity());
-            queryStatement.setInt(6, tag.getChildrenLength());
             
             queryStatement.execute();
             

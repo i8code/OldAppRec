@@ -92,7 +92,9 @@ public class RecordingDBHelper extends DBHelper {
 
     public List<Recording> getAllForParentName(String name, boolean sortAsc) {
         List<Recording> recordings = new ArrayList<>();
-        String selectAllStatement = "select * from RECORDINGS where parent_name=? order by last_update ?;";
+        String selectAllStatement = sortAsc?
+                            "select * from RECORDINGS where parent_name=? order by last_update asc;":
+                            "select * from RECORDINGS where parent_name=? order by last_update desc;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -101,7 +103,6 @@ public class RecordingDBHelper extends DBHelper {
 
             queryStatement = connection.prepareStatement(selectAllStatement);
             queryStatement.setString(1, name);
-            queryStatement.setString(2, sortAsc ? "asc" : "desc");
             ResultSet results = queryStatement.executeQuery();
 
             while (results.next()) {

@@ -184,7 +184,7 @@ public class AudioMapDBHelper extends DBHelper{
     public String getOrCreateHash(String audioUrl){
         String existingHash = getHashForFilename(audioUrl);
         
-        if (existingHash==null){
+        if (existingHash!=null){
             return existingHash;
         }
         
@@ -194,7 +194,9 @@ public class AudioMapDBHelper extends DBHelper{
         while (filename!=null){
             //Generate a random map
             long hashLong = (long)Math.floor((Math.random()*hashIntRange)+hashIntMin);
-            hash = new String(Base64.encodeBase64( BigInteger.valueOf(hashLong).toByteArray())); 
+            hash = new String(Base64.encodeBase64( BigInteger.valueOf(hashLong).toByteArray()));
+            hash.replaceAll("=", "+");
+            hash.replaceAll("/", "_");
             
             filename = getFilenameForHash(hash);
         }

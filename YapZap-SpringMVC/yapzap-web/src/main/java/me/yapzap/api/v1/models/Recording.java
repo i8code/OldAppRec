@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -56,11 +57,11 @@ public class Recording extends APIModel {
     private List<Float> waveformData;
 
     @JsonProperty("created_date")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone="UTC")
     private Date createdDate;
 
     @JsonProperty("last_update")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.Z", timezone="UTC")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone="UTC")
     private Date lastUpdate;
 
     /**
@@ -272,7 +273,7 @@ public class Recording extends APIModel {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-
+    @JsonIgnore
     public void setWaveformData(String string) {
         ByteBuffer buffer = ByteBuffer.wrap(string.getBytes());
         
@@ -282,7 +283,7 @@ public class Recording extends APIModel {
             this.waveformData.add(buffer.getFloat());
         }
     }
-    
+    @JsonIgnore
     public String getWaveformDataAsString() {
         ByteBuffer buffer = ByteBuffer.allocate(this.waveformData.size()*4);
         
