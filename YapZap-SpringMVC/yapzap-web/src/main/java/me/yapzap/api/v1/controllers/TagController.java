@@ -49,6 +49,7 @@ public class TagController {
     @RequestMapping(value="tags", method=RequestMethod.POST)
     @ResponseBody
     public Tag create(@RequestBody Tag tag, HttpServletResponse response) throws IOException{
+        tag.setName(tag.getName().replaceAll("\\W", "").toLowerCase());
         Tag tagCreated = tagDBHelper.createTag(tag);
         if (tagCreated==null){
             response.sendError(422);

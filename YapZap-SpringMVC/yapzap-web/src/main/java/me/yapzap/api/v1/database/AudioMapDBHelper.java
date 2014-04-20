@@ -1,5 +1,6 @@
 package me.yapzap.api.v1.database;
 
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import javax.annotation.PostConstruct;
 import me.yapzap.api.util.Logger;
 import me.yapzap.api.v1.models.AudioMap;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -56,6 +58,42 @@ public class AudioMapDBHelper extends DBHelper{
             
             while(results.next()){
                 return results.getString("filename");
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        return null;
+    }
+    
+
+    public String getHashForFilename(String filename) {
+        String selectAllStatement = "select hash from AUDIO_MAP where filename=?;";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllStatement);
+            queryStatement.setString(1, filename);
+            ResultSet results = queryStatement.executeQuery();
+            
+            while(results.next()){
+                return results.getString("hash");
             }
 
         }
@@ -137,6 +175,35 @@ public class AudioMapDBHelper extends DBHelper{
             catch (Exception e) {
             }
         }
+    }
+    
+    private final static long hashIntMin = 1073741824l;
+    private final static long hashIntMax = 68719476735l;
+    private final static long hashIntRange = hashIntMax-hashIntMin;
+    
+    public String getOrCreateHash(String audioUrl){
+        String existingHash = getHashForFilename(audioUrl);
+        
+        if (existingHash==null){
+            return existingHash;
+        }
+        
+        String hash = null;
+        String filename = "";
+        
+        while (filename!=null){
+            //Generate a random map
+            long hashLong = (long)Math.floor((Math.random()*hashIntRange)+hashIntMin);
+            hash = new String(Base64.encodeBase64( BigInteger.valueOf(hashLong).toByteArray())); 
+            
+            filename = getFilenameForHash(hash);
+        }
+        
+        //Need to create hash
+        createMapping(hash, audioUrl);
+        
+        
+        return hash;
     }
 
 }
