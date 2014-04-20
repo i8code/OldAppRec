@@ -223,8 +223,7 @@ public class RecordingDBHelper extends DBHelper {
             queryStatement.setString(i++, recording.getWaveformDataAsString());
 
             queryStatement.execute();
-
-            return getById(recording.get_id());
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -242,12 +241,12 @@ public class RecordingDBHelper extends DBHelper {
             }
         }
 
-        return null;
+        return getById(recording.get_id());
     }
 
     public Recording updateRecording(Recording recording) {
 
-        String insertStatement = "update RECORDING set popularity=?,children_length=? where _id=?";
+        String insertStatement = "update RECORDINGS set popularity=?,children_length=?,likes=? where _id=?";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -257,11 +256,11 @@ public class RecordingDBHelper extends DBHelper {
 
             queryStatement.setFloat(1, recording.getPopularity());
             queryStatement.setInt(2, recording.getChildrenLength());
-            queryStatement.setString(3, recording.get_id());
+            queryStatement.setInt(3, recording.getLikes());
+            queryStatement.setString(4, recording.get_id());
 
             queryStatement.execute();
-
-            return getById(recording.get_id());
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -278,8 +277,7 @@ public class RecordingDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-
-        return null;
+        return getById(recording.get_id());
     }
 
     public void deleteAllWithParentId(String parentId) {
@@ -294,6 +292,7 @@ public class RecordingDBHelper extends DBHelper {
 
             queryStatement.setString(1, parentId);
             queryStatement.execute();
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -329,6 +328,7 @@ public class RecordingDBHelper extends DBHelper {
 
             queryStatement.setString(1, _id);
             queryStatement.execute();
+            
 
             return toUpdate;
         }

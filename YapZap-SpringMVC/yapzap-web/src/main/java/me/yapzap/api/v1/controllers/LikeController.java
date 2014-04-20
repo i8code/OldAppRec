@@ -6,7 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import me.yapzap.api.v1.database.LikeDBHelper;
+import me.yapzap.api.v1.database.NotificationDBHelper;
+import me.yapzap.api.v1.database.RecordingDBHelper;
+import me.yapzap.api.v1.database.TagDBHelper;
 import me.yapzap.api.v1.models.Like;
+import me.yapzap.api.v1.models.ParentType;
+import me.yapzap.api.v1.models.Recording;
+import me.yapzap.api.v1.updaters.CollectionManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +27,16 @@ public class LikeController {
 
     @Autowired
     private LikeDBHelper likeDBHelper;
+
+
+    @Autowired
+    private RecordingDBHelper recordingDBHelper;
+
+    @Autowired
+    private TagDBHelper tagDBHelper;
+
+    @Autowired
+    private NotificationDBHelper notificationDBHelper;
 
     @RequestMapping(value = "recordings/{id}/likes", method = RequestMethod.GET)
     @ResponseBody
@@ -39,7 +55,32 @@ public class LikeController {
         return likeDBHelper.getById(id, username);
     }
 
-    public void updateLikes(String recordingId) {
+    public void updateLikes(final String recordingId, final int delta) {
+        
+        Thread t = new Thread(new Runnable(){
+
+            @Override
+            public void run() {
+                Recording recording = recordingDBHelper.getById(recordingId);
+                
+                recording.setLikes(recording.getLikes()+delta);
+                recordingDBHelper.updateRecording(recording);
+                
+                Thread updateLikes;
+                
+                if (recording.getParentType() == ParentType.TAG) {
+                    updateLikes = new Thread(new CollectionManager.UpdateTagPopularity(recording.getTagName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+                }
+                else {
+                    updateLikes = new Thread(new CollectionManager.UpdateRecordingPopularity(recording.getParentName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+                }
+                
+                updateLikes.start();
+                
+            }});
+
+        
+        t.start();
 
     }
 
@@ -52,6 +93,8 @@ public class LikeController {
         if (like == null) {
             like = likeDBHelper.createLike(id, username);
         }
+        
+        updateLikes(id, 1);
 
         // TODO:
         /**
@@ -69,14 +112,8 @@ public class LikeController {
     public Like deleteLike(final @PathVariable(value = "id") String id, final @RequestBody String username, HttpServletResponse response) throws IOException {
 
         Like like = likeDBHelper.deleteById(id, username);
-
-        // TODO:
-        /**
-         * updateLikes(Models, id, 1);
-         * NotificationManager.addNotificationForLike(Models, username, id);
-         * NotificationManager.notifyFriends(Models, recordings[0], "LIKE");
-         */
-
+        updateLikes(id, -1);
+        
         response.setStatus(201);
         return like;
     }

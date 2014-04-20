@@ -149,7 +149,6 @@ public class LikeDBHelper extends DBHelper {
             
             queryStatement.execute();
             
-            return getById(like.getRecordingId(), like.getUsername());
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -166,8 +165,7 @@ public class LikeDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-        
-        return null;
+        return getById(like.getRecordingId(), like.getUsername());
     }
     
     public Like deleteById(String recordingId, String username){
@@ -189,6 +187,7 @@ public class LikeDBHelper extends DBHelper {
             queryStatement.setString(1,recordingId);
             queryStatement.setString(2,username);
             queryStatement.execute();
+            
             
             return deleting;
         }

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @SuppressWarnings("serial")
-public class Recording extends APIModel {
+public class Recording extends MoodyModel {
 
     @JsonProperty("username")
     private String username;
@@ -31,21 +31,8 @@ public class Recording extends APIModel {
     @JsonProperty("children")
     private List<Recording> children;
     
-    @JsonProperty("popularity")
-    private Float popularity;
-
-    @JsonProperty("children_length")
-    private Integer childrenLength;
-
-    @JsonProperty("mood")
-    private Float mood;
-
-    @JsonProperty("intensity")
-    private Float intensity;
-    
     @JsonProperty("likes")
     private Integer likes;
-    
 
     @JsonProperty("audio_url")
     private String audioUrl;
@@ -131,63 +118,8 @@ public class Recording extends APIModel {
      * @param children the children to set
      */
     public void setChildren(List<Recording> children) {
+        setChildrenLength(children.size());
         this.children = children;
-    }
-
-    /**
-     * @return the popularity
-     */
-    public Float getPopularity() {
-        return popularity;
-    }
-
-    /**
-     * @param popularity the popularity to set
-     */
-    public void setPopularity(Float popularity) {
-        this.popularity = popularity;
-    }
-
-    /**
-     * @return the childrenLength
-     */
-    public Integer getChildrenLength() {
-        return childrenLength;
-    }
-
-    /**
-     * @param childrenLength the childrenLength to set
-     */
-    public void setChildrenLength(Integer childrenLength) {
-        this.childrenLength = childrenLength;
-    }
-
-    /**
-     * @return the mood
-     */
-    public Float getMood() {
-        return mood;
-    }
-
-    /**
-     * @param mood the mood to set
-     */
-    public void setMood(Float mood) {
-        this.mood = mood;
-    }
-
-    /**
-     * @return the intensity
-     */
-    public Float getIntensity() {
-        return intensity;
-    }
-
-    /**
-     * @param intensity the intensity to set
-     */
-    public void setIntensity(Float intensity) {
-        this.intensity = intensity;
     }
 
     /**

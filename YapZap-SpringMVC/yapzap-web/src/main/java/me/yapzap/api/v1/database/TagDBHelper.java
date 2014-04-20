@@ -121,7 +121,7 @@ public class TagDBHelper extends DBHelper {
     }
     
     public Tag getByName(String name){
-        String selectAllNamesStatement = "select * from TAGS where name='"+name+"';";
+        String selectAllNamesStatement = "select * from TAGS where name=?;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -129,12 +129,11 @@ public class TagDBHelper extends DBHelper {
             connection = dataSourceFactory.getMySQLDataSource().getConnection();
 
             queryStatement = connection.prepareStatement(selectAllNamesStatement);
+            queryStatement.setString(1, name);
             ResultSet results = queryStatement.executeQuery();
-            
-            while(results.next()){
+            if (results.next()){
                 return getTagFromResultsSet(results);
             }
-
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -169,7 +168,6 @@ public class TagDBHelper extends DBHelper {
             
             queryStatement.execute();
             
-            return getByName(tag.getName());
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -208,7 +206,6 @@ public class TagDBHelper extends DBHelper {
             
             queryStatement.execute();
             
-            return getByName(tag.getName());
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -226,7 +223,38 @@ public class TagDBHelper extends DBHelper {
             }
         }
         
-        return null;
+        return getByName(tag.getName());
+    }
+    
+
+    public void deleteTag(String name){
+        
+        String insertStatement = "delete from TAGS where name=?";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(insertStatement);
+            queryStatement.setString(1, name);
+            queryStatement.execute();
+            
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
     }
     
     public List<String> getAllTagNames(){

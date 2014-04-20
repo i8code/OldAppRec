@@ -130,6 +130,7 @@ public class AudioMapDBHelper extends DBHelper{
             queryStatement.setString(i++, filename);
             
             queryStatement.execute();
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -159,6 +160,7 @@ public class AudioMapDBHelper extends DBHelper{
 
             queryStatement.setString(1,hash);
             queryStatement.execute();
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));

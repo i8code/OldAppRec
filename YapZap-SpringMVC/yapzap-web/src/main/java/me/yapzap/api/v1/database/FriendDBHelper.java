@@ -99,6 +99,7 @@ public class FriendDBHelper extends DBHelper {
             queryStatement.setString(i++, friend.getFriendOf());
             
             queryStatement.execute();
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -129,7 +130,7 @@ public class FriendDBHelper extends DBHelper {
             queryStatement.setString(1,friend_id);
             queryStatement.setString(2,friend_of);
             queryStatement.execute();
-            return;
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));

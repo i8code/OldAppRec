@@ -125,6 +125,7 @@ public class BlackListDBHelper extends DBHelper {
             queryStatement.setString(i++, user);
             
             queryStatement.execute();
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -154,7 +155,7 @@ public class BlackListDBHelper extends DBHelper {
 
             queryStatement.setString(1,user);
             queryStatement.execute();
-            return;
+            
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));

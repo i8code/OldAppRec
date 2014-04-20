@@ -8,11 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.yapzap.api.v1.database.AudioMapDBHelper;
+import me.yapzap.api.v1.database.FriendDBHelper;
+import me.yapzap.api.v1.database.NotificationDBHelper;
 import me.yapzap.api.v1.database.RecordingDBHelper;
 import me.yapzap.api.v1.database.TagDBHelper;
+import me.yapzap.api.v1.models.NotificationType;
 import me.yapzap.api.v1.models.ParentType;
 import me.yapzap.api.v1.models.Recording;
 import me.yapzap.api.v1.models.Tag;
+import me.yapzap.api.v1.updaters.CollectionManager;
+import me.yapzap.api.v1.updaters.NotificationManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +35,19 @@ public class RecordingsController {
 
     @Autowired
     private TagDBHelper tagDBHelper;
+
+    @Autowired
+    private NotificationDBHelper notificationDBHelper;
+    
+    @Autowired
+    private FriendDBHelper friendDBHelper;
     
     @Autowired
     private AudioMapDBHelper audioMapDBHelper;
+    
+    public String sanitizeUsername(String username){
+        return username.split("_")[0];
+    }
 
     @RequestMapping(value = { "recordings/{name}/recordings", "tags/{name}/recordings" }, method = RequestMethod.GET)
     @ResponseBody
@@ -41,10 +56,10 @@ public class RecordingsController {
         boolean sortAsc = !path.subSequence(0, 5).equals("/tags");
         List<Recording> recordings = recordingDBHelper.getAllForParentName(name, sortAsc);
         for (Recording recording : recordings){
-            recording.setChildren(recordingDBHelper.getAllForParentName(recording.getParentName(), recording.getParentType()==ParentType.TAG?false:true));
+            recording.setChildren(recordingDBHelper.getAllForParentName(recording.get_id(), recording.getParentType()==ParentType.TAG?false:true));
         }
 
-        return recordingDBHelper.getAllForParentName(name, sortAsc);
+        return recordings;
     }
 
     @RequestMapping(value = { "recordings/{id}" }, method = RequestMethod.GET)
@@ -63,6 +78,8 @@ public class RecordingsController {
     @RequestMapping(value = { "recordings/{name}/recordings", "tags/{name}/recordings" }, method = RequestMethod.POST)
     @ResponseBody
     public Recording createRecording(@PathVariable("name") String name, @RequestBody Recording recording, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        recording.setUsername(sanitizeUsername(recording.getUsername()));
+        
         String path = request.getRequestURI();
         boolean tag = path.subSequence(0, 5).equals("/tags");
         
@@ -92,21 +109,27 @@ public class RecordingsController {
         recording = recordingDBHelper.createRecording(recording);
         recording.setChildren(new ArrayList<Recording>());
         
-        /*
-         *  RecordingUpdater.updateTagPopularity(Models, name);
-                    }, 1);
-                } else {
-                    setTimeout(function(){
-                        RecordingUpdater.updateRecordingPopularity(Models, name);
-                    }, 1);
-                    setTimeout(function(){
-                        NotificationManager.addNotificationForComment(Models, recording.username, recording.parent_name, recording._id);
-                    }, 1);
-                }
-
-                setTimeout(function(){
-                    NotificationManager.notifyFriends(Models, recording, type);
-         */
+        
+        Thread updatePopularity = null;
+        
+        if (recording.getParentType()==ParentType.TAG){
+            updatePopularity =  new Thread(new CollectionManager.UpdateTagPopularity(recording.getTagName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+        }
+        else {
+            updatePopularity =  new Thread(new CollectionManager.UpdateRecordingPopularity(recording.getParentName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+            
+            //This must be a comment
+            Thread commentNotification = new Thread( new
+                            NotificationManager.AddNotification(recording.getUsername(), recording.getParentName(), NotificationType.COMMENT, tagDBHelper, recordingDBHelper, notificationDBHelper));
+            
+            commentNotification.start();
+        }
+        
+        Thread notifyFriends = new Thread(new 
+                        NotificationManager.NotifyFriends(recording, NotificationType.FRIEND_COMMENT,  tagDBHelper, notificationDBHelper, friendDBHelper));
+        
+        updatePopularity.start();
+//        notifyFriends.start();
         
         return recording;
     }
@@ -117,16 +140,19 @@ public class RecordingsController {
     public Recording updateRecording(@PathVariable("id") String id, @RequestBody Recording recording, HttpServletRequest request, HttpServletResponse response) throws IOException {
         recording.set_id(id);
         recording = recordingDBHelper.updateRecording(recording);
-        recording.setChildren(recordingDBHelper.getAllForParentName(recording.getParentName(), recording.getParentType()==ParentType.TAG?false:true));
+        recording.setChildren(recordingDBHelper.getAllForParentName(recording.getParentName(), recording.getParentType() == ParentType.TAG ? false : true));
+
+        Thread updatePopularity = null;
+
+        if (recording.getParentType() == ParentType.TAG) {
+            updatePopularity = new Thread(new CollectionManager.UpdateTagPopularity(recording.getTagName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+        }
+        else {
+            updatePopularity = new Thread(new CollectionManager.UpdateRecordingPopularity(recording.getParentName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+        }
         
-        /*
-         *   RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
-                },1);
-            } else {
-                setTimeout(function(){
-                    RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
-         */
-        
+        updatePopularity.start();
+
         return recording;
     }
     
@@ -151,15 +177,16 @@ public class RecordingsController {
                 
                 deleteRecording(recording);
                 
-                /*if (recording.parent_type==="TAG"){
-                    setTimeout(function(){
-                        RecordingUpdater.updateTagPopularity(Models, recording.parent_name);
-                    },1);
-                } else {
-                    setTimeout(function(){
-                        RecordingUpdater.updateRecordingPopularity(Models, recording.parent_name);
-                    },1);
-                }*/
+                Thread updatePopularity = null;
+
+                if (recording.getParentType() == ParentType.TAG) {
+                    updatePopularity = new Thread(new CollectionManager.UpdateTagPopularity(recording.getTagName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+                }
+                else {
+                    updatePopularity = new Thread(new CollectionManager.UpdateRecordingPopularity(recording.getParentName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+                }
+                
+                updatePopularity.start();
             }
         });
         t.start();
@@ -168,9 +195,11 @@ public class RecordingsController {
     }
     
     
-    @RequestMapping(value = { "users/{username}/recordings" }, method = RequestMethod.DELETE)
+    @RequestMapping(value = { "users/{username}/recordings" }, method = RequestMethod.GET)
     @ResponseBody
     public List<Recording> recordingsForUser(@PathVariable("username") String username, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        username = sanitizeUsername(username);
+        
         List<Recording> recordings = recordingDBHelper.getAllRecordingsForUser(username);
         for (Recording recording : recordings){
             recording.setChildren(new ArrayList<Recording>());

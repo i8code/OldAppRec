@@ -94,6 +94,45 @@ public class NotificationDBHelper extends DBHelper {
         return notifications;
     }
     
+
+    public List<Notification> getAllBy(String usernameBy, String usernameFor, String recordingId) {
+        List<Notification> notifications = new ArrayList<>();
+        String selectAllStatement = "select * from NOTIFICATIONS where username_for=? AND username_by=? AND recording_id=?;";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+
+            queryStatement = connection.prepareStatement(selectAllStatement);
+            queryStatement.setString(1, usernameFor);
+            queryStatement.setString(2, usernameBy);
+            queryStatement.setString(3, recordingId);
+            ResultSet results = queryStatement.executeQuery();
+            
+            while(results.next()){
+                notifications.add(getNotificationFrom(results));
+            }
+
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        return notifications;
+    }
+    
     public List<Notification> getAllByUser(String username) {
         List<Notification> notifications = new ArrayList<>();
         String selectAllStatement = "select * from NOTIFCATIONS where username_by=?;";
@@ -131,7 +170,7 @@ public class NotificationDBHelper extends DBHelper {
     }
     
     public Notification getById(String id){
-        String selectByIdStatement = "select * from NOTIFICATONS where _id=?;";
+        String selectByIdStatement = "select * from NOTIFICATIONS where _id=?;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
@@ -188,7 +227,6 @@ public class NotificationDBHelper extends DBHelper {
             
             queryStatement.execute();
             
-            return getById(notification.get_id());
         }
         catch (SQLException e) {
             Logger.log(ExceptionUtils.getStackTrace(e));
@@ -205,8 +243,7 @@ public class NotificationDBHelper extends DBHelper {
             catch (Exception e) {
             }
         }
-        
-        return null;
+        return getById(notification.get_id());
     }
     
     public Notification deleteById(String _id){
@@ -228,6 +265,7 @@ public class NotificationDBHelper extends DBHelper {
             queryStatement.setString(1,_id);
             queryStatement.execute();
             
+            
             return deleting;
         }
         catch (SQLException e) {
@@ -247,6 +285,39 @@ public class NotificationDBHelper extends DBHelper {
         }
         
         return null;
+    }
+    
+
+    public void deleteAllForTagName(String name){
+        
+        String deleteStatement = "delete from NOTIFICATIONS where tag_name=?";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(deleteStatement);
+
+            queryStatement.setString(1,name);
+            queryStatement.execute();
+
+            
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
     }
 
 }
