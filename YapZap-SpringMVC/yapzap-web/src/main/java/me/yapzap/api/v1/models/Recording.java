@@ -1,5 +1,6 @@
 package me.yapzap.api.v1.models;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
@@ -217,13 +218,20 @@ public class Recording extends MoodyModel {
         if (StringUtils.isBlank(string)){
             return;
         }
-        ByteBuffer buffer = ByteBuffer.wrap(string.getBytes());
-        
-        while(buffer.hasRemaining()){
-            Float f = buffer.getFloat();
-            Logger.log(Float.toString(f));
-            this.waveformData.add(f);
+        ByteBuffer buffer;
+        try {
+            buffer = ByteBuffer.wrap(string.getBytes("UTF-8"));
+
+            while(buffer.hasRemaining()){
+                Float f = buffer.getFloat();
+                Logger.log(Float.toString(f));
+                this.waveformData.add(f);
+            }
         }
+        catch (UnsupportedEncodingException e) {
+            return;
+        }
+        
     }
     @JsonIgnore
     public String getWaveformDataAsString() {
@@ -233,7 +241,12 @@ public class Recording extends MoodyModel {
             buffer.putFloat(f);
         }
         
-        return new String(buffer.array());
+        try {
+            return new String(buffer.array(), "UTF-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            return null;
+        }
     }
     
     

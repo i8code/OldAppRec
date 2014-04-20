@@ -1,6 +1,7 @@
 package me.yapzap.api.v1.filters;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -65,14 +66,17 @@ public class SecurityFilter extends DelegatingFilterProxy {
     private String getHash(String secret, String key, String t) {
         md.reset();
         String token = secret + key + t;
-        md.update(token.getBytes());
+        try {
+            md.update(token.getBytes("UTF-8"));
+        }
+        catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         return new String(Hex.encodeHex(md.digest()));
     }
 
     private boolean passesAuth(HttpServletRequest request) {
-        if (true)
-        return true;
         String path = request.getRequestURI();
         if (authorizedPaths.contains(path) || 
                         (path!=null && path.length()>2 && path.substring(0, 3).equals("/a/"))||
