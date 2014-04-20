@@ -34,7 +34,7 @@ public class Notification extends APIModel{
     private NotificationType type;
 
     @JsonProperty("created_date")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone="UTC")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="UTC")
     private Date createdDate;
 
     /**
