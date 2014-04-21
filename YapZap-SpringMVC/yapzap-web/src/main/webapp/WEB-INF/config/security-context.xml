@@ -8,9 +8,13 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		   http://www.springframework.org/schema/security  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+
+    <bean name="SecurityFilter" class="me.yapzap.api.v1.filters.SecurityFilter" />
 	<security:http auto-config='true'>
-		<security:intercept-url pattern="/admin/**"
-			access="ROLE_USER, ROLE_ADMIN" />
+		<security:intercept-url pattern="/2CodahaleMetrics/**"
+			access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/2admin/**"
+			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/**"
 			access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<security:http-basic />
@@ -19,9 +23,7 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="username1" password="password1"
-					authorities="ROLE_USER" />
-				<security:user name="username2" password="password2"
+				<security:user name="admin" password="YapZapRulez"
 					authorities="ROLE_USER, ROLE_ADMIN" />
 			</security:user-service>
 		</security:authentication-provider>
