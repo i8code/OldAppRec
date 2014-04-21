@@ -38,6 +38,27 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+    
+    <servlet>
+        <servlet-name>CodahaleMetrics</servlet-name>
+        <servlet-class>com.codahale.metrics.servlets.MetricsServlet</servlet-class>
+        <init-param>
+            <param-name>metrics-uri</param-name>
+            <param-value>/metrics</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ping-uri</param-name>
+            <param-value>/ping</param-value>
+        </init-param>
+        <init-param>
+            <param-name>healthcheck-uri</param-name>
+            <param-value>/health</param-value>
+        </init-param>
+        <init-param>
+            <param-name>threads-uri</param-name>
+            <param-value>/threads</param-value>
+        </init-param>
+    </servlet>
 
 	<servlet-mapping>
 		<servlet-name>api-servlet-v2</servlet-name>
@@ -48,6 +69,11 @@
 		<servlet-name>api-servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>CodahaleMetrics</servlet-name>
+        <url-pattern>/CodahaleMetrics/*</url-pattern>
+    </servlet-mapping>
 
 	<session-config>
 		<session-timeout>30</session-timeout>
