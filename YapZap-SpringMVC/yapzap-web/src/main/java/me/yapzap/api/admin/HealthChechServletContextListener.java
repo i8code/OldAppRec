@@ -1,4 +1,4 @@
-package me.yapzap.api.v1.filters;
+package me.yapzap.api.admin;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import com.codahale.metrics.servlets.HealthCheckServlet;
 

@@ -16,11 +16,11 @@
 
 
 	<listener>
-		<listener-class>me.yapzap.api.v1.filters.MetricServletContextListener</listener-class>
+		<listener-class>me.yapzap.api.admin.MetricServletContextListener</listener-class>
 	</listener>
 	
 	<listener>
-		<listener-class>me.yapzap.api.v1.filters.HealthChechServletContextListener</listener-class>
+		<listener-class>me.yapzap.api.admin.HealthChechServletContextListener</listener-class>
 	</listener>
 
 	<servlet>

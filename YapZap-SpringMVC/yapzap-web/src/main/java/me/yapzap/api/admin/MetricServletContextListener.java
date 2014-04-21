@@ -1,4 +1,4 @@
-package me.yapzap.api.v1.filters;
+package me.yapzap.api.admin;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.servlets.MetricsServlet;
 
