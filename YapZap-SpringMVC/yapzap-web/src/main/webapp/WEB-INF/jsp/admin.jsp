@@ -6,13 +6,13 @@
 
 <!-- must include jquery -->
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	src="resources/js/jquery.min.js"></script>
 
 <!-- must include bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	href="resources/css/bootstrap.min.css">
 <script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	src="/resources/js/bootstrap.min.js"></script>
 
 
 <!--  And include the metrics-watcher library -->
