@@ -17,6 +17,7 @@
 @property (nonatomic, strong) SearchTableViewController* searchTableView;
 @property (nonatomic) BOOL hasSelectedMood;
 @property (nonatomic) BOOL backPressedLast;
+@property (nonatomic, strong) NSArray* zeusFaces;
 @end
 
 @implementation SetTagViewController
@@ -44,7 +45,17 @@
         // TODO: Add fall-back code to set placeholder color.
     }
     
-    self.zeusFace.image = [UIImage imageNamed:@"zeus elements-11.png"];
+    self.zeusFaces = [NSArray arrayWithObjects:
+                                   [UIImage imageNamed:@"zeus elements-13.png"],
+                                   [UIImage imageNamed:@"zeus elements-12.png"],
+                                   [UIImage imageNamed:@"zeus elements-14.png"],
+                                   [UIImage imageNamed:@"zeus elements-10.png"],
+                                   [UIImage imageNamed:@"zeus elements-09.png"],
+                                   [UIImage imageNamed:@"zeus elements-08.png"],
+                                   nil
+                                   ];
+    
+    self.zeusFace.image = nil;//[UIImage imageNamed:@"zeus elements-11.png"];
     
     self.tagTextField.hidden = self.sharingBundle.comment;
     self.tagTextField.delegate = self;
@@ -79,7 +90,7 @@
     self.backButton.hidden=NO;
     self.parent.homeButton.hidden = NO;
     self.logoImage.hidden=NO;
-    self.zeusFace.image = [UIImage imageNamed:@"zeus elements-11.png"];
+    self.zeusFace.image = nil;//[UIImage imageNamed:@"zeus elements-11.png"];
 }
 
 
@@ -191,19 +202,6 @@
 }
 -(void)setAngle:(CGFloat)angle{
     
-    static NSArray* zeuesInOrder;
-    
-    if (!zeuesInOrder){
-        zeuesInOrder= [NSArray arrayWithObjects:
-                    [UIImage imageNamed:@"zeus elements-13.png"],
-                    [UIImage imageNamed:@"zeus elements-12.png"],
-                    [UIImage imageNamed:@"zeus elements-14.png"],
-                    [UIImage imageNamed:@"zeus elements-10.png"],
-                    [UIImage imageNamed:@"zeus elements-09.png"],
-                    [UIImage imageNamed:@"zeus elements-08.png"],
-                    nil
-                    ];
-    }
     self.logoImage.hidden=YES;
     
     static int last = -1;
@@ -223,7 +221,7 @@
     
     if (i!=last){
         last=i;
-        self.zeusFace.image = zeuesInOrder[i];
+        self.zeusFace.image = self.zeusFaces[i];
     }
     
 }
