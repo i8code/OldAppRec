@@ -15,6 +15,7 @@
 #import "FilteredImageView.h"
 #import "Player.h"
 #import "RecordingFill.h"
+#import "UIAlertView+Blocks.h"
 
 @interface RecordControllerViewController ()
 
@@ -116,6 +117,21 @@
 
 -(IBAction)startRecording:(id)sender{
     [[LocalyticsSession shared] tagEvent:@"Started Recording"];
+    SharingBundle* bundle = [SharingBundle getCurrentSharingBundle];
+    
+    if (bundle.recordingInfo){
+        //Need to prompt for deletion
+        [UIAlertView showWithTitle:@"Confirm Delete" message:@"Are you sure you want to delete this recording?" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex!=[alertView cancelButtonIndex]){
+                bundle.recordingInfo = nil;
+                self.finishedPanel.hidden = self.waveform.hidden = !bundle.recordingInfo;
+                self.recordingFill.percent = 0.0;
+                [self.recordingFill setNeedsDisplay];
+            }
+        }];
+        return;
+    }
+    
     
     if (self.playing)
     {

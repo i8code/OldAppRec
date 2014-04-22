@@ -39,15 +39,17 @@
     
     
     self.commentLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.childrenLength];
-    self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
-    UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
-    [self.commentButton setImage:commentImage forState:UIControlStateNormal];
+//    self.commentLabel.textColor = recording.childrenLength?[UIColor blackColor]:[UIColor whiteColor];
+    self.commentLabel.textColor = [UIColor whiteColor];
+//    UIImage* commentImage = recording.childrenLength?[UIImage imageNamed:@"comments_full.png"]:[UIImage imageNamed:@"comments_empty.png"];
+    [self.commentButton setImage:[UIImage imageNamed:@"comments_empty.png"] forState:UIControlStateNormal];
     
     
     self.likesLabel.text = [NSString stringWithFormat:@"%ld", (long)recording.likes];
-    self.likesLabel.textColor = recording.likes?[UIColor blackColor]:[UIColor whiteColor];
-    UIImage* likeImage = recording.likes?[UIImage imageNamed:@"heart_full.png"]:[UIImage imageNamed:@"heart_empty.png"];
-    [self.likeButton setImage:likeImage forState:UIControlStateNormal];
+//    self.likesLabel.textColor = recording.likes?[UIColor blackColor]:[UIColor whiteColor];
+    self.likesLabel.textColor = [UIColor whiteColor];
+//    UIImage* likeImage = recording.likes?[UIImage imageNamed:@"heart_full.png"]:[UIImage imageNamed:@"heart_empty.png"];
+    [self.likeButton setImage:[UIImage imageNamed:@"heart_empty.png"] forState:UIControlStateNormal];
 
     
     [self.waveFormImage setData:recording.rawWaveformData withSize:(int)recording.waveformData.count];
