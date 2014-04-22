@@ -313,7 +313,7 @@
 	}
 
 	function formatNumber(varNumber, n) {
-		if (isNaN(n)) n = 1;
+		if (isNaN(n)) n = 3;
 
 		return !isNaN(varNumber)?varNumber.toFixed(n):n;
 	}

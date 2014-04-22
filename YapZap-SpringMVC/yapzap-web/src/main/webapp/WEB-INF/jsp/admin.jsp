@@ -32,7 +32,7 @@
 			var name = timer.replace(/[_]/g, " ");
 
 			metricsWatcher
-					.addTimer(timerId, "", timer, 1, name, "requests", 1);
+					.addTimer(timerId, "", timer, 50, name, "requests", 0.3);
 		}
 		/*
 		metricsWatcher.addJvm("jvmExample", "jvm", "JVM Statistics");
