@@ -9,23 +9,14 @@
    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<mvc:annotation-driven />
-	<mvc:interceptors>
-		<bean class="me.yapzap.api.v1.filters.MetricsInterceptor" />
-	</mvc:interceptors>
-	<context:component-scan base-package="me.yapzap.api.v1.controllers" />
-	<context:component-scan base-package="me.yapzap.api.v1.database" />
-
-	<context:property-placeholder location="classpath:${env}-application.properties"
-		ignore-unresolvable="true" />
-	<context:property-placeholder location="classpath:application.properties"
-		ignore-unresolvable="true" />
+	<context:component-scan base-package="me.yapzap.api.admin.controllers" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 	<mvc:resources mapping="/resources/**" location="/" />
 
 </beans>
