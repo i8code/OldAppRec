@@ -38,13 +38,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.splashScreen = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LaunchImage_IPhone5.png"]];
-    [self.splashScreen setContentMode:UIViewContentModeScaleAspectFill];
-    self.splashScreen.frame = self.window.bounds;
-    [self.window addSubview:self.splashScreen];
+    [self.window setRootViewController:[[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil]];
     [self.window makeKeyAndVisible];
-    [self gotoLoadingView];
-    
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
