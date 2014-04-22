@@ -34,7 +34,7 @@ static int lineHeight = 16;
         
         //Set up Button
         self.button = [[UIButton alloc] init];
-        [self.button setFrame:CGRectMake(0,0, 200, lineHeight)];
+        [self.button setFrame:CGRectMake(-1000,-1000, 200, lineHeight)];
         [self.button setTitle:tag.name forState:UIControlStateNormal];
         [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
