@@ -75,6 +75,8 @@
        while (!self.hasAuthedWithFacebook){
            [NSThread sleepForTimeInterval:1];
        }
+       
+       [self gotoLoadingView];
    
        //Load Tag names
        [DataSource getTimezoneOffset:^{
