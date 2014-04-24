@@ -2,6 +2,7 @@ package me.yapzap.api.v1.controllers;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -99,8 +100,9 @@ public class LikeController {
 
     @RequestMapping(value = "recordings/{id}/likes", method = RequestMethod.POST)
     @ResponseBody
-    public Like createLikeForUser(final @PathVariable(value = "id") String id, final @RequestBody String username, HttpServletResponse response) throws IOException {
+    public Like createLikeForUser(final @PathVariable(value = "id") String id, final @RequestBody HashMap<String, String> usernameMap, HttpServletResponse response) throws IOException {
 
+        String username = usernameMap.get("username");
         Like like = likeDBHelper.getById(id, username);
 
         if (like == null) {
