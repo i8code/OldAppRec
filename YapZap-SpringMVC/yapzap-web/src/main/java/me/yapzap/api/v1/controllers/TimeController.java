@@ -12,7 +12,7 @@ public class TimeController {
     @RequestMapping(method=RequestMethod.GET)
     @ResponseBody
     public String getTime(){
-        return Long.toString(System.currentTimeMillis());
+        return Long.toString(System.currentTimeMillis()/1000);
     }
 
 }

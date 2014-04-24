@@ -7,9 +7,12 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +20,7 @@ import java.util.Set;
 import me.yapzap.api.v1.models.AudioMap;
 import me.yapzap.api.v1.models.Like;
 import me.yapzap.api.v1.models.Notification;
+import me.yapzap.api.v1.models.NotificationType;
 import me.yapzap.api.v1.models.Recording;
 import me.yapzap.api.v1.models.Tag;
 
@@ -254,9 +258,86 @@ public class DatabasePopulator {
             }
             
         }
+    }
+    
+    protected static Date convertDate(Timestamp timestamp){
+        return new Date(timestamp.getTime());
+    }
+    
+    public static Like getLikeFromResultSet(ResultSet set) throws SQLException{
+        Like like = new Like();
+        like.set_id(set.getString("_id"));
+        like.setUsername(set.getString("username"));
+        like.setRecordingId(set.getString("recording_id"));
+        like.setCreatedDate(convertDate(set.getTimestamp("created_date")));
+        like.setLastUpdate(convertDate(set.getTimestamp("last_update")));
         
-       
+        return  like;
+    }
+    
+    
+    public static void fixLikes(Connection connection) throws SQLException{
+        String insertStatement = "select * from LIKES order by created_date desc limit 85;";
+        PreparedStatement statement = connection.prepareStatement(insertStatement);
         
+        ResultSet results = statement.executeQuery();
+        
+        ArrayList<Like> likes = new ArrayList<>();
+        while(results.next()){
+            likes.add(getLikeFromResultSet(results));
+        }
+        
+        for (Like like : likes){
+            String username = like.getUsername();
+            if (username.contains("username")){
+                like.setUsername(username.substring(13, username.length()-2));
+                String delete = "delete from LIKES where _id='"+like.get_id()+"';";
+                PreparedStatement deleteStatement = connection.prepareStatement(delete);
+                deleteStatement.execute();
+                
+                insertIntoTable(like, connection);
+            }
+        }
+    }
+        
+
+    public static Notification getNotificationFrom(ResultSet set) throws SQLException{
+        Notification notification = new Notification();
+        notification.set_id(set.getString("_id"));
+        notification.setUsernameFor(set.getString("username_for"));
+        notification.setUsernameBy(set.getString("username_by"));
+        notification.setTagName(set.getString("tag_name"));
+        notification.setRecordingId(set.getString("recording_id"));
+        notification.setType(NotificationType.fromValue(set.getString("type")));
+        notification.setMood(set.getFloat("mood"));
+        notification.setIntensity(set.getFloat("intensity"));
+        notification.setCreatedDate(convertDate(set.getTimestamp("created_date")));
+        
+        return notification;
+    }
+        
+        public static void fixNotifications(Connection connection) throws SQLException{
+            String insertStatement = "select * from NOTIFICATIONS where type='LIKE' OR type='FRIEND_LIKE' order by created_date desc limit 850000;";
+            PreparedStatement statement = connection.prepareStatement(insertStatement);
+            
+            ResultSet results = statement.executeQuery();
+            
+            ArrayList<Notification> notifications = new ArrayList<>();
+            while(results.next()){
+                notifications.add(getNotificationFrom(results));
+            }
+            
+            for (Notification notification : notifications){
+                String username = notification.getUsernameBy();
+                if (username.contains("username")){
+                    notification.setUsernameBy(username.substring(13, username.length()-2));
+                    String delete = "delete from NOTIFICATIONS where _id='"+notification.get_id()+"';";
+                    PreparedStatement deleteStatement = connection.prepareStatement(delete);
+                    deleteStatement.execute();
+                    
+                    insertIntoTable(notification, connection);
+                }
+            }
         
         
     }
@@ -267,9 +348,11 @@ public class DatabasePopulator {
             //.getConnection("jdbc:mysql://localhost/yapzap?user=sqluser&password=sqluserpw");
                         .getConnection("jdbc:mysql://yapzap-production.cg4lhdbq8fnd.us-east-1.rds.amazonaws.com/yapzap?user=yapzapapp&password=sNM4I8oCDYCK6El");
         
-        clearTables(connection);
-        createTables(connection);
-        downloadData(connection);
+//        clearTables(connection);
+//        createTables(connection);
+//        downloadData(connection);
+//        fixLikes(connection);
+        fixNotifications(connection);
     }
 
 }
