@@ -27,7 +27,7 @@
 static NSArray* _tags;
 static NSMutableArray* tagNames;
 
-+(void)getTimezoneOffset{
++(void)getTimezoneOffset:(void(^)(void))completion{
     [RestHelper get:@"/time" withQuery:nil completion:^(NSString *timezoneOffsetStr) {
         if (!timezoneOffsetStr ){
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -43,6 +43,7 @@ static NSMutableArray* tagNames;
         long response = [timezoneOffsetStr longLongValue];
         long t = (long)[[NSDate date] timeIntervalSince1970];
         [AuthHelper setTimeOffset:(response-t)];
+        completion();
     }];
                                    
 }

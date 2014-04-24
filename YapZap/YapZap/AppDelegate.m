@@ -30,6 +30,15 @@
 @end
 @implementation AppDelegate
 
+-(id)init{
+    self = [super init];
+    
+    self.hasAuthedWithFacebook = false;
+    self.enteredApp = false;
+    
+    return self;
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -48,22 +57,37 @@
     self.player = [MasterAudioPlayer instance];
     [self.player setUpHeadsetListener];
     
+    
+    [TestFlight takeOff:@"e1a305e1-e4eb-47d7-9c7c-108accb8f261"];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     /*NSArray* recordings = [DataSource getRecordingsForTagName:@"familyguy"];
     [self.player play:recordings[0] fromTagSet:recordings];
     
     return YES;*/
     
+    
+    [CoreDataManager database];
+    
+    
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [TestFlight takeOff:@"e1a305e1-e4eb-47d7-9c7c-108accb8f261"];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
-        [DataSource getTimezoneOffset];
-        
-        
-        //Load Tag names
-        [DataSource getTagNames:nil];
-        [DataSource updateFacebookFriends];
-        [CoreDataManager database];
+       
+       while (!self.hasAuthedWithFacebook){
+           [NSThread sleepForTimeInterval:1];
+       }
+   
+       //Load Tag names
+       [DataSource getTimezoneOffset:^{
+           [self goToHomeView];
+           self.enteredApp = true;
+           
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [DataSource updateFacebookFriends];
+            });
+       }];
+       
+       
+       
     });
     
     
@@ -142,6 +166,10 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
+    
+    if (self.enteredApp && self.hasAuthedWithFacebook){
+        [self goToHomeView];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -167,7 +195,7 @@
                                           [self sessionStateChanged:session state:state error:error];
                                       }];
         
-        // If there's no cached session, we will show a login button
+        // If there's no cached session, we will show a login butto
     } else {
         [self goToLoginView];
     }
@@ -186,6 +214,7 @@
     if (!error && state == FBSessionStateOpen){
         NSLog(@"Facebook Session opened");
         // Show the user the logged-in UI
+        self.hasAuthedWithFacebook = true;
         [self userLoggedIn];
         return;
     }
@@ -193,6 +222,7 @@
         // If the session is closed
         NSLog(@"Facebook Session closed");
         // Show the user the logged-out UI
+        self.hasAuthedWithFacebook = false;
         [self userLoggedOut];
     }
     
@@ -233,6 +263,7 @@
         // Clear this token
         [FBSession.activeSession closeAndClearTokenInformation];
         // Show the user the logged-out UI
+        self.hasAuthedWithFacebook = false;
         [self userLoggedOut];
     }
 }
@@ -254,7 +285,7 @@
             [User getUser].fbID = [result objectForKey:@"id"];
             [User getUser].username = [result objectForKey:@"username"];
             
-            [self goToHomeView];
+            self.hasAuthedWithFacebook = true;
         } else {
             NSLog(@"Error connecting to Facebook to retrieve user info: %ld", error.code);
             // An error occurred, we need to handle the error
@@ -295,6 +326,9 @@
     [[LocalyticsSession shared] LocalyticsSession:@"0cd3459f7fc0e11fcbfc7d2-8c4106bc-ac5f-11e3-4230-00a426b17dd8"];
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
+    if (self.enteredApp && self.hasAuthedWithFacebook){
+        [self goToHomeView];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

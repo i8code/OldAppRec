@@ -111,7 +111,7 @@
         [request setHTTPBody:body];
     }
     [request setURL:url];
-    [request setTimeoutInterval:60];
+    [request setTimeoutInterval:30];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

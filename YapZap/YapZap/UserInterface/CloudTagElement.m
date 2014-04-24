@@ -103,9 +103,12 @@ static int lineHeight = 16;
     return lineHeight*self.pop/2.0f;
 }
 -(CGFloat)width{
-    CGRect r = [self.tag.name boundingRectWithSize:CGSizeMake(200, 0)
+    
+    NSMutableAttributedString * attributedText = [[NSMutableAttributedString alloc] initWithString:self.tag.name];
+    [attributedText addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:lineHeight] range:NSMakeRange(0,attributedText.length)];
+    
+    CGRect r = [attributedText boundingRectWithSize:CGSizeMake(200, 0)
                                   options:NSStringDrawingUsesLineFragmentOrigin
-                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:lineHeight]}
                                   context:nil];
     return self.height+r.size.width+5;
 }
