@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 
 import me.yapzap.api.util.Logger;
+import me.yapzap.api.v1.models.Like;
 import me.yapzap.api.v1.models.Notification;
 import me.yapzap.api.v1.models.NotificationType;
 
@@ -287,6 +288,48 @@ public class NotificationDBHelper extends DBHelper {
     }
     
 
+    public Notification deleteAllForRecordingId(String _id){
+        
+        Notification deleting = getById(_id);
+        
+        if (deleting==null){
+            return null;
+        }
+        
+        String deleteStatement = "delete from NOTIFICATIONS where recording_id=?";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(deleteStatement);
+
+            queryStatement.setString(1,_id);
+            queryStatement.execute();
+            
+            
+            return deleting;
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+        
+        return null;
+    }
+    
+
     public void deleteAllForTagName(String name){
         
         String deleteStatement = "delete from NOTIFICATIONS where tag_name=?";
@@ -298,6 +341,39 @@ public class NotificationDBHelper extends DBHelper {
             queryStatement = connection.prepareStatement(deleteStatement);
 
             queryStatement.setString(1,name);
+            queryStatement.execute();
+
+            
+        }
+        catch (SQLException e) {
+            Logger.log(ExceptionUtils.getStackTrace(e));
+        }
+        finally {
+            try {
+                if (queryStatement != null) {
+                    queryStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e) {
+            }
+        }
+    }
+    
+
+    public void deleteAllForLike(Like like){
+        String deleteStatement = "delete from NOTIFICATIONS where username_by=?,recording_id=?,type='LIKE'";
+        Connection connection = null;
+        PreparedStatement queryStatement = null;
+
+        try {
+            connection = dataSourceFactory.getMySQLDataSource().getConnection();
+            queryStatement = connection.prepareStatement(deleteStatement);
+
+            queryStatement.setString(1,like.getUsername());
+            queryStatement.setString(2,like.getRecordingId());
             queryStatement.execute();
 
             

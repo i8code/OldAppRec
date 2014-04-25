@@ -174,6 +174,8 @@ public class RecordingsController {
                 
                 deleteRecording(recording);
                 
+                notificationDBHelper.deleteAllForRecordingId(recording.get_id());
+                
                 Thread updatePopularity = null;
 
                 if (recording.getParentType() == ParentType.TAG) {
