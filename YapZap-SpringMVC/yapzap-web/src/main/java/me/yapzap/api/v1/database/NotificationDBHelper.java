@@ -364,7 +364,7 @@ public class NotificationDBHelper extends DBHelper {
     
 
     public void deleteAllForLike(Like like){
-        String deleteStatement = "delete from NOTIFICATIONS where username_by=?,recording_id=?,type='LIKE'";
+        String deleteStatement = "delete from NOTIFICATIONS where username_by=? AND recording_id=? AND type='LIKE';";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 
