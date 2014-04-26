@@ -136,6 +136,7 @@ public class LikeController {
         
         Like like = likeDBHelper.deleteById(id, betterUsername);
         updateLikes(id, -1);
+        notificationDBHelper.deleteAllForLike(like);
         
         response.setStatus(201);
         return like;
