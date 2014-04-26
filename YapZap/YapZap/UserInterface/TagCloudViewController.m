@@ -169,6 +169,9 @@
                     
                 }
                 
+                for (CloudTagElement* element in self.buttons){
+                    [element removeFromSuperView];
+                }
                 self.buttons = cloudElements;
                 CGFloat max=0;
                 for (int i=0;i<nRows;i++){
@@ -177,7 +180,6 @@
                 
                 free(rowDepths);
                 self.canvasWidth = MAX(self.cloudView.frame.size.width+100, max);
-                self.buttons = buttons;
                 
                 for (CloudTagElement* element in self.buttons){
                     [element setCanvasWidth:self.canvasWidth];

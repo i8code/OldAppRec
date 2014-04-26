@@ -42,7 +42,7 @@ public class CollectionManager {
                 recordings = recordingDBHelper.getAllForParentName(((Tag)model).getName(), true);
             }
             else {
-                recordings = recordingDBHelper.getAllForParentName(((Recording)model).getParentName(), true);
+                recordings = recordingDBHelper.getAllForParentName(((Recording)model).get_id(), true);
             }
 
             double popularityCount=1;

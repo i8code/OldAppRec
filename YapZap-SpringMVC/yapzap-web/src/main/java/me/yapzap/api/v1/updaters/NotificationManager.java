@@ -20,15 +20,17 @@ public class NotificationManager {
 
         private String usernameBy;
         private String recordingId;
+        private String linkId;
         private NotificationType type;
         private TagDBHelper tagDBHelper;
         private RecordingDBHelper recordingDBHelper;
         private NotificationDBHelper notificationDBHelper;
 
-        public AddNotification(String usernameBy, String recordingId, NotificationType type, TagDBHelper tagDBHelper, RecordingDBHelper recordingDBHelper, NotificationDBHelper notificationDBHelper) {
+        public AddNotification(String usernameBy, String recordingId, String linkId, NotificationType type, TagDBHelper tagDBHelper, RecordingDBHelper recordingDBHelper, NotificationDBHelper notificationDBHelper) {
             super();
             this.usernameBy = usernameBy;
             this.recordingId = recordingId;
+            this.linkId = linkId;
             this.type = type;
             this.tagDBHelper = tagDBHelper;
             this.recordingDBHelper = recordingDBHelper;
@@ -62,7 +64,7 @@ public class NotificationManager {
             notification.setTagName(tag.getName());
             notification.setMood(tag.getMood());
             notification.setIntensity(tag.getIntensity());
-            notification.setRecordingId(recordingId);
+            notification.setRecordingId(linkId);
             notification.setType(type);
 
             notificationDBHelper.createNotification(notification);

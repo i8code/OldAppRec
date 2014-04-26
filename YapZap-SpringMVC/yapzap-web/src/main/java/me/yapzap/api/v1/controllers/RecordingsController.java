@@ -53,7 +53,7 @@ public class RecordingsController {
         boolean sortAsc = !path.subSequence(0, 5).equals("/tags");
         List<Recording> recordings = recordingDBHelper.getAllForParentName(name, sortAsc);
         for (Recording recording : recordings){
-            recording.setChildren(recordingDBHelper.getAllForParentName(recording.get_id(), recording.getParentType()==ParentType.TAG?false:true));
+            recording.setChildren(recordingDBHelper.getAllForParentName(recording.get_id(), !sortAsc));
         }
 
         return recordings;
@@ -113,11 +113,11 @@ public class RecordingsController {
         }
         else {
             notificationType = NotificationType.FRIEND_REC;
-            updatePopularity =  new Thread(new CollectionManager.UpdateRecordingPopularity(recording.getParentName(), tagDBHelper, recordingDBHelper, notificationDBHelper));
+            updatePopularity =  new Thread(new CollectionManager.UpdateRecordingPopularity(name, tagDBHelper, recordingDBHelper, notificationDBHelper));
             
             //This must be a comment
             Thread commentNotification = new Thread( new
-                            NotificationManager.AddNotification(recording.getUsername(), recording.getParentName(), NotificationType.COMMENT, tagDBHelper, recordingDBHelper, notificationDBHelper));
+                            NotificationManager.AddNotification(recording.getUsername(), recording.getParentName(), recording.get_id(), NotificationType.COMMENT, tagDBHelper, recordingDBHelper, notificationDBHelper));
             
             commentNotification.start();
         }
@@ -210,7 +210,7 @@ public class RecordingsController {
         
         List<Recording> recordings = recordingDBHelper.getAllRecordingsForUser(betterUsername);
         for (Recording recording : recordings){
-            recording.setChildren(new ArrayList<Recording>());
+            recording.setChildren(recordingDBHelper.getAllForParentName(recording.get_id(), true));
         }
         return recordings;
     }

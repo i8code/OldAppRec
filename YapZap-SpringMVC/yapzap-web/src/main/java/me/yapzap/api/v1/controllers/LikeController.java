@@ -114,7 +114,7 @@ public class LikeController {
         
         //Notify of likes
         Thread likeNotification = new Thread( new
-                        NotificationManager.AddNotification(username, like.getRecordingId(), NotificationType.LIKE, tagDBHelper, recordingDBHelper, notificationDBHelper));
+                        NotificationManager.AddNotification(username, like.getRecordingId(),like.getRecordingId(), NotificationType.LIKE, tagDBHelper, recordingDBHelper, notificationDBHelper));
 
         Thread notifyFriends = new Thread(new 
                         NotificationManager.NotifyFriends(
