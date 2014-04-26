@@ -123,7 +123,14 @@ public class RecordingsController {
         }
         
         Thread notifyFriends = new Thread(new 
-                        NotificationManager.NotifyFriends(recording, notificationType,  tagDBHelper, notificationDBHelper, friendDBHelper));
+                        NotificationManager.NotifyFriends(
+                        		recording.getUsername(),
+                        		recording.getTagName(),
+                        		recording.get_id(),
+                        		notificationType,
+                        		tagDBHelper,
+                        		notificationDBHelper,
+                        		friendDBHelper));
         
         updatePopularity.start();
         notifyFriends.start();

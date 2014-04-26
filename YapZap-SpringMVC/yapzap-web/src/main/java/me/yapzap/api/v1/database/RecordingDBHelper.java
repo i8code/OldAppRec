@@ -130,7 +130,7 @@ public class RecordingDBHelper extends DBHelper {
 
     public List<Recording> getAllRecordingsForUser(String username) {
         List<Recording> recordings = new ArrayList<>();
-        String selectAllStatement = "select * from RECORDINGS where username=?;";
+        String selectAllStatement = "select * from RECORDINGS where username=? order by created_date desc;";
         Connection connection = null;
         PreparedStatement queryStatement = null;
 

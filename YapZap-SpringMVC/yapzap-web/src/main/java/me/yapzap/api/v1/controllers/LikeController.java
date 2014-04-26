@@ -117,7 +117,14 @@ public class LikeController {
                         NotificationManager.AddNotification(username, like.getRecordingId(), NotificationType.LIKE, tagDBHelper, recordingDBHelper, notificationDBHelper));
 
         Thread notifyFriends = new Thread(new 
-                        NotificationManager.NotifyFriends(recordingDBHelper.getById(like.getRecordingId()), NotificationType.FRIEND_LIKE,  tagDBHelper, notificationDBHelper, friendDBHelper));
+                        NotificationManager.NotifyFriends(
+                        		username,
+                        		recordingDBHelper.getById(id).getTagName(),
+                        		id,
+                        		NotificationType.FRIEND_LIKE,
+                        		tagDBHelper,
+                        		notificationDBHelper,
+                        		friendDBHelper));
         
         likeNotification.start();
         notifyFriends.start();
