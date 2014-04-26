@@ -227,7 +227,7 @@
 -(void)stop{
     self.state = MA_STOPPED;
 }
-/*
+
 -(void)setUpHeadsetListener{
     AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, audioSessionPropertyListener, nil);
 }
@@ -258,5 +258,5 @@ void audioSessionPropertyListener(void* inClientData, AudioSessionPropertyID inI
         AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
     }
     
-}*/
+}
 @end

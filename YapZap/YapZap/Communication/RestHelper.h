@@ -10,9 +10,9 @@
 
 @interface RestHelper : NSObject<NSURLConnectionDataDelegate>
 
-#define PORT 8080
-#define PROTOCOL @"http"
-#define HOST @"10.228.16.78"
+#define PORT 443
+#define PROTOCOL @"https"
+#define HOST @"yapzap.me"
 
 +(void)get:(NSString*)url withQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;
 +(void)post:(NSString*)url withBody:(NSData*)body andQuery:(NSDictionary*)query completion:(void(^)(NSString* responseStr))completion;

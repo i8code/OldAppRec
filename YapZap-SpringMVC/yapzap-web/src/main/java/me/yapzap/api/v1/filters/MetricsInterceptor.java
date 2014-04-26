@@ -31,6 +31,9 @@ public class MetricsInterceptor extends HandlerInterceptorAdapter {
                 return method;
             case 1:
             case 2:
+            	if (pathParts[0].equals("a")){
+            		return method+"_a";
+            	}
                 path = pathParts[0];
                 break;
             case 3:

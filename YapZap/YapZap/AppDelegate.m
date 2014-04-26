@@ -55,7 +55,7 @@
     [self registerForAudioObjectNotifications];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     self.player = [MasterAudioPlayer instance];
-//    [self.player setUpHeadsetListener];
+    [self.player setUpHeadsetListener];
     
     
     [TestFlight takeOff:@"e1a305e1-e4eb-47d7-9c7c-108accb8f261"];

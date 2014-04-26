@@ -165,6 +165,8 @@
 
 -(void)createBackground{
     
+    [self.view setOpaque:YES];
+    self.view.backgroundColor = [UIColor blackColor];
     [self.background removeFromSuperview];
     self.background = [[FilteredImageView alloc] init];
     self.background.filterColor = [UIColor whiteColor];

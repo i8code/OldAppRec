@@ -143,12 +143,7 @@
     }
     
     // Configure the cell...
-    
-    if (!self.data || !self.data.count){
-        [cell.textLabel setText:@"Notifications will appear here"];
-        [cell.textLabel setTextColor:[UIColor whiteColor]];
-    }
-    else {
+    if (self.data && self.data.count){
         [cell setNotification:self.data[indexPath.row]];
     }
     
