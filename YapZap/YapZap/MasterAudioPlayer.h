@@ -26,6 +26,6 @@
 -(void)previous;
 -(void)stop;
 -(void)tick;
--(void)setUpHeadsetListener;
+//-(void)setUpHeadsetListener;
 
 @end

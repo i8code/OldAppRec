@@ -18,6 +18,7 @@
 @property (nonatomic) BOOL hasSelectedMood;
 @property (nonatomic) BOOL backPressedLast;
 @property (nonatomic, strong) NSArray* zeusFaces;
+@property (nonatomic) int last;
 @end
 
 @implementation SetTagViewController
@@ -54,6 +55,12 @@
                                    [UIImage imageNamed:@"zeus elements-08.png"],
                                    nil
                                    ];
+    /*
+    for (UIImage* image in self.zeusFaces){
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        imageView.image = image;
+        [self.view addSubview:imageView];
+    }*/
     
     self.zeusFace.image = nil;//[UIImage imageNamed:@"zeus elements-11.png"];
     
@@ -91,6 +98,7 @@
     self.parent.homeButton.hidden = NO;
     self.logoImage.hidden=NO;
     self.zeusFace.image = nil;//[UIImage imageNamed:@"zeus elements-11.png"];
+    self.last = -1;
 }
 
 
@@ -204,8 +212,6 @@
     
     self.logoImage.hidden=YES;
     
-    static int last = -1;
-    
     angle*=360.0;
     angle=420-angle;
     if (angle>360){
@@ -219,8 +225,8 @@
     }
     i/=60.1;
     
-    if (i!=last){
-        last=i;
+    if (i!=self.last){
+        self.last=i;
         self.zeusFace.image = self.zeusFaces[i];
     }
     

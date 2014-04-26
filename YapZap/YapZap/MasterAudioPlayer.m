@@ -138,6 +138,12 @@
             NSURL* path = [self getFileURL:self.recordingSet[self.currentRecording]];
             
             self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:path error:nil];
+//            static AVAudioSession* session;
+//            
+//            if (!session){
+//                session = [[AVAudioSession alloc] init];
+//                [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+//            }
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
             [[AVAudioSession sharedInstance] setActive: YES error: nil];
             [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -221,7 +227,7 @@
 -(void)stop{
     self.state = MA_STOPPED;
 }
-
+/*
 -(void)setUpHeadsetListener{
     AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, audioSessionPropertyListener, nil);
 }
@@ -252,5 +258,5 @@ void audioSessionPropertyListener(void* inClientData, AudioSessionPropertyID inI
         AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
     }
     
-}
+}*/
 @end

@@ -50,12 +50,12 @@
     [self.window setRootViewController:[[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil]];
     [self.window makeKeyAndVisible];
     
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
     [self registerForAudioObjectNotifications];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     self.player = [MasterAudioPlayer instance];
-    [self.player setUpHeadsetListener];
+//    [self.player setUpHeadsetListener];
     
     
     [TestFlight takeOff:@"e1a305e1-e4eb-47d7-9c7c-108accb8f261"];
@@ -212,6 +212,7 @@
 // This method will handle ALL the session state changes in the app
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
+    
     // If the session was opened successfully
     if (!error && state == FBSessionStateOpen){
         NSLog(@"Facebook Session opened");
@@ -223,13 +224,15 @@
     if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
         // If the session is closed
         NSLog(@"Facebook Session closed");
-        // Show the user the logged-out UI
         self.hasAuthedWithFacebook = false;
+        // Show the user the logged-out UI
         [self userLoggedOut];
     }
     
     // Handle errors
     if (error){
+        
+        self.hasAuthedWithFacebook = false;
         NSLog(@"Facebook Error");
         NSString *alertText;
         NSString *alertTitle;
