@@ -27,7 +27,7 @@
             </div> 
             <div class="maintxt"> 
                     <p> 
-                    <BR>We hang out at the <a href="http://i-lab.harvard.edu" target="_blank">Harvard Innovation Lab</a>. Come say hi. For more information, please <a href="mailto:hi@yapzap.me?Subject=YapZap%20Inquiry">contact us</a>, <a href="https://yapzap.me/app" target="_blank">sign up for the beta release</a>, or check back for the upcoming launch.<BR><BR>-Danny + Rach <BR><BR><BR>
+                    <BR>We hang out at the <a href="http://i-lab.harvard.edu" target="_blank">Harvard Innovation Lab</a>. Come say hi. For more information, please <a href="mailto:hi@yapzap.me?Subject=YapZap%20Inquiry">contact us</a>, <a href="https://yapzap.me/app" target="_blank">download now</a>, or <a href="http://goo.gl/OBKKaY">sign up for fun launch updates!</a><BR><BR>-Danny + Rach <BR><BR><BR>
                 <div> 
             
         </body> 
