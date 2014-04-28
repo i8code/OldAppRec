@@ -61,10 +61,12 @@
     // over top of image.
     //
     if (self.filterColor==nil){
+        self.hidden = YES;
         CGContextSetBlendMode (context, kCGBlendModeNormal);
         CGContextSetFillColor(context, CGColorGetComponents([UIColor blackColor].CGColor));
     }
     else{
+        self.hidden = NO;
         CGContextDrawImage(context, bounds, self.originalImage.CGImage);
         CGContextSetBlendMode (context, kCGBlendModeMultiply);
         CGContextSetFillColor(context, CGColorGetComponents(self.filterColor.CGColor));
