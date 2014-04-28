@@ -123,6 +123,7 @@ public class LikeController {
                         		id,
                         		NotificationType.FRIEND_LIKE,
                         		tagDBHelper,
+                        		recordingDBHelper,
                         		notificationDBHelper,
                         		friendDBHelper));
         

@@ -129,6 +129,7 @@ public class RecordingsController {
                         		recording.get_id(),
                         		notificationType,
                         		tagDBHelper,
+                        		recordingDBHelper,
                         		notificationDBHelper,
                         		friendDBHelper));
         

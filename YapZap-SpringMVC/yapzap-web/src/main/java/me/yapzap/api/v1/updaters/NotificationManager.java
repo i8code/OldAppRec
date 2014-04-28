@@ -62,8 +62,8 @@ public class NotificationManager {
             notification.setUsernameBy(usernameBy);
             notification.setUsernameFor(usernameFor);
             notification.setTagName(tag.getName());
-            notification.setMood(tag.getMood());
-            notification.setIntensity(tag.getIntensity());
+            notification.setMood(recording.getMood());
+            notification.setIntensity(recording.getIntensity());
             notification.setRecordingId(linkId);
             notification.setType(type);
 
@@ -79,15 +79,17 @@ public class NotificationManager {
         private String recordingId;
         private NotificationType type;
         private TagDBHelper tagDBHelper;
+        private RecordingDBHelper recordingDBHelper;
         private NotificationDBHelper notificationDBHelper;
         private FriendDBHelper friendDBHelper;
 
-        public NotifyFriends(String username, String tagName, String recordingId, NotificationType type, TagDBHelper tagDBHelper, NotificationDBHelper notificationDBHelper, FriendDBHelper friendDBHelper) {
+        public NotifyFriends(String username, String tagName, String recordingId, NotificationType type, TagDBHelper tagDBHelper, RecordingDBHelper recordingDBHelper, NotificationDBHelper notificationDBHelper, FriendDBHelper friendDBHelper) {
             super();
             this.username = username;
             this.tagName = tagName;
             this.recordingId = recordingId;
             this.type = type;
+            this.recordingDBHelper = recordingDBHelper;
             this.tagDBHelper = tagDBHelper;
             this.notificationDBHelper = notificationDBHelper;
             this.friendDBHelper = friendDBHelper;
@@ -97,6 +99,9 @@ public class NotificationManager {
         public void run() {
             List<FriendRelation> friends = friendDBHelper.getAllForUser(username);
 
+            Tag tag = tagDBHelper.getByName(tagName);
+            Recording recording = recordingDBHelper.getById(recordingId);
+
             for (FriendRelation friend : friends) {
                 List<Notification> existingNotifications = notificationDBHelper.getAllBy(username, friend.getFriendId(), recordingId);
 
@@ -105,16 +110,14 @@ public class NotificationManager {
                     continue;
                 }
 
-                Tag tag = tagDBHelper.getByName(tagName);
-
                 // Create the recording
                 Notification notification = new Notification();
 
                 notification.setUsernameBy(username);
                 notification.setUsernameFor(friend.getFriendId());
                 notification.setTagName(tag.getName());
-                notification.setMood(tag.getMood());
-                notification.setIntensity(tag.getIntensity());
+                notification.setMood(recording.getMood());
+                notification.setIntensity(recording.getIntensity());
                 notification.setRecordingId(recordingId);
                 notification.setType(type);
 
