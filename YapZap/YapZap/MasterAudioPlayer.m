@@ -144,9 +144,9 @@
 //                session = [[AVAudioSession alloc] init];
 //                [session setCategory:AVAudioSessionCategoryPlayback error:nil];
 //            }
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-            [[AVAudioSession sharedInstance] setActive: YES error: nil];
-            [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+//            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//            [[AVAudioSession sharedInstance] setActive: YES error: nil];
+//            [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
             
             [self.player play];
         }

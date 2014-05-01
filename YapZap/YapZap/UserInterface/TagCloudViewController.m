@@ -50,7 +50,6 @@
 }
 
 -(void)updateTagPositions{
-    
     self.tagPositions+=self.speed;
     for (CloudTagElement* cloudEl in self.buttons){
         [cloudEl setTime:self.tagPositions];
