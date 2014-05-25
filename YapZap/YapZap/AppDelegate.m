@@ -30,6 +30,8 @@
 @end
 @implementation AppDelegate
 
+static long lastTime = 0;
+
 -(id)init{
     self = [super init];
     
@@ -56,7 +58,7 @@
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     self.player = [MasterAudioPlayer instance];
     [self.player setUpHeadsetListener];
-    
+    lastTime = (long)[[NSDate date] timeIntervalSince1970];
     
     [TestFlight takeOff:@"e1a305e1-e4eb-47d7-9c7c-108accb8f261"];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -169,8 +171,11 @@
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
     
-    if (self.enteredApp && self.hasAuthedWithFacebook){
+    long timeNow = (long)[[NSDate date] timeIntervalSince1970];
+    
+    if (self.enteredApp && self.hasAuthedWithFacebook && lastTime-timeNow>1000){
         [self goToHomeView];
+        lastTime = timeNow;
     }
 }
 
@@ -331,8 +336,12 @@
     [[LocalyticsSession shared] LocalyticsSession:@"0cd3459f7fc0e11fcbfc7d2-8c4106bc-ac5f-11e3-4230-00a426b17dd8"];
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
-    if (self.enteredApp && self.hasAuthedWithFacebook){
+    
+    long timeNow = (long)[[NSDate date] timeIntervalSince1970];
+    
+    if (self.enteredApp && self.hasAuthedWithFacebook && lastTime-timeNow>1000){
         [self goToHomeView];
+        lastTime = timeNow;
     }
 }
 

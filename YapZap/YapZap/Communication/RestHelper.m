@@ -10,6 +10,7 @@
 #import "AuthHelper.h"
 #import "Reachability.h"
 #import "UIAlertView+Blocks.h"
+#import "AppDelegate.h"
 
 
 #ifdef DEBUG
@@ -30,7 +31,6 @@
 #endif
 
 @implementation RestHelper
-
 
 +(NSDictionary*)addAuth:(NSDictionary*)query{
     NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithCapacity:query.count+3];
@@ -86,16 +86,15 @@
 
 +(void)getDataFromRequestPath:(NSString*)path withQuery:(NSDictionary*)query withHttpType:(NSString*)type andBody:(NSData*)body retryCount:(NSInteger)retryCount completion:(void(^)(NSString*))completion{
     
-    static bool showingHelp = false;
-    
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]){
-        if (showingHelp){
+        AppDelegate* app = [[UIApplication sharedApplication] delegate];
+        if (app.showingHelp){
             return;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            showingHelp = true;
+            app.showingHelp = true;
             [UIAlertView showWithTitle:@"Connection Error" message:@"You must be connected to the internet to use this app." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
                 exit(EXIT_FAILURE);

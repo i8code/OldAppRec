@@ -8,7 +8,7 @@
 
 #import "S3Helper.h"
 #import "Reachability.h"
-#import <AWSS3/AWSS3.h>
+#import "AWSS3/AWSS3.h"
 
 @implementation S3Helper
 

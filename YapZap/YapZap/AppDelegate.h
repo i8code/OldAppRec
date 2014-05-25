@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) BOOL hasAuthedWithFacebook;
 @property (nonatomic) BOOL enteredApp;
+@property (nonatomic) BOOL showingHelp;
 
 -(void)goToLoginView;
 -(void)goToHomeView;

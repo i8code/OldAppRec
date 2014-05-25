@@ -16,6 +16,7 @@
 #import "AuthHelper.h"
 #import "UIAlertView+Blocks.h"
 #import "LocalyticsSession.h"
+#import "AppDelegate.h"
 
 @interface DataSource()
 
@@ -31,6 +32,10 @@ static NSMutableArray* tagNames;
     [RestHelper get:@"/time" withQuery:nil completion:^(NSString *timezoneOffsetStr) {
         if (!timezoneOffsetStr ){
             dispatch_async(dispatch_get_main_queue(), ^{
+                AppDelegate* app = [[UIApplication sharedApplication] delegate];
+                if (app.showingHelp){
+                    return;
+                }
                 [UIAlertView showWithTitle:@"Connection Error" message:@"Could not connect to the YapZap server. Please try again later." cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     [[LocalyticsSession shared] tagEvent:@"Could not connect to server"];
                     exit(EXIT_FAILURE);
