@@ -108,10 +108,6 @@ public class SecurityFilter extends DelegatingFilterProxy {
             long t = (new Date()).getTime()/1000l;
             long timeInLong = Long.parseLong(timeIn);
             
-            if (timeInLong!=timeInLong){
-                return false;
-            }
-
             if (hash.equals(token) && key.equals(user.key) && timeInLong-3e2<t && timeInLong+3e2>t){
                 session.setAttribute(authkey, authvalue);
                 return true;
