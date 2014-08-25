@@ -244,7 +244,7 @@ static const int recentSearchesCount = 10;
     return @[@"publish_actions"];
 }
 +(NSArray*)getFBReadPermissions{
-    return @[@"basic_info", @"user_friends"];
+    return @[@"user_friends"];
 }
 
 @end
