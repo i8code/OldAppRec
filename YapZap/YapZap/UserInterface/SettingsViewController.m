@@ -29,21 +29,9 @@
     return self;
 }
 
--(void)setupFBButton{
-    CGRect frame = [self.loginButtonPlaceholder frame];
-    [self.loginButtonPlaceholder removeFromSuperview];
-    self.loginButton = [[FBLoginView alloc] initWithPublishPermissions:[Util getFBReadPermissions] defaultAudience:FBSessionDefaultAudienceEveryone];
-    [self.loginButton setFrame:frame];
-    [self.view addSubview:self.loginButton];
-    self.loginButton.delegate = self;
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self setupFBButton];
 	// Do any additional setup after loading the view.
 }
 - (void)didReceiveMemoryWarning
@@ -102,24 +90,6 @@
     }
     _currentlyPlayingCell = currentlyPlayingCell;
     
-}
-
-
-
-
-
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-//    NSLog(@"%@", user.id);
-//    NSLog(@"%@", user.name);
-}
-
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-}
-
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app goToLoginView];
 }
 
 // Handle possible errors that can occur during login

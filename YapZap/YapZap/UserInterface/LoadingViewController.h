@@ -11,5 +11,6 @@
 
 @interface LoadingViewController : IndexedViewController
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (weak, nonatomic) IBOutlet UILabel *facebookAccountLabel;
 
 @end

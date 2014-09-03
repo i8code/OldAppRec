@@ -116,10 +116,6 @@
             [User getUser].displayName = [result objectForKey:@"name"];
             [User getUser].fbID = [result objectForKey:@"id"];
             [User getUser].username = [result objectForKey:@"username"];
-            
-            
-            AppDelegate* app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            app.hasAuthedWithFacebook = true;
         } else {
             // An error occurred, we need to handle the error
             // See: https://developers.facebook.com/docs/ios/errors

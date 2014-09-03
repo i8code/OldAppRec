@@ -11,13 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic) BOOL hasAuthedWithFacebook;
 @property (nonatomic) BOOL enteredApp;
 @property (nonatomic) BOOL showingHelp;
-
--(void)goToLoginView;
--(void)goToHomeView;
 -(void)gotoLoadingView;
-- (void)connection:(NSURLConnection *)connection
-didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+-(void)goToHomeView;
 @end

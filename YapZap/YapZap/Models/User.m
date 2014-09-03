@@ -33,4 +33,14 @@
     return toReturn;
 }
 
+
++(bool)hasLoggedIn{
+    User* user = [self getUser];
+    
+    return user &&
+        user.username &&
+        user.fbID &&
+        user.displayName;
+}
+
 @end
