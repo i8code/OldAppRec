@@ -13,7 +13,7 @@
 @implementation S3Helper
 
 #define SECRET_KEY @"kbtyCsxHKC1yJz08/laKNFoFzg+EDdkwFMpZ0TLf"
-#define ACCESS_KEY @"AKIAJ7CIUFOP2SG3EQOA"
+#define ACCESS_KEY @"<add key>"
 #define BUCKET_NAME @"yap-zap-audio"
 
 +(BOOL)isWifiAvailable
